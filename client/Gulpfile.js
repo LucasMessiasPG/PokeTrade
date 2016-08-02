@@ -7,12 +7,14 @@ var sass = require('gulp-sass');
 var path = {
     dev:{
         ts:'dev/**/*.ts',
+        html:'dev/**/*.html',
         img:'dev/assets/img/**/*.*',
         css:'dev/assets/css/**/*.css',
-        scss:'dev/assets/scss/**/*.scss'
+        scss:'dev/assets/scss/**/*.scss',
     },
     app:{
         ts:'app',
+        html:'app',
         img:'app/assets/img',
         css:'app/assets/css',
         scss:'app/assets/css'
@@ -36,6 +38,11 @@ gulp.task('build-css',function(){
         .pipe(gulp.dest(path.app.css))
 })
 
+gulp.task('build-html',function(){
+    return gulp.src(path.dev.html)
+        .pipe(gulp.dest(path.app.html))
+})
+
 gulp.task('build-ts',function(){
     var tsResult = gulp.src(path.dev.ts)
         .pipe(ts(tsProject));
@@ -44,10 +51,10 @@ gulp.task('build-ts',function(){
 })
 
 gulp.task('watch',function(){
-    gulp.watch(path.dev.ts,['build-ts'])
     gulp.watch(path.dev.img,['build-img'])
     gulp.watch(path.dev.css,['build-css'])
     gulp.watch(path.dev.scss,['build-sass'])
+    gulp.watch(path.dev.html,['build-html'])
 })
 
-gulp.task('default',['watch','build-ts','build-img','build-css','build-sass'])
+gulp.task('default',['watch','build-html','build-img','build-css','build-sass'])

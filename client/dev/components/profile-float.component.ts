@@ -18,7 +18,7 @@ import {Component} from "@angular/core";
         color: black;
     }
 
-    .nav.navbar-nav.navbar-right{
+    .nav.navbar-nav{
         padding: 1px;
         margin-top: 0px;
         margin-right: 20px;
