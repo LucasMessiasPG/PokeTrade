@@ -1,0 +1,1729 @@
+{
+  "cards": [
+    {
+      "id": "ex5-101",
+      "name": "Wigglytuff ex",
+      "nationalPokedexNumber": 40,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/ex5/101.png",
+      "subtype": "EX",
+      "supertype": "Pokémon",
+      "hp": "100",
+      "retreatCost": [
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Ryo Ueda",
+      "rarity": "Rare Holo EX",
+      "series": "EX",
+      "set": "Hidden Legends",
+      "setCode": "ex5",
+      "types": [
+        "Colorless"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Sleepy Song",
+          "text": "Each Defending Pokémon is now Asleep.",
+          "damage": "30",
+          "convertedEnergyCost": 2
+        },
+        {
+          "cost": [
+            "Colorless",
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Do the Wave",
+          "text": "Does 30 damage plus 10 more damage for each of your Benched Pokémon.",
+          "damage": "30+",
+          "convertedEnergyCost": 3
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ]
+    },
+    {
+      "id": "ex13-101",
+      "name": "Mightyena ex",
+      "nationalPokedexNumber": 262,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/ex13/101.png",
+      "subtype": "EX",
+      "supertype": "Pokémon",
+      "ability": {
+        "name": "Driving Howl",
+        "text": "Once during your turn (before your attack), you may choose 1 of the Defending Pokémon and switch it with 1 of your opponent's Benched Pokémon. Your opponent chooses the Benched Pokémon to switch. This power can't be used if Mightyena ex is affected by a Special Condition."
+      },
+      "hp": "100",
+      "number": "101",
+      "artist": "Ryo Ueda",
+      "rarity": "Rare Holo EX",
+      "series": "EX",
+      "set": "Holon Phantoms",
+      "setCode": "ex13",
+      "text": [
+        "When Pokémon-ex has been Knocked Out, your opponent takes 2 Prize cards."
+      ],
+      "types": [
+        "Darkness"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Sharp Fang",
+          "text": "",
+          "damage": "30",
+          "convertedEnergyCost": 2
+        },
+        {
+          "cost": [
+            "Darkness",
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Hyper Claws",
+          "text": "If the Defending Pokémon is a Stage 2 Evolved Pokémon, this attack does 50 damage plus 40 more damage.",
+          "damage": "50+",
+          "convertedEnergyCost": 3
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Psychic",
+          "value": "-30"
+        }
+      ]
+    },
+    {
+      "id": "gym1-101",
+      "name": "Lt. Surge",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/gym1/101.jpg",
+      "subtype": "",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "Ken Sugimori",
+      "rarity": "Rare",
+      "series": "Gym",
+      "set": "Gym Heroes",
+      "setCode": "gym1",
+      "text": [
+        "You can play this card only if you have at least 1 Basic Pokémon card in your hand. Put a Basic Pokémon card from your hand into play as your Active Pokémon. Put your old Active Pokémon onto your Bench. (You can't play this card if your Bench is full.)"
+      ]
+    },
+    {
+      "id": "gym2-101",
+      "name": "Brock's Protection",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/gym2/101.jpg",
+      "subtype": "",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "Ken Sugimori",
+      "rarity": "Rare",
+      "series": "Gym",
+      "set": "Gym Challenge",
+      "setCode": "gym2",
+      "text": [
+        "Attach Brock's Protection to 1 of your Pokémon with Brock in its name. Energy cards attached to that Pokémon can't be removed by your opponent's attacks or Trainer cards. (This doesn't stop the rest of the attack or Trainer card from working normally.)"
+      ]
+    },
+    {
+      "id": "ecard3-101",
+      "name": "Snubbull",
+      "nationalPokedexNumber": 209,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/ecard3/101.jpg",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "hp": "50",
+      "retreatCost": [
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Hisao Nakamura",
+      "rarity": "Common",
+      "series": "E-Card",
+      "set": "Skyridge",
+      "setCode": "ecard3",
+      "types": [
+        "Colorless"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless"
+          ],
+          "name": "Scary Face",
+          "text": "Flip a coin. If heads, until the end of your opponent's next turn the Defending Pokémon can't Retreat.",
+          "damage": "",
+          "convertedEnergyCost": 1
+        },
+        {
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Bite",
+          "text": "",
+          "damage": "20",
+          "convertedEnergyCost": 2
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ]
+    },
+    {
+      "id": "bw8-101",
+      "name": "Snorlax",
+      "nationalPokedexNumber": 143,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/bw8/101.png",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "ability": {
+        "name": "Block",
+        "text": "As long as this Pokémon is your Active Pokémon, your opponent's Active Pokémon can't retreat."
+      },
+      "hp": "130",
+      "retreatCost": [
+        "Colorless",
+        "Colorless",
+        "Colorless",
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "5ban Graphics",
+      "rarity": "Rare",
+      "series": "Black & White",
+      "set": "Plasma Storm",
+      "setCode": "bw8",
+      "types": [
+        "Colorless"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless",
+            "Colorless",
+            "Colorless",
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Teampact",
+          "text": "Does 30 damage times the number of Team Plasma Pokémon you have in play.",
+          "damage": "30x",
+          "convertedEnergyCost": 5
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ]
+    },
+    {
+      "id": "bw1-101",
+      "name": "Professor Juniper",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/bw1/101.png",
+      "subtype": "Supporter",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "Ken Sugimori",
+      "rarity": "Uncommon",
+      "series": "Black & White",
+      "set": "Black & White",
+      "setCode": "bw1",
+      "text": [
+        "Discard your hand and draw 7 cards.",
+        "You may play only 1 Supporter card during your turn (before your attack)."
+      ]
+    },
+    {
+      "id": "ex6-101",
+      "name": "Potion",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/ex6/101.png",
+      "subtype": "Item",
+      "supertype": "Trainer",
+      "hp": "None",
+      "number": "101",
+      "artist": "Keiji Kinebuchi",
+      "rarity": "Common",
+      "series": "EX",
+      "set": "FireRed & LeafGreen",
+      "setCode": "ex6",
+      "text": [
+        "Remove 2 damage counters from 1 of your Pokémon (remove 1 damage counter if that Pokémon has only 1)."
+      ]
+    },
+    {
+      "id": "bw11-101",
+      "name": "White Kyurem-EX",
+      "nationalPokedexNumber": 646,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/bw11/101.png",
+      "subtype": "EX",
+      "supertype": "Pokémon",
+      "hp": "180",
+      "retreatCost": [
+        "Colorless",
+        "Colorless",
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Eske Yoshinob",
+      "rarity": "Rare Holo EX",
+      "series": "Black & White",
+      "set": "Legendary Treasures",
+      "setCode": "bw11",
+      "text": [
+        "When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards."
+      ],
+      "types": [
+        "Dragon"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Fire",
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Dragon Stream",
+          "text": "Flip a coin. If heads, attach a basic Energy card from your discard pile to this Pokémon.",
+          "damage": "60",
+          "convertedEnergyCost": 3
+        },
+        {
+          "cost": [
+            "Fire",
+            "Fire",
+            "Water",
+            "Colorless"
+          ],
+          "name": "Ice Burn",
+          "text": "Discard 2 Fire Energy attached to this Pokémon. The Defending Pokémon is now Burned.",
+          "damage": "150",
+          "convertedEnergyCost": 4
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Dragon",
+          "value": "×2"
+        }
+      ]
+    },
+    {
+      "id": "xy3-101",
+      "name": "Tool Retriever",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/xy3/101.png",
+      "subtype": "Item",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "Toyste Beach",
+      "rarity": "Uncommon",
+      "series": "XY",
+      "set": "Furious Fists",
+      "setCode": "xy3",
+      "text": [
+        "Choose up to 2 Pokémon Tool cards attached to your Pokémon and put them into your hand."
+      ]
+    },
+    {
+      "id": "xy8-101",
+      "name": "Flabébé",
+      "nationalPokedexNumber": 669,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/xy8/101.png",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "hp": "30",
+      "retreatCost": [
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Kouki Saitou",
+      "rarity": "Common",
+      "series": "XY",
+      "set": "BREAKthrough",
+      "setCode": "xy8",
+      "types": [
+        "Fairy"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Fairy"
+          ],
+          "name": "Wish",
+          "text": "Flip a coin. If heads, search your deck for a card and put it into your hand. Shuffle your deck afterward.",
+          "damage": "",
+          "convertedEnergyCost": 1
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Metal",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Darkness",
+          "value": "-20"
+        }
+      ]
+    },
+    {
+      "id": "dp2-101",
+      "name": "Snover",
+      "nationalPokedexNumber": 459,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/dp2/101.png",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "hp": "60",
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Ken Sugimori",
+      "rarity": "Common",
+      "series": "Diamond & Pearl",
+      "set": "Mysterious Treasures",
+      "setCode": "dp2",
+      "types": [
+        "Grass"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Free"
+          ],
+          "name": "Curiosity",
+          "text": "Look at your opponent's hand.",
+          "damage": "",
+          "convertedEnergyCost": 1
+        },
+        {
+          "cost": [
+            "Water",
+            "Colorless"
+          ],
+          "name": "Snowball Fight",
+          "text": "Flip a coin. If tails, Snover does 10 damage to itself.",
+          "damage": "30",
+          "convertedEnergyCost": 2
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fire",
+          "value": "+10"
+        }
+      ]
+    },
+    {
+      "id": "xy2-101",
+      "name": "Magnezone-EX",
+      "nationalPokedexNumber": 462,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/xy2/101.png",
+      "subtype": "EX",
+      "supertype": "Pokémon",
+      "hp": "180",
+      "retreatCost": [
+        "Colorless",
+        "Colorless",
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Ryo Ueda",
+      "rarity": "Rare Ultra",
+      "series": "XY",
+      "set": "Flashfire",
+      "setCode": "xy2",
+      "text": [
+        "When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards."
+      ],
+      "types": [
+        "Lightning"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Electro Ball",
+          "text": "",
+          "damage": "40",
+          "convertedEnergyCost": 2
+        },
+        {
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Lightning"
+          ],
+          "name": "Dual Bullet",
+          "text": "This attack does 50 damage to 2 of your opponent's Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)",
+          "damage": "",
+          "convertedEnergyCost": 3
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-20"
+        }
+      ]
+    },
+    {
+      "id": "pl2-101",
+      "name": "SP Energy",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/pl2/101.png",
+      "subtype": "Special",
+      "supertype": "Energy",
+      "number": "101",
+      "artist": "Kent Kanetsuna",
+      "rarity": "Uncommon",
+      "series": "Platinum",
+      "set": "Rising Rivals",
+      "setCode": "pl2",
+      "text": [
+        "SP Energy provides Colorless Energy. If the Pokémon SP Energy is attached to is a Pokémon SP, SP Energy provides every type of Energy but provides only 1 Energy at a time. (Doesn’t count as a basic Energy card.)"
+      ]
+    },
+    {
+      "id": "base6-101",
+      "name": "Potion Energy",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/base6/101.jpg",
+      "subtype": "",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "Keiji Kinebuchi",
+      "rarity": "Uncommon",
+      "series": "Base",
+      "set": "Legendary Collection",
+      "setCode": "base6",
+      "text": [
+        "If you play this card from your hand, remove 1 damage counter from the Pokémon you attach it to, if it has any. Potion Energy provides energy. (Doesn't count as a basic Energy card.)"
+      ]
+    },
+    {
+      "id": "dp1-101",
+      "name": "Starly",
+      "nationalPokedexNumber": 396,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/dp1/101.png",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "hp": "50",
+      "retreatCost": [
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Ken Sugimori",
+      "rarity": "Common",
+      "series": "Diamond & Pearl",
+      "set": "Diamond & Pearl",
+      "setCode": "dp1",
+      "types": [
+        "Colorless"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless"
+          ],
+          "name": "Gust",
+          "text": "",
+          "damage": "10",
+          "convertedEnergyCost": 1
+        },
+        {
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Quick Attack",
+          "text": "Flip a coin. If heads, this attack does 10 damage plus 20 more damage.",
+          "damage": "10+",
+          "convertedEnergyCost": 2
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Lightning",
+          "value": "+10"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Fighting",
+          "value": "-20"
+        }
+      ]
+    },
+    {
+      "id": "base1-101",
+      "name": "Psychic Energy",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/base1/101.jpg",
+      "subtype": "Basic",
+      "supertype": "Energy",
+      "number": "101",
+      "artist": "Keiji Kinebuchi",
+      "rarity": "Common",
+      "series": "Base",
+      "set": "Base",
+      "setCode": "base1"
+    },
+    {
+      "id": "neo4-101",
+      "name": "Magnifier",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/neo4/101.jpg",
+      "subtype": "",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "Keiji Kinebuchi",
+      "rarity": "Uncommon",
+      "series": "Neo",
+      "set": "Neo Destiny",
+      "setCode": "neo4",
+      "text": [
+        "Attach Magnifier to 1 of your Pokémon. At the end of your turn, discard Magnifier. If the Pokémon Magnifier is attached to attacks, don't apply Resistance for that attack."
+      ]
+    },
+    {
+      "id": "ex11-101",
+      "name": "Potion",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/ex11/101.png",
+      "subtype": "Item",
+      "supertype": "Trainer",
+      "hp": "None",
+      "number": "101",
+      "artist": "Shin-ichi Yoshikawa",
+      "rarity": "Common",
+      "series": "EX",
+      "set": "Delta Species",
+      "setCode": "ex11",
+      "text": [
+        "Remove 2 damage counters from I of your Pokémon (remove 1 damage counter if that Pokémon has only 1)."
+      ]
+    },
+    {
+      "id": "xy4-101",
+      "name": "Professor Sycamore",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/xy4/101.png",
+      "subtype": "Supporter",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "Yusuke Ohmura",
+      "rarity": "Uncommon",
+      "series": "XY",
+      "set": "Phantom Forces",
+      "setCode": "xy4",
+      "text": [
+        "Discard your hand and draw 7 cards."
+      ]
+    },
+    {
+      "id": "ex7-101",
+      "name": "Rocket's Scizor ex",
+      "nationalPokedexNumber": 212,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/ex7/101.png",
+      "subtype": "EX",
+      "supertype": "Pokémon",
+      "ability": {
+        "name": "Dual Armor",
+        "text": "As long as Rocket's Scizor ex has any Metal Energy attached to it, Rocket's Scizor ex is both Darkness and Metal type.\""
+      },
+      "hp": "120",
+      "retreatCost": [
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Hikaru Koike",
+      "rarity": "Rare Holo EX",
+      "series": "EX",
+      "set": "Team Rocket Returns",
+      "setCode": "ex7",
+      "types": [
+        "Darkness"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless",
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Rotating Claws",
+          "text": "You may discard an Energy card attached to Rocket's Scizor ex. If you do, search your discard pile for an Energy card (excluding the one you discarded) and attach it to Rocket's Scizor ex.",
+          "damage": "50",
+          "convertedEnergyCost": 3
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fire",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Grass",
+          "value": "-30"
+        }
+      ]
+    },
+    {
+      "id": "bw7-101",
+      "name": "Black Kyurem-EX",
+      "nationalPokedexNumber": 646,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/bw7/101.png",
+      "subtype": "EX",
+      "supertype": "Pokémon",
+      "hp": "180",
+      "retreatCost": [
+        "Colorless",
+        "Colorless",
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Eske Yoshinob",
+      "rarity": "Rare Holo EX",
+      "series": "Black & White",
+      "set": "Boundaries Crossed",
+      "setCode": "bw7",
+      "text": [
+        "When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards."
+      ],
+      "types": [
+        "Dragon"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Lightning",
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Dragon Fang",
+          "text": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed.",
+          "damage": "60",
+          "convertedEnergyCost": 3
+        },
+        {
+          "cost": [
+            "Water",
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "name": "Freeze Shock",
+          "text": "This Pokémon can't attack during your next turn.",
+          "damage": "150",
+          "convertedEnergyCost": 4
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Dragon",
+          "value": "×2"
+        }
+      ]
+    },
+    {
+      "id": "dp4-101",
+      "name": "Premier Ball",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/dp4/101.png",
+      "subtype": "Item",
+      "supertype": "Trainer",
+      "hp": "None",
+      "number": "101",
+      "artist": "Ryo Ueda",
+      "rarity": "Uncommon",
+      "series": "Diamond & Pearl",
+      "set": "Great Encounters",
+      "setCode": "dp4",
+      "text": [
+        "Search your deck or your discard pile for a Pokémon LV. X, show it to your opponent, and put it into your hand. If you search your deck, shuffle your deck afterward."
+      ]
+    },
+    {
+      "id": "ecard1-101",
+      "name": "Clefairy",
+      "nationalPokedexNumber": 35,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/ecard1/101.jpg",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "hp": "50",
+      "retreatCost": [
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Tomokazu Komiya",
+      "rarity": "Common",
+      "series": "E-Card",
+      "set": "Expedition Base Set",
+      "setCode": "ecard1",
+      "types": [
+        "Colorless"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless"
+          ],
+          "name": "Shining Fingers",
+          "text": "The Defending Pokémon is now Asleep.",
+          "damage": "",
+          "convertedEnergyCost": 1
+        },
+        {
+          "cost": [
+            "Colorless"
+          ],
+          "name": "Slap",
+          "text": "",
+          "damage": "10",
+          "convertedEnergyCost": 1
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ]
+    },
+    {
+      "id": "ex15-101",
+      "name": "Mew  δ",
+      "nationalPokedexNumber": 151,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/ex15/101.png",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "hp": "70",
+      "retreatCost": [
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Masakazu Fukuda",
+      "rarity": "Rare Holo",
+      "series": "EX",
+      "set": "Dragon Frontiers",
+      "setCode": "ex15",
+      "text": [
+        "You can't have more than 1 Pokémon Star in your deck."
+      ],
+      "types": [
+        "Water"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless"
+          ],
+          "name": "Mimicry",
+          "text": "Choose an attack on 1 of your opponent's Pokémon in play. Mimicry copies that attack. This attack does nothing if Mew Star doesn't have the Energy necessary to use that attack. (You must still do anything else required for that attack.) Mew Star performs that attack.",
+          "damage": "",
+          "convertedEnergyCost": 1
+        },
+        {
+          "cost": [
+            "Water"
+          ],
+          "name": "Rainbow Wave",
+          "text": "Choose 1 basic Energy card attached to Mew Star. This attack does 20 damage to each of your opponent's Pokémon that is the same type as the basic Energy card that you chose. (Don't apply Weakness and Resistance for Benched Pokémon.)",
+          "damage": "",
+          "convertedEnergyCost": 1
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Psychic",
+          "value": "×2"
+        }
+      ]
+    },
+    {
+      "id": "ex1-101",
+      "name": "Mewtwo ex",
+      "nationalPokedexNumber": 150,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/ex1/101.png",
+      "subtype": "EX",
+      "supertype": "Pokémon",
+      "hp": "100",
+      "retreatCost": [
+        "Colorless",
+        "Colorless",
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Katsura Tabata",
+      "rarity": "Rare Holo EX",
+      "series": "EX",
+      "set": "Ruby & Sapphire",
+      "setCode": "ex1",
+      "text": [
+        "When Pokémon-ex has been Knocked Out, your opponent takes 2 Prize cards."
+      ],
+      "types": [
+        "Psychic"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Psychic"
+          ],
+          "name": "Energy Absorption",
+          "text": "Attach up to 2 Energy cards from your discard pile to Mewtwo ex.",
+          "damage": "",
+          "convertedEnergyCost": 1
+        },
+        {
+          "cost": [
+            "Psychic",
+            "Psychic",
+            "Colorless"
+          ],
+          "name": "Psyburn",
+          "text": "",
+          "damage": "60",
+          "convertedEnergyCost": 3
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Psychic",
+          "value": "×2"
+        }
+      ]
+    },
+    {
+      "id": "ex9-101",
+      "name": "Grass Energy",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/ex9/101.png",
+      "subtype": "Basic",
+      "supertype": "Energy",
+      "number": "101",
+      "artist": "",
+      "rarity": "Rare Holo",
+      "series": "EX",
+      "set": "Emerald",
+      "setCode": "ex9"
+    },
+    {
+      "id": "xy6-101",
+      "name": "Latios-EX",
+      "nationalPokedexNumber": 381,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/xy6/101.png",
+      "subtype": "EX",
+      "supertype": "Pokémon",
+      "hp": "170",
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Ryo Ueda",
+      "rarity": "Rare Ultra",
+      "series": "XY",
+      "set": "Roaring Skies",
+      "setCode": "xy6",
+      "text": [
+        "When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards."
+      ],
+      "types": [
+        "Dragon"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Psychic"
+          ],
+          "name": "Fast Raid",
+          "text": "If you go first, you can use this attack on your first turn.",
+          "damage": "40",
+          "convertedEnergyCost": 1
+        },
+        {
+          "cost": [
+            "Water",
+            "Psychic",
+            "Psychic",
+            "Colorless"
+          ],
+          "name": "Light Pulse",
+          "text": "Prevent all effects of your opponent's attacks, except damage, done to this Pokémon during your opponent's next turn.",
+          "damage": "110",
+          "convertedEnergyCost": 4
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fairy",
+          "value": "×2"
+        }
+      ]
+    },
+    {
+      "id": "bw10-101",
+      "name": "Iris",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/bw10/101.png",
+      "subtype": "Supporter",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "Kagemaru Himeno",
+      "rarity": "Rare Ultra",
+      "series": "Black & White",
+      "set": "Plasma Blast",
+      "setCode": "bw10",
+      "text": [
+        "During this turn, your Pokémon's attacks do 10 more damage to the Active Pokémon for each Prize card your opponent has taken (before applying Weakness and Resistance)."
+      ]
+    },
+    {
+      "id": "hgss4-101",
+      "name": "Palkia & Dialga LEGEND",
+      "nationalPokedexNumber": 484,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/hgss4/101.png",
+      "subtype": "LEGEND",
+      "supertype": "Pokémon",
+      "hp": "160",
+      "number": "101",
+      "artist": "Shinji Higuchi + Sachiko Eba/樋口真嗣+江場左知子",
+      "rarity": "LEGEND",
+      "series": "HeartGold & SoulSilver",
+      "set": "HS—Triumphant",
+      "setCode": "hgss4",
+      "text": [
+        "Put this card from your hand onto your Bench only with the other half of Palkia & Dialga LEGEND."
+      ]
+    },
+    {
+      "id": "pl3-101",
+      "name": "Croagunk",
+      "nationalPokedexNumber": 453,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/pl3/101.png",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "hp": "60",
+      "retreatCost": [
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Masakazu Fukuda",
+      "rarity": "Common",
+      "series": "Platinum",
+      "set": "Supreme Victors",
+      "setCode": "pl3",
+      "types": [
+        "Psychic"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless"
+          ],
+          "name": "Hook",
+          "text": "",
+          "damage": "10",
+          "convertedEnergyCost": 1
+        },
+        {
+          "cost": [
+            "Psychic",
+            "Colorless"
+          ],
+          "name": "Corkscrew Punch",
+          "text": "",
+          "damage": "20",
+          "convertedEnergyCost": 2
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Psychic",
+          "value": "+10"
+        }
+      ]
+    },
+    {
+      "id": "bw9-101",
+      "name": "Ghetsis",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/bw9/101.png",
+      "subtype": "Supporter",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "Yusuke Ohmura",
+      "rarity": "Rare Holo",
+      "series": "Black & White",
+      "set": "Plasma Freeze",
+      "setCode": "bw9",
+      "text": [
+        "Your opponent reveals his or her hand and shuffles all Item cards found there into his or her deck. Then, draw a number of cards equal to the number of Item cards your opponent shuffled into his or her deck."
+      ]
+    },
+    {
+      "id": "xy9-101",
+      "name": "Gyarados Spirit Link",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/xy9/101.png",
+      "subtype": "Pokémon Tool",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "5ban Graphics",
+      "rarity": "Uncommon",
+      "series": "XY",
+      "set": "BREAKpoint",
+      "setCode": "xy9",
+      "text": [
+        "Your turn does not end if the Pokémon this card is attached to becomes M Gyarados-EX."
+      ]
+    },
+    {
+      "id": "xy1-101",
+      "name": "Dunsparce",
+      "nationalPokedexNumber": 206,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/xy1/101.png",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "hp": "40",
+      "number": "101",
+      "artist": "Naoyo Kimura",
+      "rarity": "Uncommon",
+      "series": "XY",
+      "set": "XY",
+      "setCode": "xy1",
+      "types": [
+        "Colorless"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless"
+          ],
+          "name": "Glare",
+          "text": "Flip a coin. If heads, your opponent's Active Pokémon is now Paralyzed.",
+          "damage": "",
+          "convertedEnergyCost": 1
+        },
+        {
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Second Bite",
+          "text": "This attack does 10 more damage for each damage counter on your opponent's Active Pokémon.",
+          "damage": "10+",
+          "convertedEnergyCost": 2
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ]
+    },
+    {
+      "id": "ex16-101",
+      "name": "Jolteon",
+      "nationalPokedexNumber": 135,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/ex16/101.png",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "ability": {
+        "name": "Yellow Ray",
+        "text": "Once during your turn, when you put Jolteon Star from your hand onto your Bench, you may put 1 damage counter on each Active Pokémon (both yours and your opponent's)."
+      },
+      "hp": "70",
+      "retreatCost": [
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Masakazu Fukuda",
+      "rarity": "Rare Holo",
+      "series": "EX",
+      "set": "Power Keepers",
+      "setCode": "ex16",
+      "text": [
+        "You can't have more than 1 Pokémon Star in your deck."
+      ],
+      "types": [
+        "Lightning"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Lightning",
+            "Lightning",
+            "Colorless"
+          ],
+          "name": "Agility",
+          "text": "Flip a coin. If heads, prevent all effects of an attack, including damage, done to Jolteon Star during your opponent's next turn.",
+          "damage": "40",
+          "convertedEnergyCost": 3
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Metal",
+          "value": "-30"
+        }
+      ]
+    },
+    {
+      "id": "bw3-101",
+      "name": "N",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/bw3/101.png",
+      "subtype": "Supporter",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "Ken Sugimori",
+      "rarity": "Rare Ultra",
+      "series": "Black & White",
+      "set": "Noble Victories",
+      "setCode": "bw3",
+      "text": [
+        "Each player shuffles his or her hand into his or her deck. Then, each player draws a card for each of his or her remaining Prize cards."
+      ]
+    },
+    {
+      "id": "dp6-101",
+      "name": "Hitmontop",
+      "nationalPokedexNumber": 237,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/dp6/101.png",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "hp": "80",
+      "retreatCost": [
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Masakazu Fukuda",
+      "rarity": "Common",
+      "series": "Diamond & Pearl",
+      "set": "Legends Awakened",
+      "setCode": "dp6",
+      "types": [
+        "Fighting"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Fighting",
+            "Colorless"
+          ],
+          "name": "Triple Kick",
+          "text": "Flip 3 coins. This attack does 20 damage times the number of heads.",
+          "damage": "20x",
+          "convertedEnergyCost": 2
+        },
+        {
+          "cost": [
+            "Fighting",
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Gut Spin",
+          "text": "If Tyrogue is anywhere under Hitmontop, you may switch Hitmontop with 1 of your Benched Pokémon.",
+          "damage": "50",
+          "convertedEnergyCost": 3
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Psychic",
+          "value": "+20"
+        }
+      ]
+    },
+    {
+      "id": "dp7-101",
+      "name": "Charmander",
+      "nationalPokedexNumber": 4,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/dp7/101.png",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "hp": "50",
+      "retreatCost": [
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Mitsuhiro Arita",
+      "rarity": "Rare Holo",
+      "series": "Diamond & Pearl",
+      "set": "Stormfront",
+      "setCode": "dp7",
+      "types": [
+        "Fire"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless"
+          ],
+          "name": "Scratch",
+          "text": "",
+          "damage": "10",
+          "convertedEnergyCost": 1
+        },
+        {
+          "cost": [
+            "Fire",
+            "Colorless"
+          ],
+          "name": "Ember",
+          "text": "Discard a fire Energy attached to Charmander.",
+          "damage": "30",
+          "convertedEnergyCost": 2
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Water",
+          "value": "x2"
+        }
+      ]
+    },
+    {
+      "id": "pl1-101",
+      "name": "Turtwig",
+      "nationalPokedexNumber": 387,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/pl1/101.png",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "hp": "60",
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Kagemaru Himeno",
+      "rarity": "Common",
+      "series": "Platinum",
+      "set": "Platinum",
+      "setCode": "pl1",
+      "types": [
+        "Grass"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Grass"
+          ],
+          "name": "Ram",
+          "text": "",
+          "damage": "10",
+          "convertedEnergyCost": 1
+        },
+        {
+          "cost": [
+            "Grass",
+            "Colorless"
+          ],
+          "name": "Body Slam",
+          "text": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed.",
+          "damage": "20",
+          "convertedEnergyCost": 2
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fire",
+          "value": "+10"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Water",
+          "value": "-20"
+        }
+      ]
+    },
+    {
+      "id": "xy10-101",
+      "name": "Fossil Excavation Kit",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/xy10/101.png",
+      "subtype": "Item",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "Toyste Beach",
+      "rarity": "Uncommon",
+      "series": "XY",
+      "set": "Fates Collide",
+      "setCode": "xy10",
+      "text": [
+        "Put 2 in any combination of Helix Fossil Omanyte, Dome Fossil Kabuto, or Old Amber Aerodactyl cards from your discard pile into your hand."
+      ]
+    },
+    {
+      "id": "bw6-101",
+      "name": "Slakoth",
+      "nationalPokedexNumber": 287,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/bw6/101.png",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "hp": "60",
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Kanako Eo",
+      "rarity": "Common",
+      "series": "Black & White",
+      "set": "Dragons Exalted",
+      "setCode": "bw6",
+      "types": [
+        "Colorless"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless"
+          ],
+          "name": "Smack 'n' Slack",
+          "text": "This Pokémon is now Asleep.",
+          "damage": "10",
+          "convertedEnergyCost": 1
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ]
+    },
+    {
+      "id": "ecard2-101",
+      "name": "Pinsir",
+      "nationalPokedexNumber": 127,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/ecard2/101.jpg",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "hp": "60",
+      "retreatCost": [
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Toshinao Aoki",
+      "rarity": "Common",
+      "series": "E-Card",
+      "set": "Aquapolis",
+      "setCode": "ecard2",
+      "types": [
+        "Grass"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Horn Grab",
+          "text": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed. If tails, this attack does nothing.",
+          "damage": "",
+          "convertedEnergyCost": 2
+        },
+        {
+          "cost": [
+            "Colorless",
+            "Grass",
+            "Grass"
+          ],
+          "name": "Super Slice",
+          "text": "Flip 2 coins. If either of them is tails, this attack does nothing.",
+          "damage": "",
+          "convertedEnergyCost": 3
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fire",
+          "value": "×2"
+        }
+      ]
+    },
+    {
+      "id": "neo1-101",
+      "name": "Moo-Moo Milk",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/neo1/101.jpg",
+      "subtype": "",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "Tomokazu Komiya",
+      "rarity": "Common",
+      "series": "Neo",
+      "set": "Neo Genesis",
+      "setCode": "neo1",
+      "text": [
+        "Choose 1 of your Pokémon. Flip 2 coins. Remove 2 damage counters times the number of heads from that Pokémon. If the Pokémon has fewer damage counters than that, remove all of them."
+      ]
+    },
+    {
+      "id": "bw5-101",
+      "name": "Twist Mountain",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/bw5/101.png",
+      "subtype": "Stadium",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "Ryo Ueda",
+      "rarity": "Uncommon",
+      "series": "Black & White",
+      "set": "Dark Explorers",
+      "setCode": "bw5",
+      "text": [
+        "Once during each player's turn, that player may flip a coin. If heads, the player searches his or her deck for a Restored Pokémon and puts it onto his or her Bench."
+      ]
+    },
+    {
+      "id": "hgss1-101",
+      "name": "Professor Oak's New Theory",
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/hgss1/101.png",
+      "subtype": "Supporter",
+      "supertype": "Trainer",
+      "number": "101",
+      "artist": "Ken Sugimori",
+      "rarity": "Uncommon",
+      "series": "HeartGold & SoulSilver",
+      "set": "HeartGold & SoulSilver",
+      "setCode": "hgss1",
+      "text": [
+        "You can play only one Supporter card each turn. When you play this card, put it next to your Active Pokémon. When your turn ends, discard this card.",
+        "Shuffle your hand into your deck. Then, draw 6 cards."
+      ]
+    },
+    {
+      "id": "xy5-101",
+      "name": "Mr. Mime",
+      "nationalPokedexNumber": 122,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/xy5/101.png",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "hp": "80",
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "TOKIYA",
+      "rarity": "Uncommon",
+      "series": "XY",
+      "set": "Primal Clash",
+      "setCode": "xy5",
+      "types": [
+        "Fairy"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless"
+          ],
+          "name": "Trick",
+          "text": "Move a Pokémon Tool card attached to 1 of either player's Pokémon to another of that player's Pokémon that doesn't already have a Pokémon Tool attached to it. If there is no Pokémon to move the Pokémon Tool card to, this attack does nothing.",
+          "damage": "",
+          "convertedEnergyCost": 1
+        },
+        {
+          "cost": [
+            "Fairy",
+            "Colorless"
+          ],
+          "name": "Lock Up",
+          "text": "The Defending Pokémon can't retreat during your opponent's next turn.",
+          "damage": "30",
+          "convertedEnergyCost": 2
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Metal",
+          "value": "x2"
+        }
+      ],
+      "resistances": [
+        {
+          "type": "Darkness",
+          "value": "-20"
+        }
+      ]
+    },
+    {
+      "id": "ex10-101",
+      "name": "Blissey ex",
+      "nationalPokedexNumber": 242,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/ex10/101.png",
+      "subtype": "EX",
+      "supertype": "Pokémon",
+      "ability": {
+        "name": "Blissful Support",
+        "text": "Once during your turn, when you play Blissey ex from your hand to evolve 1 of your Pokémon, you may discard all Energy cards attached to any number of your Pokémon and remove all damage counters from those Pokémon."
+      },
+      "hp": "160",
+      "retreatCost": [
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Ryo Ueda",
+      "rarity": "Rare Holo EX",
+      "series": "EX",
+      "set": "Unseen Forces",
+      "setCode": "ex10",
+      "text": [
+        "When Pokémon-ex has been Knocked Out, your opponent takes 2 Prize cards."
+      ],
+      "types": [
+        "Colorless"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Colorless"
+          ],
+          "name": "Energy Absorption",
+          "text": "Attach up to 3 Energy cards from your discard pile to Blissey ex.",
+          "damage": "",
+          "convertedEnergyCost": 1
+        },
+        {
+          "cost": [
+            "Colorless",
+            "Colorless",
+            "Colorless",
+            "Colorless"
+          ],
+          "name": "Roll Out",
+          "text": "",
+          "damage": "60",
+          "convertedEnergyCost": 4
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fighting",
+          "value": "×2"
+        }
+      ]
+    },
+    {
+      "id": "bw4-101",
+      "name": "Chandelure",
+      "nationalPokedexNumber": 609,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/bw4/101.png",
+      "subtype": "Stage 2",
+      "supertype": "Pokémon",
+      "ability": {
+        "name": "Cursed Shadow",
+        "text": "Once during your turn (before your attack), if this Pokémon is your Active Pokémon, you may put 3 damage counters on your opponent's Pokémon in any way you like."
+      },
+      "hp": "130",
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "5ban Graphics",
+      "rarity": "Rare Holo",
+      "series": "Black & White",
+      "set": "Next Destinies",
+      "setCode": "bw4",
+      "types": [
+        "Psychic"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Psychic",
+            "Psychic",
+            "Colorless"
+          ],
+          "name": "Eerie Glow",
+          "text": "The Defending Pokémon is now Burned and Confused.",
+          "damage": "50",
+          "convertedEnergyCost": 3
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Darkness",
+          "value": "×2"
+        }
+      ]
+    },
+    {
+      "id": "dp3-101",
+      "name": "Qwilfish",
+      "nationalPokedexNumber": 211,
+      "imageUrl": "https://s3.amazonaws.com/pokemontcg/dp3/101.png",
+      "subtype": "Basic",
+      "supertype": "Pokémon",
+      "ability": {
+        "name": "Balloon Sting",
+        "text": "Once during your opponent's turn, if Qwilfish is your Active Pokémon and is damaged by an attack (even if Qwilfish is Knocked Out), you may flip a coin. If heads, the Attacking Pokémon is now Poisoned. Put 2 damage counters instead of 1 on that Pokémon between turns."
+      },
+      "hp": "70",
+      "retreatCost": [
+        "Colorless"
+      ],
+      "number": "101",
+      "artist": "Kenkichi Toyama",
+      "rarity": "Common",
+      "series": "Diamond & Pearl",
+      "set": "Secret Wonders",
+      "setCode": "dp3",
+      "types": [
+        "Water"
+      ],
+      "attacks": [
+        {
+          "cost": [
+            "Water",
+            "Water"
+          ],
+          "name": "Nerve Shot",
+          "text": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed.",
+          "damage": "20",
+          "convertedEnergyCost": 2
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Lightning",
+          "value": "+20"
+        }
+      ]
+    }
+  ]
+}
