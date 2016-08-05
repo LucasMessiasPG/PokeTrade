@@ -15,6 +15,7 @@ class CreateRarity extends Migration
         Schema::create('raritys',function(Blueprint $table){
             $table->increments('id_rarity');
             $table->string('value');
+            $table->timestamps();
         });
     }
 

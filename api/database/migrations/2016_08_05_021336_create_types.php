@@ -8,7 +8,7 @@ class CreateTypes extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return void2016_08_05_032801_alter_cards
      */
     public function up()
     {

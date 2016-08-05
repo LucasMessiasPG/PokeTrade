@@ -7,6 +7,7 @@ use App\Models\Cards;
 use App\Models\Raritys;
 use App\Models\Sets;
 use App\Models\Texts;
+use App\Models\Types;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -45,7 +46,7 @@ class CheckCards extends Job implements ShouldQueue
         foreach ($api->cards as $card) {
             $new_card = [];
             $new_retreat_cost = [];
-            $new_ability = [];
+            $new_card_types = [];
 
             foreach ($card as $field => $item) {
 
@@ -62,8 +63,40 @@ class CheckCards extends Job implements ShouldQueue
                     continue;
                 }
 
+                if ($field == 'types') {
+                    foreach ($item as $type) {
+                        $new_types = Types::firstOrCreate(['type'=>$type]);
+                        if($new_types->exists == false)
+                            $new_types->save();
+                        $new_card_types[] = $new_types->id_type;
+                    }
+                    continue;
+                }
+
+                if ($field == 'attacks') {
+                    foreach ($item as $attack_item) {
+                        foreach ($attack_item as $field_attack => $attack) {
+                            if($field_attack == 'cost'){
+                                $cost_attack = [];
+                                foreach ($attack as $type_attack) {
+                                    $new_types = Types::firstOrNew(['type'=>$type_attack]);
+                                    if($new_types->exists == false)
+                                    $new_types->save();
+                                    $cost_attack[] = $new_types->id_type;
+                                }
+                                continue;
+                            }
+                            $new_attack[snake_case($field_attack)] = $attack;
+                        }
+                        $all_attack_pokemon[] = $new_attack;
+                    }
+                    dd($all_attack_pokemon);
+                    continue;
+                }
+
                 if ($field == 'ability') {
-                    $new_text = Texts::findOrNew(['text' => $item->text]);
+                    dd($item);
+                    $new_text = Texts::firstOrNew(['text' => $item->text]);
                     $new_text->save();
                     $new_ability = [
                         'name' => $item->name,
@@ -76,7 +109,7 @@ class CheckCards extends Job implements ShouldQueue
                 $new_card[snake_case($field)] = $item;
             }
             $card_created = Cards::firstOrNew($new_card);
-            dd($card_created);
+            dd($card_created,$new_card,$new_retreat_cost,$new_card_types);
 
         }
     }
