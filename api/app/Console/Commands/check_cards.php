@@ -43,6 +43,17 @@ class check_cards extends Command
         try {
 
             $this->info('Iniciando processo de checagem com site api.pokemontcg.io');
+            if($this->option('all')){
+                $this->info('Realizando pesquisa de todas as coleções');
+                $sets = Sets::all();
+                foreach ($sets as $set) {
+                    $this->info('id_set: '. $set->id_set.' - '.$set->name);
+                    $job = new CheckCards($set);
+                    dispatch($job);
+                }
+                $this->info('Finalizado');
+                return true;
+            }
             $set = Sets::first();
             $job = new CheckCards($set);
             dispatch($job);

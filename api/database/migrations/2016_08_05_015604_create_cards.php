@@ -15,21 +15,21 @@ class CreateCards extends Migration
 
         Schema::create('cards',function(Blueprint $table){
             $table->increments('id_card');
+            $table->string('id');
             $table->string('name');
-            $table->integer('national_pokedex_number');
+            $table->integer('national_pokedex_number')->nullable();
             $table->string('image_url');
             $table->string('subtype');
             $table->string('supertype');
-            $table->string('hp');
+            $table->string('hp')->nullable();
             $table->string('number');
             $table->string('artist');
-            $table->string('rarity');
             $table->integer('id_set')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('cards',function(Blueprint $table){
-            $table->foreign('id_set')->references('id_set')->on('sets');
+            $table->foreign('id_set')->references('id_set')->on('sets')->onDelete('cascade');
         });
     }
 
@@ -40,6 +40,6 @@ class CreateCards extends Migration
      */
     public function down()
     {
-        Schema::drop('cards');
+        Schema::dropIfExists('cards');
     }
 }

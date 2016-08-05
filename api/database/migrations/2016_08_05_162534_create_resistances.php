@@ -3,24 +3,23 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypes extends Migration
+class CreateResistances extends Migration
 {
     /**
      * Run the migrations.
      *
-     * @return void2016_08_05_032801_alter_cards
+     * @return void
      */
     public function up()
     {
-        Schema::create('types',function(Blueprint $table){
-            $table->increments('id_type');
-            $table->string('type');
-            $table->timestamps();
-        });
-
-        Schema::table('weaknesses',function(Blueprint $table){
+        Schema::create('resistances',function(Blueprint $table){
+            $table->increments('id_resistance');
             $table->integer('id_type')->unsigned();
             $table->foreign('id_type')->references('id_type')->on('types')->onDelete('cascade');
+            $table->integer('id_card')->unsigned();
+            $table->foreign('id_card')->references('id_card')->on('cards')->onDelete('cascade');
+            $table->string('value');
+            $table->timestamps();
         });
     }
 
@@ -31,6 +30,6 @@ class CreateTypes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('types');
+        Schema::dropIfExists('resistances');
     }
 }

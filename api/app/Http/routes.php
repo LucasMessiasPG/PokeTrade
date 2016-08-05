@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return dispatch(new \App\Jobs\CheckSets());
+    $sets = \App\Models\Sets::where('name','ilike','fate%')->first();
+    $card = \App\Models\Cards::where('id_set','=',$sets->id_set)->where('name','ilike','mew')->first();
+    dd($card->fullSet());
 });

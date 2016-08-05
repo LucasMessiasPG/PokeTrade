@@ -31,6 +31,6 @@ class CreateSets extends Migration
      */
     public function down()
     {
-        Schema::drop('sets');
+        Schema::dropIfExists('sets');
     }
 }

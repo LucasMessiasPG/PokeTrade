@@ -17,6 +17,11 @@ class CreateRarity extends Migration
             $table->string('value');
             $table->timestamps();
         });
+
+        Schema::table('cards',function(Blueprint $table){
+            $table->integer('id_rarity')->unsigned();
+            $table->foreign('id_rarity')->references('id_rarity')->on('raritys')->onDelete('cascade');
+        });
     }
 
     /**
@@ -26,6 +31,6 @@ class CreateRarity extends Migration
      */
     public function down()
     {
-        Schema::drop('raritys');
+        Schema::dropIfExists('raritys');
     }
 }

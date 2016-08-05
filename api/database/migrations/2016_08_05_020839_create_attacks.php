@@ -15,15 +15,10 @@ class CreateAttacks extends Migration
         Schema::create('attacks',function(Blueprint $table){
             $table->increments('id_attack');
             $table->string('name');
-            $table->string('text');
+            $table->text('text');
             $table->string('damage');
             $table->integer('converted_energy_cost');
-            $table->integer('id_card')->unsigened();
             $table->timestamps();
-        });
-
-        Schema::table('attacks',function(Blueprint $table){
-            $table->foreign('id_card')->references('id_card')->on('cards');
         });
     }
 
@@ -34,6 +29,6 @@ class CreateAttacks extends Migration
      */
     public function down()
     {
-        Schema::drop('attacks');
+        Schema::dropIfExists('attacks');
     }
 }

@@ -20,7 +20,7 @@ class CreateWeaknesses extends Migration
         });
 
         Schema::table('weaknesses',function(Blueprint $table){
-            $table->foreign('id_card')->references('id_card')->on('cards');
+            $table->foreign('id_card')->references('id_card')->on('cards')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateWeaknesses extends Migration
      */
     public function down()
     {
-        Schema::drop('weaknesses');
+        Schema::dropIfExists('weaknesses');
     }
 }

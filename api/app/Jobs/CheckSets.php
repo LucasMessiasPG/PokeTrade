@@ -64,7 +64,7 @@ class CheckSets extends Job implements ShouldQueue
 
             if($set_created->exists == false) {
                 LogSistema::create([
-                    'descricao' => 'Inserindo novo set:     ' . $set_created->name
+                    'descricao' => 'Inserindo novo set: ' . $set_created->name.' id_set: '.$set_created->id_set
                 ]);
             }
 

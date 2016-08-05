@@ -16,14 +16,17 @@ class CreateCardAbility extends Migration
             $table->increments('id_ability');
             $table->string('name');
             $table->integer('id_text')->unsigned();
+            $table->integer('id_card')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('abilitys',function(Blueprint $table){
-           $table->foreign('id_text')->references('id_text')->on('text');
+           $table->foreign('id_text')->references('id_text')->on('texts')->onDelete('cascade');
+           $table->foreign('id_card')->references('id_card')->on('cards')->onDelete('cascade');
         });
         Schema::table('cards',function(Blueprint $table){
            $table->integer('id_ability')->nullable()->unsigned();
+           $table->foreign('id_ability')->references('id_ability')->on('abilitys')->onDelete('cascade');
         });
     }
 

@@ -12,15 +12,15 @@ class CreateText extends Migration
      */
     public function up()
     {
-        Schema::create('text',function(Blueprint $table){
+        Schema::create('texts',function(Blueprint $table){
             $table->increments('id_text');
-            $table->string('text');
+            $table->text('text');
+            $table->timestamps();
         });
 
         Schema::table('cards',function(Blueprint $table){
             $table->integer('id_text')->nullable()->unsinged();
-            $table->string('hp')->nullable();
-            $table->foreign('id_text')->references('id_text')->on('text');
+            $table->foreign('id_text')->references('id_text')->on('texts')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateText extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('texts');
     }
 }

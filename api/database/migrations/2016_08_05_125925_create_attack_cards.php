@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRetreatCost extends Migration
+class CreateAttackCards extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,13 @@ class CreateRetreatCost extends Migration
      */
     public function up()
     {
-        Schema::create('retreat_costs',function(Blueprint $table){
-            $table->increments('id_retreat_cost');
+        Schema::create('attack_cards',function(Blueprint $table){
+            $table->increments('id_attack_card');
             $table->integer('id_card')->unsigned();
-            $table->integer('id_type')->unsigned();
-            $table->timestamps();
-        });
-
-        Schema::table('retreat_costs',function(Blueprint $table){
             $table->foreign('id_card')->references('id_card')->on('cards')->onDelete('cascade');
-            $table->foreign('id_type')->references('id_type')->on('types')->onDelete('cascade');
+            $table->integer('id_attack')->unsigend();
+            $table->foreign('id_attack')->references('id_attack')->on('attacks')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -32,6 +29,6 @@ class CreateRetreatCost extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('retreat_costs');
+        Schema::dropIfExists('attack_cards');
     }
 }

@@ -20,8 +20,8 @@ class CreateTypesCards extends Migration
         });
 
         Schema::table('types_cards',function(Blueprint $table){
-            $table->foreign('id_card')->references('id_card')->on('cards');
-            $table->foreign('id_type')->references('id_type')->on('types');
+            $table->foreign('id_card')->references('id_card')->on('cards')->onDelete('cascade');
+            $table->foreign('id_type')->references('id_type')->on('types')->onDelete('cascade');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateTypesCards extends Migration
      */
     public function down()
     {
-        Schema::drop('types_cards');
+        Schema::dropIfExists('types_cards');
     }
 }

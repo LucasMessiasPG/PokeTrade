@@ -20,8 +20,8 @@ class CreateAttackCosts extends Migration
         });
 
         Schema::table('attack_costs',function(Blueprint $table){
-            $table->foreign('id_attack')->references('id_attack')->on('attacks');
-            $table->foreign('id_type')->references('id_type')->on('types');
+            $table->foreign('id_attack')->references('id_attack')->on('attacks')->onDelete('cascade');
+            $table->foreign('id_type')->references('id_type')->on('types')->onDelete('cascade');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateAttackCosts extends Migration
      */
     public function down()
     {
-        Schema::drop(attack_costs);
+        Schema::dropIfExists(attack_costs);
     }
 }
