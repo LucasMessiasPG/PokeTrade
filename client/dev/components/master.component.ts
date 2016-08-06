@@ -3,6 +3,7 @@ import {NavBarComponent} from "./nav-bar.component";
 import {ProfileFloatComponent} from "./profile-float.component";
 import {BodyComponent} from "./body.component";
 import {FooterComponent} from "./footer.component";
+import {ROUTER_DIRECTIVES} from "@angular/router";
 @Component({
     selector:'app',
     template:`
@@ -12,9 +13,14 @@ import {FooterComponent} from "./footer.component";
         </div>
     </div>
     <poke-profile-float></poke-profile-float>
-    <poke-body></poke-body>
+    <router-outlet></router-outlet>
     <poke-footer></poke-footer>
     `,
-    directives:[NavBarComponent,ProfileFloatComponent,BodyComponent,FooterComponent]
+    directives:[
+        ROUTER_DIRECTIVES,
+        NavBarComponent,
+        ProfileFloatComponent,
+        FooterComponent
+    ]
 })
 export class MasterComponent{}

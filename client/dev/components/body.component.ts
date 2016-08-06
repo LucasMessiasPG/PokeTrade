@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {Http} from "@angular/http";
+import {Http, Headers, URLSearchParams} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 import {CardTemplateComponent} from "./template/card.component";
 
@@ -23,9 +23,15 @@ export class BodyComponent {
     private list_cards;
 
     constructor(_http:Http) {
-        _http.get('card.example.json')
+
+        var param = new URLSearchParams();
+        param.set('name','pikachu')
+
+        _http.get('http://192.168.1.10:8000/api/v1/search',{
+            search:param
+        })
             .subscribe(res => {
-                this.list_cards = res.json().cards
+                this.list_cards = res.json()
             })
 
     }

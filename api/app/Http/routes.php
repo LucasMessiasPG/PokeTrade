@@ -11,8 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    $sets = \App\Models\Sets::where('name','ilike','fate%')->first();
-    $card = \App\Models\Cards::where('id_set','=',$sets->id_set)->where('name','ilike','mew')->first();
-    dd($card->fullSet());
+Route::get('/{poke}', function ($poke) {
+//    $sets = \App\Models\Sets::where('name','ilike','fate%')->first();
+    $cards = \App\Models\Cards::where('name','ilike',$poke)->get();
+    $result = [];
+    foreach ($cards as $card) {
+        $result[] = $card->fullSet();
+    }
+    dd($result);
+});
+
+Route::group(['prefix'=>'api/v1','middleware' => 'cors'],function(){
+    Route::get('search','SearchController@search');
 });

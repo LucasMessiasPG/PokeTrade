@@ -1,5 +1,6 @@
 $color1: #FFFDF8;
 $color2: #223683;
+$color3: #830712;
 $color2-hover: #ffa777;
 $color2-divider: #938a85;
 $font-nav: #000;
@@ -22,6 +23,10 @@ a, u {
 .nav>li>a:focus, .nav>li>a:hover{
     background-color: transparent;
     border-bottom: 3px solid $color2;
+}
+.nav a.active{
+    background-color: transparent !important;
+    border-bottom: 3px solid $color3 !important;
 }
 
 .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{

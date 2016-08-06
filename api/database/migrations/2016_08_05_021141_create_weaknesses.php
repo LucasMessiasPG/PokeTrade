@@ -13,7 +13,7 @@ class CreateWeaknesses extends Migration
     public function up()
     {
         Schema::create('weaknesses',function(Blueprint $table){
-            $table->increments('id_weaknesse');
+            $table->increments('id_weakness');
             $table->string('value');
             $table->integer('id_card')->unsigned();
             $table->timestamps();

@@ -12,4 +12,9 @@ class Resistances extends Model
         'id_card',
         'id_type',
     ];
+
+    public function type()
+    {
+        return $this->hasOne(Types::class,'id_type','id_type');
+    }
 }

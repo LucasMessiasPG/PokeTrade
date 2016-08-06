@@ -16,10 +16,11 @@ class Attacks extends Model
 
     public function card()
     {
-        return $this->belongsToMany(Cards::class,'attack_cards','id_attack','id_attack','id_card');
+        return $this->belongsToMany(Cards::class,'attack_cards','id_attack','id_card','id_card');
     }
+
     public function cost()
     {
-        return $this->hasMany(AttackCosts::class,'id_attack','id_attack');
+        return $this->belongsToMany(Types::class,'attack_costs','id_attack','id_type','id_type');
     }
 }

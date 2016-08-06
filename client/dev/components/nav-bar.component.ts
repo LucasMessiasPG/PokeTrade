@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {ROUTER_DIRECTIVES} from "@angular/router";
 @Component({
     selector:'poke-nav-bar',
     template:`
@@ -15,7 +16,8 @@ import {Component} from "@angular/core";
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="nav-bar">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Home</a></li>
+            <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+            <li><a routerLink="/search" routerLinkActive="active">Search</a></li>
             <li><a href="#">List</a></li>
             <li><a href="#">Trades</a></li>
             <li><a href="#">Send</a></li>
@@ -35,6 +37,9 @@ import {Component} from "@angular/core";
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    `
+    `,
+    directives:[
+        ROUTER_DIRECTIVES
+    ],
 })
 export class NavBarComponent{}

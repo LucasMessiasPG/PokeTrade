@@ -13,8 +13,4 @@ class AttackCosts extends Model
         'id_type'
     ];
 
-    public function type()
-    {
-        return $this->hasOne(Types::class,'id_type','id_type');
-    }
 }

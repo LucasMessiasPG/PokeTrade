@@ -18,10 +18,6 @@ class CreateText extends Migration
             $table->timestamps();
         });
 
-        Schema::table('cards',function(Blueprint $table){
-            $table->integer('id_text')->nullable()->unsinged();
-            $table->foreign('id_text')->references('id_text')->on('texts')->onDelete('cascade');
-        });
     }
 
     /**

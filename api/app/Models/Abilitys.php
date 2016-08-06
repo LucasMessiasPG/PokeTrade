@@ -13,4 +13,9 @@ class Abilitys extends Model
         'id_text',
         'id_card'
     ];
+
+    public function text()
+    {
+        return $this->hasOne(Texts::class,'id_text','id_text');
+    }
 }
