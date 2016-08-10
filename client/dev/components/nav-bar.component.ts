@@ -30,7 +30,7 @@ import {ROUTER_DIRECTIVES} from "@angular/router";
               <ul class="dropdown-menu">
                 <li><span>Nothing to show</span></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Hitory Mensagens</a></li>
+                <li><a href="#">History Mensagens</a></li>
               </ul>
             </li>
           </ul>

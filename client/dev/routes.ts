@@ -3,8 +3,10 @@ import {BodyComponent} from "./components/body.component";
 import {SearchComponent} from "./components/search.component";
 
 const routes: RouterConfig = [
+    { path: '', redirectTo: '/home',pathMatch: 'full'},
     { path: 'home', component: BodyComponent},
     { path: 'search', component: SearchComponent},
+    { path: 'search/:search', component: SearchComponent},
 ];
 
 export const appRouterProviders = [

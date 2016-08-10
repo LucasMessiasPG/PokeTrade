@@ -17,24 +17,26 @@ class SearchController extends Controller
             $campos = [
                 'name',
                 'set',
-                'codeSet',
+                'number',
                 'limit'
             ];
 
-            $result = [];
+            $card = Cards::orderBy('name')->take(100);
             foreach ($request->only($campos) as $field => $value) {
                 if($value){
                     switch ($field){
                         case 'name':
-                            $cards = Cards::where('name','ilike',$value)->get();
-                            $search_card = [];
-                            foreach ($cards as $card) {
-                                $search_card[] = $card->fullSet();
-                            }
-                            $result = array_merge((array)$search_card,$result);
+                            $card->where('name','ilike','%'.$value.'%');
+                            break;
+                        case 'number':
+                            $card->where('number','=',$value);
                             break;
                     }
                 }
+            }
+            $result = [];
+            foreach ($card->get() as $tempCard) {
+                $result[] = $tempCard->fullset();
             }
             return $result;
 

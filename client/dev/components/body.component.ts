@@ -27,7 +27,7 @@ export class BodyComponent {
         var param = new URLSearchParams();
         param.set('name','pikachu')
 
-        _http.get('http://192.168.1.10:8000/api/v1/search',{
+        _http.get('http://localhost:8000/api/v1/search',{
             search:param
         })
             .subscribe(res => {

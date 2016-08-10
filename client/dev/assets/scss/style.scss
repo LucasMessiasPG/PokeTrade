@@ -36,6 +36,7 @@ a, u {
 .dropdown-menu .divider{
   background-color: $color2-divider;
 }
+
 .navbar a{
   color: $font-nav;
 }
@@ -49,4 +50,8 @@ a, u {
   color: #ccc;
   white-space: nowrap;
   font-size: 12px;
+}
+
+.margin-top {
+  margin-top: 20px;
 }
