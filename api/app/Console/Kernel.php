@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\check_cards;
+use App\Console\Commands\check_imgs;
 use App\Console\Commands\check_sets;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -17,7 +18,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         // Commands\Inspire::class,
         check_sets::class,
-        check_cards::class
+        check_cards::class,
+	    check_imgs::class
     ];
 
     /**

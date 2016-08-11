@@ -2,7 +2,10 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\loged;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Tymon\JWTAuth\Middleware\GetUserFromToken;
+use Tymon\JWTAuth\Middleware\RefreshToken;
 
 class Kernel extends HttpKernel
 {
@@ -30,6 +33,9 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
 //            \App\Http\Middleware\VerifyCsrfToken::class,
         ],
+	    'check' =>[
+		    loged::class
+	    ],
 
         'api' => [
             'throttle:60,1',
@@ -48,6 +54,6 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class
     ];
 }

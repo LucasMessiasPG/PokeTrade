@@ -3,8 +3,12 @@ import {HTTP_PROVIDERS} from "@angular/http";
 import {MasterComponent} from "./components/master.component";
 import {appRouterProviders} from "./routes";
 import {ROUTER_PROVIDERS} from "@angular/router-deprecated";
+import {User} from "./services/usuer.service";
+import {Env} from "./providers/env.provider";
 
 bootstrap(MasterComponent,[
+    Env,
+    User,
     ROUTER_PROVIDERS,
     appRouterProviders,
     HTTP_PROVIDERS,

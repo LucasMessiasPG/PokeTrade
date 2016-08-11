@@ -25,17 +25,17 @@ import {CardTemplateComponent} from "./template/card.component";
         </fieldset>
         <hr class="col-lg-12"/>
         <div class="col-lg-12" *ngIf="!noPropertis">
-            <div class="col-lg-3 col-sm-4 col-xs-12" *ngFor="let card of list_cards">
+            <div class="col-lg-3 col-sm-6 col-xs-12" *ngFor="let card of list_cards">
                 <poke-card-template [height]="300" [single_card]="card"></poke-card-template>
             </div>
-            <div class="col-lg-12">
+            <div class="col-xs-12">
                 <div class="btn-group">
                     <button *ngIf="back_page" class="btn btn-default" (click)="backPage()">Back</button>
                     <button *ngIf="list_cards.length == 100" class="btn btn-default" (click)="nextPage()">Next</button>
                 </div>
             </div>
         </div>
-        <div class="col-lg-12" *ngIf="noPropertis">
+        <div class="col-xs-12" *ngIf="noPropertis">
             <p>No Result to show</p>
         </div>
     </div>

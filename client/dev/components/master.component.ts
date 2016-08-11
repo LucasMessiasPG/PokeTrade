@@ -4,6 +4,7 @@ import {ProfileFloatComponent} from "./profile-float.component";
 import {BodyComponent} from "./body.component";
 import {FooterComponent} from "./footer.component";
 import {ROUTER_DIRECTIVES} from "@angular/router";
+import {Env} from "../providers/env.provider";
 @Component({
     selector:'app',
     template:`
@@ -21,6 +22,8 @@ import {ROUTER_DIRECTIVES} from "@angular/router";
         NavBarComponent,
         ProfileFloatComponent,
         FooterComponent
-    ]
+    ],
+    providers:[Env]
 })
-export class MasterComponent{}
+export class MasterComponent{
+}

@@ -11,16 +11,16 @@
 |
 */
 
-Route::get('/{poke}', function ($poke) {
-//    $sets = \App\Models\Sets::where('name','ilike','fate%')->first();
-    $cards = \App\Models\Cards::where('name','ilike',$poke)->get();
-    $result = [];
-    foreach ($cards as $card) {
-        $result[] = $card->fullSet();
-    }
-    dd($result);
+Route::get('/teste', function () {
+	\Illuminate\Support\Facades\Storage::put('../teste.jpg',file_get_contents('https://s3.amazonaws.com/pokemontcg/xy11/48.png'));
+});
+Route::get('/login','UserController@login');
+
+Route::group(['middleware' => ['web','check']], function()
+{
+	Route::get('/123teste','UserController@callteste');
 });
 
-Route::group(['prefix'=>'api/v1','middleware' => 'cors'],function(){
+Route::group(['prefix'=>'api/v1','middleware' => ['cors']],function(){
     Route::get('search','SearchController@search');
 });

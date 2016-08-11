@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
+import {User} from "../services/usuer.service";
 @Component({
     selector:'poke-nav-bar',
     template:`
@@ -42,4 +43,9 @@ import {ROUTER_DIRECTIVES} from "@angular/router";
         ROUTER_DIRECTIVES
     ],
 })
-export class NavBarComponent{}
+export class NavBarComponent{
+
+    constructor(user: User){
+
+    }
+}
