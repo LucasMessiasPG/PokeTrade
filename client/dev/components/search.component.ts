@@ -6,24 +6,33 @@ import {CardTemplateComponent} from "./template/card.component";
     selector: 'poke-search',
     template: `
     <div class="container panel">
-        <div class="col-lg-12">
-            <h4 class="col-lg-12">Filtro</h4>
+        <fieldset class="col-lg-12">
+            <legend>Filter</legend>
             <form (ngSubmit)="searchCard(card)" #f="ngForm">
+                <label class="col-lg-2">Set
+                    <input class="form-control" type="text" [(ngModel)]="card.setName">
+                </label>
                 <label class="col-lg-6">Card Name
                     <input class="form-control" type="text" [(ngModel)]="card.name">
                 </label>
                 <label class="col-lg-2">Card number
-                    <input class="form-control" type="text" [(ngModel)]="card.number">
+                    <input class="form-control" type="number" [(ngModel)]="card.number">
                 </label>
-                <div class="col-lg-4">
-                    <button type="submit" class="btn btn-info margin-top">Pesquisar</button>
+                <div class="col-lg-12 text-right">
+                    <button type="submit" class="btn btn-info margin-top">Submit</button>
                 </div>
             </form>
-        </div>
-        <hr/>
+        </fieldset>
+        <hr class="col-lg-12"/>
         <div class="col-lg-12" *ngIf="!noPropertis">
-            <div class="col-lg-2 col-sm-4 col-xs-12" *ngFor="let card of list_cards">
-                <poke-card-template [single_card]="card"></poke-card-template>
+            <div class="col-lg-3 col-sm-4 col-xs-12" *ngFor="let card of list_cards">
+                <poke-card-template [height]="300" [single_card]="card"></poke-card-template>
+            </div>
+            <div class="col-lg-12">
+                <div class="btn-group">
+                    <button *ngIf="back_page" class="btn btn-default" (click)="backPage()">Back</button>
+                    <button *ngIf="list_cards.length == 100" class="btn btn-default" (click)="nextPage()">Next</button>
+                </div>
             </div>
         </div>
         <div class="col-lg-12" *ngIf="noPropertis">
@@ -38,11 +47,38 @@ export class SearchComponent {
     public card;
     public search;
     public noPropertis = true;
+    private back_page;
 
     constructor(private http:Http,private router: Router) {
         this.search = this.parseQuery(window.location.search);
         this.card = {};
+
+        if(this.search.page && this.search.page == 1)
+            this.search.page = '';
+
+
+        if(this.search.page && this.search.page > 1)
+            this.back_page = true;
+
         this.searchCard(this.search)
+    }
+
+    nextPage(){
+        if(!this.search.page)
+            this.search.page = 2;
+        else
+            this.search.page++;
+
+        this.back_page = true;
+        this.searchCard(this.search);
+    }
+    backPage(){
+        this.search.page--;
+        if(this.search.page == 1) {
+            this.search.page = '';
+            this.back_page == false;
+        }
+        this.searchCard(this.search);
     }
 
     public parseQuery(qstr) {
@@ -72,6 +108,18 @@ export class SearchComponent {
                 if(query.length > 1){
                     query += '&';
                 }
+                if(Object.keys(card)[i] == 'name')
+                    if(!this.card.name)
+                        this.card.name = card[key];
+
+                if(Object.keys(card)[i] == 'number')
+                    if(!this.card.number)
+                        this.card.number = card[key];
+
+                if(Object.keys(card)[i] == 'setName')
+                    if(!this.card.setName)
+                        this.card.setName = card[key];
+
                 query += Object.keys(card)[i]+'='+card[key];
 
             }

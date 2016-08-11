@@ -1,0 +1,68 @@
+import {Component, HostListener} from "@angular/core";
+import {PokeZoomDirective} from "../../directives/pokeZoom.directive";
+@Component({
+    selector: 'poke-card-template',
+    template: `
+    <div class="single-card" *ngIf="single_card">
+        <div>
+            <span><strong>{{ single_card.name }}</strong></span>
+        </div>
+        <div [(pokeZoom)]="single_card" [showZoom]="show_info" (click)="zoomCard(single_card)">
+            <img class="img-responsive fix-img" src="{{ single_card.image_url }}" alt="">
+            <a *ngIf="single_card.detalhes_show" class="detalhes text-center"><i class="fa fa-search-plus fa-2x"></i></a>
+            <img [ngClass]="{'hide':!single_card.zoom}" class="float-img" src="{{ single_card.image_url }}" alt="">
+        </div>
+        <div *ngIf="show_info" class="display-info">
+            <p>Number: {{ single_card.card_set }}</p>
+            <p>Set: {{ single_card.set }}</p>
+        </div>
+    </div>
+    `,
+    directives:[PokeZoomDirective],
+    inputs: ['single_card','show_info'],
+    styles:[`
+    .detalhes{
+        position: absolute;
+        top: 20px;
+        background-color: rgba(255,255,255,0.2);
+        width: 145px;
+        height: 200px;
+    }
+    .detalhes>i{
+        padding-top: 80px;
+        color: black;
+    }
+    .fix-img{
+        position: relative;   
+    }
+    .float-img{
+        top: 0;
+        z-index: 1000;
+        position: absolute;
+        transform: scale(1.4);
+    }
+    .single-card img.img-responsive{
+        max-height: 200px !important;
+    }
+    .display-info{
+        height: 100px;
+    }
+    `]
+})
+export class CardTemplateComponent {
+    private single_card;
+    private show_info;
+
+    ngOnInit(){
+        if(this.show_info !== false)
+            this.show_info = true;
+    }
+
+    zoomCard(card){
+        if(this.show_info) {
+            if (card.zoom)
+                card.zoom = false;
+            card.zoom = true;
+        }
+    }
+}

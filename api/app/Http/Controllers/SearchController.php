@@ -15,29 +15,44 @@ class SearchController extends Controller
         try {
 
             $campos = [
+                'page',
                 'name',
-                'set',
+                'setName',
                 'number',
                 'limit'
             ];
 
-            $card = Cards::orderBy('name')->take(100);
+            $limit = 100;
+
+
+            $card = Cards::select('cards.*','sets.name as setName')->orderBy('cards.number_int')->orderBy('cards.name')->take($limit);
+            $card->join('sets','sets.id_set','=','cards.id_set');
+
+            if($request->page)
+                $card->skip(($limit*($request->page-1)));
+
+
             foreach ($request->only($campos) as $field => $value) {
                 if($value){
                     switch ($field){
                         case 'name':
-                            $card->where('name','ilike','%'.$value.'%');
+                            $card->where('cards.name','ilike','%'.$value.'%');
                             break;
                         case 'number':
                             $card->where('number','=',$value);
                             break;
+                        case 'setName':
+                            $card->where('sets.name','ilike','%'.$value.'%');
+                            break;
                     }
                 }
             }
+
             $result = [];
             foreach ($card->get() as $tempCard) {
                 $result[] = $tempCard->fullset();
             }
+
             return $result;
 
         } catch (Exception $e) {

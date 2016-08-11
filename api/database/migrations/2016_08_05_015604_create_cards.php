@@ -23,6 +23,7 @@ class CreateCards extends Migration
             $table->string('supertype');
             $table->string('hp')->nullable();
             $table->string('number');
+            $table->integer('number_int')->nullable();
             $table->string('artist');
             $table->integer('id_set')->unsigned();
             $table->timestamps();
