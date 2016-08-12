@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import {HomeComponent} from "./Components/home.component";
 import {NavComponent} from "./Components/nav.component";
 import {SearchComponent} from "./Components/search.component";
+import {ListComponent} from "./Components/list.component";
+import {TradesComponent} from "./Components/trades.component";
 
 @NgModule({
     imports: [
@@ -20,7 +22,9 @@ import {SearchComponent} from "./Components/search.component";
         AppComponent,
         HomeComponent,
         NavComponent,
-        SearchComponent
+        SearchComponent,
+        ListComponent,
+        TradesComponent
     ],
     providers: [
         {

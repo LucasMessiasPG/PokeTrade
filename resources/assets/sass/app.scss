@@ -21,3 +21,30 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
+}
+
+a{
+  cursor: pointer;
+}
+.dropdown-content>li>a{
+  font-size: 13px;
+}
+.dropdown-content>li>a.disabled{
+  color: #ccc;
+  font-size: 10px;
+}
+.dropdown-content>li>.disabled:hover{
+  background-color: transparent;
+}
+
+.nav-wrapper {
+  padding-left: 30px;
+}

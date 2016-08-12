@@ -1,56 +1,30 @@
-{{--<nav class="navbar navbar-default">--}}
-    {{--<div class="container">--}}
-        {{--<div class="navbar-header">--}}
-            {{--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">--}}
-                {{--<span class="sr-only">Toggle navigation</span>--}}
-                {{--<span class="icon-bar"></span>--}}
-                {{--<span class="icon-bar"></span>--}}
-                {{--<span class="icon-bar"></span>--}}
-            {{--</button>--}}
-            {{--<a class="navbar-brand" href="#">PokeTrade.com.br</a>--}}
-        {{--</div>--}}
-        {{--<div class="collapse navbar-collapse" id="navbar-collapse">--}}
-            {{--<ul class="nav navbar-nav navbar-right">--}}
-                {{--<li><a href="#">Porcurar</a></li>--}}
-                {{--<li><a href="#">Listar</a></li>--}}
-                {{--<li><a href="#">Comprar</a></li>--}}
-                {{--<li class="dropdown">--}}
-                    {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mensagens <span class="caret"></span></a>--}}
-                    {{--<ul class="dropdown-menu">--}}
-                        {{--<li><a href="#" class="disabled">Nada para mostrar</a></li>--}}
-                        {{--<li role="separator" class="divider"></li>--}}
-                        {{--<li><a href="#">Histórico</a></li>--}}
-                    {{--</ul>--}}
-                {{--</li>--}}
-                {{--<li class="dropdown">--}}
-                    {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lucas Messias <span class="caret"></span></a>--}}
-                    {{--<ul class="dropdown-menu">--}}
-                        {{--<li><a href="#">Minhas Cartas</a></li>--}}
-                        {{--<li><a href="#">Lista Desejo</a></li>--}}
-                        {{--<li><a href="#">Obervando</a></li>--}}
-                        {{--<li role="separator" class="divider"></li>--}}
-                        {{--<li><a href="#">Sair</a></li>--}}
-                    {{--</ul>--}}
-                {{--</li>--}}
-            {{--</ul>--}}
-        {{--</div><!-- /.navbar-collapse -->--}}
-    {{--</div><!-- /.container-fluid -->--}}
-{{--</nav>--}}
 <nav>
     <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Logo</a>
-        <a data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a  routerLink="/home" class="brand-logo">PokeTrade.com</a>
+        <a data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        <!-- Full Menu -->
         <ul class="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">Javascript</a></li>
-            <li><a href="mobile.html">Mobile</a></li>
+            <li routerLinkActive="active"><a routerLink="/search" >Search</a></li>
+            <li routerLinkActive="active"><a routerLink="/list" >List</a></li>
+            <li routerLinkActive="active"><a routerLink="/trades" >Trades</a></li>
+            <li><a routerLink="/home">My Cards</a></li>
+            <li><a routerLink="/home">Buy</a></li>
+            <li><a class="dropdown-button" data-activates="message">Message <i class="material-icons right">arrow_drop_down</i></a>
+            </li>
         </ul>
-        <ul class="side-nav" id="mobile-demo">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">Javascript</a></li>
-            <li><a href="mobile.html">Mobile</a></li>
+
+        <!-- Dropdown Menu -->
+        <ul id="message" class="dropdown-content" style="width: 200px;">
+            <li><a class="disabled" routerLink="/home">Nothing to show here</a></li>
+            <li class="divider"></li>
+            <li><a routerLink="/home">History</a></li>
+        </ul>
+
+        <!-- Responsive Menu -->
+        <ul class="side-nav" id="mobile">
+            <li routerLinkActive="active"><a routerLink="/search" >Search</a></li>
+            <li routerLinkActive="active"><a routerLink="/list" >List</a></li>
+            <li routerLinkActive="active"><a routerLink="/trades" >Trade</a></li>
         </ul>
     </div>
 </nav>

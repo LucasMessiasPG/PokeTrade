@@ -7,7 +7,8 @@
     <base href="/"/>
 </head>
 <body>
-<poke><span>Carregando ...</span></poke>
+<poke>Carregando ...</poke>
 @include('backend.scripts')
 </body>
+
 </html>
