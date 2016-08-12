@@ -6,20 +6,21 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
-import { FirstComponent } from "./Components/FirstComponent/FirstComponent";
-import { SecondComponent } from "./Components/SecondComponent/SecondComponent";
-
+import {HomeComponent} from "./Components/home.component";
+import {NavComponent} from "./Components/nav.component";
+import {SearchComponent} from "./Components/search.component";
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
-        routing
+        routing,
     ],
     declarations: [
         AppComponent,
-        FirstComponent,
-        SecondComponent
+        HomeComponent,
+        NavComponent,
+        SearchComponent
     ],
     providers: [
         {

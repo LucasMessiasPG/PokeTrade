@@ -14,12 +14,15 @@
 
 Route::get('/',function(){return view('backend.master');});
 Route::get('/login','UserController@login');
+Route::get('/templates/{template}','MainController@index');
+//Route::get('/search',function(){
+//	return redirect('/search');
+//});
 
-Route::group(['middleware' => ['web','check']], function()
+Route::any('{path}', function()
 {
-	Route::get('/123teste','UserController@callteste');
-});
-
+	return view("backend.master");
+})->where("path", ".+");
 Route::group(['prefix'=>'api/v1','middleware' => ['cors']],function(){
     Route::get('search','SearchController@search');
 });
