@@ -11,18 +11,25 @@
 |
 */
 
+Route::get('/hash',function(){
+    \App\Models\User::create([
+        'login' => 'messias',
+        'email' => 'lucasmessias.pg@outlook.com',
+        'password' => Hash::make('123456'),
+    ]);
+    return 'criado';
+});
 
 Route::get('/',function(){return view('backend.master');});
-Route::get('/login','UserController@login');
+Route::post('/login-user','UserController@login');
 Route::get('/templates/{template}','MainController@index');
-//Route::get('/search',function(){
-//	return redirect('/search');
-//});
+Route::group(['prefix'=>'api/'],function(){
+    Route::get('search','SearchController@search');
+});
 
-Route::any('{path}', function()
+Route::get('{path}', function()
 {
 	return view("backend.master");
 })->where("path", ".+");
-Route::group(['prefix'=>'api/v1','middleware' => ['cors']],function(){
-    Route::get('search','SearchController@search');
-});
+
+

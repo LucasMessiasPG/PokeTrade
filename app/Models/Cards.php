@@ -72,6 +72,7 @@ class Cards extends Model
 
         $card->rarity = $this->rarity->value;
         $card->set = $this->set->name;
+        $card->set_number = $this->set->id_set;
         $card->total_set = $this->set->total_cards;
         $card->card_set = $this->number.'/'.$this->set->total_cards;
 

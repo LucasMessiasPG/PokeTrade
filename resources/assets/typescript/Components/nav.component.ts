@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-declare var jQuery:any;
+declare var $:any;
 @Component({
     selector: 'poke-nav',
     templateUrl: '/templates/nav',
@@ -10,9 +10,9 @@ export class NavComponent {
     }
 
     ngOnInit() {
-        jQuery(document).ready(function () {
-            jQuery(".button-collapse").sideNav();
-            jQuery(".dropdown-button").dropdown({
+        $(document).ready(function () {
+            $(".button-collapse").sideNav();
+            $(".dropdown-button").dropdown({
                     inDuration: 300,
                     outDuration: 225,
                     constrain_width: false, // Does not change width of dropdown to that of the activator

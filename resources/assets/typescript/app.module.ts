@@ -11,12 +11,17 @@ import {NavComponent} from "./Components/nav.component";
 import {SearchComponent} from "./Components/search.component";
 import {ListComponent} from "./Components/list.component";
 import {TradesComponent} from "./Components/trades.component";
+import {HttpModule, Http} from "@angular/http";
+import {CardComponent} from "./Components/card/card.component";
+import {LoginComponent} from "./Components/login.component";
+import {User} from "./services/user.service";
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         routing,
+        HttpModule
     ],
     declarations: [
         AppComponent,
@@ -24,14 +29,17 @@ import {TradesComponent} from "./Components/trades.component";
         NavComponent,
         SearchComponent,
         ListComponent,
-        TradesComponent
+        TradesComponent,
+        CardComponent,
+        LoginComponent
     ],
     providers: [
         {
             provide: platformBrowser,
             useValue: [ROUTER_DIRECTIVES],
             multi: true
-        }
+        },
+        User
     ],
     bootstrap:[
         AppComponent

@@ -45,6 +45,47 @@ a{
   background-color: transparent;
 }
 
+.margin-top{
+  margin-top: 20px;
+}
+
 .nav-wrapper {
   padding-left: 30px;
+}
+
+.img-card{
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+
+@media screen and (max-width: 600px) {
+  .img-card{
+    width: 50%;
+  }
+}
+
+.padding-min{
+  padding: 5px;
+}
+
+.card-info{
+  background-color: black;
+  color: white;
+}
+
+.btn-small {
+  height: 24px;
+  line-height: 24px;
+  padding: 0 0.5rem;
+  font-size: 12px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
 }

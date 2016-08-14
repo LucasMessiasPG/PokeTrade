@@ -17,7 +17,7 @@ class SearchController extends Controller
             $campos = [
                 'page',
                 'name',
-                'setName',
+                'set_name',
                 'number',
                 'limit'
             ];
@@ -41,7 +41,7 @@ class SearchController extends Controller
                         case 'number':
                             $card->where('number','=',$value);
                             break;
-                        case 'setName':
+                        case 'set_name':
                             $card->where('sets.name','ilike','%'.$value.'%');
                             break;
                     }

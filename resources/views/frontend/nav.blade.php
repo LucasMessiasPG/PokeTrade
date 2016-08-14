@@ -4,6 +4,7 @@
         <a data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         <!-- Full Menu -->
         <ul class="right hide-on-med-and-down">
+            <li routerLinkActive="active"><a routerLink="/login" >Login</a></li>
             <li routerLinkActive="active"><a routerLink="/search" >Search</a></li>
             <li routerLinkActive="active"><a routerLink="/list" >List</a></li>
             <li routerLinkActive="active"><a routerLink="/trades" >Trades</a></li>

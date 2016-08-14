@@ -157,7 +157,7 @@ return [
 		App\Providers\RouteServiceProvider::class,
 		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 	],
-	
+
 	/*
 	|--------------------------------------------------------------------------
 	| Class Aliases
@@ -201,7 +201,8 @@ return [
 		'URL'       => Illuminate\Support\Facades\URL::class,
 		'Validator' => Illuminate\Support\Facades\Validator::class,
 		'View'      => Illuminate\Support\Facades\View::class,
-	
+        'TranslateClient' => Stichoza\GoogleTranslate\TranslateClient::class
+
 	],
 
 ];

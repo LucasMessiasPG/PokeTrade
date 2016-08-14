@@ -11,6 +11,16 @@ class UserController extends Controller
 {
 	public function login(Login $login)
 	{
+	    if(\Auth::check())
+            return response()->json([
+                'status' => 'success',
+                'user' => [
+                    'login'=>\Auth::user()->login,
+                    'email'=>\Auth::user()->email,
+                    'cache'=>true
+                ]
+            ]);
+
 		$creadentials = $login->only('login','password');
 		try{
 		            
