@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {User} from "../services/user.service";
 declare var $:any;
 @Component({
     selector: 'poke-nav',
@@ -6,10 +7,10 @@ declare var $:any;
 })
 export class NavComponent {
 
-    constructor() {
-    }
+    constructor(private user: User) {}
 
     ngOnInit() {
+        this.user.checkLogin();
         $(document).ready(function () {
             $(".button-collapse").sideNav();
             $(".dropdown-button").dropdown({

@@ -9,6 +9,11 @@
 <body>
 <poke>Carregando ...</poke>
 @include('backend.scripts')
+@if(!\Auth::check())
+    <script>
+        localStorage.removeItem('user');
+    </script>
+@endif
 </body>
 
 </html>

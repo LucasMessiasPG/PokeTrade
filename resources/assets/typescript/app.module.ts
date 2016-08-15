@@ -11,7 +11,7 @@ import {NavComponent} from "./Components/nav.component";
 import {SearchComponent} from "./Components/search.component";
 import {ListComponent} from "./Components/list.component";
 import {TradesComponent} from "./Components/trades.component";
-import {HttpModule, Http} from "@angular/http";
+import {HttpModule, Http, JsonpModule} from "@angular/http";
 import {CardComponent} from "./Components/card/card.component";
 import {LoginComponent} from "./Components/login.component";
 import {User} from "./services/user.service";
@@ -20,6 +20,7 @@ import {User} from "./services/user.service";
     imports: [
         BrowserModule,
         FormsModule,
+        JsonpModule,
         routing,
         HttpModule
     ],

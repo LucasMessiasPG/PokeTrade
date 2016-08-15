@@ -43,6 +43,11 @@ class UserController extends Controller
 		    dd($e->getMessage());
 		}
 	}
+
+	public function logout(){
+	    \Auth::logout();
+        return redirect('/');
+    }
 	
 	public function callteste()
 	{
