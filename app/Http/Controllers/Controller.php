@@ -11,4 +11,15 @@ use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
+
+    public function _return($message,$status = 'success',$opt = null)
+    {
+        $response = ['status' => $status, 'message' => $message];
+
+        if($opt != null)
+            $response['data'] = $opt;
+
+        return $response;
+    }
+
 }

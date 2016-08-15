@@ -10,7 +10,9 @@ export class NavComponent {
     constructor(private user: User) {}
 
     ngOnInit() {
-        this.user.checkLogin();
+        if(this.user.checkLogin())
+            this.user.emitLogin();
+
         $(document).ready(function () {
             $(".button-collapse").sideNav();
             $(".dropdown-button").dropdown({

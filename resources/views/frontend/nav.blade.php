@@ -7,7 +7,7 @@
             <li routerLinkActive="active"><a routerLink="/search" >Search</a></li>
             <li routerLinkActive="active"><a routerLink="/list" >List</a></li>
             <li routerLinkActive="active"><a routerLink="/trades" >Trades</a></li>
-            <li><a routerLink="/home">My Cards</a></li>
+            <li><a routerLink="/my-cards">My Cards</a></li>
             <li><a routerLink="/home">Buy</a></li>
             <li><a class="dropdown-button" data-activates="message">Message <i class="material-icons right">arrow_drop_down</i></a></li>
             @if(\Auth::check())

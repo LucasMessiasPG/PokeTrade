@@ -15,6 +15,7 @@ import {HttpModule, Http, JsonpModule} from "@angular/http";
 import {CardComponent} from "./Components/card/card.component";
 import {LoginComponent} from "./Components/login.component";
 import {User} from "./services/user.service";
+import {MyCardsComponents} from "./Components/my-cards.component";
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import {User} from "./services/user.service";
         ListComponent,
         TradesComponent,
         CardComponent,
-        LoginComponent
+        LoginComponent,
+        MyCardsComponents
     ],
     providers: [
         {

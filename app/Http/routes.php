@@ -21,11 +21,22 @@ Route::get('/hash',function(){
 });
 
 Route::get('/',function(){return view('backend.master');});
+
 Route::post('/login-user','UserController@login');
+
 Route::get('/logout','UserController@logout');
+
 Route::get('/templates/{template}','MainController@index');
+
 Route::group(['prefix'=>'api/'],function(){
+
     Route::get('search','SearchController@search');
+
+    Route::group(['middleware'=>['check']],function(){
+
+        Route::get('my-cards','UserController@myCards');
+
+    });
 });
 
 Route::get('{path}', function()

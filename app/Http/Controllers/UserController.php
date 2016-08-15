@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Login;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Auth;
+use Mockery\CountValidator\Exception;
 
 class UserController extends Controller
 {
@@ -48,30 +49,17 @@ class UserController extends Controller
 	    \Auth::logout();
         return redirect('/');
     }
-	
-	public function callteste()
-	{
-		dd('teste');
-	}
+
+    /**
+     * @return array
+     */
+    public function myCards()
+    {
+        try{
+            $result = Auth::user()->cards;
+            return $this->_return('Get all cards user','success',$result);
+        }catch (\Exception $e){
+
+        }
+    }
 }
-
-
-/*
- *
- * public function login(Login $login)
-	{
-		$creadentials = $login->only('login', 'password');
-		try {
-			// verify the credentials and create a token for the user
-			if (! $token = JWTAuth::attempt($creadentials)) {
-				return response()->json(['error' => 'invalid_credentials'], 401);
-			}
-		} catch (JWTException $e) {
-			// something went wrong
-			return response()->json(['error' => 'could_not_create_token'], 500);
-		}
-		
-		// if no errors are encountered we can return a JWT
-		return response()->json(compact('token'));
-	}
- */
