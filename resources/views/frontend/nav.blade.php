@@ -5,7 +5,7 @@
         <!-- Full Menu -->
         <ul class="right hide-on-med-and-down">
             <li routerLinkActive="active"><a routerLink="/search" >Search</a></li>
-            <li routerLinkActive="active"><a routerLink="/list" >List</a></li>
+            <li routerLinkActive="active"><a routerLink="/list" >All Cards</a></li>
             <li routerLinkActive="active"><a routerLink="/trades" >Trades</a></li>
             <li routerLinkActive="active"><a routerLink="/my-cards">My Cards</a></li>
             <li><a routerLink="/home">Buy</a></li>
@@ -26,7 +26,7 @@
 
         <!-- Dropdown Menu Perfil -->
         <ul id="perfil_user" class="dropdown-content">
-            <li><a routerLink="/home">Profile</a></li>
+            <li><a routerLink="/profile/{{ user.id_user }}">Profile</a></li>
             <li class="divider"></li>
             <li><a href="/logout">Logout</a></li>
         </ul>

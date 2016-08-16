@@ -3,12 +3,14 @@ import {Http} from "@angular/http";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs/Rx";
 import {Modal} from "./modal.service";
+import {Toast} from "../services/toast.service";
 
 @Injectable()
 export class User {
     private tutorial_show = false
     public login$:EventEmitter<any>;
     public cards$:EventEmitter<any>;
+    public id_user;
     public login;
     public email;
     public cards;
@@ -16,7 +18,8 @@ export class User {
     constructor(
         private http:Http,
         private modal:Modal,
-        private router:Router
+        private router:Router,
+        private toast: Toast,
     ) {
         this.login$ = new EventEmitter();
         this.cards$ = new EventEmitter();
@@ -45,6 +48,8 @@ export class User {
                     this.cards = response.data;
                     return response.data;
                 }
+                if(response.msg)
+                    this.toast.show(response.msg)
                 throw 'Erro';
             })
     }
@@ -65,11 +70,15 @@ export class User {
             .subscribe(res => {
                 var response = res.json();
                 if (response.user) {
+                    this.id_user = response.user.id_user;
                     this.email = response.user.email;
                     this.login = response.user.login;
                     localStorage.setItem('user', JSON.stringify(response));
                     this.router.navigateByUrl('/home')
                     location.reload();
+                }else {
+                    if (response.warning)
+                        this.toast.show(response.warning)
                 }
 
             })
@@ -89,6 +98,7 @@ export class User {
                 this.tutorial_show = true;
             }
             if (local_user.user.login && local_user.user.email) {
+                this.id_user = local_user.user.id_user;
                 this.email = local_user.user.email;
                 this.login = local_user.user.login;
                 return true;
@@ -102,6 +112,7 @@ export class User {
             .map(res => {
                 var response = res.json();
                 if (response.user) {
+                    this.id_user = response.user.id_user;
                     this.email = response.user.email;
                     this.login = response.user.login;
                     localStorage.setItem('user', JSON.stringify(response));
@@ -126,5 +137,18 @@ export class User {
 
             localStorage.setItem('user',JSON.stringify(temp_user));
         }
+    }
+
+    public getProfile(id_user) {
+        return this.http.get('http://localhost:8000/' + 'user/profile/'+id_user)
+            .map(res => {
+                var response = res.json();
+                if(response.user){
+                    return response.user
+                }else{
+                    if(response.warning)
+                        this.toast.show(response.warning)
+                }
+            })
     }
 }

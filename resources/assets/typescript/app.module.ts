@@ -17,6 +17,8 @@ import {LoginComponent} from "./Components/login.component";
 import {User} from "./services/user.service";
 import {MyCardsComponents} from "./Components/my-cards.component";
 import {Modal} from "./services/modal.service";
+import {Toast} from "./services/toast.service";
+import {ProfileComponent} from "./Components/profile.component";
 
 @NgModule({
     imports: [
@@ -35,7 +37,8 @@ import {Modal} from "./services/modal.service";
         TradesComponent,
         CardComponent,
         LoginComponent,
-        MyCardsComponents
+        MyCardsComponents,
+        ProfileComponent
     ],
     providers: [
         {
@@ -44,7 +47,8 @@ import {Modal} from "./services/modal.service";
             multi: true
         },
         User,
-        Modal
+        Modal,
+        Toast
     ],
     bootstrap:[
         AppComponent

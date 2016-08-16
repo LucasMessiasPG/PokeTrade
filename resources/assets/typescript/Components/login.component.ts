@@ -30,7 +30,6 @@ export class LoginComponent{
     newUser(user){
         this._user.register(user)
             .subscribe(res => {
-                console.log(res)
                 if(res) {
                     this._modal.close('#register');
                     location.reload();

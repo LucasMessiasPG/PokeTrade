@@ -19,8 +19,9 @@ class UserController extends Controller
 		    $resoponse = [
 			    'status' => 'success',
 			    'user' => [
-				    'login' => \Auth::user()->login,
-				    'email' => \Auth::user()->email,
+				    'id_user'   =>  Auth::user()->id_user,
+				    'login'     =>  Auth::user()->login,
+				    'email'     =>  Auth::user()->email,
 			    ],
 			    'cache' => true
 		    ];
@@ -39,8 +40,9 @@ class UserController extends Controller
 				$resoponse = [
 					'status' => 'success',
 					'user' => [
-						'login' => Auth::user()->login,
-						'email' => Auth::user()->email,
+						'id_user'   =>  Auth::user()->id_user,
+						'login'     =>  Auth::user()->login,
+						'email'     =>  Auth::user()->email,
 					],
 					'cache' => true
 				];
@@ -50,10 +52,9 @@ class UserController extends Controller
 				return response()->json($resoponse);
 			}
 			
-			dd(Auth::attempt($creadentials,true));
 			return response()->json([
 				'status'=>'warning',
-				'warning'=>'Login or password invalid'
+				'warning'=>'Login or Password Invalid'
 			]);
 		    
 		            
@@ -86,6 +87,7 @@ class UserController extends Controller
 			return response()->json([
 				'status' => 'success',
 				'user' => [
+					'id_user' => $user->id_user,
 					'login'=>$user->login,
 					'email'=>$user->email
 				],
@@ -117,5 +119,18 @@ class UserController extends Controller
         }catch (\Exception $e){
 
         }
+    }
+    
+    public function profile($id_user)
+    {
+    	try{
+    	            
+    	    if($user = User::find($id_user)){
+    	    	return ['status'=>'success','user'=>$user];
+	        }
+            return ['status'=>'warning','warning'=>'User not found'];
+    	}catch (\Exception $e){
+    	    
+    	}
     }
 }
