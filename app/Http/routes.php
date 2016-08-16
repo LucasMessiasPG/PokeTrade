@@ -11,6 +11,9 @@
 |
 */
 
+Blade::setContentTags('<%', '%>');        // for variables and all things Blade
+Blade::setEscapedContentTags('<%%', '%%>');
+
 Route::get('/hash',function(){
     \App\Models\User::create([
         'login' => 'messias',
@@ -19,6 +22,7 @@ Route::get('/hash',function(){
     ]);
     return 'criado';
 });
+
 
 Route::get('/',function(){return view('backend.master');});
 

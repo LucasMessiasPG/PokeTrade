@@ -18,16 +18,23 @@ require('laravel-elixir-webpack-official');
  */
 
 elixir(function (mix) {
+
+	var fontawesomePath = 'node_modules/font-awesome';
+
+	mix.copy(fontawesomePath, 'resources/vendor/font-awesome/');
+	mix.copy(fontawesomePath + '/fonts', 'public/fonts');
+	mix.copy(fontawesomePath + '/css', 'public/css');
+
 	/**
 	 * Materialize
 	 **/
 	var materializePath = 'node_modules/materialize-css/dist';
-	
+
 	mix.copy(materializePath, 'resources/vendor/materialize-css/');
 	mix.copy(materializePath + '/fonts', 'public/fonts');
 	mix.copy(materializePath + '/css', 'public/css');
 	mix.copy(materializePath + '/js', 'public/js');
-	
+
 	/**
 	 * JQuery
 	 **/

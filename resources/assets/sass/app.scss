@@ -89,3 +89,13 @@ a{
   max-width: 1280px;
   width: 90%;
 }
+
+.card.my-card>.card-content{
+  padding: 0 10px;
+}
+.card.my-card>.card-content>span{
+  font-size: 14px;
+}
+.card.my-card>.card-content>p{
+  font-size: 12px;
+}

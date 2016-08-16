@@ -56,7 +56,11 @@ class UserController extends Controller
     public function myCards()
     {
         try{
-            $result = Auth::user()->cards;
+            $cards = Auth::user()->cards;
+            foreach ($cards as $card) {
+                $card->set;
+            }
+            $result = $cards;
             return $this->_return('Get all cards user','success',$result);
         }catch (\Exception $e){
 
