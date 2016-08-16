@@ -7,11 +7,14 @@ declare var $:any;
 })
 export class NavComponent {
 
+    public showTutorial = false;
+
     constructor(private user: User) {}
 
     ngOnInit() {
         if(this.user.checkLogin())
             this.user.emitLogin();
+
 
         $(document).ready(function () {
             $(".button-collapse").sideNav();
@@ -27,5 +30,12 @@ export class NavComponent {
             );
         })
 
+    }
+
+    public setShowTutorial(check)
+    {
+        console.log(check);
+        if(check)
+            this.user.tutorial(true)
     }
 }

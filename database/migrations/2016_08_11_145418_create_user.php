@@ -14,9 +14,10 @@ class CreateUser extends Migration
     {
         Schema::create('users',function(Blueprint $table){
 	        $table->increments('id_user');
-	        $table->string('login',30);
+	        $table->string('login',30)->unique();
 	        $table->string('email',150)->unique();
 	        $table->string('password');
+	        $table->boolean('tutorial')->default(false);
 	        $table->string('remember_token')->nullable();
 	        $table->integer('id_group_user')->default(1);
 	        $table->timestamp('deleted_at')->nullable();

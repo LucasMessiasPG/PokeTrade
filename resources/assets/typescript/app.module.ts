@@ -16,6 +16,7 @@ import {CardComponent} from "./Components/card/card.component";
 import {LoginComponent} from "./Components/login.component";
 import {User} from "./services/user.service";
 import {MyCardsComponents} from "./Components/my-cards.component";
+import {Modal} from "./services/modal.service";
 
 @NgModule({
     imports: [
@@ -42,7 +43,8 @@ import {MyCardsComponents} from "./Components/my-cards.component";
             useValue: [ROUTER_DIRECTIVES],
             multi: true
         },
-        User
+        User,
+        Modal
     ],
     bootstrap:[
         AppComponent

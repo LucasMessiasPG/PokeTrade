@@ -39,3 +39,20 @@
         </ul>
     </div>
 </nav>
+
+<!-- Modal Structure -->
+<div id="tutorial" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>Tutorial</h4>
+        <p>texto e img com tutorial de como usar</p>
+    </div>
+    <div class="modal-footer row">
+        <div class="input-field col s6 right">
+            <input name="check" id="check" type="checkbox" value="0" [(ngModel)]="showTutorial">
+            <label for="check">Don't show this tutorial again</label>
+        </div>
+        <div class="col s6">
+            <a (click)="setShowTutorial(showTutorial)" class="modal-action modal-close waves-effect waves-green btn-flat ">Confirm</a>
+        </div>
+    </div>
+</div>

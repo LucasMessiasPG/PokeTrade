@@ -11,7 +11,8 @@
 |
 */
 
-Blade::setContentTags('<%', '%>');        // for variables and all things Blade
+//change tag blade because angular tags
+Blade::setContentTags('<%', '%>');
 Blade::setEscapedContentTags('<%%', '%%>');
 
 Route::get('/hash',function(){
@@ -27,6 +28,8 @@ Route::get('/hash',function(){
 Route::get('/',function(){return view('backend.master');});
 
 Route::post('/login-user','UserController@login');
+Route::get('/user/tutorial/{type}','UserController@tutorial');
+Route::post('/register-user','UserController@register');
 
 Route::get('/logout','UserController@logout');
 

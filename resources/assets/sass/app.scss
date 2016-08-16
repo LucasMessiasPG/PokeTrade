@@ -90,12 +90,33 @@ a{
   width: 90%;
 }
 
+.login.group-button{
+  text-align: right;
+}
+
 .card.my-card>.card-content{
   padding: 0 10px;
 }
 .card.my-card>.card-content>span{
   font-size: 14px;
 }
+.card.my-card>.card-content>.card-title{
+  line-height: 30px;
+}
 .card.my-card>.card-content>p{
+  line-height: 30px;
   font-size: 12px;
+}
+
+table.my-card{
+  td{
+    padding: 5px 5px;
+  }
+}
+.my-card.img{
+  position: relative;
+}
+
+.modal-footer.row>.input-field{
+  margin-top: 0;
 }

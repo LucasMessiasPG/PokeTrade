@@ -2,16 +2,22 @@ import {Injectable, EventEmitter} from "@angular/core";
 import {Http} from "@angular/http";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs/Rx";
+import {Modal} from "./modal.service";
 
 @Injectable()
 export class User {
+    private tutorial_show = false
     public login$:EventEmitter<any>;
     public cards$:EventEmitter<any>;
     public login;
     public email;
     public cards;
 
-    constructor(private http:Http, private router:Router) {
+    constructor(
+        private http:Http,
+        private modal:Modal,
+        private router:Router
+    ) {
         this.login$ = new EventEmitter();
         this.cards$ = new EventEmitter();
     }
@@ -76,6 +82,12 @@ export class User {
     private checkStorage() {
         if (localStorage.getItem('user')) {
             var local_user = JSON.parse(localStorage.getItem('user'));
+
+            if(local_user.tutorial && this.tutorial_show == false) {
+                this.modal.init()
+                this.modal.show('#tutorial')
+                this.tutorial_show = true;
+            }
             if (local_user.user.login && local_user.user.email) {
                 this.email = local_user.user.email;
                 this.login = local_user.user.login;
@@ -83,5 +95,36 @@ export class User {
             }
         }
         return false;
+    }
+
+    public register(user) {
+        return this.http.post('http://localhost:8000/' + 'register-user', user)
+            .map(res => {
+                var response = res.json();
+                if (response.user) {
+                    this.email = response.user.email;
+                    this.login = response.user.login;
+                    localStorage.setItem('user', JSON.stringify(response));
+                    return true;
+                }
+                return false;
+
+            })
+    }
+
+    public tutorial(b:boolean) {
+        if(b)
+            this.http.get('http://localhost:8000/' + 'user/tutorial/1').subscribe(res => {})
+        else
+            this.http.get('http://localhost:8000/' + 'user/tutorial/0').subscribe(res => {})
+
+        if(localStorage.getItem('user')) {
+            var temp_user = JSON.parse(localStorage.getItem('user'));
+
+            if(temp_user.tutorial)
+                temp_user.tutorial = !b;
+
+            localStorage.setItem('user',JSON.stringify(temp_user));
+        }
     }
 }

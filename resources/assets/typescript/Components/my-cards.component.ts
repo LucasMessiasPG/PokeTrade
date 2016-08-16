@@ -19,9 +19,10 @@ export class MyCardsComponents{
 
     ngOnInit()
     {
-        this.user.getCards()
-            .subscribe(cards => {
-                this.cards = cards;
-            });
+        if(this.user.checkLogin())
+            this.user.getCards()
+                .subscribe(cards => {
+                    this.cards = cards;
+                });
     }
 }
