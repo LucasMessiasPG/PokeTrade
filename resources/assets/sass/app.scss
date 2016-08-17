@@ -116,6 +116,16 @@ table.my-card{
 .my-card.img{
   position: relative;
 }
+.my-card.img>.img-card{
+  position: relative;
+  width: 100%;
+}
+.my-card.img>.img-card.fixed{
+  position: fixed;
+  left: calc(100%/20);
+  top: 140px;
+  width: calc(100%/4.7);
+}
 
 .modal-footer.row>.input-field{
   margin-top: 0;

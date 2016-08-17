@@ -14,6 +14,7 @@ export class User {
     public login;
     public email;
     public cards;
+    private _url = 'http://10.240.4.225:8000/';
 
     constructor(
         private http:Http,
@@ -40,7 +41,8 @@ export class User {
             })
         }
 
-        var url = 'http://localhost:8000/' + 'api/my-cards';
+        this._url = this._url;
+        var url = this._url + 'api/my-cards';
         return this.http.get(url)
             .map(res => {
                 var response = res.json();
@@ -66,7 +68,7 @@ export class User {
         if (this.checkStorage())
             return this.emitLogin();
 
-        this.http.post('http://localhost:8000/' + 'login-user', user)
+        this.http.post(this._url + 'login-user', user)
             .subscribe(res => {
                 var response = res.json();
                 if (response.user) {
@@ -108,7 +110,7 @@ export class User {
     }
 
     public register(user) {
-        return this.http.post('http://localhost:8000/' + 'register-user', user)
+        return this.http.post(this._url + 'register-user', user)
             .map(res => {
                 var response = res.json();
                 if (response.user) {
@@ -125,9 +127,9 @@ export class User {
 
     public tutorial(b:boolean) {
         if(b)
-            this.http.get('http://localhost:8000/' + 'user/tutorial/1').subscribe(res => {})
+            this.http.get(this._url + 'user/tutorial/1').subscribe(res => {})
         else
-            this.http.get('http://localhost:8000/' + 'user/tutorial/0').subscribe(res => {})
+            this.http.get(this._url + 'user/tutorial/0').subscribe(res => {})
 
         if(localStorage.getItem('user')) {
             var temp_user = JSON.parse(localStorage.getItem('user'));
@@ -140,7 +142,7 @@ export class User {
     }
 
     public getProfile(id_user) {
-        return this.http.get('http://localhost:8000/' + 'user/profile/'+id_user)
+        return this.http.get(this._url + 'user/profile/'+id_user)
             .map(res => {
                 var response = res.json();
                 if(response.user){

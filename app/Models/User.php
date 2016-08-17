@@ -27,6 +27,6 @@ class User extends Authenticatable
 
     public function cards()
     {
-        return $this->belongsToMany(Cards::class,'user_cards','id_user','id_user','id_card');
+        return $this->belongsToMany(Cards::class,'user_cards','id_user','id_card','id_card');
     }
 }

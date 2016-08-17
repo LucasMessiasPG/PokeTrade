@@ -33,7 +33,10 @@
         </div>
     </div>
     <div class="row">
-        <table class="bordered my-card col s10">
+        <div class="col l3 my-card img center hide-on-med-and-down">
+            <img class="img-card" [ngClass]="{'fixed':img_fixed}" src="{{ show_img }}" alt="">
+        </div>
+        <table class="bordered highlight my-card col l9 m12 s12">
             <thead>
             <tr>
                 <th>Name</th>
@@ -45,7 +48,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let card of cards">
+            <tr (mouseover)='changeImg(card)' *ngFor="let card of cards">
                 <td>{{ card.name }}</td>
                 <td></td>
                 <td>{{ card.set.name }}</td>
@@ -61,7 +64,5 @@
             </tr>
             </tbody>
         </table>
-        <div class="col s2 my-card img">
-        </div>
     </div>
 </div>
