@@ -130,3 +130,20 @@ table.my-card{
 .modal-footer.row>.input-field{
   margin-top: 0;
 }
+.margin-bot-40{
+  margin-bottom: 40px;
+}
+
+.very-small-card{
+  width: 30px;
+}
+.div-my-card-img{
+  position: relative;
+  height: 60px;
+
+}
+.div-my-card-img>div {
+  position: absolute;
+  top: 0;
+  margin: 10px;
+}

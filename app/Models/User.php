@@ -27,6 +27,13 @@ class User extends Authenticatable
 
     public function cards()
     {
-        return $this->belongsToMany(Cards::class,'user_cards','id_user','id_card','id_card');
+	    $cards = UserCards::where('id_user','=',$this->id_user)->get();
+	    $result = [];
+	    foreach ($cards as $key => $user_card) {
+		    $result[$key] = $user_card->toArray();
+		    $result[$key]['card'] = (array)$user_card->card->fullset();
+	    }
+        return ['cards' => $result,'amount_total' => $cards->sum('amount')];
     }
+
 }

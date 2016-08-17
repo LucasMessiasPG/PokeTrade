@@ -4,7 +4,7 @@
             <ul class="collection with-header">
                 <li class="collection-header center"><h5>Resume Cards</h5></li>
                 <li class="collection-item">Total Cards <span data-badge-caption="cards"
-                                                              class="badge">{{ (cards)?cards.length:0 }}</span></li>
+                                                              class="badge">{{ (cards && cards.amount_total)?cards.amount_total:0 }}</span></li>
                 <li class="collection-item">Total Wants: <span data-badge-caption="cards" class="badge">10</span></li>
                 <li class="collection-item">Total Trades: <span data-badge-caption="cards" class="badge">6</span></li>
             </ul>
@@ -27,18 +27,17 @@
         </div>
         <div class="col s8 right">
             <div class="right">
-                <button class="btn waves-light waves-effect"><i class="material-icons right">playlist_add</i> Add Card
-                </button>
+                <a class="waves-effect waves-light btn" (click)="addCard()">
+                    <i class="material-icons right">playlist_add</i> Add Card
+                </a>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col l3 my-card img center hide-on-med-and-down">
-            <img class="img-card" [ngClass]="{'fixed':img_fixed}" src="{{ show_img }}" alt="">
-        </div>
-        <table class="bordered highlight my-card col l9 m12 s12">
+    <div class="row" *ngIf="cards">
+        <table class="bordered highlight my-card col l12 m12 s12">
             <thead>
             <tr>
+                <th>Card</th>
                 <th>Name</th>
                 <th>Price</th>
                 <th>Set</th>
@@ -48,12 +47,21 @@
             </tr>
             </thead>
             <tbody>
-            <tr (mouseover)='changeImg(card)' *ngFor="let card of cards">
-                <td>{{ card.name }}</td>
-                <td></td>
-                <td>{{ card.set.name }}</td>
-                <td></td>
-                <td></td>
+            <tr *ngFor="let item of cards.cards">
+                <td class="div-my-card-img">
+                    <div>
+                        <img class="very-small-card materialboxed" src="{{ item.card.image_url }}" alt="{{ item.card.name }}">
+                    </div>
+                </td>
+                <td>{{ item.card.name }} (#{{ item.card.card_set }})</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.card.set }}</td>
+                <td>{{ item.amount }}</td>
+                <td><p *ngIf="item.foil" title="foil">
+                        <input disabled type="checkbox" id="foil[]" [checked]="item.foil" />
+                        <label for="foil"></label>
+                    </p>
+                </td>
                 <td class="center">
                     <a><i class="fa fa-arrow-circle-o-up"></i></a>
                     <a><i class="fa fa-arrow-circle-o-down"></i></a>

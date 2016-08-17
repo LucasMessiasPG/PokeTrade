@@ -19,6 +19,9 @@ import {MyCardsComponents} from "./Components/my-cards.component";
 import {Modal} from "./services/modal.service";
 import {Toast} from "./services/toast.service";
 import {ProfileComponent} from "./Components/profile.component";
+import {Tooltip} from "./services/tooltip.service";
+import {MaterializeCuston} from "./services/materialize.service";
+import {NewCardComponent} from "./Components/card/new-card.component";
 
 @NgModule({
     imports: [
@@ -38,7 +41,8 @@ import {ProfileComponent} from "./Components/profile.component";
         CardComponent,
         LoginComponent,
         MyCardsComponents,
-        ProfileComponent
+        ProfileComponent,
+        NewCardComponent
     ],
     providers: [
         {
@@ -48,7 +52,9 @@ import {ProfileComponent} from "./Components/profile.component";
         },
         User,
         Modal,
-        Toast
+        Toast,
+        Tooltip,
+        MaterializeCuston
     ],
     bootstrap:[
         AppComponent

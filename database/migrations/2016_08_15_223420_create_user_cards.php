@@ -14,10 +14,15 @@ class CreateUserCards extends Migration
     {
         Schema::create('user_cards',function(Blueprint $table){
             $table->increments('id_user_card');
-            $table->integer('id_user');
-            $table->integer('id_card');
+            $table->integer('id_user')->unsigend();
+            $table->integer('id_card')->unsigend();
+            $table->integer('amount')->default(1);
+            $table->boolean('foil')->default(false);
+            $table->bigInteger('price');
             $table->softDeletes();
             $table->timestamps();
+	        $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
+	        $table->foreign('id_card')->references('id_card')->on('cards')->onDelete('cascade');
         });
     }
 

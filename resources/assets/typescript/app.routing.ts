@@ -6,6 +6,7 @@ import {TradesComponent} from "./Components/trades.component";
 import {LoginComponent} from "./Components/login.component";
 import {MyCardsComponents} from "./Components/my-cards.component";
 import {ProfileComponent} from "./Components/profile.component";
+import {NewCardComponent} from "./Components/card/new-card.component";
 
 const routes: Routes = [
     {path: '',redirectTo: '/home',pathMatch: 'full'},
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path: 'trades',component: TradesComponent},
     {path: 'login',component: LoginComponent},
     {path: 'my-cards',component: MyCardsComponents},
+    {path: 'my-cards/new',component: NewCardComponent},
     {path: 'profile/:id',component: ProfileComponent},
 ];
 

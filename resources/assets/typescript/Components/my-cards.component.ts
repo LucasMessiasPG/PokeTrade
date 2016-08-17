@@ -1,6 +1,8 @@
-import {Component, ElementRef, Renderer} from "@angular/core";
+import {Component, ElementRef} from "@angular/core";
 import {Router} from "@angular/router";
 import {User} from "../services/user.service";
+import {MaterializeCuston} from "../services/materialize.service";
+declare var $:any;
 @Component({
     selector: 'poke-my-cards',
     templateUrl: '/templates/my_cards'
@@ -8,14 +10,12 @@ import {User} from "../services/user.service";
 export class MyCardsComponents{
 
     private cards;
-    private img_fixed = false;
-    private show_img = 'https://s3.amazonaws.com/pokemontcg/base1/14.jpg';
-    private globalListenFunc;
+    public new_card
 
     constructor(
         private router: Router,
         private user: User,
-        private renderer: Renderer,
+        private materialize: MaterializeCuston,
         private el: ElementRef
     ){
         if(!this.user.checkLogin())
@@ -24,35 +24,31 @@ export class MyCardsComponents{
 
     ngOnInit()
     {
-        var body = document.body,
-            html = document.documentElement;
+        this.new_card = {
+            foil:'',
+            id_set:'',
+            id_card:'',
+            price:'',
+            amount:1
+        };
 
-        var height = Math.max( body.scrollHeight, body.offsetHeight,
-            html.clientHeight, html.scrollHeight, html.offsetHeight );
-
-        this.globalListenFunc = this.renderer.listenGlobal('document','scroll',()=>{
-
-            if(document.body.scrollTop > 200 && height > 600)
-                this.img_fixed = true;
-            else
-                this.img_fixed = false;
-        });
         if(this.user.checkLogin())
             this.user.getCards( )
                 .subscribe(cards => {
                     this.cards = cards;
+
+                    setTimeout(()=>{
+                        this.materialize.box();
+                        this.materialize.modal();
+                        this.materialize.select();
+                    },100)
                 });
     }
 
-    ngOnDestroy()
+    public addCard()
     {
-        this.globalListenFunc();
+        this.router.navigateByUrl('/my-cards/new')
     }
 
-    public changeImg(card)
-    {
-        this.show_img = card.image_url
 
-        // this.show_img = '/img/'+card.id_set+'/'+card.number_int+".jpg"
-    }
 }
