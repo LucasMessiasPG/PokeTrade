@@ -18,6 +18,7 @@ require('laravel-elixir-webpack-official');
  */
 
 elixir(function (mix) {
+	mix.copy('resources/assets/img', 'public/img');
 
 	var fontawesomePath = 'node_modules/font-awesome';
 

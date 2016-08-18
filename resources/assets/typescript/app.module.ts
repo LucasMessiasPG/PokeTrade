@@ -20,6 +20,7 @@ import {ProfileComponent} from "./Components/profile.component";
 import {MaterializeCuston} from "./services/materialize.service";
 import {NewCardComponent} from "./Components/card/new-card.component";
 import {CardService} from "./services/card.service";
+import {AttackComponent} from "./Components/card/attack.component";
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import {CardService} from "./services/card.service";
         LoginComponent,
         MyCardsComponents,
         ProfileComponent,
-        NewCardComponent
+        NewCardComponent,
+        AttackComponent
     ],
     providers: [
         {

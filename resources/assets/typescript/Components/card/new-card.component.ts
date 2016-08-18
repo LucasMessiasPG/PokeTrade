@@ -44,6 +44,14 @@ export class NewCardComponent{
 
     }
 
+    selectCardF(card)
+    {
+        this.selectCard = card;
+        setTimeout(()=>{
+            this.materialize.tooltip();
+        },10)
+    }
+
     searchCard(model)
     {
         model.id_set = this.materialize.getValSelect();

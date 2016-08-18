@@ -38,7 +38,7 @@ class Cards extends Model
 
     public function attack()
     {
-        return $this->belongsToMany(Attacks::class, 'attack_cards', 'id_card', 'id_card', 'id_attack');
+        return $this->belongsToMany(Attacks::class, 'attack_cards', 'id_card', 'id_attack', 'id_attack');
     }
 
     public function ability()
@@ -88,15 +88,15 @@ class Cards extends Model
 
 
         $attacks = [];
-        $cost_attack = [];
-        $abilitys = [];
         $weakness = [];
         foreach ($this->attack as $attack) {
+	        $cost_attack = [];
             foreach ($attack->cost as $cost) {
                 $cost_attack[] = (object)[
                     'type' => $cost->type
                 ];
             }
+	        
             if($call_transalate)
                 $tranlated = $tr->translate([$attack->name,$attack->text]);
 
@@ -110,6 +110,7 @@ class Cards extends Model
         }
 
         if($this->ability) {
+	        $abilitys = [];
             foreach ($this->ability as $ability) {
 
                 if($call_transalate)

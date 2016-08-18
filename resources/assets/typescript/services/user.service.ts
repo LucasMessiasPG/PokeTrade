@@ -13,7 +13,8 @@ export class User {
     public login;
     public email;
     public cards;
-    private _url = 'http://localhost:8000/';
+    // private _url = 'http://localhost:8000/';
+    private _url = 'http://192.168.1.11:8000/';
 
     constructor(
         private http:Http,

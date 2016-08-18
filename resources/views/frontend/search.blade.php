@@ -2,15 +2,15 @@
     <fieldset class="row margin-top">
         <lagend>Filter</lagend>
         <form (ngSubmit)="searchCards(filter)" #f="ngForm" class="col s12" autocomplete="off">
-            <div class="input-field col s3">
+            <div class="input-field col s12 m3">
                 <input id="set_name" type="text" class="validate" name="set_name" [(ngModel)]="filter.set_name">
                 <label for="set_name" [ngClass]="{'active':filter.set_name.length > 0}">Set</label>
             </div>
-            <div class="input-field col s5">
+            <div class="input-field col s12 m5">
                 <input id="name" type="text" class="validate" name="name" [(ngModel)]="filter.name">
                 <label for="name" [ngClass]="{'active':filter.name.length > 0}">Name</label>
             </div>
-            <div class="input-field col s2">
+            <div class="input-field col s12 m2">
                 <input id="number" type="text" class="validate" name="number" [(ngModel)]="filter.number">
                 <label for="number" [ngClass]="{'active':filter.number.length > 0}">Number</label>
             </div>

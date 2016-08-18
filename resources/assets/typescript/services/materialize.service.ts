@@ -12,7 +12,8 @@ export class MaterializeCuston{
 
     public tooltip()
     {
-        $('.tooltipped').tooltip({html:true});
+        console.log(1);
+        $('.tooltipped').tooltip();
     }
 
     public modal(tag?,close?)

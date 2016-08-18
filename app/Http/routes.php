@@ -24,6 +24,10 @@ Route::get('/hash',function(){
     return 'criado';
 });
 
+Route::get('/teste',function(){
+	dd(\App\Models\Cards::find(4)->attack[1]->cost);
+});
+
 
 Route::get('/',function(){return view('backend.master');});
 
