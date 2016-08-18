@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {Http} from "@angular/http";
 import {Router} from "@angular/router";
 import {CardComponent} from "./card/card.component"
+import {CardService} from "../services/card.service";
 declare var $:any;
 
 @Component({
@@ -14,8 +15,10 @@ export class SearchComponent {
     private table_row;
     public filter = {set_name: '', name: '', number: ''};
 
-    constructor(private http:Http,
-                private router:Router) {
+    constructor(
+                private router:Router,
+                private cardService: CardService
+    ) {
         this.list_card = []
         this.table_row = 4;
     }
@@ -35,30 +38,8 @@ export class SearchComponent {
     }
 
 
-    searchCards(filtro) {
-        var param = '';
-        for (var i in filtro) {
-            if (filtro[i] != '') {
-                if (param == '')
-                    param = i + '=' + filtro[i];
-                else
-                    param += '&' + i + '=' + filtro[i];
-            }
-        }
-
-        this.router.navigateByUrl('/search?' + param);
-
-        if (param == '')
-            return true;
-
-        this.http.get('api/search?' + param)
-            .subscribe(res => {
-                this.list_card = res.json();
-            })
+    searchCards(filter) {
+        this.cardService.getCards(filter)
+            .subscribe(res => {this.list_card = res});
     }
-
-    getHeight(tes2){
-        console.log(tes2);
-    }
-
 }

@@ -39,6 +39,8 @@ Route::get('/templates/{template}','MainController@index');
 Route::group(['prefix'=>'api/'],function(){
 
     Route::get('search','SearchController@search');
+    Route::get('sets','SearchController@set');
+    Route::get('cards','SearchController@card');
 
     Route::group(['middleware'=>['check']],function(){
 

@@ -27,6 +27,11 @@
   flex-direction: column;
 }
 
+fieldset{
+  margin: 0;
+  padding: 5px;
+}
+
 .site-content {
   flex: 1;
 }
@@ -48,6 +53,9 @@ a{
 .margin-top{
   margin-top: 20px;
 }
+.margin-bot{
+  margin-bottom: 20px;
+}
 
 .nav-wrapper {
   padding-left: 30px;
@@ -66,6 +74,12 @@ a{
   .img-card{
     width: 50%;
   }
+  .new-card-img{
+    width: 100px !important;
+  }
+}
+.new-card-img{
+  width: 200px;
 }
 
 .padding-min{
@@ -119,12 +133,6 @@ table.my-card{
 .my-card.img>.img-card{
   position: relative;
   width: 100%;
-}
-.my-card.img>.img-card.fixed{
-  position: fixed;
-  left: calc(100%/20);
-  top: 140px;
-  width: calc(100%/4.7);
 }
 
 .modal-footer.row>.input-field{

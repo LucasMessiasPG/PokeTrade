@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {User} from "../services/user.service";
 import {Router} from "@angular/router";
-import {Modal} from "../services/modal.service";
+import {MaterializeCuston} from "../services/materialize.service";
 declare var $:any;
 @Component({
     selector:'poke-login',
@@ -13,12 +13,12 @@ export class LoginComponent{
 
     constructor(
         private _user: User,
-        private _modal: Modal,
+        private materialize: MaterializeCuston,
         private _router: Router,
     ){}
 
     ngOnInit(){
-        this._modal.init();
+        this.materialize.modal();
         if(this._user.login && this._user.email)
             this._router.navigateByUrl('/home')
     }
@@ -31,7 +31,7 @@ export class LoginComponent{
         this._user.register(user)
             .subscribe(res => {
                 if(res) {
-                    this._modal.close('#register');
+                    this.materialize.modal('#register',true);
                     location.reload();
                 }
             })

@@ -2,8 +2,7 @@ import {Injectable, EventEmitter} from "@angular/core";
 import {Http} from "@angular/http";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs/Rx";
-import {Modal} from "./modal.service";
-import {Toast} from "../services/toast.service";
+import {MaterializeCuston} from "./materialize.service";
 
 @Injectable()
 export class User {
@@ -18,9 +17,8 @@ export class User {
 
     constructor(
         private http:Http,
-        private modal:Modal,
+        private materialize: MaterializeCuston,
         private router:Router,
-        private toast: Toast,
     ) {
         this.login$ = new EventEmitter();
         this.cards$ = new EventEmitter();
@@ -33,30 +31,31 @@ export class User {
         return false;
     }
 
-    public getCards() {
+    public getCards(force?) {
 
-        if (this.cards) {
-            return new Observable(observer => {
-                observer.next(this.cards);
-            })
+        if(!force) {
+            if (this.cards) {
+                return new Observable(observer => {
+                    observer.next(this.cards);
+                })
+            }
         }
 
-        this._url = this._url;
         var url = this._url + 'api/my-cards';
         return this.http.get(url)
             .map(res => {
                 var response = res.json();
-                if (this.checkResponse(response, url)) {
+                if (User.checkResponse(response, url)) {
                     this.cards = response.data;
                     return response.data;
                 }
                 if(response.msg)
-                    this.toast.show(response.msg)
+                    this.materialize.toast(response.msg)
                 throw 'Erro';
             })
     }
 
-    private checkResponse(response, url) {
+    private static checkResponse(response, url) {
         if (!response.status || response.status && response.status == 'error')
             throw 'Error response ' + url;
 
@@ -80,7 +79,7 @@ export class User {
                     location.reload();
                 }else {
                     if (response.warning)
-                        this.toast.show(response.warning)
+                        this.materialize.toast(response.warning)
                 }
 
             })
@@ -95,8 +94,7 @@ export class User {
             var local_user = JSON.parse(localStorage.getItem('user'));
 
             if(local_user.tutorial && this.tutorial_show == false) {
-                this.modal.init()
-                this.modal.show('#tutorial')
+                this.materialize.modal('#tutorial')
                 this.tutorial_show = true;
             }
             if (local_user.user.login && local_user.user.email) {
@@ -149,7 +147,7 @@ export class User {
                     return response.user
                 }else{
                     if(response.warning)
-                        this.toast.show(response.warning)
+                        this.materialize.toast(response.warning)
                 }
             })
     }
