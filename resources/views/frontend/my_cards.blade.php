@@ -9,19 +9,19 @@
                 <li class="collection-item">Total Trades: <span data-badge-caption="cards" class="badge">6</span></li>
             </ul>
         </div>
-        <div class="col s12 m8 margin-top">
+        <div class="col m8 margin-top">
             <div class="card blue-grey darken-1 my-card">
                 <div class="card-content white-text">
                     <span class="card-title"><strong>Last Message</strong></span>
-                    <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
+                    <p *ngIf="message">{{ message.text }} - <a>{{ message.from.login }}</a> <span class="right">{{ message.created_at }}</span></p>
+                    <p *ngIf="!message">Nothing to show</p>
                 </div>
             </div>
             <div class="card blue-grey darken-1 my-card">
                 <div class="card-content white-text ">
                     <span class="card-title"><strong>Last Trade</strong></span>
-                    <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
+                    <p *ngIf="message_trade">{{ message_trade.text }} - <a>{{ message_trade.from.login }}</a> <span class="right">{{ message_trade.created_at }}</span></p>
+                    <p *ngIf="!message_trade">Nothing to show</p>
                 </div>
             </div>
         </div>
@@ -34,16 +34,16 @@
         </div>
     </div>
     <div class="row" *ngIf="cards">
-        <table class="bordered highlight my-card col l12 m12 s12">
+        <table class="bordered highlight my-card col s12">
             <thead>
             <tr>
                 <th>Card</th>
-                <th>Name</th>
-                <th>PokePoints</th>
-                <th>Set</th>
-                <th>Foil</th>
-                <th class="center">Reverse Foil</th>
-                <th></th>
+                <th class="hide-on-small-and-down">Name</th>
+                <th class="center">PokePoints</th>
+                <th class="hide-on-small-and-down">Set</th>
+                <th class="cente hide-on-small-and-down">Foil</th>
+                <th class="center hide-on-small-and-down">Reverse Foil</th>
+                <th class="right">Options</th>
             </tr>
             </thead>
             <tbody>
@@ -53,25 +53,24 @@
                         <img class="very-small-card materialboxed" src="{{ item.card.image_url }}" alt="{{ item.card.name }}">
                     </div>
                 </td>
-                <td>{{ item.card.name }} (#{{ item.card.card_set }})</td>
-                <td>{{ item.price }}</td>
-                <td>{{ item.card.set }}</td>
-                <td><p *ngIf="item.foil" title="Foil">
+                <td class="hide-on-small-and-down">{{ item.card.name }} (#{{ item.card.card_set }})</td>
+                <td class="center"><i class="fa fa-rub"></i> {{ item.price }}</td>
+                <td class="hide-on-small-and-down">{{ item.card.set }}</td>
+                <td class="hide-on-small-and-down"><p class="center" *ngIf="item.foil" title="Foil">
                         <input disabled type="checkbox" id="foil[]" [checked]="item.foil" />
                         <label for="foil"></label>
                     </p>
                 </td>
-                <td><p class="center" *ngIf="item.reverse_foil" title="Reverse Foil">
-                        <input disabled type="checkbox" id="foil[]" [checked]="item.reverse_foil" />
+                <td class="hide-on-small-and-down"><p class="center" *ngIf="item.reverse_foil" title="Reverse Foil">
+                        <input disabled type="checkbox" id="reverse_foil[]" [checked]="item.reverse_foil" />
                         <label for="reverse_foil"></label>
                     </p>
                 </td>
-                <td class="center">
-                    <a><i class="fa fa-arrow-circle-o-up"></i></a>
-                    <a><i class="fa fa-arrow-circle-o-down"></i></a>
-                    <a><i class="fa fa-eye"></i></a>
-                    <a><i class="fa fa-pencil"></i></a>
-                    <a><i class="fa fa-remove"></i></a>
+                <td class="right">
+                    <a class="btn waves-light waves-effect icon" routerLink="/datails/12"><i class="fa fa-eye"></i></a>
+                    <a class="btn waves-light waves-effect icon"><i class="fa fa-pencil"></i></a>
+                    <a class="btn waves-light waves-effect icon orange"><i class="fa fa-remove"></i></a>
+                    <a class="btn waves-light waves-effect icon red"><i class="fa fa-trash-o"></i></a>
                 </td>
             </tr>
             </tbody>

@@ -1,5 +1,5 @@
 <div class="container row">
-    <form #ff="ngForm" (submit)="searchCard(filter)">
+    <form autocomplete="off" #ff="ngForm" (submit)="searchCard(filter)">
         <div class="col s6 right">
             <button type="button" class="right waves-effect waves-light btn" routerLink="/my-cards"><i
                         class="material-icons right">list</i> List
@@ -65,7 +65,7 @@
         </div>
         <hr class="col s12">
     </div>
-    <form class="margin-top" #f="ngForm" (submit)="addNewCard(new_card)">
+    <form autocomplete="off" class="margin-top" #f="ngForm" (submit)="addNewCard(new_card)">
         <div *ngIf="selectCard" class="margin-top">
             <div class="col s12 m3 center" id="add">
                 <img class="new-card-img" class="img-responsive" src="{{ selectCard.image_url }}" alt="">
@@ -88,8 +88,7 @@
                 </div>
                 <div *ngIf="selectCard.ability.length > 0" class="col s12">
                     <div class="col s12" *ngFor="let ability of selectCard.ability">
-                        <p><img class="ability-img" src="/img/ability.png" alt=""> {{ ability.name }}</p>
-                        <p>{{ ability.text }}</p>
+                        <poke-ability [single_ability]="ability"></poke-ability>
                     </div>
                 </div>
                 <div *ngIf="selectCard.attack.length > 0" class="col 12">

@@ -75,4 +75,26 @@ export class CardService {
             });
     }
 
+    getDatailsCard(filter) {
+        var id_card = filter;
+        if(filter.id_card)
+            id_card = filter.id_card
+
+        var url = this._url+'api/card/'+id_card+'/datails';
+
+        return this.http.get(url)
+            .map(res => {
+                var response = res.json();
+                if (CardService.checkResponse(response, url)) {
+                    return response.data;
+                }
+
+                if (response.msg) {
+                    this.materialize.toast(response.msg)
+                    throw 'Erro '+response.msg;
+                }
+
+                throw 'Erro';
+            })
+    }
 }

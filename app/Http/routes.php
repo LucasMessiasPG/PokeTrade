@@ -46,10 +46,12 @@ Route::group(['prefix'=>'api/'],function(){
     Route::get('search','SearchController@search');
     Route::get('sets','SearchController@set');
     Route::get('cards','SearchController@card');
+    Route::get('card/{id_card}/datails','SearchController@datail');
 
     Route::group(['middleware'=>['check']],function(){
 
         Route::get('my-cards','UserController@myCards');
+        Route::get('my-messages','UserController@myMessages');
 
     });
 });

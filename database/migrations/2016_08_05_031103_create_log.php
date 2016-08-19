@@ -14,8 +14,8 @@ class CreateLog extends Migration
     {
         Schema::create('logs',function(Blueprint $table){
             $table->increments('id_log');
-            $table->string('descricao');
-            $table->string('error')->nullable();
+            $table->text('descricao');
+            $table->text('error')->nullable();
             $table->string('line')->nullable();
             $table->string('file')->nullable();
             $table->timestamps();

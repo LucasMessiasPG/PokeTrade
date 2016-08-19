@@ -118,4 +118,18 @@ class SearchController extends Controller
             return $this._return('Cards Fail','error',['e'=>$e->getMessage(),'l'=>$e->getLine(),'f'=>$e->getFile()]);
         }
     }
+    
+    public function datail($id_card)
+    {
+    	try{
+			
+    		$card = Cards::find($id_card);
+		    
+		    $result = $card->fullSet();
+		
+		    return $this->_return('Get cards datails','success',isset($result)?$result:[]);
+	    }catch (\Exception $e){
+		    return $this._return('Cards Datails Fail','error',['e'=>$e->getMessage(),'l'=>$e->getLine(),'f'=>$e->getFile()]);
+	    }
+    }
 }

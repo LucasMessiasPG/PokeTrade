@@ -84,6 +84,11 @@ export class NewCardComponent{
             this.materialize.toast('Amount min 1 and max 10')
         }
 
+        if(!new_card ||  new_card && !new_card.price  || new_card && new_card.price && new_card.price > 100000){
+            error = true;
+            this.materialize.toast('Max PokePoit Overpast')
+        }
+
         if(error == false) {
             var card = {
                 'foil': (new_card.foil) ? new_card.foil : false,

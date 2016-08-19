@@ -210,6 +210,10 @@ table.my-card{
     background-position-x: 50px;
     background-position-y: 26px;
   }
+  .Fire{
+    background-position-x: 40px;
+    background-position-y: 47px;
+  }
   .Psychic{
     background-position-x: 50px;
     background-position-y: 67px;
@@ -222,4 +226,16 @@ table.my-card{
 
 .ability-img{
   width: 66px;
+}
+
+a.btn.icon {
+  padding: 0 10px;
+}
+
+@media only screen and (max-width: 992px) {
+  table.responsive-table td {
+    display: block;
+    min-height: 3.35em;
+    text-align: left;
+  }
 }

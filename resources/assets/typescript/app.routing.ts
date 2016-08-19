@@ -7,6 +7,8 @@ import {LoginComponent} from "./Components/login.component";
 import {MyCardsComponents} from "./Components/my-cards.component";
 import {ProfileComponent} from "./Components/profile.component";
 import {NewCardComponent} from "./Components/card/new-card.component";
+import {HistoricComponent} from "./Components/historic.component";
+import {DatailsComponent} from "./Components/card/datails.component";
 
 const routes: Routes = [
     {path: '',redirectTo: '/home',pathMatch: 'full'},
@@ -16,9 +18,11 @@ const routes: Routes = [
     {path: 'list',component: ListComponent},
     {path: 'trades',component: TradesComponent},
     {path: 'login',component: LoginComponent},
+    {path: 'historic',component: HistoricComponent},
     {path: 'my-cards',component: MyCardsComponents},
     {path: 'my-cards/new',component: NewCardComponent},
     {path: 'profile/:id',component: ProfileComponent},
+    {path: 'datails/:id',component: DatailsComponent},
 ];
 
 export const routing = RouterModule.forRoot(routes);

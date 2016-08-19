@@ -21,6 +21,9 @@ import {MaterializeCuston} from "./services/materialize.service";
 import {NewCardComponent} from "./Components/card/new-card.component";
 import {CardService} from "./services/card.service";
 import {AttackComponent} from "./Components/card/attack.component";
+import {HistoricComponent} from "./Components/historic.component";
+import {DatailsComponent} from "./Components/card/datails.component";
+import {AbilityComponent} from "./Components/card/ability.component";
 
 @NgModule({
     imports: [
@@ -42,7 +45,10 @@ import {AttackComponent} from "./Components/card/attack.component";
         MyCardsComponents,
         ProfileComponent,
         NewCardComponent,
-        AttackComponent
+        AttackComponent,
+        AbilityComponent,
+        HistoricComponent,
+        DatailsComponent
     ],
     providers: [
         {

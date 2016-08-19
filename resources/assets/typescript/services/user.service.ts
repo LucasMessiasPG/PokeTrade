@@ -56,6 +56,32 @@ export class User {
             })
     }
 
+    public getMessage(filter?) {
+        var param = '';
+        for (var i in filter) {
+            if (filter[i] != '') {
+                if (param == '')
+                    param = i + '=' + filter[i];
+                else
+                    param += '&' + i + '=' + filter[i];
+            }
+        }
+
+        var url = this._url + 'api/my-messages'+((param != '')?'?'+param:'');
+        return this.http.get(url)
+            .map(res => {
+                var response = res.json();
+                if (User.checkResponse(response, url)) {
+                    return response.data;
+                }
+                if(response.msg) {
+                    this.materialize.toast(response.msg)
+                    throw 'Erro: '+response.msg;
+                }
+                throw 'Erro';
+            })
+    }
+
     private static checkResponse(response, url) {
         if (!response.status || response.status && response.status == 'error')
             throw 'Error response ' + url;
