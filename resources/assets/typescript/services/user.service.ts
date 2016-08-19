@@ -13,8 +13,8 @@ export class User {
     public login;
     public email;
     public cards;
-    // private _url = 'http://localhost:8000/';
-    private _url = 'http://192.168.1.11:8000/';
+    private _url = 'http://localhost:8000/';
+    // private _url = 'http://192.168.1.11:8000/';
 
     constructor(
         private http:Http,
@@ -150,6 +150,13 @@ export class User {
                     if(response.warning)
                         this.materialize.toast(response.warning)
                 }
+            })
+    }
+
+    public addCard(card) {
+        return this.http.post(this._url + 'user/add-card',card)
+            .map(res => {
+                return res.json()
             })
     }
 }

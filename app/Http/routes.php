@@ -34,6 +34,7 @@ Route::get('/',function(){return view('backend.master');});
 Route::post('/login-user','UserController@login');
 Route::get('/user/tutorial/{type}','UserController@tutorial');
 Route::get('/user/profile/{id}','UserController@profile');
+Route::post('/user/add-card','UserController@addCard');
 Route::post('/register-user','UserController@register');
 
 Route::get('/logout','UserController@logout');

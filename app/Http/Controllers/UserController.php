@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\AddCard;
 use App\Http\Requests\Login;
 use App\Http\Requests\Register;
 use App\Models\User;
+use App\Models\UserCards;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -126,7 +128,23 @@ class UserController extends Controller
 	        }
             return ['status'=>'warning','warning'=>'User not found'];
     	}catch (\Exception $e){
-    	    
+    	    dd($e->getMessage());
     	}
+    }
+
+    public function addCard(AddCard $addCard)
+    {
+        try{
+            $amount = $addCard->amount;
+            if($amount > 10)
+                $amount = 10;
+
+            for($i=0; $i< $amount; $i++) {
+                UserCards::create($addCard->all());
+            }
+            return $this->_return('Add card','success');
+        }catch (\Exception $e){
+            return $this->_return('Add card Fail','error',[$e->getMessage(),$e->getLine(),$e->getFile()]);
+        }
     }
 }

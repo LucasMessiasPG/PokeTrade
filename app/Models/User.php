@@ -33,7 +33,7 @@ class User extends Authenticatable
 		    $result[$key] = $user_card->toArray();
 		    $result[$key]['card'] = (array)$user_card->card->fullset();
 	    }
-        return ['cards' => $result,'amount_total' => $cards->sum('amount')];
+        return $result;
     }
 
 }

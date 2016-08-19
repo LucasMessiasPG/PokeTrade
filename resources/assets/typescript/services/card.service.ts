@@ -5,8 +5,8 @@ import {MaterializeCuston} from "./materialize.service";
 @Injectable()
 export class CardService {
     private sets;
-    // private _url = 'http://localhost:8000/';
-    private _url = 'http://192.168.1.11:8000/';
+    private _url = 'http://localhost:8000/';
+    // private _url = 'http://192.168.1.11:8000/';
 
     constructor(private http:Http,
                 private materialize:MaterializeCuston

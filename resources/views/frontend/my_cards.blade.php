@@ -4,7 +4,7 @@
             <ul class="collection with-header">
                 <li class="collection-header center"><h5>Resume Cards</h5></li>
                 <li class="collection-item">Total Cards <span data-badge-caption="cards"
-                                                              class="badge">{{ (cards && cards.amount_total)?cards.amount_total:0 }}</span></li>
+                                                              class="badge">{{ (cards)?cards.length:0 }}</span></li>
                 <li class="collection-item">Total Wants: <span data-badge-caption="cards" class="badge">10</span></li>
                 <li class="collection-item">Total Trades: <span data-badge-caption="cards" class="badge">6</span></li>
             </ul>
@@ -41,13 +41,13 @@
                 <th>Name</th>
                 <th>PokePoints</th>
                 <th>Set</th>
-                <th>Amount</th>
                 <th>Foil</th>
+                <th class="center">Reverse Foil</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let item of cards.cards">
+            <tr *ngFor="let item of cards">
                 <td class="div-my-card-img">
                     <div>
                         <img class="very-small-card materialboxed" src="{{ item.card.image_url }}" alt="{{ item.card.name }}">
@@ -56,10 +56,14 @@
                 <td>{{ item.card.name }} (#{{ item.card.card_set }})</td>
                 <td>{{ item.price }}</td>
                 <td>{{ item.card.set }}</td>
-                <td>{{ item.amount }}</td>
-                <td><p *ngIf="item.foil" title="foil">
+                <td><p *ngIf="item.foil" title="Foil">
                         <input disabled type="checkbox" id="foil[]" [checked]="item.foil" />
                         <label for="foil"></label>
+                    </p>
+                </td>
+                <td><p class="center" *ngIf="item.reverse_foil" title="Reverse Foil">
+                        <input disabled type="checkbox" id="foil[]" [checked]="item.reverse_foil" />
+                        <label for="reverse_foil"></label>
                     </p>
                 </td>
                 <td class="center">

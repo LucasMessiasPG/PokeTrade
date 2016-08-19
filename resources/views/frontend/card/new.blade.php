@@ -65,7 +65,7 @@
         </div>
         <hr class="col s12">
     </div>
-    <form class="margin-top">
+    <form class="margin-top" #f="ngForm" (submit)="addNewCard(new_card)">
         <div *ngIf="selectCard" class="margin-top">
             <div class="col s12 m3 center" id="add">
                 <img class="new-card-img" class="img-responsive" src="{{ selectCard.image_url }}" alt="">
@@ -99,12 +99,12 @@
                 </div>
                 <div class="col s12">
                     <div class="input-field col s12 m3">
-                        <input type="text" id="price" name="price" [(ngModel)]="new_card.price">
-                        <label for="price">PokePoint</label>
-                    </div>
-                    <div class="input-field col s12 m3">
                         <input type="text" id="amount" name="amount" [(ngModel)]="new_card.amount">
                         <label for="amount">Amount</label>
+                    </div>
+                    <div class="input-field col s12 m3">
+                        <input type="text" id="price" name="price" [(ngModel)]="new_card.price">
+                        <label for="price">PokePoint</label>
                     </div>
                     <div class="input-field col s12 m3">
                         <div class="switch">
@@ -121,7 +121,7 @@
                         <div class="switch">
                             <label>
                                 Reverse Foil
-                                <input type="checkbox" [(ngModel)]="new_card.reverse_foil" name="foil">
+                                <input type="checkbox" [(ngModel)]="new_card.reverse_foil" name="reverse_foil">
                                 <span class="lever"></span>
                             </label>
                         </div>
@@ -129,7 +129,7 @@
                         <p></p>
                     </div>
                     <div class="col s12 m12 margin-top">
-                        <button data-tooltip="Add" data-position="top" data-delay="50" class="tooltipped btn waves-light waves-effect right"><i class="material-icons">done_all</i></button>
+                        <button class="btn waves-light waves-effect right"><i class="material-icons">done_all</i></button>
                     </div>
                 </div>
             </div>

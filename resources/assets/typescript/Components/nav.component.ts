@@ -21,9 +21,11 @@ export class NavComponent {
             this.user.emitLogin();
 
         this.user_id = this.user.id_user;
-        
-        this.materialize.sidenav()
-        this.materialize.dropdown()
+
+        setTimeout(()=>{
+            this.materialize.dropdown()
+            this.materialize.sidenav()
+        },100)
 
     }
 

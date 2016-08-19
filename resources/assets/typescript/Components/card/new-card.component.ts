@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {MaterializeCuston} from "../../services/materialize.service";
 import {CardService} from "../../services/card.service";
 import {User} from "../../services/user.service";
+import {Router} from "@angular/router";
 @Component({
     selector:'poke-new-card',
     templateUrl:'/templates/card.new'
@@ -16,8 +17,13 @@ export class NewCardComponent{
 
     constructor(
       private materialize: MaterializeCuston,
+      private user: User,
+      private router: Router,
       private cardService: CardService,
-    ){}
+    ){
+        if(!this.user.checkLogin())
+            this.router.navigateByUrl('/login');
+    }
 
     ngOnInit()
     {
@@ -63,5 +69,46 @@ export class NewCardComponent{
                     this.materialize.box();
                 },100)
             })
+    }
+    addNewCard(new_card)
+    {
+        var error = false;
+
+        if(!new_card || new_card && !new_card.price) {
+            error = true;
+            this.materialize.toast('PokePoint is required')
+        }
+
+        if(!new_card ||  new_card && !new_card.amount  || new_card && new_card.amount && new_card.amount > 10){
+            error = true;
+            this.materialize.toast('Amount min 1 and max 10')
+        }
+
+        if(error == false) {
+            var card = {
+                'foil': (new_card.foil) ? new_card.foil : false,
+                'reverse_foil': (new_card.reverse_foil) ? new_card.reverse_foil : false,
+                'price': new_card.price,
+                'amount': new_card.amount,
+                'id_card': this.selectCard.id_card
+            }
+            this.user.addCard(card)
+                .subscribe(res => {
+                    if (res.status && res.status == 'success') {
+                        this.materialize.toast('Successfully')
+                        this.user.getCards(true)
+                            .subscribe(res => {
+                                this.router.navigateByUrl('/my-cards')
+                            });
+                    } else {
+                        if (res.msg) {
+                            this.materialize.toast(res.msg)
+                            throw 'Erro ' + res.msg;
+                        } else {
+                            throw 'Erro'
+                        }
+                    }
+                })
+        }
     }
 }

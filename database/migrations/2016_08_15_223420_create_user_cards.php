@@ -16,8 +16,8 @@ class CreateUserCards extends Migration
             $table->increments('id_user_card');
             $table->integer('id_user')->unsigend();
             $table->integer('id_card')->unsigend();
-            $table->integer('amount')->default(1);
             $table->boolean('foil')->default(false);
+            $table->boolean('reverse_foil')->default(false);
             $table->bigInteger('price');
             $table->softDeletes();
             $table->timestamps();
