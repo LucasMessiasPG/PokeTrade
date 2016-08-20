@@ -95,8 +95,11 @@ class UserController extends Controller
 			Auth::login($user);
 			
 			$msg = 'Wellcome to PokeTrade.com';
-			$this->dispatch(new AddMesssage(Auth::user(),$msg,2));
-			
+			$this->dispatch(new AddMesssage(Auth::user(),$msg,2,true));
+
+			$msg = 'Register';
+			$this->dispatch(new AddMesssage(Auth::user(),$msg,3));
+
 			return response()->json([
 				'status' => 'success',
 				'user' => [
@@ -161,6 +164,8 @@ class UserController extends Controller
 			    		$messages[] = $msg;
 					    unset($only[array_search($msg->id_status_message,$only)]);
 				    }
+                    if(count($only) === 0)
+                        break;
 			    }
 		    }else{
 		        $messages = $query->get();

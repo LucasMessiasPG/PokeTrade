@@ -12,7 +12,6 @@ export class MaterializeCuston{
 
     public tooltip()
     {
-        console.log(1);
         $('.tooltipped').tooltip();
     }
 

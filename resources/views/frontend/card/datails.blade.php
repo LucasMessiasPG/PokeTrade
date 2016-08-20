@@ -17,6 +17,9 @@
                     <poke-attack [single_attack]="attack"></poke-attack>
                 </li>
             </ul>
+            <div>
+                <poke-retreat-cost [single_retreat_cost]=""></poke-retreat-cost>
+            </div>
         </div>
     </div>
 </div>

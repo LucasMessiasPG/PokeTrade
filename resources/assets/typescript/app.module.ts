@@ -24,6 +24,7 @@ import {AttackComponent} from "./Components/card/attack.component";
 import {HistoricComponent} from "./Components/historic.component";
 import {DatailsComponent} from "./Components/card/datails.component";
 import {AbilityComponent} from "./Components/card/ability.component";
+import {RetreatCostComponent} from "./Components/card/retreat-cost.component";
 
 @NgModule({
     imports: [
@@ -47,6 +48,7 @@ import {AbilityComponent} from "./Components/card/ability.component";
         NewCardComponent,
         AttackComponent,
         AbilityComponent,
+        RetreatCostComponent,
         HistoricComponent,
         DatailsComponent
     ],

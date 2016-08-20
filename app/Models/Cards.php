@@ -61,6 +61,11 @@ class Cards extends Model
         return $this->hasOne(Raritys::class,'id_rarity','id_rarity');
     }
 
+    public function retreat()
+    {
+        return $this->belongsToMany(Types::class,'retreat_costs','id_card','id_type','id_type');
+    }
+
     /////////// Templates /////////////
 
     public function fullSet()
@@ -136,6 +141,16 @@ class Cards extends Model
             ];
 
             $card->weakness = $weakness;
+        }
+        if($this->retreat) {
+
+            foreach ($this->retreat as $cost) {
+                $retreat[] = (object)[
+                    'type' => $cost->type,
+                ];
+
+            }
+            $card->retreat = $retreat;
         }
 
         $card->ability = $abilitys;

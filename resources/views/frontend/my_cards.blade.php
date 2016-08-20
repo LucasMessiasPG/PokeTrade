@@ -67,7 +67,7 @@
                     </p>
                 </td>
                 <td class="right">
-                    <a class="btn waves-light waves-effect icon" routerLink="/datails/12"><i class="fa fa-eye"></i></a>
+                    <a class="btn waves-light waves-effect icon" [routerLink]="['/datails',item.card.id_card]"><i class="fa fa-eye"></i></a>
                     <a class="btn waves-light waves-effect icon"><i class="fa fa-pencil"></i></a>
                     <a class="btn waves-light waves-effect icon orange"><i class="fa fa-remove"></i></a>
                     <a class="btn waves-light waves-effect icon red"><i class="fa fa-trash-o"></i></a>

@@ -39,15 +39,12 @@ class RetreatCost extends Job implements ShouldQueue
 	    if(count($retreatCard) == count($this->retreatCost))
 	    	return true;
 	    	
+        RetreatCosts::where('id_card','=',$this->card->id_card)->delete();
+
 	    foreach ($this->retreatCost as $retreatCost) {
-	    	
-	    	$new_type = Types::firstOrNew(['type'=>$retreatCost]);
-		    
-		    if($new_type->exists == false)
-			    $new_type->save();
-		    
-		    RetreatCosts::where('id_card','=',$this->card->id_card)->delete();
-		
+
+	    	$new_type = Types::firstOrCreate(['type'=>$retreatCost]);
+
 		    RetreatCosts::create([
 		    	'id_card' => $this->card->id_card,
 			    'id_type' => $new_type->id_type

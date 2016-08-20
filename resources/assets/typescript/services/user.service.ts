@@ -17,9 +17,9 @@ export class User {
     // private _url = 'http://192.168.1.11:8000/';
 
     constructor(
-        private http:Http,
+        private http: Http,
         private materialize: MaterializeCuston,
-        private router:Router,
+        private router: Router,
     ) {
         this.login$ = new EventEmitter();
         this.cards$ = new EventEmitter();

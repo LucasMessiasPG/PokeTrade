@@ -124,12 +124,11 @@ class SearchController extends Controller
     	try{
 			
     		$card = Cards::find($id_card);
-		    
 		    $result = $card->fullSet();
 		
 		    return $this->_return('Get cards datails','success',isset($result)?$result:[]);
 	    }catch (\Exception $e){
-		    return $this._return('Cards Datails Fail','error',['e'=>$e->getMessage(),'l'=>$e->getLine(),'f'=>$e->getFile()]);
+		    return $this->_returnError('Cards Datails Fail',$e);
 	    }
     }
 }

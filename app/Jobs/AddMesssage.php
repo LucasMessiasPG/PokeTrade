@@ -26,21 +26,26 @@ class AddMesssage extends Job implements ShouldQueue
 	 * @var User
 	 */
 	private $user;
-	
-	/**
-	 * Create a new job instance.
-	 *
-	 * @param User $user
-	 * @param string $message
-	 * @param int $status
-	 */
-	public function __construct(User $user,string $message, int $status)
+    /**
+     * @var
+     */
+    private $new;
+
+    /**
+     * Create a new job instance.
+     *
+     * @param User $user
+     * @param string $message
+     * @param int $status
+     * @param bool $new
+     */
+	public function __construct(User $user,$message,$status,$new = false)
 	{
-		//
 		$this->message = $message;
 		$this->status = $status;
 		$this->user = $user;
-	}
+        $this->new = $new;
+    }
 	
 	/**
 	 * Execute the job.
@@ -60,11 +65,16 @@ class AddMesssage extends Job implements ShouldQueue
 			]);
 			$this->status = 1;
 		}
-		
-		Message::create([
-			'text' => $this->message,
-			'id_status_message' => $this->status,
-			'id_user' => $this->user->id_user
-		]);
+
+        $message = [
+            'text' => $this->message,
+            'id_status_message' => $this->status,
+            'id_user' => $this->user->id_user
+        ];
+
+        if($this->new)
+            $message['id_user_from'] = 1;
+
+        Message::create($message);
 	}
 }
