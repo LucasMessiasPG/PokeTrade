@@ -55,5 +55,9 @@ class StatusMessage extends Seeder
         \App\Models\StatusMessage::firstOrCreate([
             'status' => 'Card'
         ]);
+
+        \App\Models\StatusWant::firstOrCreate([
+            'status' => 'wanting'
+        ]);
     }
 }

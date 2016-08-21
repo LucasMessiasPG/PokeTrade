@@ -6,6 +6,7 @@ use App\Jobs\Card\Ability;
 use App\Jobs\Card\Attack;
 use App\Jobs\Card\Resistances;
 use App\Jobs\Card\RetreatCost;
+use App\Jobs\Card\Text;
 use App\Jobs\Card\Type;
 use App\Jobs\Card\Weaknesses;
 use App\Jobs\Job;
@@ -79,8 +80,7 @@ class CheckCards extends Job implements ShouldQueue
 					$rarity->save();
 				
 				$sets = Sets::where('code', '=', $card_item->setCode)->first();
-				
-				
+
 				$new_card = Cards::firstOrCreate([
 					'id' => $card_item->id,
 					'name' => $card_item->name,
@@ -111,8 +111,13 @@ class CheckCards extends Job implements ShouldQueue
 				if (isset($card_item->weaknesses) && count($card_item->weaknesses) > 0)
 					dispatch(new Weaknesses($new_card, $card_item->weaknesses));
 				
-				if (isset($card_item->resistences) && count($card_item->resistences) > 0)
-					dispatch(new Resistances($new_card, $card_item->resistences));
+				if (isset($card_item->resistances) && count($card_item->resistances) > 0)
+					dispatch(new Resistances($new_card, $card_item->resistances));
+
+				if (isset($card_item->text) && count($card_item->text) > 0)
+					dispatch(new Text($new_card, $card_item->text));
+
+
 				
 			}
 		

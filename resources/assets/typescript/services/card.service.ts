@@ -75,12 +75,12 @@ export class CardService {
             });
     }
 
-    getDatailsCard(filter) {
+    getDetailsCard(filter) {
         var id_card = filter;
         if(filter.id_card)
             id_card = filter.id_card
 
-        var url = this._url+'api/card/'+id_card+'/datails';
+        var url = this._url+'api/card/'+id_card+'/details';
 
         return this.http.get(url)
             .map(res => {

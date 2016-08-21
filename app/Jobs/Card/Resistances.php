@@ -3,6 +3,7 @@
 namespace App\Jobs\Card;
 
 use App\Jobs\Job;
+use App\Models\Cards;
 use App\Models\Resistances as MResistances;
 use App\Models\Types;
 use Illuminate\Queue\SerializesModels;
@@ -37,12 +38,8 @@ class Resistances extends Job implements ShouldQueue
 	
 	    foreach ($this->resistences as $resistences) {
 		
-		    $new_type = Types::firstOrNew(['type' => $resistences->type]);
-		
-		    if ($new_type->exists == false)
-			    $new_type->save();
-		
-		
+		    $new_type = Types::firstOrCreate(['type' => $resistences->type]);
+
 		    MResistances::create([
 			    'id_card' => $this->card->id_card,
 			    'value' => $resistences->value,

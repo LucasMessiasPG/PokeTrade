@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class AddCard extends Request
+class EditWant extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class AddCard extends Request
     public function rules()
     {
         return [
-            'id_card' => 'required',
-            'amount' => 'required',
-            'foil' => 'required',
-            'reverse_foil' => 'required'
+            'pp' => 'required'
         ];
     }
 }

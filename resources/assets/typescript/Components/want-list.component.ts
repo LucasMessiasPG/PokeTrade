@@ -1,0 +1,77 @@
+import {Component} from "@angular/core";
+import {User} from "../services/user.service";
+import {MaterializeCuston} from "../services/materialize.service";
+@Component({
+    selector: 'poke-want-list',
+    templateUrl: '/templates/want_list'
+})
+export class WantListComponet {
+    private cards;
+    private action;
+
+    constructor(private user:User,
+                private materialize:MaterializeCuston) {
+    }
+
+    ngOnInit() {
+        this.user.getWantCards()
+            .subscribe(cards => {
+                this.cards = cards;
+
+                setTimeout(()=> {
+                    this.materialize.box();
+                    this.materialize.modal();
+                    this.materialize.select();
+                }, 100)
+            });
+
+    }
+
+    removeWant(card) {
+        this.user.removeWant(card)
+            .subscribe(res => {
+                this.refreshWant()
+            })
+    }
+
+    refreshWant()
+    {
+        this.user.getWantCards(true)
+            .subscribe(cards => {
+                this.cards = cards;
+
+                setTimeout(()=> {
+                    this.materialize.box();
+                    this.materialize.modal();
+                    this.materialize.select();
+                }, 100)
+            });
+    }
+
+    editWant(card)
+    {
+        var error = false;
+        if(!card.new_pp || card.new_pp == '') {
+            this.materialize.toast('PokePoint is required')
+            error = true;
+        }
+
+        if(card.new_pp && card.new_pp > 1000000) {
+            this.materialize.toast('PokePoint invalid')
+            error = true;
+        }
+
+        if(error == false){
+            var param = {pp:card.new_pp,id_want:card.id_want};
+            this.user.editWant(param)
+                .subscribe(res => {
+                    this.refreshWant()
+                })
+        }
+    }
+
+    setAction(item)
+    {
+        this.action = item;
+    }
+}

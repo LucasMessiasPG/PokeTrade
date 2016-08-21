@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\AddCard;
+use App\Http\Requests\EditWant;
 use App\Http\Requests\Login;
 use App\Http\Requests\Register;
 use App\Jobs\AddMesssage;
@@ -11,6 +12,7 @@ use App\Models\Cards;
 use App\Models\Message;
 use App\Models\User;
 use App\Models\UserCards;
+use App\Models\Want;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -138,14 +140,16 @@ class UserController extends Controller
     public function myMessages(Request $request)
     {
     	try{
-    		
+
+    	    $limit = 100;
     		
             $field = ['text','created_at','id_status_message','id_user_from'];
     	    $query = Message::select($field)
 		        ->where('id_user','=',Auth::user()->id_user)
-		        ->take(100)
 		        ->orderBy('created_at','desc');
-		    
+
+            $query->take($limit);
+
     		if($request->id_status_message != null){
                 $query->whereIn('id_status_message',explode(',',$request->id_status_message));
 		    }
@@ -198,9 +202,6 @@ class UserController extends Controller
             $amount = $addCard->amount;
             if($amount > 10)
                 $amount = 10;
-	        
-	        if($addCard->price > 100000)
-	        	throw new Exception('Invalid price, value over 100000');
 
 	        $card = Cards::find($addCard->id_card);
 	        $msg = 'Add in my card list '.$addCard->amount.' new card \''.$card->name.' (#'.$card->number.'/'.$card->set->total_cards.')'.'\' with '.$addCard->price.' PokePoint';
@@ -212,6 +213,78 @@ class UserController extends Controller
             return $this->_return('Add card','success');
         }catch (\Exception $e){
             return $this->_returnError('Add Card Fail',$e);
+        }
+    }
+    public function addWant(AddCard $addCard)
+    {
+        try{
+            $amount = $addCard->amount;
+            if($amount > 10)
+                $amount = 10;
+
+	        if($addCard->pp > 100000)
+	        	throw new Exception('Invalid price, value over 100000');
+
+	        $card = Cards::find($addCard->id_card);
+	        $msg = 'Add in my want card list '.$addCard->amount.' new card \''.$card->name.' (#'.$card->number.'/'.$card->set->total_cards.')'.'\' with '.$addCard->pp.' PokePoint';
+	        $this->dispatch(new AddMesssage(Auth::user(),$msg,6));
+
+            for($i=0; $i< $amount; $i++) {
+                Want::create($addCard->all());
+            }
+            return $this->_return('Add want card','success');
+        }catch (\Exception $e){
+            return $this->_returnError('Add Want Card Fail',$e);
+        }
+    }
+
+    public function myWantList()
+    {
+        try{
+
+            $wants = \Auth::user()->wants();
+
+            return $this->_return('Get Want List','success',($wants)?$wants:[]);
+        }catch (\Exception $e){
+            return $this->_returnError('Want List Fail',$e);
+        }
+    }
+
+    public function removeWant($id_want)
+    {
+        try{
+
+            $want = Want::find($id_want);
+            $card = Cards::find($want->id_card);
+            $msg = 'Remove in my want card list \''.$card->name.' (#'.$card->number.'/'.$card->set->total_cards.')'.'\' with '.$want->pp.' PokePoint';
+            $this->dispatch(new AddMesssage(Auth::user(),$msg,6));
+
+            $want->delete();
+
+            return $this->_return('Remove Want List','success');
+        }catch (\Exception $e){
+            return $this->_returnError('Remove Want List Fail',$e);
+        }
+    }
+
+    public function editWant($id_want,EditWant $editWant)
+    {
+        try{
+
+            if($editWant->pp > 100000)
+                throw new Exception('Invalid price, value over 100000');
+
+            $want = Want::find($id_want);
+            $old_pp = $want->pp;
+            $want->update($editWant->all());
+
+
+            $msg = 'You edit '.$want->card->name.'(#'.$want->card->number.'/'.$want->card->set->total_cards.') from '.$old_pp.' to '.$want->pp.' PokePoint';
+            $this->dispatch(new AddMesssage(Auth::user(),$msg,6));
+
+            return $this->_return('Edit Want List','success');
+        }catch (\Exception $e){
+            return $this->_returnError('Edit Want List Fail',$e);
         }
     }
 }

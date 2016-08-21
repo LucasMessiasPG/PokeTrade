@@ -119,7 +119,7 @@ class SearchController extends Controller
         }
     }
     
-    public function datail($id_card)
+    public function detail($id_card)
     {
     	try{
 			

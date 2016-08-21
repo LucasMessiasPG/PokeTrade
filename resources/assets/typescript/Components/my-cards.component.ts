@@ -34,7 +34,7 @@ export class MyCardsComponents{
             amount:1
         };
 
-        this.user.getCards()
+        this.user.getMyCards()
             .subscribe(cards => {
                 this.cards = cards;
 

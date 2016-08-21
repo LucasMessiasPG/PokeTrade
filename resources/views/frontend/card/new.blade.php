@@ -1,7 +1,7 @@
 <div class="container row">
     <form autocomplete="off" #ff="ngForm" (submit)="searchCard(filter)">
         <div class="col s6 right">
-            <button type="button" class="right waves-effect waves-light btn" routerLink="/my-cards"><i
+            <button type="button" class="right waves-effect waves-light btn" (click)="backPage()"><i
                         class="material-icons right">list</i> List
             </button>
         </div>
@@ -51,7 +51,7 @@
                             <img class="very-small-card materialboxed" src="{{ card.image_url }}" alt="">
                         </div>
                     </td>
-                    <td>{{ card.name }} (#{{ card.card_set }})</td>
+                    <td><a [routerLink]="['/details',card.id_card]">{{ card.name_card }}</a></td>
                     <td>{{ card.subtype }}</td>
                     <td>{{ card.supertype }}</td>
                     <td>{{ card.set }}</td>
@@ -72,7 +72,7 @@
             </div>
             <div class="col s12 m9">
                 <div class="col s12">
-                    <h3 class="center"><strong>{{ selectCard.name }} (#{{ selectCard.card_set }})</strong></h3>
+                    <h3 class="center"><strong>{{ selectCard.name_card }}</strong></h3>
                 </div>
                 <div class="col s12 m3">
                     <p class="left">Set: <strong>{{ selectCard.set }}</strong></p>
@@ -87,22 +87,22 @@
                     <p class="left">Type: <strong>{{ selectCard.subtype }}</strong></p>
                 </div>
                 <div *ngIf="selectCard.ability.length > 0" class="col s12">
-                    <div class="col s12" *ngFor="let ability of selectCard.ability">
-                        <poke-ability [single_ability]="ability"></poke-ability>
+                    <div class="col s12">
+                        <poke-ability [ability]="selectCard.ability"></poke-ability>
                     </div>
                 </div>
                 <div *ngIf="selectCard.attack.length > 0" class="col 12">
-                    <div class="col s12" *ngFor="let attack of selectCard.attack">
-                        <poke-attack [single_attack]="attack"></poke-attack>
+                    <div class="col s12">
+                        <poke-attack [attack]="selectCard.attack"></poke-attack>
                     </div>
                 </div>
-                <div class="col s12">
+                <div class="col s12" >
                     <div class="input-field col s12 m3">
                         <input type="text" id="amount" name="amount" [(ngModel)]="new_card.amount">
                         <label for="amount">Amount</label>
                     </div>
-                    <div class="input-field col s12 m3">
-                        <input type="text" id="price" name="price" [(ngModel)]="new_card.price">
+                    <div class="input-field col s12 m3" *ngIf="optionField">
+                        <input type="text" id="price" name="price" [(ngModel)]="new_card.pp">
                         <label for="price">PokePoint</label>
                     </div>
                     <div class="input-field col s12 m3">

@@ -3,27 +3,36 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
-class UserCards extends Model
+class Want extends Model
 {
-    protected $primaryKey = 'id_user_card';
+    use SoftDeletes;
+
+    protected $primaryKey = 'id_want';
     protected $fillable = [
         'id_user',
         'id_card',
-        'id_user',
+        'pp',
+        'id_status_want',
         'foil',
         'reverse_foil'
     ];
 
-    public function user()
+    public function status()
     {
-        return $this->hasOne(User::class,'id_user','id_user');
+        return $this->hasOne(StatusWant::class,'id_status_want','id_status_want');
     }
 
     public function card()
     {
         return $this->hasOne(Cards::class,'id_card','id_card');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class,'id_user','id_user');
     }
 
     public static function create(array $attributes = [])

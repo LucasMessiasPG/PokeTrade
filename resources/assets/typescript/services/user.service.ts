@@ -13,6 +13,7 @@ export class User {
     public login;
     public email;
     public cards;
+    private want;
     private _url = 'http://localhost:8000/';
     // private _url = 'http://192.168.1.11:8000/';
 
@@ -32,7 +33,30 @@ export class User {
         return false;
     }
 
-    public getCards(force?) {
+    public getWantCards(force?){
+        if(!force) {
+            if (this.want) {
+                return new Observable(observer => {
+                    observer.next(this.want);
+                })
+            }
+        }
+
+        var url = this._url + 'api/want-list';
+        return this.http.get(url)
+            .map(res => {
+                var response = res.json();
+                if (User.checkResponse(response, url)) {
+                    this.want = response.data;
+                    return response.data;
+                }
+                if(response.msg)
+                    this.materialize.toast(response.msg)
+                throw 'Erro';
+            })
+    }
+
+    public getMyCards(force?) {
 
         if(!force) {
             if (this.cards) {
@@ -179,10 +203,31 @@ export class User {
             })
     }
 
-    public addCard(card) {
-        return this.http.post(this._url + 'user/add-card',card)
+    addWant(card) {
+        return this.http.post(this._url + 'api/user/add-want',card)
             .map(res => {
                 return res.json()
+            })
+    }
+
+    public addCard(card) {
+        return this.http.post(this._url + 'api/user/add-card',card)
+            .map(res => {
+                return res.json();
+            })
+    }
+
+    removeWant(card) {
+        return this.http.get(this._url + 'api/user/'+card.id_want+'/remove-want')
+            .map(res => {
+                return res.json();
+            })
+    }
+
+    editWant(param) {
+        return this.http.post(this._url + 'api/user/'+param.id_want+'/edit-want',param)
+            .map(res => {
+                return res.json();
             })
     }
 }

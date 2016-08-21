@@ -21,10 +21,15 @@ import {MaterializeCuston} from "./services/materialize.service";
 import {NewCardComponent} from "./Components/card/new-card.component";
 import {CardService} from "./services/card.service";
 import {AttackComponent} from "./Components/card/attack.component";
-import {HistoricComponent} from "./Components/historic.component";
-import {DatailsComponent} from "./Components/card/datails.component";
+import {MessageComponent} from "./Components/message.component";
+import {DetailsComponent} from "./Components/card/details.component";
 import {AbilityComponent} from "./Components/card/ability.component";
 import {RetreatCostComponent} from "./Components/card/retreat-cost.component";
+import {WeaknessesComponent} from "./Components/card/weaknesses.component";
+import {ResistancesComponent} from "./Components/card/resistence.component";
+import {WantListComponet} from "./Components/want-list.component";
+import {TextComponent} from "./Components/card/text.component";
+import {NewCardWantComponent} from "./Components/card/new-card-want.component";
 
 @NgModule({
     imports: [
@@ -48,9 +53,14 @@ import {RetreatCostComponent} from "./Components/card/retreat-cost.component";
         NewCardComponent,
         AttackComponent,
         AbilityComponent,
+        TextComponent,
+        WeaknessesComponent,
+        ResistancesComponent,
         RetreatCostComponent,
-        HistoricComponent,
-        DatailsComponent
+        MessageComponent,
+        DetailsComponent,
+        WantListComponet,
+        NewCardWantComponent
     ],
     providers: [
         {

@@ -36,4 +36,15 @@ class User extends Authenticatable
         return $result;
     }
 
+    public function wants()
+    {
+        $want = Want::where('id_user','=',$this->id_user)->get();
+        $result = [];
+        foreach ($want as $key => $user_want) {
+            $result[$key] = $user_want->toArray();
+            $result[$key]['card'] = (array)$user_want   ->card->fullset();
+        }
+        return $result;
+    }
+
 }

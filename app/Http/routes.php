@@ -34,7 +34,6 @@ Route::get('/',function(){return view('backend.master');});
 Route::post('/login-user','UserController@login');
 Route::get('/user/tutorial/{type}','UserController@tutorial');
 Route::get('/user/profile/{id}','UserController@profile');
-Route::post('/user/add-card','UserController@addCard');
 Route::post('/register-user','UserController@register');
 
 Route::get('/logout','UserController@logout');
@@ -46,10 +45,15 @@ Route::group(['prefix'=>'api/'],function(){
     Route::get('search','SearchController@search');
     Route::get('sets','SearchController@set');
     Route::get('cards','SearchController@card');
-    Route::get('card/{id_card}/datails','SearchController@datail');
+    Route::get('card/{id_card}/details','SearchController@detail');
 
     Route::group(['middleware'=>['check']],function(){
 
+        Route::post('/user/add-card','UserController@addCard');
+        Route::post('/user/add-want','UserController@addWant');
+        Route::get('/user/{id_want}/remove-want','UserController@removeWant');
+        Route::post('/user/{id_want}/edit-want','UserController@editWant');
+        Route::get('want-list','UserController@myWantList');
         Route::get('my-cards','UserController@myCards');
         Route::get('my-messages','UserController@myMessages');
 

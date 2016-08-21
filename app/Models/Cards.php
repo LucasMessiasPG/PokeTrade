@@ -41,6 +41,11 @@ class Cards extends Model
         return $this->belongsToMany(Attacks::class, 'attack_cards', 'id_card', 'id_attack', 'id_attack');
     }
 
+    public function types()
+    {
+        return $this->belongsToMany(Types::class, 'types_cards', 'id_card', 'id_type', 'id_type');
+    }
+
     public function ability()
     {
         return $this->hasMany(Abilitys::class,'id_card','id_card');
@@ -64,6 +69,11 @@ class Cards extends Model
     public function retreat()
     {
         return $this->belongsToMany(Types::class,'retreat_costs','id_card','id_type','id_type');
+    }
+
+    public function text()
+    {
+        return $this->belongsToMany(Texts::class,'text_cards','id_card','id_text','id_text');
     }
 
     /////////// Templates /////////////
@@ -128,7 +138,7 @@ class Cards extends Model
             }
         }
         if($this->resistances) {
-            $card->resistences = [
+            $card->resistances = [
                 'type' => $this->resistances->type->type,
                 'value' => $this->resistances->value
             ];
@@ -143,7 +153,7 @@ class Cards extends Model
             $card->weakness = $weakness;
         }
         if($this->retreat) {
-
+            $retreat = [];
             foreach ($this->retreat as $cost) {
                 $retreat[] = (object)[
                     'type' => $cost->type,
@@ -153,9 +163,28 @@ class Cards extends Model
             $card->retreat = $retreat;
         }
 
+        if($this->types) {
+            $types = [];
+            foreach ($this->types as $type) {
+                $types[] = $type->type;
+
+            }
+            $card->types = $types;
+        }
+
+
+        if($this->text) {
+            $texts = [];
+            foreach ($this->text as $text) {
+                $texts[] = $text->text;
+            }
+            $card->texts = $texts;
+        }
+
         $card->ability = $abilitys;
 
         $card->attack = $attacks;
+        $card->name_card = $card->name.' (#'.$card->card_set.')';
 
         return $card;
     }

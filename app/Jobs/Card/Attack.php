@@ -45,34 +45,34 @@ class Attack extends Job implements ShouldQueue
 			]);
 			if($new_attack->exists == false)
 				$new_attack->save();
-			
+
 			$new_attack_card = AttackCards::firstOrCreate([
 				'id_card' => $this->card->id_card,
 				'id_attack' => $new_attack->id_attack,
 			]);
-			
+
 			if($new_attack_card->exists == false)
 				$new_attack_card->save();
-			
+
 			AttackCosts::where('id_attack','=',$new_attack->id_attack)->delete();
-			
+
 			foreach ($attack->cost as $cost) {
 				$new_type = Types::firstOrCreate(['type' => $cost]);
-				
+
 				if ($new_type->exists == false)
 					$new_type->save();
-				
+
 				$new_attack_cost = AttackCosts::create([
 					'id_type' => $new_type->id_type,
 					'id_attack' => $new_attack->id_attack
 				]);
-				
+
 				if($new_attack_cost->exists == false)
 					$new_attack_cost->save();
-				
+
 			}
-			
-			
+
+
 		}
 	}
 }

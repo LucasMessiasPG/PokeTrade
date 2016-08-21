@@ -39,11 +39,10 @@
             <tr>
                 <th>Card</th>
                 <th class="hide-on-small-and-down">Name</th>
-                <th class="center">PokePoints</th>
                 <th class="hide-on-small-and-down">Set</th>
                 <th class="cente hide-on-small-and-down">Foil</th>
                 <th class="center hide-on-small-and-down">Reverse Foil</th>
-                <th class="right">Options</th>
+                <th class="right"></th>
             </tr>
             </thead>
             <tbody>
@@ -53,8 +52,7 @@
                         <img class="very-small-card materialboxed" src="{{ item.card.image_url }}" alt="{{ item.card.name }}">
                     </div>
                 </td>
-                <td class="hide-on-small-and-down">{{ item.card.name }} (#{{ item.card.card_set }})</td>
-                <td class="center"><i class="fa fa-rub"></i> {{ item.price }}</td>
+                <td class="hide-on-small-and-down"><a [routerLink]="['/details',item.card.id_card]">{{ item.card.name_card }}</a></td>
                 <td class="hide-on-small-and-down">{{ item.card.set }}</td>
                 <td class="hide-on-small-and-down"><p class="center" *ngIf="item.foil" title="Foil">
                         <input disabled type="checkbox" id="foil[]" [checked]="item.foil" />
@@ -67,10 +65,7 @@
                     </p>
                 </td>
                 <td class="right">
-                    <a class="btn waves-light waves-effect icon" [routerLink]="['/datails',item.card.id_card]"><i class="fa fa-eye"></i></a>
-                    <a class="btn waves-light waves-effect icon"><i class="fa fa-pencil"></i></a>
-                    <a class="btn waves-light waves-effect icon orange"><i class="fa fa-remove"></i></a>
-                    <a class="btn waves-light waves-effect icon red"><i class="fa fa-trash-o"></i></a>
+                    <a class="btn waves-light waves-effect icon small red"><i class="fa fa-trash-o"></i></a>
                 </td>
             </tr>
             </tbody>

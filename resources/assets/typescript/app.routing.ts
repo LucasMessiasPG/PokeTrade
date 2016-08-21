@@ -7,8 +7,10 @@ import {LoginComponent} from "./Components/login.component";
 import {MyCardsComponents} from "./Components/my-cards.component";
 import {ProfileComponent} from "./Components/profile.component";
 import {NewCardComponent} from "./Components/card/new-card.component";
-import {HistoricComponent} from "./Components/historic.component";
-import {DatailsComponent} from "./Components/card/datails.component";
+import {MessageComponent} from "./Components/message.component";
+import {DetailsComponent} from "./Components/card/details.component";
+import {WantListComponet} from "./Components/want-list.component";
+import {NewCardWantComponent} from "./Components/card/new-card-want.component";
 
 const routes: Routes = [
     {path: '',redirectTo: '/home',pathMatch: 'full'},
@@ -18,11 +20,13 @@ const routes: Routes = [
     {path: 'list',component: ListComponent},
     {path: 'trades',component: TradesComponent},
     {path: 'login',component: LoginComponent},
-    {path: 'historic',component: HistoricComponent},
+    {path: 'messages',component: MessageComponent},
+    {path: 'want-list',component: WantListComponet},
+    {path: 'want-list/new',component: NewCardWantComponent},
     {path: 'my-cards',component: MyCardsComponents},
     {path: 'my-cards/new',component: NewCardComponent},
     {path: 'profile/:id',component: ProfileComponent},
-    {path: 'datails/:id',component: DatailsComponent},
+    {path: 'details/:id',component: DetailsComponent},
 ];
 
 export const routing = RouterModule.forRoot(routes);

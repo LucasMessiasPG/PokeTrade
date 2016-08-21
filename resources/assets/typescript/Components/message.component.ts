@@ -2,10 +2,10 @@ import {Component} from "@angular/core";
 import {User} from "../services/user.service";
 import {Router} from "@angular/router";
 @Component({
-    selector:'poke-historic',
-    templateUrl:'/templates/historic'
+    selector:'poke-message',
+    templateUrl:'/templates/message'
 })
-export class HistoricComponent{
+export class MessageComponent{
     private messages;
     private system;
     private trades;
@@ -29,23 +29,22 @@ export class HistoricComponent{
         this.cards = [];
         this.user.getMessage()
             .subscribe(messages => {
-                console.log(messages);
                 for(var i in messages){
                     switch (messages[i].id_status_message){
                         case 2:
-                            this.messages.push(messages[i])
+                            this.messages.push(messages[i]);
                             break;
                         case 3:
-                            this.system.push(messages[i])
+                            this.system.push(messages[i]);
                             break;
                         case 4:
-                            this.trades.push(messages[i])
+                            this.trades.push(messages[i]);
                             break;
                         case 5:
-                            this.logs.push(messages[i])
+                            this.logs.push(messages[i]);
                             break;
                         case 6:
-                            this.cards.push(messages[i])
+                            this.cards.push(messages[i]);
                             break;
                     }
                 }

@@ -23,8 +23,10 @@ export class MaterializeCuston{
         if(tag){
             if(close)
                 $(tag).closeModal();
-            else
+            else {
+                console.log(1,tag)
                 $(tag).openModal();
+            }
 
         }
     }

@@ -42,6 +42,12 @@ a{
 .dropdown-content>li>a{
   font-size: 13px;
 }
+
+a.btn.icon {
+  padding: 0px 10px;
+  margin: 10px 2px;
+}
+
 .dropdown-content>li>a.disabled{
   color: #ccc;
   font-size: 10px;
@@ -70,6 +76,11 @@ a{
 }
 
 
+@media screen and (min-width: 993px) {
+  .img.img-responsive {
+    width: 100%;
+  }
+}
 @media screen and (max-width: 600px) {
   .img-card{
     width: 50%;
@@ -124,7 +135,10 @@ a{
 
 table.my-card{
   td{
-    padding: 5px 5px;
+    padding: 0px 5px;
+    p{
+      margin: 0;
+    }
   }
 }
 .my-card.img{
@@ -165,18 +179,25 @@ table.my-card{
   margin: 0;
 }
 
+.img-center{
+  max-width: 250px;
+  margin: 0 auto;
+}
+
 //ENERGY
 
 .type{
   width: 20px;
-  height: 20px;
+  height: 15px;
   display: inline-block;
+  position: relative;
   .img{
     background-image: url("/img/types.png");
     width: 20px;
     height: 20px;
     display: inline-block;
     background-size: 100px;
+    position: absolute;
   }
   .Colorless{
     background-position-x: 71px;
