@@ -47,6 +47,8 @@ Route::group(['prefix'=>'api/'],function(){
     Route::get('cards','SearchController@card');
     Route::get('card/{id_card}/details','SearchController@detail');
 
+    Route::get('card/wants','SearchController@allWant');
+
     Route::group(['middleware'=>['check']],function(){
 
         Route::post('/user/add-card','UserController@addCard');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cards;
 use App\Models\Sets;
+use App\Models\Want;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -130,5 +131,33 @@ class SearchController extends Controller
 	    }catch (\Exception $e){
 		    return $this->_returnError('Cards Datails Fail',$e);
 	    }
+    }
+
+    public function allWant()
+    {
+        try{
+
+            $wants = Want::where('id_status_want','=',1)->get();
+
+            $result = [];
+            foreach ($wants as $want) {
+                $result[] = (object)[
+                    'id_want' => $want->id_want,
+                    'created_at' => $want->created_at->toDateTimeString(),
+                    'pp' => $want->pp,
+                    'foil' => $want->foil,
+                    'reverse_foil' => $want->reverse_foil,
+                    'card' => $want->card->fullSet(),
+                    'user' => (object)[
+                        'login' => $want->user->login,
+                        'id_user' => $want->id_user
+                    ]
+                ];
+            }
+
+            return $this->_return('Get wants','success',isset($result)?$result:[]);
+        }catch (\Exception $e){
+            return $this->_returnError('Wants Fail',$e);
+        }
     }
 }

@@ -97,4 +97,10 @@ export class CardService {
                 throw 'Erro';
             })
     }
+
+    getWants() {
+        var url = this._url+'api/card/wants';
+        return this.http.get(url)
+            .map(res => { return res.json()})
+    }
 }
