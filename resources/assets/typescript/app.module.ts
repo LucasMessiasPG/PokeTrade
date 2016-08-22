@@ -31,7 +31,8 @@ import {WantListComponet} from "./Components/want-list.component";
 import {TextComponent} from "./Components/card/text.component";
 import {NewCardWantComponent} from "./Components/card/new-card-want.component";
 import {PokePointPipe} from "./Pipes/pokepoint.pipe";
-import {FilterPipe} from "./pipes/filter.pipe";
+import {FilterPipe} from "./Pipes/filter.pipe";
+import {PaginatePipe, PaginationService} from "ng2-pagination/index";
 
 @NgModule({
     imports: [
@@ -39,7 +40,7 @@ import {FilterPipe} from "./pipes/filter.pipe";
         FormsModule,
         JsonpModule,
         routing,
-        HttpModule
+        HttpModule,
     ],
     declarations: [
         AppComponent,
@@ -64,7 +65,8 @@ import {FilterPipe} from "./pipes/filter.pipe";
         WantListComponet,
         NewCardWantComponent,
         PokePointPipe,
-        FilterPipe
+        FilterPipe,
+        PaginatePipe
     ],
     providers: [
         {
@@ -74,7 +76,8 @@ import {FilterPipe} from "./pipes/filter.pipe";
         },
         User,
         CardService,
-        MaterializeCuston
+        MaterializeCuston,
+        PaginationService
     ],
     bootstrap:[
         AppComponent

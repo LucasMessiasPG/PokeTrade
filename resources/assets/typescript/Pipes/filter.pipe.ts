@@ -7,6 +7,7 @@ export class FilterPipe implements PipeTransform{
     constructor(private tradesComponent: TradesComponent){}
 
     transform(values,object){
+        console.log(values);
         if(values) {
             var result = values.filter(item => {
                 var check = true;

@@ -37,6 +37,7 @@
     "hammerjs": "^2.0.8",
     "jquery": "^2.0.0",
     "materialize-css": "^0.97.7",
+    "ng2-pagination": "^0.3.5",
     "reflect-metadata": "0.1.8",
     "rxjs": "5.0.0-beta.6",
     "source-map-loader": "0.1.5",
