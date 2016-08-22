@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
-import {MaterializeCuston} from "../../services/materialize.service";
-import {CardService} from "../../services/card.service";
-import {User} from "../../services/user.service";
+import {MaterializeCuston} from "../../Services/materialize.service";
+import {CardService} from "../../Services/card.service";
+import {User} from "../../Services/user.service";
 import {Router} from "@angular/router";
 @Component({
     selector:'poke-new-card',

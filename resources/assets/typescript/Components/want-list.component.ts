@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
-import {User} from "../services/user.service";
-import {MaterializeCuston} from "../services/materialize.service";
+import {User} from "../Services/user.service";
+import {MaterializeCuston} from "../Services/materialize.service";
+import {PokePointPipe} from "../Pipes/pokepoint.pipe";
 @Component({
     selector: 'poke-want-list',
     templateUrl: '/templates/want_list'
@@ -8,6 +9,7 @@ import {MaterializeCuston} from "../services/materialize.service";
 export class WantListComponet {
     private cards;
     private action;
+    private start = false;
 
     constructor(private user:User,
                 private materialize:MaterializeCuston) {
@@ -16,6 +18,7 @@ export class WantListComponet {
     ngOnInit() {
         this.user.getWantCards()
             .subscribe(cards => {
+                this.start = true;
                 this.cards = cards;
 
                 setTimeout(()=> {

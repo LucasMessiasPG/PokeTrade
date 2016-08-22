@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Cards;
 use App\Models\Sets;
+use App\Models\UserCards;
 use App\Models\Want;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Mockery\CountValidator\Exception;
 
 class SearchController extends Controller
@@ -137,11 +139,12 @@ class SearchController extends Controller
     {
         try{
 
-            $wants = Want::where('id_status_want','=',1)->get();
+            $wants = Want::where('id_status_want','=',1)->orderBy('created_at','dec')->limit(500)->get();
 
             $result = [];
             foreach ($wants as $want) {
                 $result[] = (object)[
+                	'have' => (UserCards::where('id_card','=',$want->id_card)->where('id_user','=',(Auth::check())?Auth::user()->id_user:'1')->get()->count() > 0)?true:false,
                     'id_want' => $want->id_want,
                     'created_at' => $want->created_at->toDateTimeString(),
                     'pp' => $want->pp,

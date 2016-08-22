@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
-import {User} from "../services/user.service";
+import {User} from "../Services/user.service";
 import {Router} from "@angular/router";
-import {MaterializeCuston} from "../services/materialize.service";
+import {MaterializeCuston} from "../Services/materialize.service";
 declare var $:any;
 @Component({
     selector:'poke-login',

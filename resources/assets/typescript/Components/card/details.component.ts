@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
-import {CardService} from "../../services/card.service";
+import {CardService} from "../../Services/card.service";
 import {Router, ActivatedRoute} from "@angular/router";
-import {MaterializeCuston} from "../../services/materialize.service";
+import {MaterializeCuston} from "../../Services/materialize.service";
 @Component({
     selector:'poke-details',
     templateUrl:'/templates/card.details'

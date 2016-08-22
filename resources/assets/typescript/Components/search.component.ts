@@ -1,8 +1,7 @@
 import {Component} from "@angular/core";
-import {Http} from "@angular/http";
 import {Router} from "@angular/router";
 import {CardComponent} from "./card/card.component"
-import {CardService} from "../services/card.service";
+import {CardService} from "../Services/card.service";
 declare var $:any;
 
 @Component({

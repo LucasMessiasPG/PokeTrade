@@ -14,12 +14,12 @@ import {TradesComponent} from "./Components/trades.component";
 import {HttpModule, Http, JsonpModule} from "@angular/http";
 import {CardComponent} from "./Components/card/card.component";
 import {LoginComponent} from "./Components/login.component";
-import {User} from "./services/user.service";
+import {User} from "./Services/user.service";
 import {MyCardsComponents} from "./Components/my-cards.component";
 import {ProfileComponent} from "./Components/profile.component";
-import {MaterializeCuston} from "./services/materialize.service";
+import {MaterializeCuston} from "./Services/materialize.service";
 import {NewCardComponent} from "./Components/card/new-card.component";
-import {CardService} from "./services/card.service";
+import {CardService} from "./Services/card.service";
 import {AttackComponent} from "./Components/card/attack.component";
 import {MessageComponent} from "./Components/message.component";
 import {DetailsComponent} from "./Components/card/details.component";
@@ -30,6 +30,8 @@ import {ResistancesComponent} from "./Components/card/resistence.component";
 import {WantListComponet} from "./Components/want-list.component";
 import {TextComponent} from "./Components/card/text.component";
 import {NewCardWantComponent} from "./Components/card/new-card-want.component";
+import {PokePointPipe} from "./Pipes/pokepoint.pipe";
+import {FilterPipe} from "./pipes/filter.pipe";
 
 @NgModule({
     imports: [
@@ -60,7 +62,9 @@ import {NewCardWantComponent} from "./Components/card/new-card-want.component";
         MessageComponent,
         DetailsComponent,
         WantListComponet,
-        NewCardWantComponent
+        NewCardWantComponent,
+        PokePointPipe,
+        FilterPipe
     ],
     providers: [
         {

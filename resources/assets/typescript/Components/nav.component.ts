@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
-import {User} from "../services/user.service";
-import {MaterializeCuston} from "../services/materialize.service";
+import {User} from "../Services/user.service";
+import {MaterializeCuston} from "../Services/materialize.service";
 declare var $:any;
 @Component({
     selector: 'poke-nav',

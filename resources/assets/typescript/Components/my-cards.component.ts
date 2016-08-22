@@ -1,7 +1,7 @@
 import {Component, ElementRef} from "@angular/core";
 import {Router} from "@angular/router";
-import {User} from "../services/user.service";
-import {MaterializeCuston} from "../services/materialize.service";
+import {User} from "../Services/user.service";
+import {MaterializeCuston} from "../Services/materialize.service";
 declare var $:any;
 @Component({
     selector: 'poke-my-cards',

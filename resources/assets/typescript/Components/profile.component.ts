@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {User} from "../services/user.service";
+import {User} from "../Services/user.service";
 @Component({
     selector: 'poke-profile',
     templateUrl: '/templates/profile'
