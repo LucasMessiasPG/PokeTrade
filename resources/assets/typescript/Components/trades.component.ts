@@ -2,11 +2,12 @@ import {Component, EventEmitter} from "@angular/core";
 import {CardService} from "../Services/card.service";
 import {MaterializeCuston} from "../Services/materialize.service";
 import {User} from "../Services/user.service";
-import {PaginationControlsCmp} from "ng2-pagination/index";
+import {PaginationControlsCmp, PaginationService} from "ng2-pagination/index";
+import {PaginateComponent} from "./template/paginate";
 @Component({
     selector:'poke-trades',
     templateUrl:'/templates/trades',
-    directives:[PaginationControlsCmp]
+    directives:[PaginationControlsCmp,PaginateComponent]
 })
 export class TradesComponent{
 
@@ -14,12 +15,12 @@ export class TradesComponent{
     private filtro
     private p;
     public filter$ = new EventEmitter()
-    private heigth;
 
     constructor(
         private user: User,
         private card: CardService,
-        private materialize: MaterializeCuston
+        private materialize: MaterializeCuston,
+        private pagination: PaginationService
     ){
         this.filtro = {
             name:'',
@@ -35,17 +36,15 @@ export class TradesComponent{
                 },100)
             })
 
-        this.filter$.subscribe(()=>{
-            this.p = 1;
+        this.pagination.change.subscribe(() => {
             setTimeout(()=>{
                 this.materialize.tooltip();
                 this.materialize.box();
             },100)
         })
-    }
-
-    ngOnInit(){
-        this.heigth = (document.body.offsetHeight - (document.body.offsetHeight / 2.5));
+        this.filter$.subscribe(()=>{
+            this.p = 1;
+        })
     }
 
     clearFilter(){
@@ -54,6 +53,11 @@ export class TradesComponent{
             have:'',
             number:''
         };
+    }
+
+    sendCard(want){
+        this.user.send(want)
+        console.log(want);
     }
 
 

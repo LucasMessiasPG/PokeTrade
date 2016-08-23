@@ -10,6 +10,7 @@ export class User {
     public login$:EventEmitter<any>;
     public cards$:EventEmitter<any>;
     public id_user;
+    public pp;
     public login;
     public email;
     public cards;
@@ -125,6 +126,7 @@ export class User {
                     this.id_user = response.user.id_user;
                     this.email = response.user.email;
                     this.login = response.user.login;
+                    this.pp = response.user.pp;
                     localStorage.setItem('user', JSON.stringify(response));
                     this.router.navigateByUrl('/home')
                     location.reload();
@@ -152,6 +154,7 @@ export class User {
                 this.id_user = local_user.user.id_user;
                 this.email = local_user.user.email;
                 this.login = local_user.user.login;
+                this.pp = local_user.user.pp;
                 return true;
             }
         }
@@ -226,6 +229,13 @@ export class User {
 
     editWant(param) {
         return this.http.post(this._url + 'api/user/'+param.id_want+'/edit-want',param)
+            .map(res => {
+                return res.json();
+            })
+    }
+
+    send(want) {
+        return this.http.post(this._url+'api/user/send-want',want)
             .map(res => {
                 return res.json();
             })

@@ -8,9 +8,9 @@
             <li routerLinkActive="active"><a routerLink="/trades" >Trades</a></li>
             <li routerLinkActive="active"><a routerLink="/want-list" >Want List</a></li>
             <li routerLinkActive="active"><a routerLink="/my-cards">My Cards</a></li>
-            <li><a routerLink="/home">Buy PP</a></li>
+            <li><a routerLink="/buy">Buy PP</a></li>
             @if(\Auth::check())
-            <li><a class="dropdown-button" data-activates="perfil_user"><span [innerHTML]="user.login[0].toUpperCase() + user.login.substring(1) "></span> <i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" data-activates="perfil_user"><span>{{ user.login[0].toUpperCase() + user.login.substring(1)  }} {{ user.pp }} PP</span> <i class="material-icons right">arrow_drop_down</i></a></li>
             @else
             <li routerLinkActive="active"><a routerLink="/login" >Login</a></li>
             @endif

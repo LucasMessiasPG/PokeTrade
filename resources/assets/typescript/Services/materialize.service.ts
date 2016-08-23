@@ -24,7 +24,6 @@ export class MaterializeCuston{
             if(close)
                 $(tag).closeModal();
             else {
-                console.log(1,tag)
                 $(tag).openModal();
             }
 

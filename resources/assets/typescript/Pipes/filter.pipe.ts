@@ -1,5 +1,4 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {isBoolean, isString} from "@angular/forms/src/facade/lang";
 import {TradesComponent} from "../Components/trades.component";
 @Pipe({name:'filter'})
 export class FilterPipe implements PipeTransform{
@@ -7,7 +6,6 @@ export class FilterPipe implements PipeTransform{
     constructor(private tradesComponent: TradesComponent){}
 
     transform(values,object){
-        console.log(values);
         if(values) {
             var result = values.filter(item => {
                 var check = true;

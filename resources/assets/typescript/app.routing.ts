@@ -11,6 +11,7 @@ import {MessageComponent} from "./Components/message.component";
 import {DetailsComponent} from "./Components/card/details.component";
 import {WantListComponet} from "./Components/want-list.component";
 import {NewCardWantComponent} from "./Components/card/new-card-want.component";
+import {BuyComponent} from "./Components/buy.component";
 
 const routes: Routes = [
     {path: '',redirectTo: '/home',pathMatch: 'full'},
@@ -19,6 +20,7 @@ const routes: Routes = [
     {path: 'search',component: SearchComponent},
     {path: 'list',component: ListComponent},
     {path: 'trades',component: TradesComponent},
+    {path: 'buy',component: BuyComponent},
     {path: 'login',component: LoginComponent},
     {path: 'messages',component: MessageComponent},
     {path: 'want-list',component: WantListComponet},

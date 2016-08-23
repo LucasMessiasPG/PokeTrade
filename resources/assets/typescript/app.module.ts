@@ -33,6 +33,7 @@ import {NewCardWantComponent} from "./Components/card/new-card-want.component";
 import {PokePointPipe} from "./Pipes/pokepoint.pipe";
 import {FilterPipe} from "./Pipes/filter.pipe";
 import {PaginatePipe, PaginationService} from "ng2-pagination/index";
+import {BuyComponent} from "./Components/buy.component";
 
 @NgModule({
     imports: [
@@ -52,6 +53,7 @@ import {PaginatePipe, PaginationService} from "ng2-pagination/index";
         CardComponent,
         LoginComponent,
         MyCardsComponents,
+        BuyComponent,
         ProfileComponent,
         NewCardComponent,
         AttackComponent,

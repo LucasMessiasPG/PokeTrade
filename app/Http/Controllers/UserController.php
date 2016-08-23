@@ -29,6 +29,7 @@ class UserController extends Controller
 			    'user' => [
 				    'id_user'   =>  Auth::user()->id_user,
 				    'login'     =>  Auth::user()->login,
+				    'pp'        =>  Auth::user()->pp,
 				    'email'     =>  Auth::user()->email,
 			    ],
 			    'cache' => true
@@ -54,6 +55,7 @@ class UserController extends Controller
 					'user' => [
 						'id_user'   =>  Auth::user()->id_user,
 						'login'     =>  Auth::user()->login,
+						'pp'        =>  Auth::user()->pp,
 						'email'     =>  Auth::user()->email,
 					],
 					'cache' => true
@@ -286,5 +288,10 @@ class UserController extends Controller
         }catch (\Exception $e){
             return $this->_returnError('Edit Want List Fail',$e);
         }
+    }
+
+    public function sendWant()
+    {
+
     }
 }
