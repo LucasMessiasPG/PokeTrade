@@ -127,6 +127,7 @@ export class User {
                     this.email = response.user.email;
                     this.login = response.user.login;
                     this.pp = response.user.pp;
+                    console.log(response.user);
                     localStorage.setItem('user', JSON.stringify(response));
                     this.router.navigateByUrl('/home')
                     location.reload();
@@ -169,6 +170,7 @@ export class User {
                     this.id_user = response.user.id_user;
                     this.email = response.user.email;
                     this.login = response.user.login;
+                    this.pp = response.user.pp;
                     localStorage.setItem('user', JSON.stringify(response));
                     return true;
                 }

@@ -43,6 +43,7 @@ Route::get('/templates/{template}','MainController@index');
 Route::group(['prefix'=>'api/'],function(){
 
     Route::get('search','SearchController@search');
+    Route::get('home-data','SearchController@homeData');
     Route::get('sets','SearchController@set');
     Route::get('cards','SearchController@card');
     Route::get('card/{id_card}/details','SearchController@detail');

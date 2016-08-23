@@ -1,14 +1,5 @@
 <div class="container">
     <div class="row">
-        <div class="col s12 m4 margin-top">
-            <ul class="collection with-header">
-                <li class="collection-header center"><h5>Resume Cards</h5></li>
-                <li class="collection-item">Total Cards <span data-badge-caption="cards"
-                                                              class="badge">{{ (cards)?cards.length:0 }}</span></li>
-                <li class="collection-item">Total Wants: <span data-badge-caption="cards" class="badge">10</span></li>
-                <li class="collection-item">Total Trades: <span data-badge-caption="cards" class="badge">6</span></li>
-            </ul>
-        </div>
         <div class="col m8 margin-top">
             <div class="card blue-grey darken-1 my-card">
                 <div class="card-content white-text">
@@ -25,12 +16,16 @@
                 </div>
             </div>
         </div>
-        <div class="col s8 right">
-            <div class="right">
+        <div class="col s12 m4 margin-top">
+            <div class="right-align">
                 <a class="waves-effect waves-light btn" (click)="addCard()">
                     <i class="material-icons right">playlist_add</i> Add Card
                 </a>
             </div>
+            <ul class="collection with-header margin-top">
+                <li class="collection-item">Total Cards <span data-badge-caption="cards"
+                                                              class="badge">{{ (cards)?cards.length:0 }}</span></li>
+            </ul>
         </div>
     </div>
     <div class="row" *ngIf="cards">

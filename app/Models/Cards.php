@@ -185,6 +185,9 @@ class Cards extends Model
 
         $card->attack = $attacks;
         $card->name_card = $card->name.' (#'.$card->card_set.')';
+	
+	    $card->wants = Want::where('id_card','=',$this->id_card)->where('id_status_want','=',1)->count();
+	    $card->trades = Want::where('id_card','=',$this->id_card)->where('id_status_want','=',3)->count();
 
         return $card;
     }

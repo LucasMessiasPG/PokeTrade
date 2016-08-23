@@ -103,4 +103,22 @@ export class CardService {
         return this.http.get(url)
             .map(res => { return res.json()})
     }
+
+    dataHome() {
+        var url = this._url+'api/home-data';
+        return this.http.get(url)
+            .map(res => {
+                var response = res.json();
+                if (CardService.checkResponse(response, url)) {
+                    return response.data;
+                }
+
+                if (response.msg) {
+                    this.materialize.toast(response.msg)
+                    throw 'Erro '+response.msg;
+                }
+
+                throw 'Erro';
+            })
+    }
 }

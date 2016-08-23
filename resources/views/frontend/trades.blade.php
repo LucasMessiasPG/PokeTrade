@@ -31,7 +31,7 @@
                     <th>Card</th>
                     <th class="hide-on-small-and-down">Name / Number</th>
                     <th>PokePoint</th>
-                    <th>Trainer</th>
+                    <th class="center">Trainer</th>
                     <th class="hide-on-small-and-down">Foil</th>
                     <th class="hide-on-small-and-down">Reverse Foil</th>
                     <th class="right">Option</th>
@@ -44,9 +44,9 @@
                             <img class="very-small-card materialboxed" src="{{ want.card.image_url }}" alt="{{ want.card.name }}">
                         </div>
                     </td>
-                    <td class="hide-on-small-and-down">{{ want.card.name_card }}</td>
+                    <td class="hide-on-small-and-down"><a [routerLink]="['/details',want.card.id_card]">{{ want.card.name_card }}</a></td>
                     <td class="right-align"><i class="fa fa-rub"></i> {{ want.pp | PokePoint }}</td>
-                    <td><a [routerLink]="['/profile',want.user.id_user]">{{ want.user.login }}</a></td>
+                    <td class="center"><a [routerLink]="['/profile',want.user.id_user]">{{ want.user.login }}</a></td>
                     <td class="hide-on-small-and-down">{{ want.foil }}</td>
                     <td class="hide-on-small-and-down">{{ want.reverse_foil }}</td>
                     <td class="right-align">

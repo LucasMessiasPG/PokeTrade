@@ -10,9 +10,29 @@ export class MaterializeCuston{
         $('.materialboxed').materialbox();
     }
 
+    public listFade(tag)
+    {
+        Materialize.showStaggeredList(tag);
+    }
+    public imgFade(tag)
+    {
+        Materialize.fadeInImage(tag);
+    }
+
     public tooltip()
     {
         $('.tooltipped').tooltip();
+    }
+
+    public parallax()
+    {
+        $('.parallax').parallax();
+    }
+
+
+    public tabs()
+    {
+        $('ul.tabs').tabs();
     }
 
     public modal(tag?,close?)
@@ -70,4 +90,7 @@ export class MaterializeCuston{
         $(".button-collapse").sideNav();
     }
 
+    scrollFire(options) {
+        Materialize.scrollFire(options);
+    }
 }

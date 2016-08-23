@@ -9,17 +9,17 @@
     </div>
     <div class="col s12 l9">
         <div class="col s12 l8 margin-top">
-            <p class="no-margin">
+            <p class="col s12 no-margin">
                 <span class="col s12 m4" *ngIf="card.set">Set: <strong>{{ card.set }}</strong></span>
                 <span class="col s12 m3" *ngIf="card.hp">
                     HP: <strong>{{ card.hp }}</strong>
                 </span>
-                <span *ngIf="card.types">Types</span>
+                <span *ngIf="(card.types && card.types.length > 0)">Types</span>
                 <span class="type" *ngFor="let type of card.types">
                     <span *ngIf="type" class="img {{ type }}" title="{{ type }}"></span>
                 </span>
             </p>
-            <ul>
+            <ul class="col s12">
                 <li *ngIf="card.ability">
                     <poke-ability [ability]="card.ability"></poke-ability>
                 </li>
@@ -51,10 +51,8 @@
         <div class="col s12 l4">
             <ul class="collection with-header">
                 <li class="collection-header center"><h5>Resume</h5></li>
-                <li class="collection-item">Total Cards <span data-badge-caption="cards"
-                                                              class="badge">{{ (cards)?cards.length:0 }}</span></li>
-                <li class="collection-item">Total Wants: <span data-badge-caption="cards" class="badge">10</span></li>
-                <li class="collection-item">Total Trades: <span data-badge-caption="cards" class="badge">6</span></li>
+                <li class="collection-item">Total Wants: <span data-badge-caption="cards" class="badge">{{ card.wants }}</span></li>
+                <li class="collection-item">Total Trades: <span data-badge-caption="cards" class="badge">{{ card.trades }}</span></li>
             </ul>
         </div>
     </div>

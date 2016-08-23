@@ -189,7 +189,7 @@ class UserController extends Controller
     {
     	try{
     	            
-    	    if($user = User::find($id_user)){
+    	    if($user = User::find($id_user)->fullSet()){
     	    	return ['status'=>'success','user'=>$user];
 	        }
             return ['status'=>'warning','warning'=>'User not found'];
@@ -206,7 +206,7 @@ class UserController extends Controller
                 $amount = 10;
 
 	        $card = Cards::find($addCard->id_card);
-	        $msg = 'Add in my card list '.$addCard->amount.' new card \''.$card->name.' (#'.$card->number.'/'.$card->set->total_cards.')'.'\' with '.$addCard->price.' PokePoint';
+	        $msg = 'Add in my card list '.$addCard->amount.' new card \''.$card->name.' (#'.$card->number.'/'.$card->set->total_cards.')\'';
 	        $this->dispatch(new AddMesssage(Auth::user(),$msg,6));
 	        
             for($i=0; $i< $amount; $i++) {

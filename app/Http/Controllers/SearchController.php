@@ -163,4 +163,25 @@ class SearchController extends Controller
             return $this->_returnError('Wants Fail',$e);
         }
     }
+    
+    public function homeData()
+    {
+    	try{
+		
+		    
+		    $wants = Want::where('id_status_want','=',1)->count();
+		    $sends = Want::where('id_status_want','=',2)->count();
+		    $trades = Want::where('id_status_want','=',3)->count();
+		
+		    $result = [
+		    	'wants' => $wants,
+			    'trades' => $trades,
+			    'sends' => $sends
+		    ];
+		    
+		    return $this->_return('Get home data','success',isset($result)?$result:[]);
+	    }catch (\Exception $e){
+		    return $this->_returnError('Home data Fail',$e);
+	    }
+    }
 }

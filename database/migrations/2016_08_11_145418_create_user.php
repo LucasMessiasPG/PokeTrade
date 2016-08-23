@@ -23,6 +23,7 @@ class CreateUser extends Migration
             $table->string('district')->nullable();
             $table->string('state')->nullable();
             $table->string('tel')->nullable();
+            $table->string('img')->nullable();
 	        $table->string('password');
 	        $table->boolean('tutorial')->default(false);
 	        $table->string('remember_token')->nullable();
