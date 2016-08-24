@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs/Rx";
 import {MaterializeCuston} from "./materialize.service";
+import {Router} from "@angular/router";
 @Injectable()
 export class CardService {
     private sets;
@@ -9,6 +10,7 @@ export class CardService {
     // private _url = 'http://192.168.1.11:8000/';
 
     constructor(private http:Http,
+                private router: Router,
                 private materialize:MaterializeCuston
     ) {
     }
@@ -59,6 +61,9 @@ export class CardService {
         }
 
         var url = this._url + 'api/search';
+
+        this.router.navigateByUrl('/search?' + param);
+
         return this.http.get(url + ((param) ? '/?' + param : ''))
             .map(res => {
                 var response = res.json();

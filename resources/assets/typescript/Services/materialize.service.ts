@@ -3,45 +3,39 @@ declare var $:any;
 declare var Materialize:any;
 
 @Injectable()
-export class MaterializeCuston{
+export class MaterializeCuston {
 
-    public box()
-    {
+    public box() {
         $('.materialboxed').materialbox();
     }
 
-    public listFade(tag)
-    {
+    public listFade(tag) {
         Materialize.showStaggeredList(tag);
     }
-    public imgFade(tag)
-    {
+
+    public imgFade(tag) {
         Materialize.fadeInImage(tag);
     }
 
-    public tooltip()
-    {
+    public tooltip() {
         $('.tooltipped').tooltip();
     }
 
-    public parallax()
-    {
+    public parallax() {
         $('.parallax').parallax();
     }
 
 
-    public tabs()
-    {
+    public tabs() {
         $('ul.tabs').tabs();
     }
 
-    public modal(tag?,close?)
-    {
-        if(!close)
+    public modal(tag?, close?) {
+        if (!close)
             $('.modal-trigger').leanModal()
 
-        if(tag){
-            if(close)
+        if (tag) {
+            if (close)
                 $(tag).closeModal();
             else {
                 $(tag).openModal();
@@ -50,29 +44,34 @@ export class MaterializeCuston{
         }
     }
 
-    public toast(text)
-    {
+    public toast(text) {
         Materialize.toast(text, 4000)
     }
 
-    public select(tag?)
-    {
-        if(tag)
+    public select(tag?) {
+        if (tag)
             $(tag).material_select();
         else
             $('select').material_select();
     }
 
-    public getValSelect(tag?)
-    {
-        if(tag)
-            return $(tag).val();
-        else
-            return $('select').val();
+    public getValSelect(tag?, value?) {
+        if (tag && tag != '') {
+            if (value)
+                $(tag).val(value);
+            else
+                return $(tag).val(value+'');
+        } else {
+            if (value) {
+                console.log(0,value)
+                $('select').val(value);
+            }else {
+                return $('select').val();
+            }
+        }
     }
 
-    public dropdown()
-    {
+    public dropdown() {
         $(".dropdown-button").dropdown({
                 inDuration: 300,
                 outDuration: 225,
@@ -85,8 +84,7 @@ export class MaterializeCuston{
         );
     }
 
-    public sidenav()
-    {
+    public sidenav() {
         $(".button-collapse").sideNav();
     }
 

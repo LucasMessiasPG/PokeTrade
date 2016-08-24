@@ -3,33 +3,15 @@ declare var $:any;
 @Component({
     selector:'poke-card',
     template:`
-    <div class="padding-min center margin-top">
-        <img title="{{ card.name }}" class="responsive-img" src="{{ card.image_url }}" alt="{{ card.name }}">
-        <!--<div class="card-info">-->
-            <!--<h5>{{ card.name }}</h5>-->
-            <!--<p>{{ card.set }}</p>-->
-            <!--<p>{{ card.card_set }}</p>-->
-            <!--<div class="btn-group-card">-->
-                <!--<button class="btn-small waves-effect waves-light btn">Details</button>-->
-                <!--<button class="btn-small waves-effect waves-light btn">Have</button>-->
-                <!--<button class="btn-small waves-effect waves-light btn">Whant</button>-->
-            <!--</div>-->
-            <!--<table class="centered bordered table-card">-->
-                <!--<tr>-->
-                    <!--<td>40</td>-->
-                    <!--<td><i class="material-icons">trending_up</i></td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>20</td>-->
-                    <!--<td><i class="material-icons">trending_down</i></td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>23</td>-->
-                    <!--<td><i class="material-icons">query_builder</i></td>-->
-                <!--</tr>-->
-            <!--</table>-->
-        <!--</div>-->
-    </div>
+    <div class="row">
+       <div class="col s12">
+            <a [routerLink]="['/details',card.id_card]">{{ card.name_card }}</a>
+        </div>
+       <div class="col s12">
+            <img title="{{ card.name_card }}" class="materialboxed" src="{{ card.image_url }}" alt="{{ card.name_card }}">
+        </div>
+        
+     </div>
     `,
 })
 export class CardComponent{

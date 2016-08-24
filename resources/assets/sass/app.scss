@@ -283,6 +283,7 @@ a.btn.icon {
     text-align: left;
   }
 }
+
 li.current{
   background-color: #ee6e73 !important;
 }
@@ -338,7 +339,7 @@ poke-home{
 }
 
 nav,footer.page-footer{
-  background-color: #5d4037;
+  background-color: #0091ea;
 }
 
 .home-h2{
@@ -364,6 +365,50 @@ input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]),
   box-shadow: 0 1px 0 0 #0091ea;
 }
 
+button:focus {
+  outline: none;
+  background-color: #0091ea;
+}
+
 .dropdown-content li > a, .dropdown-content li > span {
   color: #0091ea;
+}
+.poke-card {
+  text-align: center;
+}
+
+.poke-card a{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+// large
+@media only screen and (min-width: 993px){
+  .poke-card{
+    height: 350px;
+    img, .material-placeholder{
+      width: 215px;
+    }
+    .material-placeholder{
+      margin: 0 auto;
+    }
+  }
+}
+
+//medium
+@media only screen and (min-width: 601px){
+  @media only screen and (max-width: 992px) {
+    .poke-card {
+      height: 285px;
+
+      img, .material-placeholder{
+        width: 165px;
+      }
+      .material-placeholder{
+        margin: 0 auto;
+      }
+    }
+  }
 }
