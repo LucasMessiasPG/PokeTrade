@@ -37,9 +37,6 @@ export class SearchComponent {
                     this.filter.id_set = temp_convert[1]+'';
                     this.materialize.getValSelect('select[name=set]',+temp_convert[1]);
                     this.materialize.select('select[name=set]');
-                    // this.materialize.getValSelect(null,temp_convert[1])
-                    // this.materialize.select();
-                    // console.log(this.materialize.getValSelect());
                 }
             }
             this.searchCards(this.filter)
@@ -61,7 +58,7 @@ export class SearchComponent {
 
     searchCards(filter) {
 
-        if(!filter.id_set)
+        if(this.materialize.getValSelect() != null)
             filter.id_set = this.materialize.getValSelect();
 
         this.cardService.getCards(filter)

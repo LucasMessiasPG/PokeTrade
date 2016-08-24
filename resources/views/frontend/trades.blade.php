@@ -24,7 +24,12 @@
         </div>
     </div>
     <hr>
-    <div>
+    <div class="row">
+        <div class="col s12">
+            <div class="col s12 m4" *ngFor="let single_card of list_want">
+                <poke-card [card]="single_card.card" [want]="single_card"></poke-card>
+            </div>
+        </div>
         <table>
             <thead>
                 <tr>

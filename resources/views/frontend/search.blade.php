@@ -23,7 +23,7 @@
         </form>
     </fieldset>
     <div class="row margin-top">
-        <div class="col s12 m4 l3 poke-card" [style.height]="height+'px'" *ngFor="let single_card of list_card">
+        <div class="col s12 m4 l4 poke-card" [style.height]="height+'px'" *ngFor="let single_card of list_card">
             <poke-card [card]="single_card"></poke-card>
         </div>
     </div>
