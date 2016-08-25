@@ -49,7 +49,7 @@ export class CardService {
             return true;
     }
 
-    public getCards(filter?) {
+    public getCards(filter?,redirect?) {
         var param = '';
         for (var i in filter) {
             if (filter[i] != '') {
@@ -62,7 +62,8 @@ export class CardService {
 
         var url = this._url + 'api/search';
 
-        this.router.navigateByUrl('/search?' + param);
+        if(redirect !== false)
+            this.router.navigateByUrl('/search?' + param);
 
         return this.http.get(url + ((param) ? '/?' + param : ''))
             .map(res => {
@@ -103,8 +104,8 @@ export class CardService {
             })
     }
 
-    getWants() {
-        var url = this._url+'api/card/wants';
+    getWants(offset) {
+        var url = this._url+'api/card/wants?offset='+offset;
         return this.http.get(url)
             .map(res => { return res.json()})
     }

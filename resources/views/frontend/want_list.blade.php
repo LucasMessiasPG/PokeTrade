@@ -1,5 +1,5 @@
 <div class="container" *ngIf="start">
-    <div class="row">
+    <div id="want" class="row">
         <div class="col s12">
             <a class="margin-top waves-effect waves-light btn right" routerLink="/want-list/new">Want a card ?</a>
         </div>
@@ -20,11 +20,6 @@
             </div>
         </div>
         <div *ngIf="cards">
-            <div class="col s12">
-                <div class="col s12 m4" *ngFor="let single_card of cards">
-                    <poke-card [card]="single_card.card" [want]="single_card"></poke-card>
-                </div>
-            </div>
             <table class="bordered highlight my-card col s12">
                 <thead>
                 <tr>

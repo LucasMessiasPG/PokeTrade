@@ -16,6 +16,7 @@ export class WantListComponet {
     }
 
     ngOnInit() {
+
         this.user.getWantCards()
             .subscribe(cards => {
                 this.start = true;

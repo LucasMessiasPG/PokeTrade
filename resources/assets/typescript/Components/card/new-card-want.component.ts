@@ -58,7 +58,7 @@ export class NewCardWantComponent {
     searchCard(model) {
         model.id_set = this.materialize.getValSelect();
         model.limit = 15;
-        this.cardService.getCards(model)
+        this.cardService.getCards(model,false)
             .subscribe(res => {
                 this.cardsFilter = res
                 setTimeout(()=> {

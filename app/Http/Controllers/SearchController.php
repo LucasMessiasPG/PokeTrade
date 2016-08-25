@@ -135,11 +135,11 @@ class SearchController extends Controller
 	    }
     }
 
-    public function allWant()
+    public function allWant(Request $request)
     {
         try{
 
-            $wants = Want::where('id_status_want','=',1)->orderBy('created_at','dec')->limit(500)->get();
+            $wants = Want::where('id_status_want','=',1)->orderBy('created_at','dec')->limit(30)->skip($request->offset)->get();
 
             $result = [];
             foreach ($wants as $want) {

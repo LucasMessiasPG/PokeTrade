@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, NgZone} from "@angular/core";
 import {MaterializeCuston} from "../Services/materialize.service";
 import {User} from "../Services/user.service";
 import {CardService} from "../Services/card.service";
@@ -9,10 +9,27 @@ import {CardService} from "../Services/card.service";
 export class HomeComponent {
     private data;
     private heightScreen;
+    private height;
+    private width;
 
     constructor(private user:User,
                 private card:CardService,
-                private materialize:MaterializeCuston) {
+                private materialize:MaterializeCuston,
+                private ngZone: NgZone
+    ) {
+
+        window.onresize = (e) =>
+        {
+            window.onresize = (e) =>
+            {
+                ngZone.run(() => {
+                    this.width = window.innerWidth;
+                    this.height = window.innerHeight;
+                    this.heightScreen = (this.height - 64);
+                });
+            };
+        };
+
         var heightScreen = document.body.offsetHeight;
         this.heightScreen = (heightScreen - 64);
     }

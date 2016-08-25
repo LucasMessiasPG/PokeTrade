@@ -12,17 +12,15 @@ declare var $:any;
             <div *ngIf="want">
               <ul class="no-margin">
                 <li *ngIf="want.user"><small>Trainer:</small> <a [routerLink]="['/profile',want.user.id_user]">{{ want.user.login }}</a></li>
-                <li><small>Foil:</small> <i class="fa" [class.fa-check]="want.foil" [class.fa-times]="!want.foil"></i></li>
-                <li><small>Reverse Foil:</small> <i class="fa" [class.fa-check]="want.reverse_foil" [class.fa-times]="!want.reverse_foil"></i></li>
-                <li><hr></li>
+                <li class="hide-on-med-only"><small>Foil:</small> <i class="fa" [class.fa-check]="want.foil" [class.fa-times]="!want.foil"></i> <small>Reverse Foil:</small> <i class="fa" [class.fa-check]="want.reverse_foil" [class.fa-times]="!want.reverse_foil"></i></li>
                 <li><small>PokePoint:</small>  <i class="fa fa-rub"></i> <span class="pokepoint">{{ want.pp | PokePoint }}</span></li>
+                <li><button class="btn btn-small">Send</button></li>
               </ul>
             </div>
         </div>
        <div class="col s6">
             <img title="{{ card.name_card }}" class="materialboxed" src="{{ card.image_url }}" alt="{{ card.name_card }}">
         </div>
-        
      </div>
     `,
 })
