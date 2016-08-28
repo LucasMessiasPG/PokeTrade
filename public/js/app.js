@@ -4004,6 +4004,7 @@ exports.User = User;
 var core_1 = __webpack_require__(0);
 var BuyComponent = (function () {
     function BuyComponent() {
+        console.log('Buy Page');
     }
     BuyComponent = __decorate([
         core_1.Component({
