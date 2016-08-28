@@ -18,7 +18,9 @@ export class MaterializeCuston {
     }
 
     public tooltip() {
-        $('.tooltipped').tooltip();
+        setTimeout(()=>{
+            $('.tooltipped').tooltip();
+        },100)
     }
 
     public parallax() {
@@ -63,7 +65,6 @@ export class MaterializeCuston {
                 return $(tag).val(value+'');
         } else {
             if (value) {
-                console.log(0,value)
                 $('select').val(value);
             }else {
                 return $('select').val();

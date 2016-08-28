@@ -139,7 +139,38 @@ class SearchController extends Controller
     {
         try{
 
-            $wants = Want::where('id_status_want','=',1)->orderBy('created_at','dec')->limit(30)->skip($request->offset)->get();
+            $query = Want::select(['wants.*','cards.name','cards.id_set'])
+                ->join('cards','cards.id_card','=','wants.id_card')
+                ->leftJoin('user_cards','user_cards.id_card','=','wants.id_card')
+                ->where('id_status_want','=',1)
+                ->orderBy('wants.created_at','dec')
+                ->limit(30)
+                ->skip($request->offset);
+
+            foreach ($request->all() as $field => $value) {
+                switch ($field){
+                    case 'id_set':
+                        $query->where('cards.id_set','=',$value);
+                        break;
+                    case 'name':
+                        $query->where('cards.name','ilike','%'.$value.'%');
+                        break;
+                    case 'number':
+                        $query->where('cards.number','=',$value);
+                        break;
+                    case 'have':
+                        if($value == '1') {
+                            if (Auth::check() == false)
+                                break;
+                            $id_user = Auth::user()->id_user;
+                            $query->where('user_cards.id_user', '=', $id_user);
+                        }
+                        break;
+                }
+
+            }
+
+            $wants = $query->get();
 
             $result = [];
             foreach ($wants as $want) {

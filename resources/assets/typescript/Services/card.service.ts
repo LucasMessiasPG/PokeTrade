@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 @Injectable()
 export class CardService {
     private sets;
-    private _url = 'http://localhost:8000/';
+    private _url = 'http://54.165.232.218/';
     // private _url = 'http://192.168.1.11:8000/';
 
     constructor(private http:Http,
@@ -62,7 +62,7 @@ export class CardService {
 
         var url = this._url + 'api/search';
 
-        if(redirect !== false)
+        if(redirect !== false && typeof redirect !== 'undefined')
             this.router.navigateByUrl('/search?' + param);
 
         return this.http.get(url + ((param) ? '/?' + param : ''))
@@ -104,8 +104,19 @@ export class CardService {
             })
     }
 
-    getWants(offset) {
-        var url = this._url+'api/card/wants?offset='+offset;
+    getWants(offset,filter?) {
+        var param = '?offset='+offset;
+
+        for (var i in filter) {
+            if (filter[i] != '') {
+                if (param == '')
+                    param = i + '=' + filter[i];
+                else
+                    param += '&' + i + '=' + filter[i];
+            }
+        }
+
+        var url = this._url+'api/card/wants'+param;
         return this.http.get(url)
             .map(res => { return res.json()})
     }

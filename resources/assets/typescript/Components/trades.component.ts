@@ -13,12 +13,11 @@ export class TradesComponent {
 
     private list_want
     private filtro
-    private p;
     public filter$ = new EventEmitter()
-    private width;
-    private height;
     private count = 0;
     private searching = false;
+    private sets;
+    private have = false;
 
     constructor(private user: User,
                 private card: CardService,
@@ -41,6 +40,14 @@ export class TradesComponent {
                 }, 100)
             })
 
+        this.card.getSets()
+            .subscribe(response => {
+                this.sets = response
+                setTimeout(()=>{
+                    this.materialize.select('select[name=set]')
+                },100)
+            });
+
         window.addEventListener("scroll",(event) => {
             var top = window.scrollY;
             var doc = document.documentElement;
@@ -50,7 +57,7 @@ export class TradesComponent {
                     if(this.searching == false) {
                         this.count++;
                         this.searching = true;
-                        this.card.getWants((this.count * 30))
+                        this.card.getWants((this.count * 30),this.filtro)
                             .subscribe(res => {
 
                                 if (!res.data)
@@ -71,12 +78,36 @@ export class TradesComponent {
         }, false);
     }
 
-    clearFilter() {
-        this.filtro = {
-            name: '',
-            have: '',
-            number: ''
-        };
+    filterCard(){
+        this.card.getWants(0,this.filtro)
+            .subscribe(res => {
+                this.count = 1;
+                this.list_want = [];
+                if(res.data)
+                    this.list_want = res.data
+
+                setTimeout(()=> {
+                    this.materialize.tooltip();
+                    this.materialize.box();
+                }, 100)
+            })
+    }
+
+    onlyHave()
+    {
+        this.filtro.have = (!this.have)?'1':'0';
+        this.card.getWants(0,this.filtro)
+            .subscribe(res => {
+                this.count = 1;
+                this.list_want = [];
+                if(res.data)
+                    this.list_want = res.data
+
+                setTimeout(()=> {
+                    this.materialize.tooltip();
+                    this.materialize.box();
+                }, 100)
+            })
     }
 
     sendCard(want) {

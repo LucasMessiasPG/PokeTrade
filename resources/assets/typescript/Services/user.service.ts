@@ -15,7 +15,7 @@ export class User {
     public email;
     public cards;
     private want;
-    private _url = 'http://localhost:8000/';
+    private _url = 'http://54.165.232.218/';
     // private _url = 'http://192.168.1.11:8000/';
 
     constructor(

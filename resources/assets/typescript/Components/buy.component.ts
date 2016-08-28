@@ -3,4 +3,6 @@ import {Component} from "@angular/core";
     selector:'poke-buy',
     templateUrl:'/templates/buy'
 })
-export class BuyComponent{}
+export class BuyComponent{
+
+}
