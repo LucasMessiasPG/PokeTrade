@@ -1,10 +1,6 @@
 /node_modules
 /vendor
 /resources/vendor
-/public/css
-/public/js
-/public/fonts
-/public/img
 /public/uploads
 /public/upload-images
 Homestead.yaml
