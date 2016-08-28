@@ -5,4 +5,7 @@ import {Component} from "@angular/core";
 })
 export class BuyComponent{
 
+    constructor(){
+        console.log('Buy')
+    }
 }
