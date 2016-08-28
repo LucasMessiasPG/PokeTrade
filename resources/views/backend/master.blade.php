@@ -16,6 +16,9 @@
         localStorage.removeItem('user');
     </script>
 @endif
+<script>
+    link = '<% env("LINK") %>'
+</script>
 </body>
 
 </html>

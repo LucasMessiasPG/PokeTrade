@@ -3,7 +3,7 @@ import {Http} from "@angular/http";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs/Rx";
 import {MaterializeCuston} from "./materialize.service";
-
+declare var link:any;
 @Injectable()
 export class User {
     private tutorial_show = false
@@ -15,8 +15,7 @@ export class User {
     public email;
     public cards;
     private want;
-    private _url = 'http://54.165.232.218/';
-    // private _url = 'http://192.168.1.11:8000/';
+    private _url = link;
 
     constructor(
         private http: Http,

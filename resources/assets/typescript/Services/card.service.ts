@@ -3,11 +3,12 @@ import {Http} from "@angular/http";
 import {Observable} from "rxjs/Rx";
 import {MaterializeCuston} from "./materialize.service";
 import {Router} from "@angular/router";
+declare var link:any;
+
 @Injectable()
 export class CardService {
     private sets;
-    private _url = 'http://54.165.232.218/';
-    // private _url = 'http://192.168.1.11:8000/';
+    private _url = link;
 
     constructor(private http:Http,
                 private router: Router,
