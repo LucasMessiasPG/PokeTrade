@@ -12,6 +12,7 @@ import {DetailsComponent} from "./Components/card/details.component";
 import {WantListComponet} from "./Components/want-list.component";
 import {NewCardWantComponent} from "./Components/card/new-card-want.component";
 import {BuyComponent} from "./Components/buy.component";
+import {EditUserComponent} from "./Components/user/edit.component";
 
 const routes: Routes = [
     {path: '',redirectTo: '/home',pathMatch: 'full'},
@@ -28,6 +29,7 @@ const routes: Routes = [
     {path: 'my-cards',component: MyCardsComponents},
     {path: 'my-cards/new',component: NewCardComponent},
     {path: 'profile/:id',component: ProfileComponent},
+    {path: 'profile/:id/edit',component: EditUserComponent},
     {path: 'details/:id',component: DetailsComponent},
 ];
 

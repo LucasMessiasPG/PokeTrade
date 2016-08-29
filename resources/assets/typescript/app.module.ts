@@ -34,6 +34,7 @@ import {PokePointPipe} from "./Pipes/pokepoint.pipe";
 import {FilterPipe} from "./Pipes/filter.pipe";
 import {PaginatePipe, PaginationService} from "ng2-pagination/index";
 import {BuyComponent} from "./Components/buy.component";
+import {EditUserComponent} from "./Components/user/edit.component";
 
 @NgModule({
     imports: [
@@ -68,7 +69,8 @@ import {BuyComponent} from "./Components/buy.component";
         NewCardWantComponent,
         PokePointPipe,
         FilterPipe,
-        PaginatePipe
+        PaginatePipe,
+        EditUserComponent
     ],
     providers: [
         {

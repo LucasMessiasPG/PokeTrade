@@ -8,7 +8,7 @@
             <p>PokePoint {{ user_profile.pp | PokePoint }}</p>
         </div>
         <div class="col s4 m2 right-align margin-top">
-            <button *ngIf="(user_profile && user_profile.id_user == user.id_user)" class="btn waves-light waves-effect">Edit Profile</button>
+            <button [routerLink]="['/profile',user.id_user,'edit']" *ngIf="(user_profile && user_profile.id_user == user.id_user)" class="btn waves-light waves-effect">Edit Profile</button>
         </div>
         <div [hidden]="!user_profile">
             <div class="col s12">

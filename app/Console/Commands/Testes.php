@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Http\Controllers\UserController;
+use App\Jobs\SendMail;
 use App\Models\User;
 use Illuminate\Console\Command;
 
@@ -39,7 +40,7 @@ class Testes extends Command
      */
     public function handle()
     {
-    	\Auth::login(User::find(1));
-	    dd(\Auth::user()->cards());
+        $job = new SendMail(['nome'=>'teste']);
+        dispatch($job);
     }
 }

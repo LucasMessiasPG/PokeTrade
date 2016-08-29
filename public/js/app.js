@@ -182,7 +182,7 @@ exports.NgModelGroup = NgModelGroup;
  */
 "use strict";
 var core_1 = __webpack_require__(0);
-var collection_1 = __webpack_require__(33);
+var collection_1 = __webpack_require__(34);
 var exceptions_1 = __webpack_require__(64);
 var lang_1 = __webpack_require__(21);
 var control_value_accessor_1 = __webpack_require__(38);
@@ -311,7 +311,7 @@ exports.RadioControlValueAccessor = RadioControlValueAccessor;
  */
 "use strict";
 var core_1 = __webpack_require__(0);
-var collection_1 = __webpack_require__(33);
+var collection_1 = __webpack_require__(34);
 var lang_1 = __webpack_require__(21);
 var control_value_accessor_1 = __webpack_require__(38);
 exports.SELECT_VALUE_ACCESSOR = {
@@ -458,7 +458,7 @@ exports.NgSelectOption = NgSelectOption;
  */
 "use strict";
 var core_1 = __webpack_require__(0);
-var collection_1 = __webpack_require__(33);
+var collection_1 = __webpack_require__(34);
 var lang_1 = __webpack_require__(21);
 var control_value_accessor_1 = __webpack_require__(38);
 exports.SELECT_MULTIPLE_VALUE_ACCESSOR = {
@@ -653,7 +653,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var PromiseObservable_1 = __webpack_require__(147);
 var shared_1 = __webpack_require__(49);
 var async_1 = __webpack_require__(76);
-var collection_1 = __webpack_require__(33);
+var collection_1 = __webpack_require__(34);
 var exceptions_1 = __webpack_require__(64);
 var lang_1 = __webpack_require__(21);
 /**
@@ -1808,7 +1808,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var core_1 = __webpack_require__(0);
 var async_1 = __webpack_require__(76);
-var collection_1 = __webpack_require__(33);
+var collection_1 = __webpack_require__(34);
 var validators_1 = __webpack_require__(39);
 var control_value_accessor_1 = __webpack_require__(38);
 var ng_control_1 = __webpack_require__(63);
@@ -2603,9 +2603,9 @@ exports.escapeRegExp = escapeRegExp;
 var core_1 = __webpack_require__(0);
 var card_service_1 = __webpack_require__(67);
 var materialize_service_1 = __webpack_require__(24);
-var user_service_1 = __webpack_require__(34);
-var index_1 = __webpack_require__(358);
-var paginate_1 = __webpack_require__(508);
+var user_service_1 = __webpack_require__(31);
+var index_1 = __webpack_require__(359);
+var paginate_1 = __webpack_require__(509);
 var TradesComponent = (function () {
     function TradesComponent(user, card, materialize, pagination, ngZone) {
         var _this = this;
@@ -2923,6 +2923,235 @@ exports.MaterializeCuston = MaterializeCuston;
 
 /***/ },
 
+/***/ 31:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
+var core_1 = __webpack_require__(0);
+var http_1 = __webpack_require__(99);
+var router_1 = __webpack_require__(28);
+var Rx_1 = __webpack_require__(156);
+var materialize_service_1 = __webpack_require__(24);
+var User = (function () {
+    function User(http, materialize, router) {
+        this.http = http;
+        this.materialize = materialize;
+        this.router = router;
+        this.tutorial_show = false;
+        this._url = link;
+        this.login$ = new core_1.EventEmitter();
+        this.cards$ = new core_1.EventEmitter();
+    }
+    User.prototype.checkLogin = function () {
+        if (this.checkStorage()) {
+            return true;
+        }
+        return false;
+    };
+    User.prototype.getWantCards = function (force) {
+        var _this = this;
+        if (!force) {
+            if (this.want) {
+                return new Rx_1.Observable(function (observer) {
+                    observer.next(_this.want);
+                });
+            }
+        }
+        var url = this._url + 'api/want-list';
+        return this.http.get(url)
+            .map(function (res) {
+            var response = res.json();
+            if (User.checkResponse(response, url)) {
+                _this.want = response.data;
+                return response.data;
+            }
+            if (response.msg)
+                _this.materialize.toast(response.msg);
+            throw 'Erro';
+        });
+    };
+    User.prototype.getMyCards = function (force) {
+        var _this = this;
+        if (!force) {
+            if (this.cards) {
+                return new Rx_1.Observable(function (observer) {
+                    observer.next(_this.cards);
+                });
+            }
+        }
+        var url = this._url + 'api/my-cards';
+        return this.http.get(url)
+            .map(function (res) {
+            var response = res.json();
+            if (User.checkResponse(response, url)) {
+                _this.cards = response.data;
+                return response.data;
+            }
+            if (response.msg)
+                _this.materialize.toast(response.msg);
+            throw 'Erro';
+        });
+    };
+    User.prototype.getMessage = function (filter) {
+        var _this = this;
+        var param = '';
+        for (var i in filter) {
+            if (filter[i] != '') {
+                if (param == '')
+                    param = i + '=' + filter[i];
+                else
+                    param += '&' + i + '=' + filter[i];
+            }
+        }
+        var url = this._url + 'api/my-messages' + ((param != '') ? '?' + param : '');
+        return this.http.get(url)
+            .map(function (res) {
+            var response = res.json();
+            if (User.checkResponse(response, url)) {
+                return response.data;
+            }
+            if (response.msg) {
+                _this.materialize.toast(response.msg);
+                throw 'Erro: ' + response.msg;
+            }
+            throw 'Erro';
+        });
+    };
+    User.checkResponse = function (response, url) {
+        if (!response.status || response.status && response.status == 'error')
+            throw 'Error response ' + url;
+        if (response.status == 'success')
+            return true;
+    };
+    User.prototype.makeLogin = function (user) {
+        var _this = this;
+        if (this.checkStorage())
+            return this.emitLogin();
+        this.http.post(this._url + 'login-user', user)
+            .subscribe(function (res) {
+            var response = res.json();
+            if (response.user) {
+                _this.id_user = response.user.id_user;
+                _this.email = response.user.email;
+                _this.login = response.user.login;
+                _this.pp = response.user.pp;
+                console.log(response.user);
+                localStorage.setItem('user', JSON.stringify(response));
+                _this.router.navigateByUrl('/home');
+                location.reload();
+            }
+            else {
+                if (response.warning)
+                    _this.materialize.toast(response.warning);
+            }
+        });
+    };
+    User.prototype.emitLogin = function () {
+        return this.login$.emit({ email: this.email, login: this.login, cache: 2 });
+    };
+    User.prototype.checkStorage = function () {
+        if (localStorage.getItem('user')) {
+            var local_user = JSON.parse(localStorage.getItem('user'));
+            if (local_user.tutorial && this.tutorial_show == false) {
+                this.materialize.modal('#tutorial');
+                this.tutorial_show = true;
+            }
+            if (local_user.user.login && local_user.user.email) {
+                this.id_user = local_user.user.id_user;
+                this.email = local_user.user.email;
+                this.login = local_user.user.login;
+                this.pp = local_user.user.pp;
+                return true;
+            }
+        }
+        return false;
+    };
+    User.prototype.register = function (user) {
+        var _this = this;
+        return this.http.post(this._url + 'register-user', user)
+            .map(function (res) {
+            var response = res.json();
+            if (response.user) {
+                _this.id_user = response.user.id_user;
+                _this.email = response.user.email;
+                _this.login = response.user.login;
+                _this.pp = response.user.pp;
+                localStorage.setItem('user', JSON.stringify(response));
+                return true;
+            }
+            return false;
+        });
+    };
+    User.prototype.tutorial = function (b) {
+        if (b)
+            this.http.get(this._url + 'user/tutorial/1').subscribe(function (res) { });
+        else
+            this.http.get(this._url + 'user/tutorial/0').subscribe(function (res) { });
+        if (localStorage.getItem('user')) {
+            var temp_user = JSON.parse(localStorage.getItem('user'));
+            if (temp_user.tutorial)
+                temp_user.tutorial = !b;
+            localStorage.setItem('user', JSON.stringify(temp_user));
+        }
+    };
+    User.prototype.getProfile = function (id_user) {
+        var _this = this;
+        return this.http.get(this._url + 'user/profile/' + id_user)
+            .map(function (res) {
+            var response = res.json();
+            if (response.user) {
+                return response.user;
+            }
+            else {
+                if (response.warning)
+                    _this.materialize.toast(response.warning);
+            }
+        });
+    };
+    User.prototype.addWant = function (card) {
+        return this.http.post(this._url + 'api/user/add-want', card)
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    User.prototype.addCard = function (card) {
+        return this.http.post(this._url + 'api/user/add-card', card)
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    User.prototype.removeWant = function (card) {
+        return this.http.get(this._url + 'api/user/' + card.id_want + '/remove-want')
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    User.prototype.editWant = function (param) {
+        return this.http.post(this._url + 'api/user/' + param.id_want + '/edit-want', param)
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    User.prototype.send = function (want) {
+        return this.http.post(this._url + 'api/user/send-want', want)
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    User = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _a) || Object, (typeof (_b = typeof materialize_service_1.MaterializeCuston !== 'undefined' && materialize_service_1.MaterializeCuston) === 'function' && _b) || Object, (typeof (_c = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _c) || Object])
+    ], User);
+    return User;
+    var _a, _b, _c;
+}());
+exports.User = User;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(7)))
+
+/***/ },
+
 /***/ 312:
 /***/ function(module, exports, __webpack_require__) {
 
@@ -3169,7 +3398,7 @@ exports.BaseWrappedException = BaseWrappedException;
  */
 "use strict";
 var base_wrapped_exception_1 = __webpack_require__(315);
-var collection_1 = __webpack_require__(33);
+var collection_1 = __webpack_require__(34);
 var lang_1 = __webpack_require__(21);
 var _ArrayLogger = (function () {
     function _ArrayLogger() {
@@ -3316,7 +3545,7 @@ exports.ExceptionHandler = ExceptionHandler;
  */
 "use strict";
 var core_1 = __webpack_require__(0);
-var collection_1 = __webpack_require__(33);
+var collection_1 = __webpack_require__(34);
 var lang_1 = __webpack_require__(21);
 var model_1 = __webpack_require__(131);
 var FormBuilder = (function () {
@@ -3391,7 +3620,7 @@ exports.FormBuilder = FormBuilder;
 
 /***/ },
 
-/***/ 33:
+/***/ 34:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3767,235 +3996,6 @@ exports.SetWrapper = SetWrapper;
 
 /***/ },
 
-/***/ 34:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
-var core_1 = __webpack_require__(0);
-var http_1 = __webpack_require__(99);
-var router_1 = __webpack_require__(28);
-var Rx_1 = __webpack_require__(156);
-var materialize_service_1 = __webpack_require__(24);
-var User = (function () {
-    function User(http, materialize, router) {
-        this.http = http;
-        this.materialize = materialize;
-        this.router = router;
-        this.tutorial_show = false;
-        this._url = 'http://54.165.232.218/';
-        this.login$ = new core_1.EventEmitter();
-        this.cards$ = new core_1.EventEmitter();
-    }
-    User.prototype.checkLogin = function () {
-        if (this.checkStorage()) {
-            return true;
-        }
-        return false;
-    };
-    User.prototype.getWantCards = function (force) {
-        var _this = this;
-        if (!force) {
-            if (this.want) {
-                return new Rx_1.Observable(function (observer) {
-                    observer.next(_this.want);
-                });
-            }
-        }
-        var url = this._url + 'api/want-list';
-        return this.http.get(url)
-            .map(function (res) {
-            var response = res.json();
-            if (User.checkResponse(response, url)) {
-                _this.want = response.data;
-                return response.data;
-            }
-            if (response.msg)
-                _this.materialize.toast(response.msg);
-            throw 'Erro';
-        });
-    };
-    User.prototype.getMyCards = function (force) {
-        var _this = this;
-        if (!force) {
-            if (this.cards) {
-                return new Rx_1.Observable(function (observer) {
-                    observer.next(_this.cards);
-                });
-            }
-        }
-        var url = this._url + 'api/my-cards';
-        return this.http.get(url)
-            .map(function (res) {
-            var response = res.json();
-            if (User.checkResponse(response, url)) {
-                _this.cards = response.data;
-                return response.data;
-            }
-            if (response.msg)
-                _this.materialize.toast(response.msg);
-            throw 'Erro';
-        });
-    };
-    User.prototype.getMessage = function (filter) {
-        var _this = this;
-        var param = '';
-        for (var i in filter) {
-            if (filter[i] != '') {
-                if (param == '')
-                    param = i + '=' + filter[i];
-                else
-                    param += '&' + i + '=' + filter[i];
-            }
-        }
-        var url = this._url + 'api/my-messages' + ((param != '') ? '?' + param : '');
-        return this.http.get(url)
-            .map(function (res) {
-            var response = res.json();
-            if (User.checkResponse(response, url)) {
-                return response.data;
-            }
-            if (response.msg) {
-                _this.materialize.toast(response.msg);
-                throw 'Erro: ' + response.msg;
-            }
-            throw 'Erro';
-        });
-    };
-    User.checkResponse = function (response, url) {
-        if (!response.status || response.status && response.status == 'error')
-            throw 'Error response ' + url;
-        if (response.status == 'success')
-            return true;
-    };
-    User.prototype.makeLogin = function (user) {
-        var _this = this;
-        if (this.checkStorage())
-            return this.emitLogin();
-        this.http.post(this._url + 'login-user', user)
-            .subscribe(function (res) {
-            var response = res.json();
-            if (response.user) {
-                _this.id_user = response.user.id_user;
-                _this.email = response.user.email;
-                _this.login = response.user.login;
-                _this.pp = response.user.pp;
-                console.log(response.user);
-                localStorage.setItem('user', JSON.stringify(response));
-                _this.router.navigateByUrl('/home');
-                location.reload();
-            }
-            else {
-                if (response.warning)
-                    _this.materialize.toast(response.warning);
-            }
-        });
-    };
-    User.prototype.emitLogin = function () {
-        return this.login$.emit({ email: this.email, login: this.login, cache: 2 });
-    };
-    User.prototype.checkStorage = function () {
-        if (localStorage.getItem('user')) {
-            var local_user = JSON.parse(localStorage.getItem('user'));
-            if (local_user.tutorial && this.tutorial_show == false) {
-                this.materialize.modal('#tutorial');
-                this.tutorial_show = true;
-            }
-            if (local_user.user.login && local_user.user.email) {
-                this.id_user = local_user.user.id_user;
-                this.email = local_user.user.email;
-                this.login = local_user.user.login;
-                this.pp = local_user.user.pp;
-                return true;
-            }
-        }
-        return false;
-    };
-    User.prototype.register = function (user) {
-        var _this = this;
-        return this.http.post(this._url + 'register-user', user)
-            .map(function (res) {
-            var response = res.json();
-            if (response.user) {
-                _this.id_user = response.user.id_user;
-                _this.email = response.user.email;
-                _this.login = response.user.login;
-                _this.pp = response.user.pp;
-                localStorage.setItem('user', JSON.stringify(response));
-                return true;
-            }
-            return false;
-        });
-    };
-    User.prototype.tutorial = function (b) {
-        if (b)
-            this.http.get(this._url + 'user/tutorial/1').subscribe(function (res) { });
-        else
-            this.http.get(this._url + 'user/tutorial/0').subscribe(function (res) { });
-        if (localStorage.getItem('user')) {
-            var temp_user = JSON.parse(localStorage.getItem('user'));
-            if (temp_user.tutorial)
-                temp_user.tutorial = !b;
-            localStorage.setItem('user', JSON.stringify(temp_user));
-        }
-    };
-    User.prototype.getProfile = function (id_user) {
-        var _this = this;
-        return this.http.get(this._url + 'user/profile/' + id_user)
-            .map(function (res) {
-            var response = res.json();
-            if (response.user) {
-                return response.user;
-            }
-            else {
-                if (response.warning)
-                    _this.materialize.toast(response.warning);
-            }
-        });
-    };
-    User.prototype.addWant = function (card) {
-        return this.http.post(this._url + 'api/user/add-want', card)
-            .map(function (res) {
-            return res.json();
-        });
-    };
-    User.prototype.addCard = function (card) {
-        return this.http.post(this._url + 'api/user/add-card', card)
-            .map(function (res) {
-            return res.json();
-        });
-    };
-    User.prototype.removeWant = function (card) {
-        return this.http.get(this._url + 'api/user/' + card.id_want + '/remove-want')
-            .map(function (res) {
-            return res.json();
-        });
-    };
-    User.prototype.editWant = function (param) {
-        return this.http.post(this._url + 'api/user/' + param.id_want + '/edit-want', param)
-            .map(function (res) {
-            return res.json();
-        });
-    };
-    User.prototype.send = function (want) {
-        return this.http.post(this._url + 'api/user/send-want', want)
-            .map(function (res) {
-            return res.json();
-        });
-    };
-    User = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _a) || Object, (typeof (_b = typeof materialize_service_1.MaterializeCuston !== 'undefined' && materialize_service_1.MaterializeCuston) === 'function' && _b) || Object, (typeof (_c = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _c) || Object])
-    ], User);
-    return User;
-    var _a, _b, _c;
-}());
-exports.User = User;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(7)))
-
-/***/ },
-
 /***/ 344:
 /***/ function(module, exports, __webpack_require__) {
 
@@ -4132,7 +4132,7 @@ exports.DetailsComponent = DetailsComponent;
 var core_1 = __webpack_require__(0);
 var materialize_service_1 = __webpack_require__(24);
 var card_service_1 = __webpack_require__(67);
-var user_service_1 = __webpack_require__(34);
+var user_service_1 = __webpack_require__(31);
 var router_1 = __webpack_require__(28);
 var NewCardWantComponent = (function () {
     function NewCardWantComponent(materialize, user, router, cardService) {
@@ -4256,7 +4256,7 @@ exports.NewCardWantComponent = NewCardWantComponent;
 var core_1 = __webpack_require__(0);
 var materialize_service_1 = __webpack_require__(24);
 var card_service_1 = __webpack_require__(67);
-var user_service_1 = __webpack_require__(34);
+var user_service_1 = __webpack_require__(31);
 var router_1 = __webpack_require__(28);
 var NewCardComponent = (function () {
     function NewCardComponent(materialize, user, router, cardService) {
@@ -4370,7 +4370,7 @@ exports.NewCardComponent = NewCardComponent;
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
 var materialize_service_1 = __webpack_require__(24);
-var user_service_1 = __webpack_require__(34);
+var user_service_1 = __webpack_require__(31);
 var card_service_1 = __webpack_require__(67);
 var HomeComponent = (function () {
     function HomeComponent(user, card, materialize, ngZone) {
@@ -4458,7 +4458,7 @@ exports.ListComponent = ListComponent;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
-var user_service_1 = __webpack_require__(34);
+var user_service_1 = __webpack_require__(31);
 var router_1 = __webpack_require__(28);
 var materialize_service_1 = __webpack_require__(24);
 var LoginComponent = (function () {
@@ -4509,7 +4509,7 @@ exports.LoginComponent = LoginComponent;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
-var user_service_1 = __webpack_require__(34);
+var user_service_1 = __webpack_require__(31);
 var router_1 = __webpack_require__(28);
 var MessageComponent = (function () {
     function MessageComponent(user, router) {
@@ -4571,7 +4571,7 @@ exports.MessageComponent = MessageComponent;
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(28);
-var user_service_1 = __webpack_require__(34);
+var user_service_1 = __webpack_require__(31);
 var materialize_service_1 = __webpack_require__(24);
 var MyCardsComponents = (function () {
     function MyCardsComponents(router, user, materialize, el) {
@@ -4647,7 +4647,7 @@ exports.MyCardsComponents = MyCardsComponents;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
-var user_service_1 = __webpack_require__(34);
+var user_service_1 = __webpack_require__(31);
 var materialize_service_1 = __webpack_require__(24);
 var NavComponent = (function () {
     function NavComponent(user, materialize) {
@@ -4692,7 +4692,7 @@ exports.NavComponent = NavComponent;
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(28);
-var user_service_1 = __webpack_require__(34);
+var user_service_1 = __webpack_require__(31);
 var materialize_service_1 = __webpack_require__(24);
 var ProfileComponent = (function () {
     function ProfileComponent(route, user, materialize) {
@@ -4808,7 +4808,39 @@ exports.SearchComponent = SearchComponent;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
-var user_service_1 = __webpack_require__(34);
+var user_service_1 = __webpack_require__(31);
+var EditUserComponent = (function () {
+    function EditUserComponent(user) {
+        var _this = this;
+        this.user = user;
+        this.user.getProfile(this.user.id_user)
+            .subscribe(function (res) {
+            _this.user_profile = res;
+        });
+    }
+    EditUserComponent = __decorate([
+        core_1.Component({
+            selector: 'poke-edit-user',
+            templateUrl: '/templates/user.edit'
+        }), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof user_service_1.User !== 'undefined' && user_service_1.User) === 'function' && _a) || Object])
+    ], EditUserComponent);
+    return EditUserComponent;
+    var _a;
+}());
+exports.EditUserComponent = EditUserComponent;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(7)))
+
+/***/ },
+
+/***/ 358:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
+var core_1 = __webpack_require__(0);
+var user_service_1 = __webpack_require__(31);
 var materialize_service_1 = __webpack_require__(24);
 var WantListComponet = (function () {
     function WantListComponet(user, materialize) {
@@ -4886,13 +4918,13 @@ exports.WantListComponet = WantListComponet;
 
 /***/ },
 
-/***/ 358:
+/***/ 359:
 /***/ function(module, exports, __webpack_require__) {
 
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__(513));
+__export(__webpack_require__(514));
 
 
 /***/ },
@@ -4921,17 +4953,17 @@ exports.NG_VALUE_ACCESSOR = new core_1.OpaqueToken('NgValueAccessor');
 
 /***/ },
 
-/***/ 386:
+/***/ 387:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var platform_browser_1 = __webpack_require__(58);
-var forms_1 = __webpack_require__(453);
+var forms_1 = __webpack_require__(454);
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(28);
-var app_routing_1 = __webpack_require__(512);
-var app_component_1 = __webpack_require__(511);
+var app_routing_1 = __webpack_require__(513);
+var app_component_1 = __webpack_require__(512);
 var home_component_1 = __webpack_require__(349);
 var nav_component_1 = __webpack_require__(354);
 var search_component_1 = __webpack_require__(356);
@@ -4940,26 +4972,27 @@ var trades_component_1 = __webpack_require__(222);
 var http_1 = __webpack_require__(99);
 var card_component_1 = __webpack_require__(345);
 var login_component_1 = __webpack_require__(351);
-var user_service_1 = __webpack_require__(34);
+var user_service_1 = __webpack_require__(31);
 var my_cards_component_1 = __webpack_require__(353);
 var profile_component_1 = __webpack_require__(355);
 var materialize_service_1 = __webpack_require__(24);
 var new_card_component_1 = __webpack_require__(348);
 var card_service_1 = __webpack_require__(67);
-var attack_component_1 = __webpack_require__(502);
+var attack_component_1 = __webpack_require__(503);
 var message_component_1 = __webpack_require__(352);
 var details_component_1 = __webpack_require__(346);
-var ability_component_1 = __webpack_require__(501);
-var retreat_cost_component_1 = __webpack_require__(504);
-var weaknesses_component_1 = __webpack_require__(506);
-var resistence_component_1 = __webpack_require__(503);
-var want_list_component_1 = __webpack_require__(357);
-var text_component_1 = __webpack_require__(505);
+var ability_component_1 = __webpack_require__(502);
+var retreat_cost_component_1 = __webpack_require__(505);
+var weaknesses_component_1 = __webpack_require__(507);
+var resistence_component_1 = __webpack_require__(504);
+var want_list_component_1 = __webpack_require__(358);
+var text_component_1 = __webpack_require__(506);
 var new_card_want_component_1 = __webpack_require__(347);
-var pokepoint_pipe_1 = __webpack_require__(510);
-var filter_pipe_1 = __webpack_require__(509);
-var index_1 = __webpack_require__(358);
+var pokepoint_pipe_1 = __webpack_require__(511);
+var filter_pipe_1 = __webpack_require__(510);
+var index_1 = __webpack_require__(359);
 var buy_component_1 = __webpack_require__(344);
+var edit_component_1 = __webpack_require__(357);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -4997,7 +5030,8 @@ var AppModule = (function () {
                 new_card_want_component_1.NewCardWantComponent,
                 pokepoint_pipe_1.PokePointPipe,
                 filter_pipe_1.FilterPipe,
-                index_1.PaginatePipe
+                index_1.PaginatePipe,
+                edit_component_1.EditUserComponent
             ],
             providers: [
                 {
@@ -5038,7 +5072,7 @@ exports.AppModule = AppModule;
 "use strict";
 var core_1 = __webpack_require__(0);
 var toPromise_1 = __webpack_require__(231);
-var collection_1 = __webpack_require__(33);
+var collection_1 = __webpack_require__(34);
 var lang_1 = __webpack_require__(21);
 /**
  * Providers for validators to be used for {@link FormControl}s in a form.
@@ -5177,7 +5211,7 @@ function _mergeErrors(arrayOfErrors) {
 
 /***/ },
 
-/***/ 453:
+/***/ 454:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5192,12 +5226,12 @@ function _mergeErrors(arrayOfErrors) {
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__(456));
+__export(__webpack_require__(457));
 //# sourceMappingURL=index.js.map
 
 /***/ },
 
-/***/ 454:
+/***/ 455:
 /***/ function(module, exports) {
 
 "use strict";
@@ -5231,7 +5265,7 @@ exports.normalizeAsyncValidator = normalizeAsyncValidator;
 
 /***/ },
 
-/***/ 455:
+/***/ 456:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5305,7 +5339,7 @@ exports.provideForms = provideForms;
 
 /***/ },
 
-/***/ 456:
+/***/ 457:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5389,7 +5423,7 @@ var validators_2 = __webpack_require__(39);
 exports.NG_ASYNC_VALIDATORS = validators_2.NG_ASYNC_VALIDATORS;
 exports.NG_VALIDATORS = validators_2.NG_VALIDATORS;
 exports.Validators = validators_2.Validators;
-__export(__webpack_require__(455));
+__export(__webpack_require__(456));
 //# sourceMappingURL=forms.js.map
 
 /***/ },
@@ -5459,13 +5493,13 @@ exports.ControlContainer = ControlContainer;
  * found in the LICENSE file at https://angular.io/license
  */
 "use strict";
-var collection_1 = __webpack_require__(33);
+var collection_1 = __webpack_require__(34);
 var exceptions_1 = __webpack_require__(64);
 var lang_1 = __webpack_require__(21);
 var validators_1 = __webpack_require__(39);
 var checkbox_value_accessor_1 = __webpack_require__(125);
 var default_value_accessor_1 = __webpack_require__(126);
-var normalize_validator_1 = __webpack_require__(454);
+var normalize_validator_1 = __webpack_require__(455);
 var number_value_accessor_1 = __webpack_require__(205);
 var radio_control_value_accessor_1 = __webpack_require__(128);
 var select_control_value_accessor_1 = __webpack_require__(129);
@@ -5578,7 +5612,7 @@ exports.selectValueAccessor = selectValueAccessor;
 
 /***/ },
 
-/***/ 501:
+/***/ 502:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5603,7 +5637,7 @@ exports.AbilityComponent = AbilityComponent;
 
 /***/ },
 
-/***/ 502:
+/***/ 503:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5628,7 +5662,7 @@ exports.AttackComponent = AttackComponent;
 
 /***/ },
 
-/***/ 503:
+/***/ 504:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5653,7 +5687,7 @@ exports.ResistancesComponent = ResistancesComponent;
 
 /***/ },
 
-/***/ 504:
+/***/ 505:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5678,7 +5712,7 @@ exports.RetreatCostComponent = RetreatCostComponent;
 
 /***/ },
 
-/***/ 505:
+/***/ 506:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5703,7 +5737,7 @@ exports.TextComponent = TextComponent;
 
 /***/ },
 
-/***/ 506:
+/***/ 507:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5728,7 +5762,7 @@ exports.WeaknessesComponent = WeaknessesComponent;
 
 /***/ },
 
-/***/ 507:
+/***/ 508:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5752,7 +5786,7 @@ exports.FooterComponent = FooterComponent;
 
 /***/ },
 
-/***/ 508:
+/***/ 509:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5780,7 +5814,7 @@ exports.PaginateComponent = PaginateComponent;
 
 /***/ },
 
-/***/ 509:
+/***/ 510:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5821,7 +5855,7 @@ exports.FilterPipe = FilterPipe;
 
 /***/ },
 
-/***/ 510:
+/***/ 511:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5857,14 +5891,14 @@ exports.PokePointPipe = PokePointPipe;
 
 /***/ },
 
-/***/ 511:
+/***/ 512:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
 var nav_component_1 = __webpack_require__(354);
-var footer_component_1 = __webpack_require__(507);
+var footer_component_1 = __webpack_require__(508);
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -5884,7 +5918,7 @@ exports.AppComponent = AppComponent;
 
 /***/ },
 
-/***/ 512:
+/***/ 513:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5900,9 +5934,10 @@ var profile_component_1 = __webpack_require__(355);
 var new_card_component_1 = __webpack_require__(348);
 var message_component_1 = __webpack_require__(352);
 var details_component_1 = __webpack_require__(346);
-var want_list_component_1 = __webpack_require__(357);
+var want_list_component_1 = __webpack_require__(358);
 var new_card_want_component_1 = __webpack_require__(347);
 var buy_component_1 = __webpack_require__(344);
+var edit_component_1 = __webpack_require__(357);
 var routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: home_component_1.HomeComponent },
@@ -5918,6 +5953,7 @@ var routes = [
     { path: 'my-cards', component: my_cards_component_1.MyCardsComponents },
     { path: 'my-cards/new', component: new_card_component_1.NewCardComponent },
     { path: 'profile/:id', component: profile_component_1.ProfileComponent },
+    { path: 'profile/:id/edit', component: edit_component_1.EditUserComponent },
     { path: 'details/:id', component: details_component_1.DetailsComponent },
 ];
 exports.routing = router_1.RouterModule.forRoot(routes);
@@ -5925,22 +5961,22 @@ exports.routing = router_1.RouterModule.forRoot(routes);
 
 /***/ },
 
-/***/ 513:
+/***/ 514:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 "use strict";
-var paginate_pipe_1 = __webpack_require__(514);
+var paginate_pipe_1 = __webpack_require__(515);
 exports.PaginatePipe = paginate_pipe_1.PaginatePipe;
 var pagination_service_1 = __webpack_require__(223);
 exports.PaginationService = pagination_service_1.PaginationService;
-var pagination_controls_cmp_1 = __webpack_require__(515);
+var pagination_controls_cmp_1 = __webpack_require__(516);
 exports.PaginationControlsCmp = pagination_controls_cmp_1.PaginationControlsCmp;
 
 
 /***/ },
 
-/***/ 514:
+/***/ 515:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6075,7 +6111,7 @@ exports.PaginatePipe = PaginatePipe;
 
 /***/ },
 
-/***/ 515:
+/***/ 516:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6091,7 +6127,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var pagination_service_1 = __webpack_require__(223);
-var template_1 = __webpack_require__(516);
+var template_1 = __webpack_require__(517);
 var PaginationControlsCmp = (function () {
     function PaginationControlsCmp(service, changeDetectorRef) {
         var _this = this;
@@ -6325,7 +6361,7 @@ exports.PaginationControlsCmp = PaginationControlsCmp;
 
 /***/ },
 
-/***/ 516:
+/***/ 517:
 /***/ function(module, exports) {
 
 "use strict";
@@ -6520,7 +6556,7 @@ var CardService = (function () {
         this.http = http;
         this.router = router;
         this.materialize = materialize;
-        this._url = 'http://54.165.232.218/';
+        this._url = link;
     }
     CardService.prototype.getSets = function (force) {
         var _this = this;
@@ -6656,13 +6692,13 @@ exports.__metadata = __metadata;
 
 /***/ },
 
-/***/ 725:
+/***/ 726:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 "use strict";
 var platform_browser_dynamic_1 = __webpack_require__(100);
-var app_module_1 = __webpack_require__(386);
+var app_module_1 = __webpack_require__(387);
 platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule);
 
 
@@ -6888,7 +6924,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var core_1 = __webpack_require__(0);
 var async_1 = __webpack_require__(76);
-var collection_1 = __webpack_require__(33);
+var collection_1 = __webpack_require__(34);
 var lang_1 = __webpack_require__(21);
 var model_1 = __webpack_require__(131);
 var validators_1 = __webpack_require__(39);
@@ -7031,7 +7067,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var core_1 = __webpack_require__(0);
 var async_1 = __webpack_require__(76);
-var collection_1 = __webpack_require__(33);
+var collection_1 = __webpack_require__(34);
 var lang_1 = __webpack_require__(21);
 var validators_1 = __webpack_require__(39);
 var control_container_1 = __webpack_require__(48);
@@ -7285,5 +7321,5 @@ function _hasInvalidParent(parent) {
 
 /***/ }
 
-},[725]);
+},[726]);
 //# sourceMappingURL=app.js.map

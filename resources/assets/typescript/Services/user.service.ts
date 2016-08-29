@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {Observable} from "rxjs/Rx";
 import {MaterializeCuston} from "./materialize.service";
 declare var link:any;
+
 @Injectable()
 export class User {
     private tutorial_show = false
