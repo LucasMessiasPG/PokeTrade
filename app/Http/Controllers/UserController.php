@@ -16,6 +16,7 @@ use App\Models\Want;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Mockery\CountValidator\Exception;
 
@@ -90,20 +91,24 @@ class UserController extends Controller
 	public function register(Register $register)
 	{
 		try{
+		    DB::beginTransaction();
             $newUser = $register->all();
 			$newUser['login'] = strtolower($newUser['login']);
 			$newUser['email'] = strtolower($newUser['email']);
 			$newUser['password'] = Hash::make($newUser['password']);
 		    $user = User::create($newUser);
-			
+            $email = new EmailController($newUser['email']);
+            $email->view('welcome',$user->fullSet())->send();
+
 			Auth::login($user);
-			
+
 			$msg = 'Wellcome to PokeTrade.com';
 			$this->dispatch(new AddMesssage(Auth::user(),$msg,2,true));
 
 			$msg = 'Register';
 			$this->dispatch(new AddMesssage(Auth::user(),$msg,3));
 
+		    DB::commit();
 			return response()->json([
 				'status' => 'success',
 				'user' => [
@@ -113,9 +118,10 @@ class UserController extends Controller
 				],
 				'tutorial' => true
 			]);
-		            
+
 		}catch (\Exception $e){
-            return $this->_returnError('Registel Fail',$e);
+		    DB::rollback();
+            return $this->_returnError('Register Fail',$e);
 		}
 	}
 

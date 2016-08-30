@@ -9,6 +9,7 @@
         </div>
         <div class="col s4 m2 right-align margin-top">
             <button [routerLink]="['/profile',user.id_user,'edit']" *ngIf="(user_profile && user_profile.id_user == user.id_user)" class="btn waves-light waves-effect">Edit Profile</button>
+            <a *ngIf="(!user_profile ||  user_profile && user_profile.id_user != user.id_user)"  href="#message" class="btn waves-light waves-effect modal-trigger">Send Message</a>
         </div>
         <div [hidden]="!user_profile">
             <div class="col s12">
@@ -85,5 +86,16 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+
+<div id="message" class="modal">
+    <div class="modal-content">
+        <h4>Envie</h4>
+        <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
 </div>

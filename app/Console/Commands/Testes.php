@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\UserController;
 use App\Jobs\SendMail;
 use App\Models\User;
@@ -40,7 +41,7 @@ class Testes extends Command
      */
     public function handle()
     {
-        $job = new SendMail(['nome'=>'teste']);
-        dispatch($job);
+        $email = new EmailController(['lucas@gmail.com','lucasmessias.pg@outlook.com']);
+        $email->message('teste')->send();
     }
 }
