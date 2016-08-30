@@ -42,8 +42,8 @@ class SendMail extends Job implements ShouldQueue
                 $m->subject($this->email->title);
                 $m->to($this->email->to);
 
-                if($this->cc)
-                    foreach ($this->cc as $cc) {
+                if($this->email->cc)
+                    foreach ($this->email->cc as $cc) {
                         $m->cc($cc);
                     }
             });
