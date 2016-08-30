@@ -49483,7 +49483,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return parentZoneDelegate.scheduleTask(targetZone, task);
 	        },
 	        onHandleError: function (parentZoneDelegate, currentZone, targetZone, error) {
-	            var parentTask = Zone.currentTask || error.task;
+	            var parentTask = Zone.currentTask;
 	            if (error instanceof Error && parentTask) {
 	                var descriptor = Object.getOwnPropertyDescriptor(error, 'stack');
 	                if (descriptor) {
@@ -49597,7 +49597,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	timers_1.patchTimer(_global, set, clear, 'Timeout');
 	timers_1.patchTimer(_global, set, clear, 'Interval');
 	timers_1.patchTimer(_global, set, clear, 'Immediate');
-	timers_1.patchTimer(_global, 'request', 'cancel', 'AnimationFrame');
+	timers_1.patchTimer(_global, 'request', 'cancelMacroTask', 'AnimationFrame');
 	timers_1.patchTimer(_global, 'mozRequest', 'mozCancel', 'AnimationFrame');
 	timers_1.patchTimer(_global, 'webkitRequest', 'webkitCancel', 'AnimationFrame');
 	for (var i = 0; i < blockingMethods.length; i++) {
@@ -49626,7 +49626,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function scheduleTask(task) {
 	        var data = task.data;
 	        data.target.addEventListener('readystatechange', function () {
-	            if (data.target.readyState === data.target.DONE) {
+	            if (data.target.readyState === XMLHttpRequest.DONE) {
 	                if (!data.aborted) {
 	                    task.invoke();
 	                }
@@ -49688,9 +49688,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */(function(global) {;
 	;
 	var Zone = (function (global) {
-	    if (global.Zone) {
-	        throw new Error('Zone already loaded.');
-	    }
 	    var Zone = (function () {
 	        function Zone(parent, zoneSpec) {
 	            this._properties = null;
@@ -49724,19 +49721,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	        ;
 	        Zone.prototype.get = function (key) {
-	            var zone = this.getZoneWith(key);
-	            if (zone)
-	                return zone._properties[key];
-	        };
-	        Zone.prototype.getZoneWith = function (key) {
 	            var current = this;
 	            while (current) {
 	                if (current._properties.hasOwnProperty(key)) {
-	                    return current;
+	                    return current._properties[key];
 	                }
 	                current = current._parent;
 	            }
-	            return null;
 	        };
 	        Zone.prototype.fork = function (zoneSpec) {
 	            if (!zoneSpec)
@@ -49966,26 +49957,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.callback = callback;
 	            var self = this;
 	            this.invoke = function () {
-	                _numberOfNestedTaskFrames++;
 	                try {
 	                    return zone.runTask(self, this, arguments);
 	                }
 	                finally {
-	                    if (_numberOfNestedTaskFrames == 1) {
-	                        drainMicroTaskQueue();
-	                    }
-	                    _numberOfNestedTaskFrames--;
+	                    drainMicroTaskQueue();
 	                }
 	            };
 	        }
-	        ZoneTask.prototype.toString = function () {
-	            if (this.data && typeof this.data.handleId !== 'undefined') {
-	                return this.data.handleId;
-	            }
-	            else {
-	                return this.toString();
-	            }
-	        };
 	        return ZoneTask;
 	    }());
 	    function __symbol__(name) { return '__zone_symbol__' + name; }
@@ -49998,11 +49977,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var _microTaskQueue = [];
 	    var _isDrainingMicrotaskQueue = false;
 	    var _uncaughtPromiseErrors = [];
-	    var _numberOfNestedTaskFrames = 0;
+	    var _drainScheduled = false;
 	    function scheduleQueueDrain() {
-	        // if we are not running in any task, and there has not been anything scheduled
-	        // we must bootstrap the initial task creation by manually scheduling the drain
-	        if (_numberOfNestedTaskFrames == 0 && _microTaskQueue.length == 0) {
+	        if (!_drainScheduled && !_currentTask && _microTaskQueue.length == 0) {
 	            // We are not running in Task, so we need to kickstart the microtask queue.
 	            if (global[symbolPromise]) {
 	                global[symbolPromise].resolve(0)[symbolThen](drainMicroTaskQueue);
@@ -50019,7 +49996,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function consoleError(e) {
 	        var rejection = e && e.rejection;
 	        if (rejection) {
-	            console.error('Unhandled Promise rejection:', rejection instanceof Error ? rejection.message : rejection, '; Zone:', e.zone.name, '; Task:', e.task && e.task.source, '; Value:', rejection, rejection instanceof Error ? rejection.stack : undefined);
+	            console.error('Unhandled Promise rejection:', rejection instanceof Error ? rejection.message : rejection, '; Zone:', e.zone.name, '; Task:', e.task && e.task.source, '; Value:', rejection);
 	        }
 	        console.error(e);
 	    }
@@ -50040,8 +50017,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	            while (_uncaughtPromiseErrors.length) {
-	                var _loop_1 = function() {
-	                    var uncaughtPromiseError = _uncaughtPromiseErrors.shift();
+	                var uncaughtPromiseErrors = _uncaughtPromiseErrors;
+	                _uncaughtPromiseErrors = [];
+	                var _loop_1 = function(i) {
+	                    var uncaughtPromiseError = uncaughtPromiseErrors[i];
 	                    try {
 	                        uncaughtPromiseError.zone.runGuarded(function () { throw uncaughtPromiseError; });
 	                    }
@@ -50049,11 +50028,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        consoleError(e);
 	                    }
 	                };
-	                while (_uncaughtPromiseErrors.length) {
-	                    _loop_1();
+	                for (var i = 0; i < uncaughtPromiseErrors.length; i++) {
+	                    _loop_1(i);
 	                }
 	            }
 	            _isDrainingMicrotaskQueue = false;
+	            _drainScheduled = false;
 	        }
 	    }
 	    function isThenable(value) {
@@ -50136,9 +50116,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var ZoneAwarePromise = (function () {
 	        function ZoneAwarePromise(executor) {
 	            var promise = this;
-	            if (!(promise instanceof ZoneAwarePromise)) {
-	                throw new Error('Must be an instanceof Promise.');
-	            }
 	            promise[symbolState] = UNRESOLVED;
 	            promise[symbolValue] = []; // queue;
 	            try {
@@ -50196,7 +50173,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return promise;
 	        };
 	        ZoneAwarePromise.prototype.then = function (onFulfilled, onRejected) {
-	            var chainPromise = new this.constructor(null);
+	            var chainPromise = new ZoneAwarePromise(null);
 	            var zone = Zone.current;
 	            if (this[symbolState] == UNRESOLVED) {
 	                this[symbolValue].push(zone, chainPromise, onFulfilled, onRejected);
@@ -50224,8 +50201,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }).then(onResolve, onReject);
 	        };
 	    }
-	    // This is not part of public API, but it is usefull for tests, so we expose it.
-	    Promise[Zone.__symbol__('uncaughtPromiseErrors')] = _uncaughtPromiseErrors;
 	    return global.Zone = Zone;
 	})(typeof window === 'undefined' ? global : window);
 
@@ -50238,7 +50213,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 	var utils_1 = __webpack_require__(3);
 	var WTF_ISSUE_555 = 'Anchor,Area,Audio,BR,Base,BaseFont,Body,Button,Canvas,Content,DList,Directory,Div,Embed,FieldSet,Font,Form,Frame,FrameSet,HR,Head,Heading,Html,IFrame,Image,Input,Keygen,LI,Label,Legend,Link,Map,Marquee,Media,Menu,Meta,Meter,Mod,OList,Object,OptGroup,Option,Output,Paragraph,Pre,Progress,Quote,Script,Select,Source,Span,Style,TableCaption,TableCell,TableCol,Table,TableRow,TableSection,TextArea,Title,Track,UList,Unknown,Video';
-	var NO_EVENT_TARGET = 'ApplicationCache,EventSource,FileReader,InputMethodContext,MediaController,MessagePort,Node,Performance,SVGElementInstance,SharedWorker,TextTrack,TextTrackCue,TextTrackList,WebKitNamedFlow,Window,Worker,WorkerGlobalScope,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload,IDBRequest,IDBOpenDBRequest,IDBDatabase,IDBTransaction,IDBCursor,DBIndex'.split(',');
+	var NO_EVENT_TARGET = 'ApplicationCache,EventSource,FileReader,InputMethodContext,MediaController,MessagePort,Node,Performance,SVGElementInstance,SharedWorker,TextTrack,TextTrackCue,TextTrackList,WebKitNamedFlow,Worker,WorkerGlobalScope,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload,IDBRequest,IDBOpenDBRequest,IDBDatabase,IDBTransaction,IDBCursor,DBIndex'.split(',');
 	var EVENT_TARGET = 'EventTarget';
 	function eventTargetPatch(_global) {
 	    var apis = [];
@@ -50340,9 +50315,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this[_prop] = null;
 	        }
 	    };
-	    // The getter would return undefined for unassigned properties but the default value of an unassigned property is null
 	    desc.get = function () {
-	        return this[_prop] || null;
+	        return this[_prop];
 	    };
 	    Object.defineProperty(obj, prop, desc);
 	}
@@ -50510,9 +50484,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var instance = new OriginalClass(function () { });
 	    var prop;
 	    for (prop in instance) {
-	        // https://bugs.webkit.org/show_bug.cgi?id=44721
-	        if (className === 'XMLHttpRequest' && prop === 'responseBlob')
-	            continue;
 	        (function (prop) {
 	            if (typeof instance[prop] === 'function') {
 	                _global[className].prototype[prop] = function () {
@@ -50596,11 +50567,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (isUnconfigurable(obj, prop)) {
 	            throw new TypeError('Cannot assign to read only property \'' + prop + '\' of ' + obj);
 	        }
-	        var originalConfigurableFlag = desc.configurable;
 	        if (prop !== 'prototype') {
 	            desc = rewriteDescriptor(obj, prop, desc);
 	        }
-	        return _tryDefineProperty(obj, prop, desc, originalConfigurableFlag);
+	        return _defineProperty(obj, prop, desc);
 	    };
 	    Object.defineProperties = function (obj, props) {
 	        Object.keys(props).forEach(function (prop) {
@@ -50609,7 +50579,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return obj;
 	    };
 	    Object.create = function (obj, proto) {
-	        if (typeof proto === 'object' && !Object.isFrozen(proto)) {
+	        if (typeof proto === 'object') {
 	            Object.keys(proto).forEach(function (prop) {
 	                proto[prop] = rewriteDescriptor(obj, prop, proto[prop]);
 	            });
@@ -50627,9 +50597,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.propertyPatch = propertyPatch;
 	;
 	function _redefineProperty(obj, prop, desc) {
-	    var originalConfigurableFlag = desc.configurable;
 	    desc = rewriteDescriptor(obj, prop, desc);
-	    return _tryDefineProperty(obj, prop, desc, originalConfigurableFlag);
+	    return _defineProperty(obj, prop, desc);
 	}
 	exports._redefineProperty = _redefineProperty;
 	;
@@ -50645,26 +50614,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        obj[unconfigurablesKey][prop] = true;
 	    }
 	    return desc;
-	}
-	function _tryDefineProperty(obj, prop, desc, originalConfigurableFlag) {
-	    try {
-	        return _defineProperty(obj, prop, desc);
-	    }
-	    catch (e) {
-	        if (desc.configurable) {
-	            // In case of errors, when the configurable flag was likely set by rewriteDescriptor(), let's retry with the original flag value
-	            if (typeof originalConfigurableFlag == 'undefined') {
-	                delete desc.configurable;
-	            }
-	            else {
-	                desc.configurable = originalConfigurableFlag;
-	            }
-	            return _defineProperty(obj, prop, desc);
-	        }
-	        else {
-	            throw e;
-	        }
-	    }
 	}
 
 
@@ -50876,17 +50825,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                delay: (nameSuffix === 'Timeout' || nameSuffix === 'Interval') ? args[1] || 0 : null,
 	                args: args
 	            };
-	            var task = zone.scheduleMacroTask(setName, args[0], options, scheduleTask, clearTask);
-	            if (!task) {
-	                return task;
-	            }
-	            // Node.js must additionally support the ref and unref functions.
-	            var handle = task.data.handleId;
-	            if (handle.ref && handle.unref) {
-	                task.ref = handle.ref.bind(handle);
-	                task.unref = handle.unref.bind(handle);
-	            }
-	            return task;
+	            return zone.scheduleMacroTask(setName, args[0], options, scheduleTask, clearTask);
 	        }
 	        else {
 	            // cause an error by calling it directly.

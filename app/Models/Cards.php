@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use Mockery\CountValidator\Exception;
 use Stichoza\GoogleTranslate\TranslateClient;
 
@@ -84,7 +85,10 @@ class Cards extends Model
         $tr = new TranslateClient('en', 'pt-br');
 
         $card = (object)$this->toArray();
-
+	    $name_img = '/img/' . $this->set->id_set . '/' . $this->number . '.jpg';
+	    if(Storage::exists($name_img))
+		    $card->image_url = $name_img;
+	    
         $card->rarity = $this->rarity->value;
         $card->set = $this->set->name;
         $card->set_number = $this->set->id_set;

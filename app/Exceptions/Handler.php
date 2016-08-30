@@ -51,12 +51,12 @@ class Handler extends ExceptionHandler
 			return response()->json([
 				'status'=>'error',
 				'error' => $errors
-			]);
+			],400);
 		}elseif($e instanceof Exception){
 			return response()->json([
 				'status' => 'error',
 				'error' => $e->getMessage()
-			]);
+			],400);
 		}
 		
 		return parent::render($request, $e);

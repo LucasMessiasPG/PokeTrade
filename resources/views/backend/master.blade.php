@@ -10,7 +10,12 @@
     <base href="/"/>
 </head>
 <body>
-<poke>Carregando ...</poke>
+<poke>
+    <div class="background-loading row center-align">
+        <img src="/img/pikachu2.png" alt="">
+        <h1>Carregando ... </h1>
+    </div>
+</poke>
 @include('backend.scripts')
 @if(!\Auth::check())
     <script>
