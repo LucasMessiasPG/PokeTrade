@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta name="viewport" content="initial-scale=1">
-    <title>PokeTrade</title>
+    <link rel="canonical" href="pokecard.com.br">
+    <title>PokeCard</title>
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/materialize.css">
     <link rel="stylesheet" href="/css/app.css">
