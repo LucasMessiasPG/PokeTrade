@@ -324,55 +324,6 @@ button:focus {
     .button-icons button:not(.no-icon) i {
       font-size: 13px; }
 
-@media only screen and (min-width: 993px) {
-  poke-card {
-    height: 210px; }
-    poke-card img, poke-card .material-placeholder {
-      width: 125px;
-      height: 170px; }
-    poke-card .material-placeholder {
-      margin: 0 auto; }
-    poke-card .button-icons .fa {
-      display: inline; } }
-
-@media only screen and (min-width: 601px) and (max-width: 790px) {
-  img, .material-placeholder {
-    width: 60px !important;
-    margin-top: 45px !important; }
-  poke-card .button-icons .fa {
-    display: inline; }
-  poke-card small, poke-card .hide-on-med-only {
-    display: none; } }
-
-@media only screen and (min-width: 601px) and (max-width: 992px) {
-  poke-card {
-    height: 145px; }
-    poke-card img, poke-card .material-placeholder {
-      width: 85px;
-      margin-top: 30px; }
-    poke-card .material-placeholder {
-      margin: 0 auto; }
-    poke-card .button-icons .fa {
-      display: inline; }
-    poke-card small, poke-card .fa {
-      display: none; }
-  .single-card a {
-    font-size: 12px; }
-  .single-card p {
-    font-size: 11px; }
-  .pokepoint {
-    font-size: 13px; } }
-
-@media only screen and (max-width: 600px) {
-  poke-card {
-    height: 210px; }
-    poke-card img, poke-card .material-placeholder {
-      width: 125px; }
-    poke-card .material-placeholder {
-      margin: 0 auto; }
-  .single-card {
-    margin: 10px 5px !important; } }
-
 poke-card {
   width: 100%;
   margin: 5px 2px;
@@ -386,16 +337,42 @@ poke-card {
     right: 0;
     margin: 25px 5px;
     width: 50%;
-    z-index: 10;
-    background-color: red; }
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    padding: 0 10px; }
     poke-card .img-card img {
-      width: 100%; }
+      width: 100%;
+      margin: 0 auto; }
   poke-card .info-card {
     width: 100%;
     height: 250px;
-    display: inline-block;
-    background-color: blue; }
+    display: inline-block; }
     poke-card .info-card div {
       width: calc(50% - 5px); }
+      poke-card .info-card div h4 {
+        line-height: 11px; }
+      poke-card .info-card div a, poke-card .info-card div li, poke-card .info-card div strong {
+        margin: 0px;
+        font-size: 13px; }
+      poke-card .info-card div .button button {
+        width: 100%; }
+        @media only screen and (max-width: 320px -1) {
+          poke-card .info-card div .button button {
+            margin: 2px 0px !important; } }
+        @media only screen and (min-width: 320px) and (max-width: 424px) {
+          poke-card .info-card div .button button {
+            margin: 2px 0px !important; } }
+        @media only screen and (min-width: 425px) and (max-width: 767px) {
+          poke-card .info-card div .button button {
+            margin: 2px 0px !important; } }
+        @media only screen and (min-width: 768px) and (max-width: 1023px) {
+          poke-card .info-card div .button button {
+            margin: 3px 0px !important; } }
+        @media only screen and (min-width: 1024px) and (max-width: 1439px) {
+          poke-card .info-card div .button button {
+            margin: 2px 0px !important; } }
+        @media only screen and (min-width: 1440px) {
+          poke-card .info-card div .button button {
+            margin: 5px 0px !important; } }
 
 /*# sourceMappingURL=app.css.map */
