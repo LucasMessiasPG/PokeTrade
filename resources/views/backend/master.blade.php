@@ -12,7 +12,8 @@
 <body>
 <poke>
     <div class="background-loading row center-align">
-        <img src="/img/pikachu2.png" alt="">
+        <img class="hide-on-med-and-down" src="/img/pikachu2.png" alt="">
+        <img class="hide-on-large-only" src="/img/pokeball.gif" alt="">
         <h1>Carregando ... </h1>
     </div>
 </poke>
