@@ -39,7 +39,7 @@ export class TradesComponent {
                     this.materialize.box();
                     this.materialize.toast('1');
                     console.log(1);
-                }, 1000)
+                }, 10000)
             })
 
         this.card.getSets()
@@ -49,7 +49,7 @@ export class TradesComponent {
                     this.materialize.select('select[name=set]')
                     this.materialize.toast('2');
                     console.log(2);
-                },1000)
+                },10000)
             });
 
         window.addEventListener("scroll",(event) => {
