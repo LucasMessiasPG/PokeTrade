@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Http\Requests\Request;
 use Closure;
-use Illuminate\Console\Application;
+use Illuminate\Foundation\Application;
 
 class CheckUp
 {
