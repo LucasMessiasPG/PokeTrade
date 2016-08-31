@@ -5016,6 +5016,7 @@ var filter_pipe_1 = __webpack_require__(510);
 var index_1 = __webpack_require__(359);
 var buy_component_1 = __webpack_require__(344);
 var edit_component_1 = __webpack_require__(357);
+var poke_point_component_1 = __webpack_require__(728);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -5054,7 +5055,8 @@ var AppModule = (function () {
                 pokepoint_pipe_1.PokePointPipe,
                 filter_pipe_1.FilterPipe,
                 index_1.PaginatePipe,
-                edit_component_1.EditUserComponent
+                edit_component_1.EditUserComponent,
+                poke_point_component_1.PokePointComponent
             ],
             providers: [
                 {
@@ -6724,6 +6726,34 @@ var platform_browser_dynamic_1 = __webpack_require__(100);
 var app_module_1 = __webpack_require__(387);
 platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule);
 
+
+/***/ },
+
+/***/ 728:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
+var core_1 = __webpack_require__(0);
+var PokePointComponent = (function () {
+    function PokePointComponent() {
+    }
+    __decorate([
+        core_1.Input('value'), 
+        __metadata('design:type', Object)
+    ], PokePointComponent.prototype, "pokepoint", void 0);
+    PokePointComponent = __decorate([
+        core_1.Component({
+            selector: 'poke-point',
+            template: "<i class=\"fa fa-rub\"></i> <span>{{pokepoint}}</span>"
+        }), 
+        __metadata('design:paramtypes', [])
+    ], PokePointComponent);
+    return PokePointComponent;
+}());
+exports.PokePointComponent = PokePointComponent;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(7)))
 
 /***/ },
 

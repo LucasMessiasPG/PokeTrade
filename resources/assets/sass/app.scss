@@ -463,6 +463,13 @@ $xl: 1440px;
   }
 }
 
+poke-point{
+  background-color: rgba(0, 176, 255,.2);
+  padding: 4px 10px;
+  border-radius: 18px;
+  border: 2px solid #005981;
+}
+
 poke-card{
   .info-card{
     h4, h4>a{
@@ -472,8 +479,8 @@ poke-card{
     a, li {
       font-size: 14px;
     }
-    ul{
-      margin: 0;
+    p{
+      margin: 5px 0;
     }
     .button{
       button{

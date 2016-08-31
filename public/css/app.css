@@ -343,6 +343,12 @@ button:focus {
     .button-icons button:not(.no-icon) i {
       font-size: 13px; }
 
+poke-point {
+  background-color: rgba(0, 176, 255, 0.2);
+  padding: 4px 10px;
+  border-radius: 18px;
+  border: 2px solid #005981; }
+
 poke-card .info-card h4, poke-card .info-card h4 > a {
   line-height: 17px;
   font-size: 17px !important; }
@@ -350,8 +356,8 @@ poke-card .info-card h4, poke-card .info-card h4 > a {
 poke-card .info-card a, poke-card .info-card li {
   font-size: 14px; }
 
-poke-card .info-card ul {
-  margin: 0; }
+poke-card .info-card p {
+  margin: 5px 0; }
 
 poke-card .info-card .button button {
   width: 100%;
