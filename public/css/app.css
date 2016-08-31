@@ -349,6 +349,12 @@ poke-point {
   border-radius: 18px;
   border: 2px solid #005981; }
 
+poke-card .card-background {
+  border-radius: 14px;
+  border: .1em solid;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 10px 0; }
+
 poke-card .info-card h4, poke-card .info-card h4 > a {
   line-height: 17px;
   font-size: 17px !important; }
@@ -360,7 +366,6 @@ poke-card .info-card p {
   margin: 5px 0; }
 
 poke-card .info-card .button button {
-  width: 100%;
   margin: 5px 0; }
 
 poke-card .img-card img {

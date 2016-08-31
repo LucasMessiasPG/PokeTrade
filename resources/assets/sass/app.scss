@@ -471,6 +471,12 @@ poke-point{
 }
 
 poke-card{
+  .card-background{
+    border-radius: 14px;
+    border: .1em solid;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+  }
   .info-card{
     h4, h4>a{
       line-height: 17px;
@@ -484,7 +490,6 @@ poke-card{
     }
     .button{
       button{
-        width: 100%;
         margin: 5px 0;
       }
     }

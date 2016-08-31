@@ -5,6 +5,7 @@
     <link rel="canonical" href="pokecard.com.br">
     <title>PokeCard</title>
     <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/css/materialize.css">
     <link rel="stylesheet" href="/css/app.css">
     <base href="/"/>
