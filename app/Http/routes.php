@@ -29,45 +29,44 @@ Route::get('/teste',function(){
 });
 
 
-Route::group(['middleware'=>\App\Http\Middleware\CheckUp::class],function(){
-    Route::get('/',function(){return view('backend.master');});
+Route::get('/',function(){return view('backend.master');});
 
-    Route::post('/login-user','UserController@login');
-    Route::get('/user/tutorial/{type}','UserController@tutorial');
-    Route::get('/user/profile/{id}','UserController@profile');
-    Route::post('/register-user','UserController@register');
+Route::post('/login-user','UserController@login');
+Route::get('/user/tutorial/{type}','UserController@tutorial');
+Route::get('/user/profile/{id}','UserController@profile');
+Route::post('/register-user','UserController@register');
 
-    Route::get('/logout','UserController@logout');
+Route::get('/logout','UserController@logout');
 
-    Route::get('/templates/{template}','MainController@index');
+Route::get('/templates/{template}','MainController@index');
 
-    Route::group(['prefix'=>'api/'],function(){
+Route::group(['prefix'=>'api/'],function(){
 
-        Route::get('search','SearchController@search');
-        Route::get('home-data','SearchController@homeData');
-        Route::get('sets','SearchController@set');
-        Route::get('cards','SearchController@card');
-        Route::get('card/{id_card}/details','SearchController@detail');
+    Route::get('search','SearchController@search');
+    Route::get('home-data','SearchController@homeData');
+    Route::get('sets','SearchController@set');
+    Route::get('cards','SearchController@card');
+    Route::get('card/{id_card}/details','SearchController@detail');
 
-        Route::get('card/wants','SearchController@allWant');
+    Route::get('card/wants','SearchController@allWant');
 
-        Route::group(['middleware'=>['check']],function(){
+    Route::group(['middleware'=>['check']],function(){
 
-            Route::post('/user/add-card','UserController@addCard');
-            Route::post('/user/add-want','UserController@addWant');
-            Route::post('/user/send-want','UserController@sendWant');
-            Route::get('/user/{id_want}/remove-want','UserController@removeWant');
-            Route::post('/user/{id_want}/edit-want','UserController@editWant');
-            Route::get('want-list','UserController@myWantList');
-            Route::get('my-cards','UserController@myCards');
-            Route::get('my-messages','UserController@myMessages');
+        Route::post('/user/add-card','UserController@addCard');
+        Route::post('/user/add-want','UserController@addWant');
+        Route::post('/user/send-want','UserController@sendWant');
+        Route::get('/user/{id_want}/remove-want','UserController@removeWant');
+        Route::post('/user/{id_want}/edit-want','UserController@editWant');
+        Route::get('want-list','UserController@myWantList');
+        Route::get('my-cards','UserController@myCards');
+        Route::get('my-messages','UserController@myMessages');
 
-        });
     });
-
-    Route::get('{path}', function()
-    {
-        return view("backend.master");
-    })->where("path", ".+");
 });
+
+Route::get('{path}', function()
+{
+	return view("backend.master");
+})->where("path", ".+");
+
 

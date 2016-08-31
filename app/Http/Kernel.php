@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckUp;
 use App\Http\Middleware\loged;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Tymon\JWTAuth\Middleware\GetUserFromToken;
@@ -17,7 +18,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+//        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        CheckUp::class
     ];
 
     /**
