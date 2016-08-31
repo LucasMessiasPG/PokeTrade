@@ -2629,14 +2629,14 @@ var TradesComponent = (function () {
             setTimeout(function () {
                 _this.materialize.tooltip();
                 _this.materialize.box();
-            }, 100);
+            }, 1000);
         });
         this.card.getSets()
             .subscribe(function (response) {
             _this.sets = response;
             setTimeout(function () {
                 _this.materialize.select('select[name=set]');
-            }, 100);
+            }, 1000);
         });
         window.addEventListener("scroll", function (event) {
             var top = window.scrollY;
