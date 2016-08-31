@@ -357,7 +357,8 @@ poke-card .card-background {
 
 poke-card .info-card h4, poke-card .info-card h4 > a {
   line-height: 17px;
-  font-size: 17px !important; }
+  font-size: 17px !important;
+  height: 40px; }
 
 poke-card .info-card a, poke-card .info-card li {
   font-size: 14px; }
