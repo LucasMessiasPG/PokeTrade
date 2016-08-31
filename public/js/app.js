@@ -2623,27 +2623,20 @@ var TradesComponent = (function () {
             have: '',
             number: ''
         };
-        this.term = 1;
         this.card.getWants(0)
             .subscribe(function (res) {
-            _this.term = 2;
             _this.list_want = res.data;
             setTimeout(function () {
-                _this.term = 3;
                 _this.materialize.tooltip();
                 _this.materialize.box();
-                _this.materialize.toast('1');
-                console.log(1);
-            }, 10000);
+            }, 100);
         });
         this.card.getSets()
             .subscribe(function (response) {
             _this.sets = response;
             setTimeout(function () {
                 _this.materialize.select('select[name=set]');
-                _this.materialize.toast('2');
-                console.log(2);
-            }, 10000);
+            }, 100);
         });
         window.addEventListener("scroll", function (event) {
             var top = window.scrollY;

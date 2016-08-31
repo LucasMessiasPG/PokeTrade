@@ -17,7 +17,6 @@ export class TradesComponent {
     private count = 0;
     private searching = false;
     private sets;
-    private term;
     private have = false;
 
     constructor(private user: User,
@@ -32,18 +31,13 @@ export class TradesComponent {
             number: ''
         };
 
-        this.term = 1;
         this.card.getWants(0)
             .subscribe(res => {
-                this.term = 2;
                 this.list_want = res.data;
                 setTimeout(()=> {
-                    this.term = 3;
                     this.materialize.tooltip();
                     this.materialize.box();
-                    this.materialize.toast('1');
-                    console.log(1);
-                }, 10000)
+                }, 100)
             })
 
         this.card.getSets()
@@ -51,9 +45,7 @@ export class TradesComponent {
                 this.sets = response
                 setTimeout(()=>{
                     this.materialize.select('select[name=set]')
-                    this.materialize.toast('2');
-                    console.log(2);
-                },10000)
+                },100)
             });
 
         window.addEventListener("scroll",(event) => {
