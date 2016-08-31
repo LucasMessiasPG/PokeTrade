@@ -39,6 +39,8 @@ fieldset {
 .background-loading {
   width: 100%;
   margin-top: 15vh; }
+  .background-loading img {
+    width: 150px; }
   .background-loading h1 {
     font-size: 30px;
     margin: 20px auto; }
@@ -63,18 +65,14 @@ a.btn.icon {
 .margin-top {
   margin-top: 20px; }
 
+.margin-top.login {
+  margin-top: 20vh; }
+
 .margin-bot {
   margin-bottom: 20px; }
 
 .nav-wrapper {
   padding-left: 30px; }
-
-.img-card {
-  z-index: 10;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%; }
 
 .img-profile {
   width: 150px; }
@@ -97,7 +95,7 @@ a.btn.icon {
     margin-top: 20px !important; } }
 
 @media screen and (max-width: 600px) {
-  .img-card, .img.img-responsive {
+  .img.img-responsive {
     width: 50%; }
   .new-card-img {
     width: 100px !important; } }
@@ -313,16 +311,6 @@ button:focus {
 .dropdown-content li > a, .dropdown-content li > span {
   color: #0091ea; }
 
-poke-card {
-  text-align: center; }
-  poke-card li > a {
-    display: inline; }
-  poke-card a, poke-card p, poke-card li {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block; }
-
 .single-card {
   margin-right: 15px !important;
   padding: 5px 0;
@@ -353,7 +341,7 @@ poke-card {
     margin-top: 45px !important; }
   poke-card .button-icons .fa {
     display: inline; }
-  poke-card small, poke-card hide-on-med-only {
+  poke-card small, poke-card .hide-on-med-only {
     display: none; } }
 
 @media only screen and (min-width: 601px) and (max-width: 992px) {
@@ -384,5 +372,30 @@ poke-card {
       margin: 0 auto; }
   .single-card {
     margin: 10px 5px !important; } }
+
+poke-card {
+  width: 100%;
+  margin: 5px 2px;
+  display: block;
+  position: relative;
+  height: 250px; }
+  poke-card .img-card {
+    height: 200px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 25px 5px;
+    width: 50%;
+    z-index: 10;
+    background-color: red; }
+    poke-card .img-card img {
+      width: 100%; }
+  poke-card .info-card {
+    width: 100%;
+    height: 250px;
+    display: inline-block;
+    background-color: blue; }
+    poke-card .info-card div {
+      width: calc(50% - 5px); }
 
 /*# sourceMappingURL=app.css.map */

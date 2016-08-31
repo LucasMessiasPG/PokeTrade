@@ -40,6 +40,9 @@ fieldset {
 .background-loading{
   width: 100%;
   margin-top: 15vh;
+  img{
+    width: 150px;
+  }
   h1{
     font-size: 30px;
     margin: 20px auto;
@@ -71,7 +74,9 @@ a.btn.icon {
 .margin-top {
   margin-top: 20px;
 }
-
+.margin-top.login{
+  margin-top: 20vh;
+}
 .margin-bot {
   margin-bottom: 20px;
 }
@@ -80,13 +85,6 @@ a.btn.icon {
   padding-left: 30px;
 }
 
-.img-card {
-  z-index: 10;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
 
 .img-profile {
   width: 150px;
@@ -120,7 +118,7 @@ a.btn.icon {
 }
 
 @media screen and (max-width: 600px) {
-  .img-card, .img.img-responsive {
+  .img.img-responsive {
     width: 50%;
   }
   .new-card-img {
@@ -401,18 +399,6 @@ button:focus {
   color: #0091ea;
 }
 
-poke-card {
-  text-align: center;
-  li > a{
-    display: inline;
-  }
-  a, p, li {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-  }
-}
 
 .single-card {
   margin-right: 15px !important;
@@ -469,7 +455,7 @@ poke-card {
           display: inline;
         }
       }
-      small, hide-on-med-only{
+      small, .hide-on-med-only{
         display: none;
       }
     }
@@ -526,4 +512,34 @@ poke-card {
     margin: 10px 5px !important;
   }
 
+}
+
+poke-card {
+  width: 100%;
+  margin: 5px 2px;
+  display: block;
+  position: relative;
+  height: 250px;
+  .img-card{
+    height: 200px;
+    position: absolute;
+    top:0;
+    right:0;
+    margin: 25px 5px;
+    width: 50%;
+    z-index: 10;
+    background-color: red;
+    img{
+      width: 100%;
+    }
+  }
+  .info-card{
+    width: 100%;
+    div{
+      width: calc(50% - 5px);
+    }
+    height: 250px;
+    display: inline-block;
+    background-color: blue;
+  }
 }

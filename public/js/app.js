@@ -2602,7 +2602,7 @@ exports.escapeRegExp = escapeRegExp;
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
 var card_service_1 = __webpack_require__(67);
-var materialize_service_1 = __webpack_require__(24);
+var materialize_service_1 = __webpack_require__(25);
 var user_service_1 = __webpack_require__(31);
 var index_1 = __webpack_require__(359);
 var paginate_1 = __webpack_require__(509);
@@ -2829,7 +2829,7 @@ exports.PaginationService = PaginationService;
 
 /***/ },
 
-/***/ 24:
+/***/ 25:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2930,9 +2930,9 @@ exports.MaterializeCuston = MaterializeCuston;
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
 var http_1 = __webpack_require__(99);
-var router_1 = __webpack_require__(28);
+var router_1 = __webpack_require__(23);
 var Rx_1 = __webpack_require__(156);
-var materialize_service_1 = __webpack_require__(24);
+var materialize_service_1 = __webpack_require__(25);
 var User = (function () {
     function User(http, materialize, router) {
         this.http = http;
@@ -4027,7 +4027,7 @@ exports.BuyComponent = BuyComponent;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
-var materialize_service_1 = __webpack_require__(24);
+var materialize_service_1 = __webpack_require__(25);
 var CardComponent = (function () {
     function CardComponent(el, materialize) {
         this.el = el;
@@ -4068,7 +4068,7 @@ var CardComponent = (function () {
     CardComponent = __decorate([
         core_1.Component({
             selector: 'poke-card',
-            template: "\n    <div class=\"row single-card\">\n       <div class=\"col s6 left-align\">\n            <a [routerLink]=\"['/details',card.id_card]\">{{ card.name_card }}</a>\n            <p class=\"no-margin\"><small>Set:</small> {{ card.set }}</p>\n            <p class=\"no-margin\"><small>Rarity:</small> {{ card.rarity }}</p>\n            <div *ngIf=\"want\">\n              <ul class=\"no-margin\">\n                <li *ngIf=\"want.user\"><small>Trainer:</small> <a [routerLink]=\"['/profile',want.user.id_user]\">{{ want.user.login }}</a></li>\n                <li class=\"hide-on-med-only\"><small>Foil:</small> <i class=\"hide-on-med-only fa\" [class.fa-check]=\"want.foil\" [class.fa-times]=\"!want.foil\"></i> <small>Reverse Foil:</small> <i class=\"fa\" [class.fa-check]=\"want.reverse_foil\" [class.fa-times]=\"!want.reverse_foil\"></i></li>\n                <li><small>PokePoint:</small>  <i class=\"fa fa-rub hide-on-med-only\"></i> <span class=\"pokepoint\">{{ want.pp | PokePoint }}</span></li>\n                <li class=\"button-icons\">\n                    <div class=\"col s3 m12 l3 center\">\n                        <button class=\"btn btn-small orange tooltipped\" position=\"bootom \" data-tooltip=\"Want\" data-delay=\"50\"><i class=\"fa fa-plus\"></i></button>\n                    </div>\n                    <div class=\"col s3 m12 l3 center\">\n                        <button class=\"btn btn-small green tooltipped\" position=\"bootom \" data-tooltip=\"Have\" data-delay=\"50\"><i class=\"fa fa-check\"></i></button>\n                    </div>\n                    <div class=\"col s6 m12 l6 center\">\n                        <button class=\"btn btn-small no-icon\" >Send</button>\n                    </div>\n                </li>\n              </ul>\n            </div>\n        </div>\n       <div class=\"col s6\">\n            <img title=\"{{ card.name_card }}\" class=\"materialboxed\" src=\"{{ card.image_url }}\" alt=\"{{ card.name_card }}\">\n        </div>\n     </div>\n    ",
+            templateUrl: '/templates/card.card',
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof core_1.ElementRef !== 'undefined' && core_1.ElementRef) === 'function' && _a) || Object, (typeof (_b = typeof materialize_service_1.MaterializeCuston !== 'undefined' && materialize_service_1.MaterializeCuston) === 'function' && _b) || Object])
     ], CardComponent);
@@ -4088,8 +4088,8 @@ exports.CardComponent = CardComponent;
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
 var card_service_1 = __webpack_require__(67);
-var router_1 = __webpack_require__(28);
-var materialize_service_1 = __webpack_require__(24);
+var router_1 = __webpack_require__(23);
+var materialize_service_1 = __webpack_require__(25);
 var DetailsComponent = (function () {
     function DetailsComponent(cardService, materialize, route) {
         var _this = this;
@@ -4130,10 +4130,10 @@ exports.DetailsComponent = DetailsComponent;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
-var materialize_service_1 = __webpack_require__(24);
+var materialize_service_1 = __webpack_require__(25);
 var card_service_1 = __webpack_require__(67);
 var user_service_1 = __webpack_require__(31);
-var router_1 = __webpack_require__(28);
+var router_1 = __webpack_require__(23);
 var NewCardWantComponent = (function () {
     function NewCardWantComponent(materialize, user, router, cardService) {
         this.materialize = materialize;
@@ -4254,10 +4254,10 @@ exports.NewCardWantComponent = NewCardWantComponent;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
-var materialize_service_1 = __webpack_require__(24);
+var materialize_service_1 = __webpack_require__(25);
 var card_service_1 = __webpack_require__(67);
 var user_service_1 = __webpack_require__(31);
-var router_1 = __webpack_require__(28);
+var router_1 = __webpack_require__(23);
 var NewCardComponent = (function () {
     function NewCardComponent(materialize, user, router, cardService) {
         this.materialize = materialize;
@@ -4369,7 +4369,7 @@ exports.NewCardComponent = NewCardComponent;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
-var materialize_service_1 = __webpack_require__(24);
+var materialize_service_1 = __webpack_require__(25);
 var user_service_1 = __webpack_require__(31);
 var card_service_1 = __webpack_require__(67);
 var HomeComponent = (function () {
@@ -4459,8 +4459,8 @@ exports.ListComponent = ListComponent;
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
 var user_service_1 = __webpack_require__(31);
-var router_1 = __webpack_require__(28);
-var materialize_service_1 = __webpack_require__(24);
+var router_1 = __webpack_require__(23);
+var materialize_service_1 = __webpack_require__(25);
 var LoginComponent = (function () {
     function LoginComponent(_user, materialize, _router) {
         this._user = _user;
@@ -4487,6 +4487,9 @@ var LoginComponent = (function () {
             }
         });
     };
+    LoginComponent.prototype.recuperarSenha = function (email) {
+        console.log(email);
+    };
     LoginComponent = __decorate([
         core_1.Component({
             selector: 'poke-login',
@@ -4510,43 +4513,45 @@ exports.LoginComponent = LoginComponent;
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
 var user_service_1 = __webpack_require__(31);
-var router_1 = __webpack_require__(28);
+var router_1 = __webpack_require__(23);
 var MessageComponent = (function () {
     function MessageComponent(user, router) {
         this.user = user;
         this.router = router;
-        if (!this.user.checkLogin())
-            this.router.navigateByUrl('/login');
     }
     MessageComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.messages = [];
-        this.system = [];
-        this.trades = [];
-        this.logs = [];
-        this.cards = [];
-        this.user.getMessage()
-            .subscribe(function (messages) {
-            for (var i in messages) {
-                switch (messages[i].id_status_message) {
-                    case 2:
-                        _this.messages.push(messages[i]);
-                        break;
-                    case 3:
-                        _this.system.push(messages[i]);
-                        break;
-                    case 4:
-                        _this.trades.push(messages[i]);
-                        break;
-                    case 5:
-                        _this.logs.push(messages[i]);
-                        break;
-                    case 6:
-                        _this.cards.push(messages[i]);
-                        break;
+        if (!this.user.checkLogin())
+            this.router.navigateByUrl('/login');
+        else {
+            this.messages = [];
+            this.system = [];
+            this.trades = [];
+            this.logs = [];
+            this.cards = [];
+            this.user.getMessage()
+                .subscribe(function (messages) {
+                for (var i in messages) {
+                    switch (messages[i].id_status_message) {
+                        case 2:
+                            _this.messages.push(messages[i]);
+                            break;
+                        case 3:
+                            _this.system.push(messages[i]);
+                            break;
+                        case 4:
+                            _this.trades.push(messages[i]);
+                            break;
+                        case 5:
+                            _this.logs.push(messages[i]);
+                            break;
+                        case 6:
+                            _this.cards.push(messages[i]);
+                            break;
+                    }
                 }
-            }
-        });
+            });
+        }
     };
     MessageComponent = __decorate([
         core_1.Component({
@@ -4570,9 +4575,9 @@ exports.MessageComponent = MessageComponent;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(28);
+var router_1 = __webpack_require__(23);
 var user_service_1 = __webpack_require__(31);
-var materialize_service_1 = __webpack_require__(24);
+var materialize_service_1 = __webpack_require__(25);
 var MyCardsComponents = (function () {
     function MyCardsComponents(router, user, materialize, el) {
         this.router = router;
@@ -4584,43 +4589,47 @@ var MyCardsComponents = (function () {
     }
     MyCardsComponents.prototype.ngOnInit = function () {
         var _this = this;
-        this.new_card = {
-            foil: '',
-            id_set: '',
-            id_card: '',
-            price: '',
-            amount: 1
-        };
-        this.user.getMyCards()
-            .subscribe(function (cards) {
-            _this.cards = cards;
-            setTimeout(function () {
-                _this.materialize.box();
-                _this.materialize.modal();
-                _this.materialize.select();
-            }, 100);
-        });
-        var filter = {
-            id_status_message: [2, 4],
-            last: true
-        };
-        this.user.getMessage(filter)
-            .subscribe(function (messages) {
-            for (var i in messages) {
-                var m_trade = false;
-                var m = false;
-                if (messages[i].id_status_message == 4 && m_trade === false) {
-                    _this.message_trade = messages[i];
-                    m_trade = true;
+        if (!this.user.checkLogin())
+            this.router.navigateByUrl('/login');
+        else {
+            this.new_card = {
+                foil: '',
+                id_set: '',
+                id_card: '',
+                price: '',
+                amount: 1
+            };
+            this.user.getMyCards()
+                .subscribe(function (cards) {
+                _this.cards = cards;
+                setTimeout(function () {
+                    _this.materialize.box();
+                    _this.materialize.modal();
+                    _this.materialize.select();
+                }, 100);
+            });
+            var filter = {
+                id_status_message: [2, 4],
+                last: true
+            };
+            this.user.getMessage(filter)
+                .subscribe(function (messages) {
+                for (var i in messages) {
+                    var m_trade = false;
+                    var m = false;
+                    if (messages[i].id_status_message == 4 && m_trade === false) {
+                        _this.message_trade = messages[i];
+                        m_trade = true;
+                    }
+                    if (messages[i].id_status_message == 2 && m === false) {
+                        _this.message = messages[i];
+                        m = true;
+                    }
+                    if (m === true && m_trade === true)
+                        break;
                 }
-                if (messages[i].id_status_message == 2 && m === false) {
-                    _this.message = messages[i];
-                    m = true;
-                }
-                if (m === true && m_trade === true)
-                    break;
-            }
-        });
+            });
+        }
     };
     MyCardsComponents.prototype.addCard = function () {
         this.router.navigateByUrl('/my-cards/new');
@@ -4648,7 +4657,7 @@ exports.MyCardsComponents = MyCardsComponents;
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
 var user_service_1 = __webpack_require__(31);
-var materialize_service_1 = __webpack_require__(24);
+var materialize_service_1 = __webpack_require__(25);
 var NavComponent = (function () {
     function NavComponent(user, materialize) {
         this.user = user;
@@ -4691,9 +4700,9 @@ exports.NavComponent = NavComponent;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(28);
+var router_1 = __webpack_require__(23);
 var user_service_1 = __webpack_require__(31);
-var materialize_service_1 = __webpack_require__(24);
+var materialize_service_1 = __webpack_require__(25);
 var ProfileComponent = (function () {
     function ProfileComponent(route, user, materialize) {
         this.route = route;
@@ -4735,10 +4744,10 @@ exports.ProfileComponent = ProfileComponent;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(28);
+var router_1 = __webpack_require__(23);
 var card_component_1 = __webpack_require__(345);
 var card_service_1 = __webpack_require__(67);
-var materialize_service_1 = __webpack_require__(24);
+var materialize_service_1 = __webpack_require__(25);
 var SearchComponent = (function () {
     function SearchComponent(router, cardService, materialize) {
         this.router = router;
@@ -4809,24 +4818,30 @@ exports.SearchComponent = SearchComponent;
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
 var user_service_1 = __webpack_require__(31);
+var router_1 = __webpack_require__(23);
 var EditUserComponent = (function () {
-    function EditUserComponent(user) {
+    function EditUserComponent(user, router) {
         var _this = this;
         this.user = user;
-        this.user.getProfile(this.user.id_user)
-            .subscribe(function (res) {
-            _this.user_profile = res;
-        });
+        this.router = router;
+        if (!this.user.checkLogin())
+            this.router.navigateByUrl('/login');
+        else {
+            this.user.getProfile(this.user.id_user)
+                .subscribe(function (res) {
+                _this.user_profile = res;
+            });
+        }
     }
     EditUserComponent = __decorate([
         core_1.Component({
             selector: 'poke-edit-user',
             templateUrl: '/templates/user.edit'
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof user_service_1.User !== 'undefined' && user_service_1.User) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof user_service_1.User !== 'undefined' && user_service_1.User) === 'function' && _a) || Object, (typeof (_b = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _b) || Object])
     ], EditUserComponent);
     return EditUserComponent;
-    var _a;
+    var _a, _b;
 }());
 exports.EditUserComponent = EditUserComponent;
 
@@ -4841,25 +4856,30 @@ exports.EditUserComponent = EditUserComponent;
 /* WEBPACK VAR INJECTION */(function(__decorate, __metadata) {"use strict";
 var core_1 = __webpack_require__(0);
 var user_service_1 = __webpack_require__(31);
-var materialize_service_1 = __webpack_require__(24);
+var materialize_service_1 = __webpack_require__(25);
+var router_1 = __webpack_require__(23);
 var WantListComponet = (function () {
-    function WantListComponet(user, materialize) {
+    function WantListComponet(user, router, materialize) {
         this.user = user;
+        this.router = router;
         this.materialize = materialize;
         this.start = false;
     }
     WantListComponet.prototype.ngOnInit = function () {
         var _this = this;
-        this.user.getWantCards()
-            .subscribe(function (cards) {
-            _this.start = true;
-            _this.cards = cards;
-            setTimeout(function () {
-                _this.materialize.box();
-                _this.materialize.modal();
-                _this.materialize.select();
-            }, 100);
-        });
+        if (!this.user.checkLogin())
+            this.router.navigateByUrl('/login');
+        else
+            this.user.getWantCards()
+                .subscribe(function (cards) {
+                _this.start = true;
+                _this.cards = cards;
+                setTimeout(function () {
+                    _this.materialize.box();
+                    _this.materialize.modal();
+                    _this.materialize.select();
+                }, 100);
+            });
     };
     WantListComponet.prototype.removeWant = function (card) {
         var _this = this;
@@ -4907,10 +4927,10 @@ var WantListComponet = (function () {
             selector: 'poke-want-list',
             templateUrl: '/templates/want_list'
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof user_service_1.User !== 'undefined' && user_service_1.User) === 'function' && _a) || Object, (typeof (_b = typeof materialize_service_1.MaterializeCuston !== 'undefined' && materialize_service_1.MaterializeCuston) === 'function' && _b) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof user_service_1.User !== 'undefined' && user_service_1.User) === 'function' && _a) || Object, (typeof (_b = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _b) || Object, (typeof (_c = typeof materialize_service_1.MaterializeCuston !== 'undefined' && materialize_service_1.MaterializeCuston) === 'function' && _c) || Object])
     ], WantListComponet);
     return WantListComponet;
-    var _a, _b;
+    var _a, _b, _c;
 }());
 exports.WantListComponet = WantListComponet;
 
@@ -4961,7 +4981,7 @@ exports.NG_VALUE_ACCESSOR = new core_1.OpaqueToken('NgValueAccessor');
 var platform_browser_1 = __webpack_require__(58);
 var forms_1 = __webpack_require__(454);
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(28);
+var router_1 = __webpack_require__(23);
 var app_routing_1 = __webpack_require__(513);
 var app_component_1 = __webpack_require__(512);
 var home_component_1 = __webpack_require__(349);
@@ -4975,7 +4995,7 @@ var login_component_1 = __webpack_require__(351);
 var user_service_1 = __webpack_require__(31);
 var my_cards_component_1 = __webpack_require__(353);
 var profile_component_1 = __webpack_require__(355);
-var materialize_service_1 = __webpack_require__(24);
+var materialize_service_1 = __webpack_require__(25);
 var new_card_component_1 = __webpack_require__(348);
 var card_service_1 = __webpack_require__(67);
 var attack_component_1 = __webpack_require__(503);
@@ -5923,7 +5943,7 @@ exports.AppComponent = AppComponent;
 
 "use strict";
 "use strict";
-var router_1 = __webpack_require__(28);
+var router_1 = __webpack_require__(23);
 var home_component_1 = __webpack_require__(349);
 var search_component_1 = __webpack_require__(356);
 var list_component_1 = __webpack_require__(350);
@@ -6549,8 +6569,8 @@ exports.unimplemented = unimplemented;
 var core_1 = __webpack_require__(0);
 var http_1 = __webpack_require__(99);
 var Rx_1 = __webpack_require__(156);
-var materialize_service_1 = __webpack_require__(24);
-var router_1 = __webpack_require__(28);
+var materialize_service_1 = __webpack_require__(25);
+var router_1 = __webpack_require__(23);
 var CardService = (function () {
     function CardService(http, router, materialize) {
         this.http = http;

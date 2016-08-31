@@ -10,6 +10,7 @@ declare var $:any;
 export class LoginComponent{
     private user = {login:'',password:''}
     private user_new = {login:'',email:'',password:'',password_confirmation:''}
+    private email;
 
     constructor(
         private _user: User,
@@ -35,5 +36,9 @@ export class LoginComponent{
                     location.reload();
                 }
             })
+    }
+
+    recuperarSenha(email){
+        console.log(email);
     }
 }

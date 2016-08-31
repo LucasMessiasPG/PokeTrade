@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {User} from "../Services/user.service";
 import {MaterializeCuston} from "../Services/materialize.service";
-import {PokePointPipe} from "../Pipes/pokepoint.pipe";
+import {Router} from "@angular/router";
 @Component({
     selector: 'poke-want-list',
     templateUrl: '/templates/want_list'
@@ -12,22 +12,26 @@ export class WantListComponet {
     private start = false;
 
     constructor(private user:User,
+                private router: Router,
                 private materialize:MaterializeCuston) {
+
     }
 
     ngOnInit() {
+        if(!this.user.checkLogin())
+            this.router.navigateByUrl('/login');
+        else
+            this.user.getWantCards()
+                .subscribe(cards => {
+                    this.start = true;
+                    this.cards = cards;
 
-        this.user.getWantCards()
-            .subscribe(cards => {
-                this.start = true;
-                this.cards = cards;
-
-                setTimeout(()=> {
-                    this.materialize.box();
-                    this.materialize.modal();
-                    this.materialize.select();
-                }, 100)
-            });
+                    setTimeout(()=> {
+                        this.materialize.box();
+                        this.materialize.modal();
+                        this.materialize.select();
+                    }, 100)
+                });
 
     }
 
