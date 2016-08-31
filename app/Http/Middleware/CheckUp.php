@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Requests\Request;
 use Closure;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 
 class CheckUp
 {
