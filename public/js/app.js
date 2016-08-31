@@ -2631,7 +2631,7 @@ var TradesComponent = (function () {
                 _this.materialize.box();
                 _this.materialize.toast('1');
                 console.log(1);
-            }, 1000);
+            }, 10000);
         });
         this.card.getSets()
             .subscribe(function (response) {
@@ -2640,7 +2640,7 @@ var TradesComponent = (function () {
                 _this.materialize.select('select[name=set]');
                 _this.materialize.toast('2');
                 console.log(2);
-            }, 1000);
+            }, 10000);
         });
         window.addEventListener("scroll", function (event) {
             var top = window.scrollY;
