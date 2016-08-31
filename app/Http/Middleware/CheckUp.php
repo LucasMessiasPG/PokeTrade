@@ -29,7 +29,7 @@ class CheckUp
         if ($this->app->isDownForMaintenance() &&
             !in_array($this->request->getClientIp(), ['86.10.190.248', '86.4.7.24']))
         {
-            abort(503);
+            return response()->view('errors.503',[],503);
         }
 
         return $next($request);
