@@ -18,6 +18,7 @@ export class TradesComponent {
     private searching = false;
     private sets;
     private have = false;
+    private teste;
 
     constructor(private user: User,
                 private card: CardService,
@@ -30,11 +31,13 @@ export class TradesComponent {
             have: '',
             number: ''
         };
-
+    this.teste = 1;
         this.card.getWants(0)
             .subscribe(res => {
+    this.teste = 2;
                 this.list_want = res.data;
                 setTimeout(()=> {
+    this.teste = 3;
                     this.materialize.tooltip();
                     this.materialize.box();
                 }, 100)

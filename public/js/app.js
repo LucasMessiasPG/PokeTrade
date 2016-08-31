@@ -2623,10 +2623,13 @@ var TradesComponent = (function () {
             have: '',
             number: ''
         };
+        this.teste = 1;
         this.card.getWants(0)
             .subscribe(function (res) {
+            _this.teste = 2;
             _this.list_want = res.data;
             setTimeout(function () {
+                _this.teste = 3;
                 _this.materialize.tooltip();
                 _this.materialize.box();
             }, 100);

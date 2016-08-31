@@ -10,7 +10,7 @@
             </div>
             <div class="input-field col s12 m5">
                 <input autocomplete="off" type="text" id="name" name="name" [(ngModel)]="filtro.name">
-                <label for="name" class="active">Name {{ term }}</label>
+                <label for="name" class="active">Name {{ teste }}</label>
             </div>
             <div class="input-field col s12 m2">
                 <input autocomplete="off" type="text" id="number" name="number" [(ngModel)]="filtro.number">
