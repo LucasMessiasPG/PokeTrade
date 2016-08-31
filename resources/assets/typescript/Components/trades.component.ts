@@ -38,6 +38,7 @@ export class TradesComponent {
                     this.materialize.tooltip();
                     this.materialize.box();
                     this.materialize.toast('1');
+                    console.log(1);
                 }, 1000)
             })
 
@@ -47,6 +48,7 @@ export class TradesComponent {
                 setTimeout(()=>{
                     this.materialize.select('select[name=set]')
                     this.materialize.toast('2');
+                    console.log(2);
                 },1000)
             });
 

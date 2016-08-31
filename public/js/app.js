@@ -2629,6 +2629,8 @@ var TradesComponent = (function () {
             setTimeout(function () {
                 _this.materialize.tooltip();
                 _this.materialize.box();
+                _this.materialize.toast('1');
+                console.log(1);
             }, 1000);
         });
         this.card.getSets()
@@ -2636,6 +2638,8 @@ var TradesComponent = (function () {
             _this.sets = response;
             setTimeout(function () {
                 _this.materialize.select('select[name=set]');
+                _this.materialize.toast('2');
+                console.log(2);
             }, 1000);
         });
         window.addEventListener("scroll", function (event) {
