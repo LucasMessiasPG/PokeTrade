@@ -13,7 +13,30 @@
 <poke>
     <div class="background-loading row center-align">
         <img class="hide-on-med-and-down" src="/img/pikachu2.png" alt="">
-        <img class="hide-on-large-only" src="/img/pokeball.gif" alt="">
+        <div class="hide-on-large-only">
+            <svg class="spin" xmlns="http://www.w3.org/2000/svg" width="150px" height="150px" viewBox="25 25 50 50">
+                <path d="M 30 50
+		a 1 1 1 0 1 40 0
+		h-12.5
+		a 1 1 1 0 0 -15 0
+		z"
+                      fill="#f00" stroke="#222"
+                ></path>
+                <circle
+                        cx="50"
+                        cy="50"
+                        r="5"
+                        fill="#222" stroke="#222"
+                ></circle>
+                <path d="M 30 50
+		a 1 1 1 0 0 40 0
+		h-12.5
+		a 1 1 1 0 1 -15 0
+		z"
+                      fill="#fff" stroke="#222"
+                ></path>
+            </svg>
+        </div>
         <h1>Carregando ... </h1>
     </div>
 </poke>
