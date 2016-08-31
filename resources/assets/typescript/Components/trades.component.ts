@@ -37,7 +37,7 @@ export class TradesComponent {
                 setTimeout(()=> {
                     this.materialize.tooltip();
                     this.materialize.box();
-                }, 100)
+                }, 1000)
             })
 
         this.card.getSets()
@@ -45,7 +45,7 @@ export class TradesComponent {
                 this.sets = response
                 setTimeout(()=>{
                     this.materialize.select('select[name=set]')
-                },100)
+                },1000)
             });
 
         window.addEventListener("scroll",(event) => {
