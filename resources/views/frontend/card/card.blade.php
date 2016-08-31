@@ -7,11 +7,12 @@
             <li>Trainer: <a>Messias</a></li>
             <li>PokePoint: <strong>1313</strong></li>
         </ul>
-        <ul class="button">
+        <ul class="button hide-on-small-and-down">
             <li><button class="btn btn-small">+Desejo</button></li>
             <li><button class="btn btn-small">+Tenho</button></li>
             <li><button class="btn btn-small">Enviar</button></li>
         </ul>
+        <button class="card-button"></button>
     </div>
 </div>
 <div class="img-card valign-wrapper">

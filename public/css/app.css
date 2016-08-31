@@ -359,6 +359,9 @@ poke-card {
     -webkit-transition: 0.3s;
     transition: 0.3s;
     padding: 0 10px; }
+    @media only screen and (min-width: 425px) and (max-width: 767px) {
+      poke-card .img-card {
+        padding: 0 35px !important; } }
     poke-card .img-card img {
       width: 100%;
       margin: 0 auto; }
@@ -373,6 +376,13 @@ poke-card {
       poke-card .info-card div a, poke-card .info-card div li, poke-card .info-card div strong {
         margin: 0px;
         font-size: 13px; }
+      poke-card .info-card div .card-button {
+        width: 45px;
+        height: 45px;
+        border-radius: 47px;
+        background: red;
+        border: none;
+        margin: 0 45px; }
       poke-card .info-card div .button button {
         width: 100%; }
         @media only screen and (max-width: 320px -1) {
