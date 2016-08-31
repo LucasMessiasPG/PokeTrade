@@ -463,6 +463,36 @@ $xl: 1440px;
   }
 }
 
+poke-card{
+  .info-card{
+    h4, h4>a{
+      line-height: 17px;
+      font-size: 17px !important;
+    }
+    a, li {
+      font-size: 14px;
+    }
+    ul{
+      margin: 0;
+    }
+    .button{
+      button{
+        width: 100%;
+        margin: 5px 0;
+      }
+    }
+  }
+  .img-card{
+    img{
+      width: 100%;
+    }
+    div{
+      margin: 0 auto;
+    }
+  }
+}
+
+/*
 
 poke-card {
   width: 100%;
@@ -535,3 +565,4 @@ poke-card {
     display: inline-block;
   }
 }
+*/

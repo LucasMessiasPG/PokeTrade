@@ -343,65 +343,99 @@ button:focus {
     .button-icons button:not(.no-icon) i {
       font-size: 13px; }
 
+poke-card .info-card h4, poke-card .info-card h4 > a {
+  line-height: 17px;
+  font-size: 17px !important; }
+
+poke-card .info-card a, poke-card .info-card li {
+  font-size: 14px; }
+
+poke-card .info-card ul {
+  margin: 0; }
+
+poke-card .info-card .button button {
+  width: 100%;
+  margin: 5px 0; }
+
+poke-card .img-card img {
+  width: 100%; }
+
+poke-card .img-card div {
+  margin: 0 auto; }
+
+/*
+
 poke-card {
   width: 100%;
   margin: 5px 2px;
   display: block;
   position: relative;
-  height: 250px; }
-  poke-card .img-card {
+  height: 250px;
+  .img-card {
     height: 200px;
     position: absolute;
     top: 0;
     right: 0;
     margin: 25px 5px;
     width: 50%;
-    -webkit-transition: 0.3s;
     transition: 0.3s;
-    padding: 0 10px; }
-    @media only screen and (min-width: 425px) and (max-width: 767px) {
-      poke-card .img-card {
-        padding: 0 35px !important; } }
-    poke-card .img-card img {
+    padding: 0 10px;
+    @include screen(sm) {
+      padding: 0 35px !important;
+    }
+    img {
       width: 100%;
-      margin: 0 auto; }
-  poke-card .info-card {
+      margin: 0 auto;
+    }
+  }
+  .info-card {
     width: 100%;
-    height: 250px;
-    display: inline-block; }
-    poke-card .info-card div {
-      width: calc(50% - 5px); }
-      poke-card .info-card div h4 {
-        line-height: 11px; }
-      poke-card .info-card div a, poke-card .info-card div li, poke-card .info-card div strong {
+    div {
+      width: calc(50% - 5px);
+      h4{
+        line-height: 11px;
+      }
+      a, li, strong{
         margin: 0px;
-        font-size: 13px; }
-      poke-card .info-card div .card-button {
+        font-size: 13px;
+      }
+      .card-button{
         width: 45px;
         height: 45px;
         border-radius: 47px;
         background: red;
         border: none;
-        margin: 0 45px; }
-      poke-card .info-card div .button button {
-        width: 100%; }
-        @media only screen and (max-width: 320px -1) {
-          poke-card .info-card div .button button {
-            margin: 2px 0px !important; } }
-        @media only screen and (min-width: 320px) and (max-width: 424px) {
-          poke-card .info-card div .button button {
-            margin: 2px 0px !important; } }
-        @media only screen and (min-width: 425px) and (max-width: 767px) {
-          poke-card .info-card div .button button {
-            margin: 2px 0px !important; } }
-        @media only screen and (min-width: 768px) and (max-width: 1023px) {
-          poke-card .info-card div .button button {
-            margin: 3px 0px !important; } }
-        @media only screen and (min-width: 1024px) and (max-width: 1439px) {
-          poke-card .info-card div .button button {
-            margin: 2px 0px !important; } }
-        @media only screen and (min-width: 1440px) {
-          poke-card .info-card div .button button {
-            margin: 5px 0px !important; } }
+        margin: 0 45px;
+      }
+      .button{
+        button {
+          width: 100%;
+          @include screen(xxs) {
+            margin: 2px 0px !important;
+          }
+          @include screen(xs) {
+            margin: 2px 0px !important;
+          }
+          @include screen(sm) {
+            margin: 2px 0px !important;
+          }
+          @include screen(md) {
+            margin: 3px 0px !important;
+          }
+          @include screen(lg) {
+            margin: 2px 0px !important;
+          }
+          @include screen(xl) {
+            margin: 5px 0px !important;
+          }
+        }
+      }
+
+    }
+    height: 250px;
+    display: inline-block;
+  }
+}
+*/
 
 /*# sourceMappingURL=app.css.map */
