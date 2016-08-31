@@ -21,7 +21,6 @@ class Controller extends BaseController
         if($opt != null)
             $response['data'] = $opt;
 
-        return $response;
         return response()->json($response);
     }
     public function _returnError($message,\Exception $e)
