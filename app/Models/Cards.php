@@ -82,7 +82,7 @@ class Cards extends Model
     public function fullSet()
     {
 
-        $tr = new TranslateClient('en', 'pt-br');
+//        $tr = new TranslateClient('en', 'pt-br');
 
         $card = (object)$this->toArray();
 	    $name_img = '/img/' . $this->set->id_set . '/' . $this->number . '.jpg';
@@ -93,6 +93,7 @@ class Cards extends Model
         $card->set = $this->set->name;
         $card->set_number = $this->set->id_set;
         $card->total_set = $this->set->total_cards;
+        $card->code_set = $this->set->code;
         $card->card_set = $this->number.'/'.$this->set->total_cards;
 
         unset($card->id_rarity);

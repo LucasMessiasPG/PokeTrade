@@ -30,14 +30,11 @@ class SearchController extends Controller
             if($request->limit)
                 $limit = $request->limit;
 
-
-
-            $card = Cards::select('cards.*','sets.name as setName')->orderBy('cards.number_int')->orderBy('cards.name')->take($limit);
+            $card = Cards::select('cards.*','sets.name as setName')->orderBy('cards.number_int')->orderBy('cards.name');
             $card->join('sets','sets.id_set','=','cards.id_set');
 
             if($request->page)
                 $card->skip(($limit*($request->page-1)));
-
 
             foreach ($request->only($campos) as $field => $value) {
                 if($value){
@@ -59,11 +56,15 @@ class SearchController extends Controller
             }
 
             $result = [];
-            foreach ($card->get() as $tempCard) {
+            $cards = $card->get();
+            $total = $cards->count();
+            foreach ($cards as $tempCard) {
                 $result[] = $tempCard->fullset();
+                if(count($result) >= $limit)
+                    break;
             }
 
-            return $this->_return('Get Search','success',$result);
+            return $this->_return('Get Search','success',['total'=>$total,'result'=>$result]);
 
         } catch (Exception $e) {
             return $this->_return('Search Fail','error');
@@ -169,7 +170,6 @@ class SearchController extends Controller
                 }
 
             }
-
             $wants = $query->get();
 
             $result = [];
@@ -188,6 +188,7 @@ class SearchController extends Controller
                     ]
                 ];
             }
+
 
             return $this->_return('Get wants','success',isset($result)?$result:[]);
         }catch (\Exception $e){

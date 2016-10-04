@@ -1,12 +1,7 @@
 /node_modules
+/public/storage
 /vendor
-/resources/vendor
-/public/uploads
-/public/upload-images
-Homestead.yaml
+/.idea
 Homestead.json
+Homestead.yaml
 .env
-.idea
-.phpstorm.meta.php
-_ide_helper.php
-npm-debug.log

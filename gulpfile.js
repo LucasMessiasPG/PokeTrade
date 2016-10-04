@@ -1,10 +1,6 @@
-process.env.DISABLE_NOTIFIER = true;
+const elixir = require('laravel-elixir');
 
-var elixir = require('laravel-elixir'),
-	webpack = require('webpack');
-
-require('laravel-elixir-livereload');
-require('laravel-elixir-webpack-official');
+require('laravel-elixir-vue');
 
 /*
  |--------------------------------------------------------------------------
@@ -18,97 +14,12 @@ require('laravel-elixir-webpack-official');
  */
 
 elixir(function (mix) {
-	mix.copy('resources/assets/img', 'public/img');
-
-	var fontawesomePath = 'node_modules/font-awesome';
-
-	mix.copy(fontawesomePath, 'resources/vendor/font-awesome/');
-	mix.copy(fontawesomePath + '/fonts', 'public/fonts');
-	mix.copy(fontawesomePath + '/css', 'public/css');
-
-	/**
-	 * Materialize
-	 **/
-	var materializePath = 'node_modules/materialize-css/dist';
-
-	mix.copy(materializePath, 'resources/vendor/materialize-css/');
-	mix.copy(materializePath + '/fonts', 'public/fonts');
-	mix.copy(materializePath + '/css', 'public/css');
-	mix.copy(materializePath + '/js', 'public/js');
-
-	/**
-	 * JQuery
-	 **/
-	mix.copy('node_modules/jquery/dist/jquery.min.js', 'public/js/jquery');
-	
-	/**
-	 * Sass
-	 **/
-	mix.sass('app.scss');
-	
-	/**
-	 * Scripts webpack bundling and copying
-	 **/
-	mix.webpack(
-		[],
-		'public/js',
-		'resources/assets/typescript',
-		{
-			entry: {
-				app: './resources/assets/typescript/main.ts',
-				vendor: './resources/assets/typescript/vendor.ts'
-			},
-			debug: true,
-			devtool: 'source-map',
-			resolve: {
-				extensions: ['', '.ts', '.js']
-			},
-			module: {
-				loaders: [
-					{
-						test: /\.ts$/,
-						loader: 'awesome-typescript-loader',
-						exclude: /node_modules/
-					}
-				]
-			},
-			plugins: [
-				new webpack.ProvidePlugin({
-					'__decorate': 'typescript-decorate',
-					'__extends': 'typescript-extends',
-					'__param': 'typescript-param',
-					'__metadata': 'typescript-metadata'
-				}),
-				new webpack.optimize.CommonsChunkPlugin({
-					name: 'vendor',
-					filename: 'vendor.js',
-					minChunks: Infinity
-				}),
-				new webpack.optimize.CommonsChunkPlugin({
-					name: 'app',
-					filename: 'app.js',
-					minChunks: 4,
-					chunks: [
-						'app'
-					]
-				}),
-				/*new webpack.optimize.UglifyJsPlugin({
-				 compress: {
-				 warnings: false
-				 },
-				 minimize: true,
-				 mangle: false
-				 })*/
-			]
-		}
-	);
-	//
-	// /**
-	//  * LiveReload
-	//  **/
-	// mix.livereload([
-	//     'public/css/**/*',
-	//     'public/fonts/**/*',
-	//     'public/js/**/*'
-	// ]);
+    mix.sass('app.scss')
+        .copy('node_modules/angular', 'public/vendor')
+        .copy('node_modules/angular-route', 'public/vendor')
+        .copy('node_modules/materialize-css/dist', 'public/vendor/materialize')
+        .copy('node_modules/jquery/dist/jquery.js', 'public/vendor')
+        .copy('resources/views/html', 'public/html')
+        .copy('resources/assets/**/*.png','public')
+        .webpack('resources/assets/js/**/*.js');
 });

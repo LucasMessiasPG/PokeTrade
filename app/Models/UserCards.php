@@ -13,7 +13,8 @@ class UserCards extends Model
         'id_card',
         'id_user',
         'foil',
-        'reverse_foil'
+        'reverse_foil',
+        'full_art'
     ];
 
     public function user()

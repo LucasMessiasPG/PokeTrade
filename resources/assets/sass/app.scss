@@ -1,158 +1,61 @@
-/* fallback */
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Material Icons'), local('MaterialIcons-Regular'), url(http://fonts.gstatic.com/s/materialicons/v17/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
-}
 
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-}
+// Fonts
+//@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
-.site {
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+$bg: #dadbdd;
+
+body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-color: $bg;
+}
+
+header{
+  z-index: 2;
+}
+main {
+  flex: 1 0 auto;
 
 }
 
-fieldset {
-  margin: 0;
-  padding: 5px;
-}
-
-.site-content {
-  flex: 1;
-}
-
-.background-loading {
-  width: 100%;
-  margin-top: 15vh;
-  img {
-    width: 150px;
-  }
-  h1 {
-    font-size: 30px;
-    margin: 20px auto;
-  }
-}
-
-svg.spin {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120px;
-  height: 120px;
-  margin:-60px 0 0 -60px;
-  -webkit-animation:spin 4s linear infinite;
-  -moz-animation:spin 4s linear infinite;
-  animation:spin 4s linear infinite;
-}
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
-
-a {
+a{
   cursor: pointer;
 }
-
-.dropdown-content > li > a {
-  font-size: 13px;
+a:hover{
+  text-decoration: none;
 }
-
-a.btn.icon {
-  padding: 0px 10px;
-  margin: 10px 2px;
-}
-
-.dropdown-content > li > a.disabled {
-  color: #ccc;
-  font-size: 10px;
-}
-
-.dropdown-content > li > .disabled:hover {
-  background-color: transparent;
-}
-
-.margin-top {
-  margin-top: 20px;
-}
-
-.margin-top.login {
-  margin-top: 20vh;
-}
-
-.margin-bot {
-  margin-bottom: 20px;
-}
-
-.nav-wrapper {
-  padding-left: 30px;
-}
-
-.img-profile {
-  width: 150px;
-}
-
-@media screen and (min-width: 993px) {
-  .img.img-responsive {
-    width: 100%;
+nav{
+  height: 120px;
+  background-color: $bg;
+  box-shadow: none !important;
+  .user{
+    height: 40%;
+    line-height: 50px;
+    background-color: black;
   }
-}
-
-@media screen and (min-width: 601px) {
-
-  .img.img-responsive.home {
-    margin-top: 10px !important;
-    width: 100%;
-    margin: -50px;
-  }
-
-  @media screen and (max-width: 993px) {
-
-    .img.img-responsive.home {
-      margin-top: 100px !important;
-      width: 95%;
-    }
-
-    .home {
-      margin-top: 20px !important;
+  .menu{
+    margin: 0 auto;
+    height: 60%;
+    padding: 0 100px;
+    background-color: white;
+    box-shadow: 0 4px 2px -2px gray;
+    a{
+      color: black;
     }
   }
 }
-
-@media screen and (max-width: 600px) {
-  .img.img-responsive {
-    width: 50%;
-  }
-  .new-card-img {
-    width: 100px !important;
-  }
+.body{
+  background-color: #f5f5f5;
 }
 
-.new-card-img {
-  width: 200px;
-}
-
-.padding-min {
-  padding: 5px;
-}
-
-.card-info {
-  background-color: black;
+.btn:hover{
   color: white;
 }
 
@@ -160,422 +63,63 @@ a.btn.icon {
   height: 24px;
   line-height: 24px;
   padding: 0 0.5rem;
-  font-size: 12px;
+  font-size: 10px !important;
+  font-weight: bold;
 }
 
-.container {
-  margin: 0 auto;
-  max-width: 1280px;
-  width: 90%;
+thead>tr>th{
+  background-color: #cecece;
+  padding: 2px 10px;
+  font-size: 15px;
+  border-radius: 0;
 }
 
-.login.group-button {
-  text-align: right;
+.btn{
+  background-color: $btn;
+}
+.tabs .tab a{
+  color: $btn
+}
+.btn:hover,.btn:focus,.tabs .indicator{
+  background-color: $btn-hover;
+}
+.tabs .tab a:hover, .tabs .tab a:focus{
+  color: $btn-hover;
 }
 
-.card.my-card > .card-content {
-  padding: 0 10px;
+tbody>tr>td {
+  padding: 5px 5px;
 }
 
-.card.my-card > .card-content > span {
-  font-size: 14px;
+.margin-top{
+  margin-top: 20px;
 }
 
-.card.my-card > .card-content > .card-title {
-  line-height: 30px;
+table .materialboxed{
+  width: 5vh;
 }
-
-.card.my-card > .card-content > p {
-  line-height: 30px;
-  font-size: 12px;
-}
-
-table.my-card {
-  td {
-    padding: 0px 5px;
-    p {
-      margin: 0;
-    }
-  }
-}
-
-.my-card.img {
-  position: relative;
-}
-
-.my-card.img > .img-card {
-  position: relative;
-  width: 100%;
-}
-
-.modal-footer.row > .input-field {
-  margin-top: 0;
-}
-
-.margin-bot-40 {
-  margin-bottom: 40px;
-}
-
-.very-small-card {
-  width: 30px;
-}
-
-.div-my-card-img {
-  position: relative;
-  height: 60px;
-
-}
-
-.div-my-card-img > div {
-  position: absolute;
-  top: 0;
-  margin: 10px;
-}
-
-.table-new-card {
-  max-height: 200px;
-  overflow-x: auto;
-}
-
-.no-margin {
-  margin: 0;
-}
-
-.img-center {
-  max-width: 250px;
-  margin: 0 auto;
-}
-
-//ENERGY
-
-.type {
-  width: 20px;
-  height: 15px;
+table span{
   display: inline-block;
-  position: relative;
-  .img {
-    background-image: url("/img/types.png");
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    background-size: 100px;
-    position: absolute;
-  }
-  .Colorless {
-    background-position-x: 71px;
-    background-position-y: 67px;
-  }
-  .Free {
-    background-position-x: 71px;
-    background-position-y: 67px;
-  }
-  .Fairy {
-    background-position-x: 61px;
-    background-position-y: 47px;
-  }
-  .Lightning {
-    background-position-x: 90px;
-    background-position-y: 26px;
-  }
-  .Grass {
-    background-position-x: 81px;
-    background-position-y: 47px;
-  }
-  .Fighting {
-    background-position-x: 90px;
-    background-position-y: 67px;
-  }
-  .Darkness {
-    background-position-x: 70px;
-    background-position-y: 26px;
-  }
-  .Metal {
-    background-position-x: 50px;
-    background-position-y: 26px;
-  }
-  .Fire {
-    background-position-x: 40px;
-    background-position-y: 47px;
-  }
-  .Psychic {
-    background-position-x: 50px;
-    background-position-y: 67px;
-  }
-  .Water {
-    background-position-x: 30px;
-    background-position-y: 67px;
-  }
 }
 
-.ability-img {
-  width: 66px;
-}
-
-a.btn.icon {
-  padding: 0 10px;
-}
-
-@media only screen and (max-width: 992px) {
-  table.responsive-table td {
-    display: block;
-    min-height: 3.35em;
-    text-align: left;
-  }
-}
-
-li.current {
-  background-color: #ee6e73 !important;
-}
-
-.parallax-container {
-  height: 400px;
-}
-
-.home {
-  margin-top: 75px;
-}
-
-poke-home {
+.user-img{
   width: 100%;
+  padding: 0 10px 20px 10px;
 }
 
-.home {
-  h2 {
-    color: #d0e4f8;
-    border-bottom-color: rgba(255, 255, 255, 0.5);
-  }
-  li {
-    color: #d0e4f8;
-    font-size: 1.5em;
-    line-height: 1.35em;
-  }
+.card{
+  padding: 5px 10px;
+  color: white;
 }
 
-.background-home {
-  background-image: url("/img/overlay.png"), url("/img/pattern-size1.svg");
-  background-color: #26a69a;
-  padding: 4.5em 0 2.5em 0;
-  -moz-align-items: center;
-  -webkit-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  display: -moz-flex;
-  display: -webkit-flex;
-  display: -ms-flex;
-  display: flex;
-  -moz-justify-content: center;
-  -webkit-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
-  background-position: top left, center center;
-  background-attachment: fixed, fixed;
-  background-size: auto, cover;
-  height: 100vh;
-  min-height: 35em;
+span.badge{
+  color: white;
 }
 
-.home-list {
-  background-color: transparent;;
+.slider .indicators .indicator-item.active{
+  background-color: $btn;
 }
 
-nav, footer.page-footer {
-  background-color: #0091ea;
-}
-
-.home-h2 {
-  color: #828282;
-}
-
-a {
-  color: #0091ea;
-}
-
-.btn {
-  background-color: #0091ea;
-}
-
-.btn:hover, .btn-large:hover {
-  background-color: #00b0ff;
-}
-
-input:not([type]):focus:not([readonly]) + label, input[type=text]:focus:not([readonly]) + label, input[type=password]:focus:not([readonly]) + label, input[type=email]:focus:not([readonly]) + label, input[type=url]:focus:not([readonly]) + label, input[type=time]:focus:not([readonly]) + label, input[type=date]:focus:not([readonly]) + label, input[type=datetime]:focus:not([readonly]) + label, input[type=datetime-local]:focus:not([readonly]) + label, input[type=tel]:focus:not([readonly]) + label, input[type=number]:focus:not([readonly]) + label, input[type=search]:focus:not([readonly]) + label, textarea.materialize-textarea:focus:not([readonly]) + label {
-  color: #0091ea;
-}
-
-input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #0091ea;
-  box-shadow: 0 1px 0 0 #0091ea;
-}
-
-button:focus {
-  outline: none;
-  background-color: #0091ea;
-}
-
-.dropdown-content li > a, .dropdown-content li > span {
-  color: #0091ea;
-}
-
-.single-card {
-  margin-right: 15px !important;
-  padding: 5px 0;
-  -webkit-box-shadow: 0px 0px 20px 0px rgba(100, 100, 100, 0.55);
-  -moz-box-shadow: 0px 0px 20px 0px rgba(100, 100, 100, 0.55);
-  box-shadow: 0px 0px 20px 0px rgba(100, 100, 100, 0.55);
-  border-radius: 10px;
-}
-
-.button-icons {
-  margin-top: 10px;
-  button:not(.no-icon) {
-    width: 30px;
-    i {
-      font-size: 13px;
-    }
-  }
-}
-
-$xs: 320px;
-$sm: 425px;
-$md: 768px;
-$lg: 1024px;
-$xl: 1440px;
-
-
-@mixin screen($media) {
-  @if $media == xxs {
-    @media only screen and (max-width: $xs -1) { @content; }
-  }
-  @if $media == xs {
-    @media only screen and (min-width: $xs) and (max-width: $sm - 1) { @content; }
-  }
-  @if $media == sm {
-    @media only screen and (min-width: $sm) and (max-width: $md - 1) { @content; }
-  }
-  @else if $media == md {
-    @media only screen and (min-width: $md) and (max-width: $lg - 1) { @content; }
-  }
-  @else if $media == lg {
-    @media only screen and (min-width: $lg) and (max-width: $xl - 1)  { @content; }
-  }
-  @else if $media == xl {
-    @media only screen and (min-width: $xl) { @content; }
-  }
-}
-
-poke-point{
-  background-color: rgba(0, 176, 255,.2);
-  padding: 4px 10px;
-  border-radius: 18px;
-  border: 2px solid #005981;
-}
-
-poke-card{
-  .card-background{
-    border-radius: 14px;
-    border: .1em solid;
-    background-color: rgba(0, 0, 0, 0.1);
-    margin: 10px 0;
-  }
-  .info-card{
-    h4, h4>a{
-      line-height: 17px;
-      font-size: 17px !important;
-      height: 40px;
-    }
-    a, li {
-      font-size: 14px;
-    }
-    p{
-      margin: 5px 0;
-    }
-    .button{
-      button{
-        margin: 5px 0;
-      }
-    }
-  }
-  .img-card{
-    img{
-      width: 100%;
-    }
-    div{
-      margin: 0 auto;
-    }
-  }
-}
-
-/*
-
-poke-card {
-  width: 100%;
-  margin: 5px 2px;
-  display: block;
-  position: relative;
-  height: 250px;
-  .img-card {
-    height: 200px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 25px 5px;
-    width: 50%;
-    transition: 0.3s;
-    padding: 0 10px;
-    @include screen(sm) {
-      padding: 0 35px !important;
-    }
-    img {
-      width: 100%;
-      margin: 0 auto;
-    }
-  }
-  .info-card {
-    width: 100%;
-    div {
-      width: calc(50% - 5px);
-      h4{
-        line-height: 11px;
-      }
-      a, li, strong{
-        margin: 0px;
-        font-size: 13px;
-      }
-      .card-button{
-        width: 45px;
-        height: 45px;
-        border-radius: 47px;
-        background: red;
-        border: none;
-        margin: 0 45px;
-      }
-      .button{
-        button {
-          width: 100%;
-          @include screen(xxs) {
-            margin: 2px 0px !important;
-          }
-          @include screen(xs) {
-            margin: 2px 0px !important;
-          }
-          @include screen(sm) {
-            margin: 2px 0px !important;
-          }
-          @include screen(md) {
-            margin: 3px 0px !important;
-          }
-          @include screen(lg) {
-            margin: 2px 0px !important;
-          }
-          @include screen(xl) {
-            margin: 5px 0px !important;
-          }
-        }
-      }
-
-    }
-    height: 250px;
-    display: inline-block;
-  }
-}
-*/
+//.img-small>a{
+//  background-color: red;
+//}

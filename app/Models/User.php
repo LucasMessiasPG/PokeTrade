@@ -13,7 +13,19 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $fillable = [
-		'login', 'email', 'password',
+		'login',
+        'email',
+        'password',
+        'pp',
+        'id_contry',
+        'address',
+        'number',
+        'district',
+        'state',
+        'tel',
+        'tutorial',
+        'name',
+        'image_url'
 	];
 	
 	/**
@@ -31,9 +43,11 @@ class User extends Authenticatable
 	    $result = [];
 	    foreach ($cards as $key => $user_card) {
 		    $result[$key] = [
+			    'id_user_card' => $user_card->id_user_card,
 			    'created_at' => $user_card->created_at->toDateTimeString(),
 			    'foil' => $user_card->foil,
-			    'reverse_foil' => $user_card->foil,
+			    'reverse_foil' => $user_card->reverse_foil,
+			    'full_art' => $user_card->full_art,
 		    ];
 		    $result[$key]['card'] = (array)$user_card->card->fullset();
 	    }
@@ -69,6 +83,8 @@ class User extends Authenticatable
 	    $user->login = $this->login;
 	    $user->email = $this->email;
 	    $user->pp = $this->pp;
+	    $user->name = $this->name;
+	    $user->image_url = $this->image_url;
 	    $wants = $this->wants();
 	    $pp_wants = 0;
 	    foreach ($wants as $want) {

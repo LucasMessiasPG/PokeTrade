@@ -1,1 +1,0 @@
-<h5>Seja Bem Vindo <strong><% $data->login %></strong></h5>

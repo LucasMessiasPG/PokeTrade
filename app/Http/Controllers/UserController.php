@@ -207,19 +207,34 @@ class UserController extends Controller
     public function addCard(AddCard $addCard)
     {
         try{
+            DB::beginTransaction();
             $amount = $addCard->amount;
-            if($amount > 10)
-                $amount = 10;
+            if($amount > 4)
+                $amount = 4;
+
+            $new_card = $addCard->all();
+
+            if($new_card['full_art'] === true) {
+                $new_card['foil'] = false;
+                $new_card['reverse_foil'] = false;
+            }
+
+            if($new_card['full_art'] === false && $new_card['reverse_foil'] === true)
+                $new_card['foil'] = true;
+
+
 
 	        $card = Cards::find($addCard->id_card);
 	        $msg = 'Add in my card list '.$addCard->amount.' new card \''.$card->name.' (#'.$card->number.'/'.$card->set->total_cards.')\'';
 	        $this->dispatch(new AddMesssage(Auth::user(),$msg,6));
-	        
+
             for($i=0; $i< $amount; $i++) {
-                UserCards::create($addCard->all());
+                UserCards::create($new_card);
             }
+            DB::commit();
             return $this->_return('Add card','success');
         }catch (\Exception $e){
+            DB::rollback();
             return $this->_returnError('Add Card Fail',$e);
         }
     }
@@ -227,8 +242,8 @@ class UserController extends Controller
     {
         try{
             $amount = $addCard->amount;
-            if($amount > 10)
-                $amount = 10;
+            if($amount > 4)
+                $amount = 4;
 
 	        if($addCard->pp > 100000)
 	        	throw new Exception('Invalid price, value over 100000');
@@ -299,5 +314,17 @@ class UserController extends Controller
     public function sendWant()
     {
 
+    }
+
+    public function remove($id_user_card)
+    {
+        try{
+
+            UserCards::find($id_user_card)->delete();
+
+            return $this->_return('Remove card','success');
+        }catch (\Exception $e){
+            return $this->_returnError('Remove card fail',$e);
+        }
     }
 }

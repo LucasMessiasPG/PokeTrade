@@ -7,12 +7,11 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesResources;
-use Mockery\CountValidator\Exception;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
 
     public function _return($message,$status = 'success',$opt = null)
     {
@@ -25,17 +24,17 @@ class Controller extends BaseController
     }
     public function _returnError($message,\Exception $e)
     {
-		LogSistema::create([
-			'descricao' => 'Erro: '.$message,
-			'error' => $e->getMessage(),
-			'line' => $e->getLine(),
-			'file' => $e->getFile()
-		]);
-	    
-        return response()->json([
-        	'statsu' => 'error',
-	        'msg' => $message,
+        LogSistema::create([
+            'descricao' => 'Erro: '.$message,
+            'error' => $e->getMessage(),
+            'line' => $e->getLine(),
+            'file' => $e->getFile()
         ]);
+
+        return response()->json([
+            'statsu' => 'error',
+            'msg' => $message,
+        ],500);
     }
 
 }
