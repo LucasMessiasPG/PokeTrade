@@ -9,8 +9,8 @@ before_script:
     - npm install
 deploy:
     - provider: codedeploy
-      access_key_id: *1
-      secret_access_key: *2
+      access_key_id: $AWS_KEY
+      secret_access_key: $AWS_SECRET
       application: PokeCard
       deployment_group: testing
       on:

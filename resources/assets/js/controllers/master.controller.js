@@ -1,5 +1,5 @@
 (function(){
-    'use strick';
+    'use strict';
 
     angular
         .module('pokecard.controller')
@@ -7,6 +7,7 @@
 
 
     function MasterController() {
+
     }
 
 })();
