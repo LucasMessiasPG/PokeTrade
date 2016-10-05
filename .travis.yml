@@ -13,6 +13,4 @@ deploy:
       secret_access_key: $AWS_SECRET
       application: PokeCard
       deployment_group: testing
-      on:
-        all_branches: true
-      region: us-east-1a
+      region: us-east-1
