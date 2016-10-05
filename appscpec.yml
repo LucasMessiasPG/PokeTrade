@@ -3,3 +3,20 @@ os: linux
 files:
   - source: /
     destination: /var/www/html/PokeTrade
+hooks:
+  BeforeInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 300
+      runas: rootk
+  AfterInstall:
+    - location: scripts/change_permissions.sh
+      timeout: 20
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 10
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop_server.sh
+      timeout: 10
+      runas: root
