@@ -12,10 +12,8 @@ deploy:
     - provider: codedeploy
       access_key_id: *1
       secret_access_key: *2
-      bucket: codedeploy-demo1
-      key: latest.zip
-      bundle_type: zip
       application: PokeCard
       deployment_group: testing
-      on: *3
+      on:
+        all_branches: true
       region: us-east-1a
