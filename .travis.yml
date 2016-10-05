@@ -7,7 +7,6 @@ before_install:
     - sh -e /etc/init.d/xvfb start
 before_script:
     - npm install
-
 deploy:
     - provider: codedeploy
       access_key_id: *1
