@@ -11,6 +11,6 @@
         PokeProvider.route('/trade','TradeController','trade');
         PokeProvider.route('/my-cards','MyCardsController','myCards');
         PokeProvider.route('/search','SearchController','search');
-        PokeProvider.route('/user','UserController','user');
+        PokeProvider.route('/new-card','NewCardController','newCard');
     }
 })();
