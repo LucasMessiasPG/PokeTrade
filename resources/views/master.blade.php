@@ -19,7 +19,7 @@
         <div class="menu">
             <div class="nav-wrapper">
 
-                <a href="/home" class="brand-logo">Logo Site</a>
+                <a href="/home" class="brand-logo">Logo</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/home">Home</a></li>
                     <li><a href="/search">Search</a></li>
