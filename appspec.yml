@@ -3,7 +3,10 @@ os: linux
 files:
   - source: /
     destination: /var/www/html/PokeTrade
-    overwrite: true
+permissions:
+    - object: /var/www/html/
+      owner: ubuntu
+      group: www-data
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
