@@ -1,1 +1,1 @@
-gulp
+npm start
