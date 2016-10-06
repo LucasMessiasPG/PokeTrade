@@ -3,10 +3,11 @@ os: linux
 files:
   - source: /
     destination: /var/www/html/PokeTrade
+    overwrite: true
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
-      timeout: 300
+      timeout: 100
   AfterInstall:
     - location: scripts/change_permissions.sh
       timeout: 20
