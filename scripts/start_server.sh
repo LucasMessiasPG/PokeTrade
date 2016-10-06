@@ -1,2 +1,4 @@
-
-cd /var/www/html/PokeTrade && npm start
+composer install
+npm i
+sudo npm i -g gulp
+npm start
