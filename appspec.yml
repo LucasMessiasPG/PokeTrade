@@ -8,15 +8,19 @@ permissions:
       owner: ubuntu
       group: www-data
 hooks:
-  BeforeInstall:
-    - location: scripts/install_dependencies.sh
-      timeout: 100
-  AfterInstall:
-    - location: scripts/change_permissions.sh
-      timeout: 20
-  ApplicationStart:
-    - location: scripts/start_server.sh
-      timeout: 10
   ApplicationStop:
-    - location: scripts/stop_server.sh
+    - location: scripts/ApplicationStop.sh
       timeout: 10
+      runas: ubuntu
+  BeforeInstall:
+    - location: scripts/BeforeInstall.sh
+      timeout: 100
+      runas: ubuntu
+  AfterInstall:
+    - location: scripts/AfterInstall.sh
+      timeout: 20
+      runas: ubuntu
+  ApplicationStart:
+    - location: scripts/ApplicationStart.sh
+      timeout: 10
+      runas: ubuntu
