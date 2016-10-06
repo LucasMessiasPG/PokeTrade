@@ -21,5 +21,5 @@ elixir(function (mix) {
         .copy('node_modules/jquery/dist/jquery.js', 'public/vendor')
         .copy('resources/views/html', 'public/html')
         .copy('resources/assets/**/*.png','public')
-        .webpack('resources/assets/js/**/*.js');
+        .webpack(['resources/assets/js/**/*.js','!resources/assets/js/**/*.spec.js']);
 });
