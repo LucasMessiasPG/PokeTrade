@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::group(['prefix'=>'api'],function(){
 
     Route::get('search','SearchController@search');
+    Route::get('last-trades','SearchController@lastTrades');
     Route::get('home-data','SearchController@homeData');
     Route::get('sets','SearchController@set');
     Route::get('cards','SearchController@card');

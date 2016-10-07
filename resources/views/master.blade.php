@@ -23,6 +23,7 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/home">Home</a></li>
                     <li><a href="/search">Search</a></li>
+                    <li><a href="/want">Wants</a></li>
                     <li><a href="/trade">Trades</a></li>
                     <li><a href="/my-cards">My Cards</a></li>
                 </ul>

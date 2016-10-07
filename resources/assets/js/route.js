@@ -8,6 +8,7 @@
     RouterConfig.$inject = ['PokeProvider'];
     function RouterConfig(PokeProvider) {
         PokeProvider.route('/home','HomeController','hc');
+        PokeProvider.route('/want','WantController','want');
         PokeProvider.route('/trade','TradeController','trade');
         PokeProvider.route('/my-cards','MyCardsController','myCards');
         PokeProvider.route('/search','SearchController','search');

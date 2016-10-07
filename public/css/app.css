@@ -5861,4 +5861,7 @@ span.badge {
 .slider .indicators .indicator-item.active {
   background-color: #5b62f1; }
 
+.materialboxed {
+  margin-right: 10px; }
+
 /*# sourceMappingURL=app.css.map */

@@ -34,6 +34,10 @@ class Want extends Model
     {
         return $this->hasOne(User::class,'id_user','id_user');
     }
+    public function user_from()
+    {
+        return $this->hasOne(User::class,'id_user','id_user_from');
+    }
 
     public static function create(array $attributes = [])
     {

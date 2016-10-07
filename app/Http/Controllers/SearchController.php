@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cards;
 use App\Models\Sets;
+use App\Models\User;
 use App\Models\UserCards;
 use App\Models\Want;
 use Illuminate\Http\Request;
@@ -195,22 +196,40 @@ class SearchController extends Controller
             return $this->_returnError('Wants Fail',$e);
         }
     }
-    
+
+    public function lastTrades()
+    {
+        try{
+
+            $result = Want::where('id_status_want','=',2)->take(10)->get();
+
+            foreach($result as $item){
+                $item->user;
+                $item->user_from;
+                $item->card;
+            }
+
+		    return $this->_return('Get home data','success',isset($result)?$result:[]);
+        }catch (\Exception $e){
+		    return $this->_returnError('Last Trade Fail',$e);
+        }
+    }
+
     public function homeData()
     {
     	try{
-		
-		    
+
+
 		    $wants = Want::where('id_status_want','=',1)->count();
 		    $sends = Want::where('id_status_want','=',2)->count();
 		    $trades = Want::where('id_status_want','=',3)->count();
-		
+
 		    $result = [
 		    	'wants' => $wants,
 			    'trades' => $trades,
 			    'sends' => $sends
 		    ];
-		    
+
 		    return $this->_return('Get home data','success',isset($result)?$result:[]);
 	    }catch (\Exception $e){
 		    return $this->_returnError('Home data Fail',$e);

@@ -1,0 +1,43 @@
+<div>
+    <h3>Wants PokeCard</h3>
+</div>
+<div class="panel row">
+    <h4>lore lore lore lore</h4>
+
+    <div class="input-field col s12 m4 offset-m8">
+        <input id="last_name" type="text" class="validate">
+        <label for="last_name">Search:</label>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th class="col-sm-1">Want#</th>
+            <th class="col-sm-1">PP</th>
+            <th class="col-sm-1">Want#</th>
+            <th class="col-sm-1">Set</th>
+            <th class="col-sm-3">Card</th>
+            <th class="col-sm-3">User</th>
+            <th class="col-sm-2">Rarity</th>
+            <th class="col-sm-1"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="list in want.list" class="hoverable">
+            <td>{{ list.id_want }}</td>
+            <td>{{ list.pp | coin }}</td>
+            <td>{{ list.card.code_set }}</td>
+            <td class="valign-wrapper">
+                    <span>
+                        <img class="materialboxed"
+                             src="{{ list.card.image_url }}"
+                             alt="{{ list.card.name }}">
+                    </span>
+                <a class="valign" href="">{{ list.card.name_card }}</a></td>
+            </td>
+            <td><a href="/user/{{ list.user.id_user }}">{{ list.user.login }}</a></td>
+            <td>{{ list.card.rarity }}</td>
+            <td><button class="btn waves-light waves-effect btn-small btn-block">Send</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

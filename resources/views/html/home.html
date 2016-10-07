@@ -12,77 +12,20 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr ng-repeat="trade in home.trades">
                 <td class="valign-wrapper">
                     <span>
                         <img class="materialboxed"
-                             src="https://s3.amazonaws.com/pokemontcg/xy11/114.png"
-                             alt="">
+                             src="{{ trade.cards.image_url }}"
+                             alt="{{ trade.cards.name }}">
                     </span>
-                    <a class="valign" href="">Card Name (#123/123)</a></td>
+                    <a class="valign" href="">{{ trade.cards.name_card }}</a></td>
                 </td>
-                <td><a href="">Lucas Messias</a></td>
-                <td><a href="">Juquinha</a></td>
-                <td>100</td>
-                <td>2 min</td>
+                <td><a href="">{{ trade.user.name }}</a></td>
+                <td><a href="">{{ trade.form_user.name }}</a></td>
+                <td>{{ trade.pp }}</td>
+                <td>{{ trade.last_date }}</td>
             </tr>
-            <tr>
-                <td class="valign-wrapper">
-                    <span>
-                        <img class="materialboxed"
-                             src="https://s3.amazonaws.com/pokemontcg/xy11/114.png"
-                             alt="">
-                    </span>
-                    <a class="valign" href="">Card Name (#123/123)</a></td>
-                </td>
-                <td><a href="">Lucas Messias</a></td>
-                <td><a href="">Juquinha</a></td>
-                <td>100</td>
-                <td>2 min</td>
-            </tr>
-            <tr>
-                <td class="valign-wrapper">
-                    <span>
-                        <img class="materialboxed"
-                             src="https://s3.amazonaws.com/pokemontcg/xy11/114.png"
-                             alt="">
-                    </span>
-                    <a class="valign" href="">Card Name (#123/123)</a></td>
-                </td>
-                <td><a href="">Lucas Messias</a></td>
-                <td><a href="">Juquinha</a></td>
-                <td>100</td>
-                <td>2 min</td>
-            </tr>
-            <tr>
-                <td class="valign-wrapper">
-                    <span>
-                        <img class="materialboxed"
-                             src="https://s3.amazonaws.com/pokemontcg/xy11/114.png"
-                             alt="">
-                    </span>
-                    <a class="valign" href="">Card Name (#123/123)</a></td>
-                </td>
-                <td><a href="">Lucas Messias</a></td>
-                <td><a href="">Juquinha</a></td>
-                <td>100</td>
-                <td>2 min</td>
-            </tr>
-            <tr>
-                <td class="valign-wrapper">
-                    <span>
-                        <img class="materialboxed"
-                             src="https://s3.amazonaws.com/pokemontcg/xy11/114.png"
-                             alt="">
-                    </span>
-                    <a class="valign" href="">Card Name (#123/123)</a></td>
-                </td>
-                <td><a href="">Lucas Messias</a></td>
-                <td><a href="">Juquinha</a></td>
-                <td>100</td>
-                <td>2 min</td>
-            </tr>
-            <tr>
             </tbody>
         </table>
     </div>
