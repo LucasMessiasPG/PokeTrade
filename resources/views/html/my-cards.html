@@ -11,7 +11,7 @@
     </div>
     <div class="col s6 m4">
         <div class="center-align">
-            <a class="waves-effect waves-light btn btn-small">Add Card
+            <a href="/new-card" class="waves-effect waves-light btn btn-small">Add Card
             </a>
         </div>
     </div>
@@ -39,22 +39,22 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr ng-repeat="list in myCards.cards">
                 <td class="valign-wrapper"><span><img class="materialboxed"
-                                                      src="https://s3.amazonaws.com/pokemontcg/xy11/114.png"
-                                                      alt=""> </span>
-                    <a class="valign" href="">Card Name (#123/123)</a></td>
+                                                      ng-src="{{ list.card.image_url }}"
+                                                      alt="{{ list.card.name }}"> </span>
+                    <a class="valign" href="/user/{{ list.card.id }}">{{ list.card.name_card }}</a></td>
                 <td>Set name</td>
                 <td class="center">
-                    <input name="1" disabled type="checkbox" class="form-control" id="foil"/>
+                    <input name="1" disabled type="checkbox" ng-model="list.foil" class="form-control" id="foil"/>
                     <label for="foil"></label>
                 </td>
                 <td class="center">
-                    <input name="2" disabled type="checkbox" class="form-control" id="reverse_foil"/>
+                    <input name="2" disabled type="checkbox" ng-model="list.reverse_foil" class="form-control" id="reverse_foil"/>
                     <label for="reverse_foil"></label>
                 </td>
                 <td class="center">
-                    <input name="3" disabled type="checkbox" class="form-control" id="full_art"/>
+                    <input name="3" disabled type="checkbox" ng-model="list.full_art" class="form-control" id="full_art"/>
                     <label for="full_art"></label>
                 </td>
                 <td class="center">

@@ -51,7 +51,7 @@
         </table>
     </div>
     <div ng-show="newCard.add">
-        <form>
+        <form ng-submit="newCard.save(newCard.new_card)">
             <div class="col-sm-4 col-xs-12">
                 <img src="{{ newCard.new_card.image_url }}" alt="{{ newCard.new_card.name_card }}">
             </div>
@@ -73,7 +73,7 @@
                     <label for="full_art">Full Art</label>
                 </div>
                 <div class="col s2">
-                    <button ng-click="newCard.save(newCard.new_card)">Save</button>
+                    <button type="submit">Save</button>
                 </div>
             </div>
         </form>

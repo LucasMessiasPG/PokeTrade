@@ -26,6 +26,9 @@ Route::group(['prefix'=>'api'],function(){
 
     Route::get('card/wants','SearchController@allWant');
 
+    Route::post('login','UserController@login');
+    Route::post('register','UserController@register');
+
     Route::group(['middleware'=>['check']],function(){
 
         Route::post('/user/add-card','UserController@addCard');

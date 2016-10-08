@@ -6,10 +6,21 @@
         .module('pokecard.controller')
         .controller('MyCardsController', MyCardsController)
 
-    MyCardsController.$inject = [];
-    function MyCardsController() {
+    MyCardsController.$inject = ['UserService'];
+    function MyCardsController(UserService) {
         var myCards = this;
-        console.log('MyCardsController');
+
+        init();
+
+        /////////////
+
+        function init(){
+            UserService.getMyCards()
+                .then(function(response){
+                    myCards.cards = response.data;
+                })
+        }
+
     }
 
 })();

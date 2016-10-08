@@ -73,7 +73,7 @@ class AddMesssage extends Job implements ShouldQueue
         ];
 
         if($this->new)
-            $message['id_user_from'] = 1;
+            $message['id_user_from'] = 2;
 
         Message::create($message);
 	}

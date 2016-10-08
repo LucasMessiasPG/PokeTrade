@@ -13,6 +13,7 @@
     <nav>
         <div class="container user">
             <div class="right">
+                <a href="/login">Login</a>
                 <a href="/user">Usuario</a>
             </div>
         </div>

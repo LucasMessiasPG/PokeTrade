@@ -11,9 +11,8 @@
     <table>
         <thead>
         <tr>
-            <th class="col-sm-1">Want#</th>
+            <th class="col-sm-1 text-center">#Want</th>
             <th class="col-sm-1">PP</th>
-            <th class="col-sm-1">Want#</th>
             <th class="col-sm-1">Set</th>
             <th class="col-sm-3">Card</th>
             <th class="col-sm-3">User</th>
@@ -23,8 +22,8 @@
         </thead>
         <tbody>
         <tr ng-repeat="list in want.list" class="hoverable">
-            <td>{{ list.id_want }}</td>
-            <td>{{ list.pp | coin }}</td>
+            <td class="text-center">#{{ list.id_want }}</td>
+            <td>{{ list.pp }}</td>
             <td>{{ list.card.code_set }}</td>
             <td class="valign-wrapper">
                     <span>

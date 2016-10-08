@@ -96,9 +96,12 @@ class UserController extends Controller
 			$newUser['login'] = strtolower($newUser['login']);
 			$newUser['email'] = strtolower($newUser['email']);
 			$newUser['password'] = Hash::make($newUser['password']);
+
 		    $user = User::create($newUser);
+            /*
             $email = new EmailController($newUser['email']);
             $email->view('welcome',$user->fullSet())->send();
+            */
 
 			Auth::login($user);
 

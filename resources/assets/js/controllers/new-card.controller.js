@@ -5,14 +5,15 @@
         .module('pokecard.controller')
         .controller('NewCardController', NewCardController);
 
-    NewCardController.$inject = ['SearchService'];
-    function NewCardController(SearchService) {
+    NewCardController.$inject = ['SearchService','UserService','$location'];
+    function NewCardController(SearchService,UserService,$location) {
         var ctrl = this;
         ctrl.search = search;
         ctrl.addCard = addCard;
         ctrl.nextPage = nextPage;
         ctrl.backPage = backPage;
         ctrl.setPage = setPage;
+        ctrl.save = save;
 
         init();
 
@@ -69,9 +70,22 @@
         function addCard(card){
             ctrl.add = true;
             ctrl.new_card = card;
-            console.log(ctrl.new_card);
         }
 
+        function save(card) {
+            var new_card = {
+                id_card:card.id_card,
+                amount:(card.amount)?card.amount:1,
+                foil:(card.foil)?card.foil:false,
+                reverse_foil:(card.reverse_foil)?card.reverse_foil:false,
+                full_art:(card.full_art)?card.full_art:false
+            };
+            UserService.addCard(new_card)
+                .then(function(response){
+                    if(response.status == 'success')
+                        $location.path('/my-cards')
+                });
+        }
     }
 
 })();
