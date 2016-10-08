@@ -45,6 +45,8 @@
         }
 
         function callSearch(filter, is_new) {
+            ctrl.new_card = {};
+            ctrl.add = false;
             SearchService.search(filter)
                 .then(function (response) {
                     ctrl.table = response.data.result;
@@ -80,6 +82,16 @@
                 reverse_foil:(card.reverse_foil)?card.reverse_foil:false,
                 full_art:(card.full_art)?card.full_art:false
             };
+
+            if(card.full_art) {
+                new_card.foil = true;
+                new_card.reverse_foil = true;
+            }
+
+            if(card.reverse_foil){
+                new_card.foil = true;
+            }
+
             UserService.addCard(new_card)
                 .then(function(response){
                     if(response.status == 'success')

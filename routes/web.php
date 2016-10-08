@@ -26,6 +26,7 @@ Route::group(['prefix'=>'api'],function(){
 
     Route::get('card/wants','SearchController@allWant');
 
+    Route::get('logout','UserController@logout');
     Route::post('login','UserController@login');
     Route::post('register','UserController@register');
 

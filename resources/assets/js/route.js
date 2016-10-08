@@ -9,6 +9,7 @@
     function RouterConfig(PokeProvider) {
         PokeProvider.route('/home','HomeController','hc');
         PokeProvider.route('/login','LoginController','login');
+        PokeProvider.route('/logout','LogoutController','logout');
         PokeProvider.route('/want','WantController','want');
         PokeProvider.route('/trade','TradeController','trade');
         PokeProvider.route('/my-cards','MyCardsController','myCards');

@@ -52,10 +52,21 @@
     </div>
     <div ng-show="newCard.add">
         <form ng-submit="newCard.save(newCard.new_card)">
-            <div class="col-sm-4 col-xs-12">
-                <img src="{{ newCard.new_card.image_url }}" alt="{{ newCard.new_card.name_card }}">
+            <div class="col s12">
+                <hr>
             </div>
-            <div class="col-sm-4 col-sx-12">
+            <div class="margin-top">
+                <div class="col s12 m4">
+                    <img class="materialboxed" ng-src="{{ newCard.new_card.image_url }}" alt="{{ newCard.new_card.name_card }}">
+                </div>
+                <div class="col s12 m8">
+                    <card card="newCard.new_card"></card>
+                </div>
+            </div>
+            <div class="col s12">
+                <hr>
+            </div>
+            <div class="col s12">
                 <div class="input-field col s4">
                     <input name="amount" id="amount" class="form-control" type="text" ng-model="newCard.new_card.amount">
                     <label for="amount">Amount</label>
@@ -73,10 +84,9 @@
                     <label for="full_art">Full Art</label>
                 </div>
                 <div class="col s2">
-                    <button type="submit">Save</button>
+                    <button type="submit" class="waves-effect waves-light btn btn-small margin-top">Save</button>
                 </div>
             </div>
         </form>
     </div>
-
 </div>

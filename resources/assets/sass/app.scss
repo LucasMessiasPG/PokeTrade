@@ -138,6 +138,62 @@ input:not([type]).valid + label:after, input:not([type]):focus.valid + label:aft
   top: 40px;
 }
 
-//.img-small>a{
-//  background-color: red;
-//}
+
+.type {
+  width: 20px;
+  height: 15px;
+  display: inline-block;
+  position: relative;
+  .img {
+    background-image: url("/img/types.png");
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: 100px;
+    position: absolute;
+  }
+  .Colorless {
+    background-position-x: 71px;
+    background-position-y: 67px;
+  }
+  .Free {
+    background-position-x: 71px;
+    background-position-y: 67px;
+  }
+  .Fairy {
+    background-position-x: 61px;
+    background-position-y: 47px;
+  }
+  .Lightning {
+    background-position-x: 90px;
+    background-position-y: 26px;
+  }
+  .Grass {
+    background-position-x: 81px;
+    background-position-y: 47px;
+  }
+  .Fighting {
+    background-position-x: 90px;
+    background-position-y: 67px;
+  }
+  .Darkness {
+    background-position-x: 70px;
+    background-position-y: 26px;
+  }
+  .Metal {
+    background-position-x: 50px;
+    background-position-y: 26px;
+  }
+  .Fire {
+    background-position-x: 40px;
+    background-position-y: 47px;
+  }
+  .Psychic {
+    background-position-x: 50px;
+    background-position-y: 67px;
+  }
+  .Water {
+    background-position-x: 30px;
+    background-position-y: 67px;
+  }
+}

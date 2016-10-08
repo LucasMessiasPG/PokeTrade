@@ -8,13 +8,16 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
 </head>
-<body ng-controller="MasterController">
+<body ng-controller="MasterController as master" ng-cloak>
 <header>
     <nav>
         <div class="container user">
-            <div class="right">
+            <div class="right" ng-show="master.user">
+                <a href="/user" ng-bind="master.user.login"></a>
+                <a href="/logout">Logout</a>
+            </div>
+            <div class="right" ng-show="!master.user">
                 <a href="/login">Login</a>
-                <a href="/user">Usuario</a>
             </div>
         </div>
         <div class="menu">

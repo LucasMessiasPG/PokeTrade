@@ -5,9 +5,10 @@
         .module('pokecard.controller')
         .controller('WantController', WantController);
 
-    WantController.$inject = ['SearchService'];
-    function WantController(SearchService) {
+    WantController.$inject = ['SearchService','UserService'];
+    function WantController(SearchService,UserService) {
         var want = this;
+        want.isMy = isMy;
 
         init();
 
@@ -21,6 +22,16 @@
                 });
         }
 
+        function isMy(user_card){
+            var user = UserService.checkLogin();
+            if(!user)
+                return false;
+
+            return user.id_user == user_card.id_user;
+
+
+
+        }
 
     }
 })();

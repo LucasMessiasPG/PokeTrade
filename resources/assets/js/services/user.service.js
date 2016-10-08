@@ -5,15 +5,26 @@
         .module('pokecard.service')
         .service('UserService',UserService);
 
-    UserService.$inject = ['$http'];
-    function UserService($http) {
+    UserService.$inject = ['$http','$window'];
+    function UserService($http,$window) {
         this.user = {};
+        this.checkLogin = checkLogin;
         this.addCard = addCard;
         this.login = login;
         this.register = register;
         this.getMyCards = getMyCards;
+        this.getLastMessages = getLastMessages;
 
         //////////////////
+
+        function checkLogin() {
+            var user = $window.localStorage.getItem('user');
+            if(typeof user !== 'undefined' && user !== 'undefined') {
+                UserService.user = JSON.parse(user);
+                return UserService.user;
+            }
+            return false;
+        }
 
         function addCard(card){
             return $http.post('/api/user/add-card',card)
@@ -40,6 +51,17 @@
             return $http.get('/api/my-cards')
                 .then(function(response){
                     return response.data;
+                })
+        }
+
+        function getLastMessages(){
+            var filter = {
+                last:true,
+                id_status_message:'2,4'
+            };
+            return $http.get('/api/my-messages',{params:filter})
+                .then(function (response) {
+                    return response.data
                 })
         }
 

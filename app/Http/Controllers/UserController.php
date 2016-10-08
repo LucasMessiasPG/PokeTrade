@@ -173,7 +173,7 @@ class UserController extends Controller
 			    	$only = explode(',',$request->id_status_message);
 			    else
 			    	$only = [1,2,3,4,5,6];
-			    
+
 			    foreach ($temp_message as $msg) {
 			    	if(in_array($msg->id_status_message,$only)) {
 			    		$messages[] = $msg;
