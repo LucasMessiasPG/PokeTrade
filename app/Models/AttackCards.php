@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AttackCards extends Model
 {
-    protected $primaryKey = null;
+	
+    protected $primaryKey = 'id_attack_card';
     protected $table = 'attack_cards';
     protected $fillable = [
         'id_card',

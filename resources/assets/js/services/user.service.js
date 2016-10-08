@@ -10,6 +10,7 @@
         this.user = {};
         this.checkLogin = checkLogin;
         this.addCard = addCard;
+        this.addWant = addWant;
         this.login = login;
         this.register = register;
         this.getMyCards = getMyCards;
@@ -28,6 +29,13 @@
 
         function addCard(card){
             return $http.post('/api/user/add-card',card)
+                .then(function(response){
+                    return response.data;
+                })
+        }
+
+        function addWant(card){
+            return $http.post('/api/user/add-want',card)
                 .then(function(response){
                     return response.data;
                 })

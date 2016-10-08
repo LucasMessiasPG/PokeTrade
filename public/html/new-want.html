@@ -1,0 +1,96 @@
+<div class="margin-top">
+    <form ng-submit="newWant.search(newWant.filter)">
+        <input type="hidden" ng-model="newWant.filter.limit">
+        <div class="input-field col s3">
+            <input name="set" id="set" class="form-control" type="text" ng-model="newWant.filter.set">
+            <label for="set">Set</label>
+        </div>
+        <div class="input-field col s4">
+            <input name="name" id="name" class="form-control" type="text" ng-model="newWant.filter.name">
+            <label for="name">Card Name</label>
+        </div>
+        <div class="input-field col s2">
+            <input name="number" id="number" class="form-control" type="text" ng-model="newWant.filter.number">
+            <label for="number">Card Number</label>
+        </div>
+        <button type="submit" class="btn right">Search</button>
+    </form>
+
+    <div ng-show="!newWant.add">
+        <table class="bordered highlight">
+            <thead>
+            <tr>
+                <th class="col-sm-1">Set</th>
+                <th class="col-sm-7">Card</th>
+                <th class="col-sm-3">Rarity</th>
+                <th class="col-sm-1"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="card in newWant.table" class="hoverable">
+                <td>{{ card.code_set }}</td>
+                <td>
+                    <span><img class="materialboxed" src="{{ card.image_url }}" alt="{{ card.name_card }}"></span>
+                    {{ card.name_card }}
+                </td>
+                <td>{{ card.rarity }}</td>
+                <td><button ng-click="newWant.addCard(card)" class="btn waves-light waves-effect btn-small btn-block">Add</button></td>
+            </tr>
+            </tbody>
+            <tfoot ng-show="newWant.table" >
+            <tr>
+                <td colspan="6">
+                    <div class="right" ng-show="newWant.table_total_pagination > 1">
+                        <button ng-disabled="(1 == newWant.filter.page)" ng-click="newWant.backPage()" class="btn"><</button>
+                        <button ng-disabled="(page == newWant.filter.page)" ng-click="newWant.setPage(page)" class="btn" ng-repeat="page in newWant.table_pagination" ng-bind="page"></button>
+                        <button ng-disabled="(newWant.table_total_pagination == newWant.filter.page)" ng-click="newWant.nextPage()" class="btn">></button>
+                    </div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div ng-show="newWant.add">
+        <form ng-submit="newWant.save(newWant.new_card)">
+            <div class="col s12">
+                <hr>
+            </div>
+            <div class="margin-top">
+                <div class="col s12 m4">
+                    <img class="materialboxed" ng-src="{{ newWant.new_card.image_url }}" alt="{{ newWant.new_card.name_card }}">
+                </div>
+                <div class="col s12 m8">
+                    <card card="newWant.new_card"></card>
+                </div>
+            </div>
+            <div class="col s12">
+                <hr>
+            </div>
+            <div class="col s12">
+                <div class="input-field col s2">
+                    <input name="amount" id="amount" class="form-control" type="text" ng-model="newWant.new_card.amount">
+                    <label for="amount">Amount</label>
+                </div>
+                <div class="input-field col s2">
+                    <input name="pp" id="pp" class="form-control" type="text" ng-model="newWant.new_card.pp">
+                    <label for="pp">PokePoint</label>
+                </div>
+                <div class="input-field col s2">
+                    <input name="foil" id="foil" class="form-control" type="checkbox" ng-model="newWant.new_card.foil">
+                    <label for="foil">Foil</label>
+                </div>
+                <div class="input-field col s2">
+                    <input name="reverse_foil" id="reverse_foil" class="form-control" type="checkbox" ng-model="newWant.new_card.reverse_foil">
+                    <label for="reverse_foil">Reverse Foil</label>
+                </div>
+                <div class="input-field col s2">
+                    <input name="full_art" id="full_art" class="form-control" type="checkbox" ng-model="newWant.new_card.full_art">
+                    <label for="full_art">Full Art</label>
+                </div>
+                <div class="col s2">
+                    <button type="submit" class="waves-effect waves-light btn btn-small margin-top">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

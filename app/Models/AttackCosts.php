@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AttackCosts extends Model
 {
-    protected $primaryKey = null;
+    protected $primaryKey = 'id_attack_cost';
     protected $table = 'attack_costs';
     protected $fillable = [
         'id_attack',
