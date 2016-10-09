@@ -9,6 +9,7 @@
     MyCardsController.$inject = ['UserService','$location'];
     function MyCardsController(UserService,$location) {
         var myCards = this;
+        myCards.remover = remover;
 
         if(UserService.checkLogin()){
             init();
@@ -22,7 +23,10 @@
 
             UserService.getMyCards()
             .then(function(response){
-                myCards.cards = response.data;
+                if(response.data && response.data.card)
+                    myCards.cards = response.data.card;
+                if(response.data && response.data.total_cards)
+                    myCards.total = response.data.total_cards;
             });
             UserService.getLastMessages()
             .then(function (response) {
@@ -34,6 +38,17 @@
                         myCards.lastTrade = data;
                 }
             });
+        }
+
+        function remover(item){
+            console.log(item);
+            UserService.removeCard(item.id_user_card)
+                .then(function(response){
+                    if(response.status = 'success'){
+                        myCards.cards.splice(myCards.cards.indexOf(item),1);
+                        myCards.total--;
+                    }   
+                })
         }
 
     }

@@ -144,7 +144,12 @@ public function register(Register $register)
     {
         try{
             $cards = \Auth::user()->cards();
-            return $this->_return('Get all cards user','success',$cards);
+            $result = [];
+
+            $result['total_cards'] = count($cards);
+            $result['card'] = $cards;
+
+            return $this->_return('Get all cards user','success',$result);
         }catch (\Exception $e){
             return $this->_returnError('Cards User Fail',$e);
         }

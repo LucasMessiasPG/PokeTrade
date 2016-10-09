@@ -10,7 +10,7 @@
             restrict:'C',
             link:function(scope,el,attr){
                 setTimeout(function(){
-                    $('.modal-trigger').leanModal();;
+                    $('.modal-trigger').leanModal();
                 },1);
             }
         }

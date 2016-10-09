@@ -21,11 +21,7 @@
         <ul class="collection with-header">
             <li class="collection-header center-align">My Cards Resume</li>
             <li class="collection-item">Total Cards <span data-badge-caption="cards"
-                                                          class="badge">100</span></li>
-            <li class="collection-item">Active Cards <span data-badge-caption="cards"
-                                                           class="badge">40</span></li>
-            <li class="collection-item">Inactive Cards <span data-badge-caption="cards"
-                                                             class="badge">60</span></li>
+                                                          class="badge">{{ myCards.total }}</span></li>
         </ul>
     </div>
     <div class="col s12">
@@ -37,6 +33,7 @@
                 <th class="center-align">Foil</th>
                 <th class="center-align">Reverse Foil</th>
                 <th class="center-align">Full Art</th>
+                <th class="center-align">Added At</th>
                 <th></th>
             </tr>
             </thead>
@@ -46,7 +43,7 @@
                                                       ng-src="{{ list.card.image_url }}"
                                                       alt="{{ list.card.name }}"> </span>
                     <a class="valign" href="/user/{{ list.card.id }}">{{ list.card.name_card }}</a></td>
-                <td>Set name</td>
+                <td>{{ list.card.code_set }}</td>
                 <td class="center">
                     <input name="1" disabled type="checkbox" ng-model="list.foil" class="form-control" id="foil"/>
                     <label for="foil"></label>
@@ -59,9 +56,10 @@
                     <input name="3" disabled type="checkbox" ng-model="list.full_art" class="form-control" id="full_art"/>
                     <label for="full_art"></label>
                 </td>
+                <td>{{ list.created_at }}</td>
                 <td class="center">
-                    <button class="btn btn-small">Edit</button>
-                    <button class="btn red btn-small">Remove</button>
+                    <button ng-disabled="true" class="btn btn-small">Edit</button>
+                    <button class="btn red btn-small" modal-id="{{ list.id_user_card }}" callback="myCards.remover(list)" confirmation="Você deseja remover {{ list.card.name_card }} ?">Remove</button>
                 </td>
             </tr>
             </tbody>
