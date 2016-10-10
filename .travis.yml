@@ -3,7 +3,7 @@ node_js:
     - "0.10"
 script: node_modules/karma/bin/karma start my.conf.js --single-run --browsers PhantomJS
 sudo: false
-+cache:
+cache:
   directories:
     - node_modules
 
