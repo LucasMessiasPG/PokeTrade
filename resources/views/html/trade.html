@@ -11,49 +11,42 @@
     <table>
         <thead>
             <tr>
-                <th>Trade#</th>
+                <th>#Trade</th>
                 <th>Set</th>
                 <th>Card</th>
                 <th>Points</th>
-                <th>Foil</th>
                 <th>Status</th>
                 <th>Sender</th>
                 <th>Receiver</th>
+                <th>Updated</th>
                 <th>Initiated</th>
                 <th width="120"></th>
                 <th width="150"></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>512343</td>
-                <td>img</td>
-                <td>Nome da Carta</td>
-                <td>12313</td>
-                <td>img</td>
-                <td>SENDING</td>
-                <td>Messias</td>
-                <td>Messias2</td>
-                <td>20/09/2016</td>
-                <td class="center" style="padding: 2px 0"><button class="btn waves-light waves-effect btn-small light-blue btn-block">Shipped card</button></td>
-                <td class="center" style="padding: 2px 0"><button class="btn waves-light waves-effect btn-small red">Report Problem</button></td>
-            </tr>
-            <tr>
-                <td>512343</td>
-                <td>img</td>
-                <td>Nome da Carta</td>
-                <td>12313</td>
-                <td>img</td>
-                <td>SENDING</td>
-                <td>Messias</td>
-                <td>Messias2</td>
-                <td>20/09/2016</td>
-                <td class="center" style="padding: 2px 0"><button class="btn waves-light waves-effect btn-small light-green btn-block">Complete Trade</button></td>
-                <td class="center" style="padding: 2px 0"><button class="btn waves-light waves-effect btn-small red ">Report Problem</button></td>
+            <tr ng-repeat="item in trade.list">
+                <td>#{{ item.id_want }}</td>
+                <td>{{ item.card.code_set }}</td>
+                <td class="valign-wrapper">
+                        <span>
+                            <img class="materialboxed"
+                                 src="{{ item.card.image_url }}"
+                                 alt="{{ item.card.name }}">
+                        </span>
+                    <a class="valign" ng-href="/details/{{ item.card.id_card }}">{{ item.card.name_card }}</a></td>
+                </td>
+                <td>{{ item.pp }}</td>
+                <td>{{ item.status }}</td>
+                <td><a ng-href="/user/{{ item.user.id_user }}">{{ item.user.login }}</a></td>
+                <td><a ng-href="/user/{{ item.user_from.id_user }}">{{ item.user_from.login }}</a></td>
+                <td>{{ item.created_at }}</td>
+                <td>{{ item.updated_at }}</td>
+                <td class="center" style="padding: 2px 0"><a ng-href="trade/{{ item.id_want }}" class="btn waves-light waves-effect btn-small light-blue btn-block">Shipped card</button></td>
+                <td class="center" style="padding: 2px 0">
+                    <button ng-disabled="( item.user.id_user != user.id_user && list.user_from.id_user != user.id_user )" class="btn waves-light waves-effect btn-small red">Report Problem</button>
+                </td>
             </tr>
         </tbody>
     </table>
-    <div>
-        <p>Showing 1 to 13 of 13 entries</p>
-    </div>
 </div>

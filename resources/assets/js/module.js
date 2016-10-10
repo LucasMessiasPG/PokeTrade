@@ -1,9 +1,9 @@
 angular.module('pokecard',[
     'ngRoute',
-    'pokecard.controller',
     'pokecard.service',
     'pokecard.directive',
-    'pokecard.filter'
+    'pokecard.filter',
+    'pokecard.controller'
 ]);
 
 angular.module('pokecard.controller',[]);

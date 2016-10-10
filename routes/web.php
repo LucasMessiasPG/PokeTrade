@@ -25,6 +25,7 @@ Route::group(['prefix'=>'api'],function(){
     Route::get('card/{id_card}/details','SearchController@detail');
 
     Route::get('card/wants','SearchController@allWant');
+    Route::get('card/trades','SearchController@allTrade');
 
     Route::get('logout','UserController@logout');
     Route::post('login','UserController@login');
@@ -32,9 +33,10 @@ Route::group(['prefix'=>'api'],function(){
 
     Route::group(['middleware'=>['check']],function(){
 
+        Route::get('/user/{id_user}/profile','UserController@profile');
         Route::post('/user/add-card','UserController@addCard');
         Route::post('/user/add-want','UserController@addWant');
-        Route::post('/user/send-want','UserController@sendWant');
+        Route::get('/user/{id_want}/send-want','UserController@sendWant');
         Route::get('/user/{id_want}/remove-want','UserController@removeWant');
         Route::get('/user/{id_user_card}/remove-card','UserController@remove');
         Route::post('/user/{id_want}/edit-want','UserController@editWant');
@@ -46,6 +48,6 @@ Route::group(['prefix'=>'api'],function(){
 });
 
 
-Route::get('{all}', function () {
+Route::get('{all}/{all2?}', function () {
     return view('master');
 });
