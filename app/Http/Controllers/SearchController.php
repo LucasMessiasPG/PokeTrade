@@ -13,18 +13,19 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Mockery\CountValidator\Exception;
 
-class SearchController extends Controller
-{
+class SearchController extends Controller{
+
     public function search(Request $request)
     {
         try {
 
             $campos = [
-                'page',
-                'name',
-                'set_name',
-                'id_set',
-                'number',
+            'id_card',
+            'page',
+            'name',
+            'set_name',
+            'id_set',
+            'number',
             ];
 
             $limit = 100;
@@ -41,17 +42,20 @@ class SearchController extends Controller
                 if($value){
                     switch ($field){
                         case 'name':
-                            $card->where('cards.name','ilike','%'.$value.'%');
-                            break;
+                        $card->where('cards.name','ilike','%'.$value.'%');
+                        break;
                         case 'number':
-                            $card->where('number','=',$value);
-                            break;
+                        $card->where('number','=',$value);
+                        break;
                         case 'id_set':
-                            $card->where('cards.id_set','=',$value);
-                            break;
+                        $card->where('cards.id_set','=',$value);
+                        break;
                         case 'set_name':
-                            $card->where('sets.name','ilike','%'.$value.'%');
-                            break;
+                        $card->where('sets.name','ilike','%'.$value.'%');
+                        break;
+                        case 'id_card':
+                        $card->where('cards.id_card','=',$value);
+                        break;
                     }
                 }
             }
@@ -89,8 +93,8 @@ class SearchController extends Controller
 
 
             $campos = [
-                'name',
-                'number',
+            'name',
+            'number',
             ];
 
             $limit = 100;
@@ -104,11 +108,11 @@ class SearchController extends Controller
                 if($value != ''){
                     switch ($field){
                         case 'name':
-                            $query->where('name','ilike','%'.$value.'%');
-                            break;
+                        $query->where('name','ilike','%'.$value.'%');
+                        break;
                         case 'number':
-                            $query->where('number','=',$value);
-                            break;
+                        $query->where('number','=',$value);
+                        break;
                     }
                 }
             }
@@ -123,51 +127,125 @@ class SearchController extends Controller
             return $this._return('Cards Fail','error',['e'=>$e->getMessage(),'l'=>$e->getLine(),'f'=>$e->getFile()]);
         }
     }
-    
-    public function detail($id_card)
-    {
-    	try{
-			
-    		$card = Cards::find($id_card);
-		    $result = $card->fullSet();
-		
-		    return $this->_return('Get cards datails','success',isset($result)?$result:[]);
-	    }catch (\Exception $e){
-		    return $this->_returnError('Cards Datails Fail',$e);
-	    }
-    }
 
-    public function allWant(Request $request)
+    public function detail($id_card)
     {
         try{
 
+            $card = Cards::find($id_card);
+            $result = $card->fullSet();
+
+            return $this->_return('Get cards datails','success',isset($result)?$result:[]);
+        }catch (\Exception $e){
+            return $this->_returnError('Cards Datails Fail',$e);
+        }
+    }
+
+    public function allWant(Request $request){
+
+        try{
+
             $query = Want::select(['wants.*','cards.name','cards.id_set'])
-                ->join('cards','cards.id_card','=','wants.id_card')
-                ->leftJoin('user_cards','user_cards.id_card','=','wants.id_card')
-                ->where('id_status_want','=',1)
-                ->orderBy('wants.created_at','dec')
-                ->limit(30)
-                ->skip($request->offset);
+            ->join('cards','cards.id_card','=','wants.id_card')
+            ->leftJoin('user_cards','user_cards.id_card','=','wants.id_card')
+            ->where('id_status_want','=',1)
+            ->orderBy('wants.created_at','dec')
+            ->limit(30)
+            ->skip($request->offset);
 
             foreach ($request->all() as $field => $value) {
                 switch ($field){
                     case 'id_set':
-                        $query->where('cards.id_set','=',$value);
-                        break;
+                    $query->where('cards.id_set','=',$value);
+                    break;
                     case 'name':
-                        $query->where('cards.name','ilike','%'.$value.'%');
-                        break;
+                    $query->where('cards.name','ilike','%'.$value.'%');
+                    break;
                     case 'number':
-                        $query->where('cards.number','=',$value);
-                        break;
+                    $query->where('cards.number','=',$value);
+                    break;
                     case 'have':
-                        if($value == '1') {
-                            if (Auth::check() == false)
-                                break;
-                            $id_user = Auth::user()->id_user;
-                            $query->where('user_cards.id_user', '=', $id_user);
-                        }
-                        break;
+                    if($value == '1') {
+                        if (Auth::check() == false)
+                            break;
+                        $id_user = Auth::user()->id_user;
+                        $query->where('user_cards.id_user', '=', $id_user);
+                    }
+                    break;
+                }
+
+            }
+            $wants = $query->get();
+
+            $result = [];
+            $ids = []; 
+            foreach ($wants as $want) {
+                $check = true;
+
+                if(count($ids) == 0)
+                    $ids[] = $want->id_want;
+                else{
+                    if(in_array($ids,$want->id_want))
+                        $check = false;
+                    else
+                        $ids[] = $want->id_want;
+                }
+
+                if($check){
+                    $result[] = (object)[
+                    'have' => (UserCards::where('id_card','=',$want->id_card)->where('id_user','=',(Auth::check())?Auth::user()->id_user:'1')->get()->count() > 0)?true:false,
+                    'id_want' => $want->id_want,
+                    'created_at' => $want->created_at->toDateTimeString(),
+                    'pp' => $want->pp,
+                    'foil' => $want->foil,
+                    'reverse_foil' => $want->reverse_foil,
+                    'card' => $want->card->fullSet(),
+                    'user' => (object)[
+                    'login' => $want->user->login,
+                    'id_user' => $want->id_user
+                    ]
+                    ];
+                }
+            }
+
+
+            return $this->_return('Get wants','success',isset($result)?$result:[]);
+        }catch (\Exception $e){
+            return $this->_returnError('Wants Fail',$e);
+        }
+    }
+
+    public function allTrade(Request $request){
+
+        try{
+
+            $query = Want::select(['wants.*','cards.name','cards.id_set'])
+            ->join('cards','cards.id_card','=','wants.id_card')
+            ->leftJoin('user_cards','user_cards.id_card','=','wants.id_card')
+            ->where('id_status_want','!=',1)
+            ->orderBy('wants.created_at','dec')
+            ->limit(30)
+            ->skip($request->offset);
+
+            foreach ($request->all() as $field => $value) {
+                switch ($field){
+                    case 'id_set':
+                    $query->where('cards.id_set','=',$value);
+                    break;
+                    case 'name':
+                    $query->where('cards.name','ilike','%'.$value.'%');
+                    break;
+                    case 'number':
+                    $query->where('cards.number','=',$value);
+                    break;
+                    case 'have':
+                    if($value == '1') {
+                        if (Auth::check() == false)
+                            break;
+                        $id_user = Auth::user()->id_user;
+                        $query->where('user_cards.id_user', '=', $id_user);
+                    }
+                    break;
                 }
 
             }
@@ -176,17 +254,23 @@ class SearchController extends Controller
             $result = [];
             foreach ($wants as $want) {
                 $result[] = (object)[
-                	'have' => (UserCards::where('id_card','=',$want->id_card)->where('id_user','=',(Auth::check())?Auth::user()->id_user:'1')->get()->count() > 0)?true:false,
-                    'id_want' => $want->id_want,
-                    'created_at' => $want->created_at->toDateTimeString(),
-                    'pp' => $want->pp,
-                    'foil' => $want->foil,
-                    'reverse_foil' => $want->reverse_foil,
-                    'card' => $want->card->fullSet(),
-                    'user' => (object)[
-                        'login' => $want->user->login,
-                        'id_user' => $want->id_user
-                    ]
+                'have' => (UserCards::where('id_card','=',$want->id_card)->where('id_user','=',(Auth::check())?Auth::user()->id_user:'1')->get()->count() > 0)?true:false,
+                'id_want' => $want->id_want,
+                'status' => $want->status->status,
+                'created_at' => $want->created_at->toDateTimeString(),
+                'updated_at' => $want->updated_at->toDateTimeString(),
+                'pp' => $want->pp,
+                'foil' => $want->foil,
+                'reverse_foil' => $want->reverse_foil,
+                'card' => $want->card->fullSet(),
+                'user' => (object)[
+                    'login' => $want->user->login,
+                    'id_user' => $want->id_user
+                ],
+                'user_from' => (object)[
+                    'login' => $want->user_from->login,
+                    'id_user' => $want->id_user_from
+                ]
                 ];
             }
 
@@ -196,6 +280,7 @@ class SearchController extends Controller
             return $this->_returnError('Wants Fail',$e);
         }
     }
+
 
     public function lastTrades()
     {
@@ -209,30 +294,31 @@ class SearchController extends Controller
                 $item->card;
             }
 
-		    return $this->_return('Get home data','success',isset($result)?$result:[]);
+            return $this->_return('Get home data','success',isset($result)?$result:[]);
         }catch (\Exception $e){
-		    return $this->_returnError('Last Trade Fail',$e);
+            return $this->_returnError('Last Trade Fail',$e);
         }
     }
 
     public function homeData()
     {
-    	try{
+        try{
 
 
-		    $wants = Want::where('id_status_want','=',1)->count();
-		    $sends = Want::where('id_status_want','=',2)->count();
-		    $trades = Want::where('id_status_want','=',3)->count();
+            $wants = Want::where('id_status_want','=',1)->count();
+            $sends = Want::where('id_status_want','=',2)->count();
+            $trades = Want::where('id_status_want','=',3)->count();
 
-		    $result = [
-		    	'wants' => $wants,
-			    'trades' => $trades,
-			    'sends' => $sends
-		    ];
+            $result = [
+            'wants' => $wants,
+            'trades' => $trades,
+            'sends' => $sends
+            ];
 
-		    return $this->_return('Get home data','success',isset($result)?$result:[]);
-	    }catch (\Exception $e){
-		    return $this->_returnError('Home data Fail',$e);
-	    }
+            return $this->_return('Get home data','success',isset($result)?$result:[]);
+        }catch (\Exception $e){
+            return $this->_returnError('Home data Fail',$e);
+        }
     }
+
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TextCards extends Model
 {
-    protected $primaryKey = null;
+    protected $primaryKey = 'id_text_card';
     protected $table = 'text_cards';
     public $fillable = [
         'id_card',

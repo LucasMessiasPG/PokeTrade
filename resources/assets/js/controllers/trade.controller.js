@@ -5,9 +5,20 @@
         .module('pokecard.controller')
         .controller('TradeController', TradeController)
 
-    TradeController.$inject = [];
-    function TradeController() {
+    TradeController.$inject = ["SearchService","UserService"];
+    function TradeController(SearchService,UserService) {
         var trade = this;
-        console.log('Trade');
+        trade.user = UserService.user;
+
+        init();
+
+        ////////////
+
+        function init(){
+        	SearchService.trades()
+        		.then(function(response){
+        			trade.list = response.data;
+        		})
+        }
     }
 })();

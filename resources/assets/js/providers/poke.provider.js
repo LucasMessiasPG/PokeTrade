@@ -11,10 +11,10 @@
         $routeProvider.otherwise({
             redirectTo: '/home'
         });
-        this.route = function(path,controller,controllerAs){
+        this.route = function(path,controller,controllerAs,html){
             $routeProvider
                 .when(path,{
-                    templateUrl:'html/'+path+'.html',
+                    templateUrl:'html/'+((html)?html:path)+'.html',
                     controller:controller,
                     controllerAs: controllerAs
                 })

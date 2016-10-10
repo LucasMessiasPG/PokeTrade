@@ -10,6 +10,7 @@
         this.search = search;
         this.lastTrades = lastTrades;
         this.wants = wants;
+        this.trades = trades;
 
         ///////////
 
@@ -29,6 +30,13 @@
 
         function wants(){
             return $http.get('api/card/wants')
+                .then(function(response){
+                    return response.data;
+                })
+        }
+
+        function trades(){
+            return $http.get('api/card/trades')
                 .then(function(response){
                     return response.data;
                 })

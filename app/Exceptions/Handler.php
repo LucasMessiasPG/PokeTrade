@@ -44,7 +44,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        dd($e);
         if ($e instanceof HttpResponseException) {
             $errors = $request->session()->all()['errors']->getMessageBag()->getMessages();
             return response()->json([

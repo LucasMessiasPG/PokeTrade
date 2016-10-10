@@ -9,9 +9,10 @@
     function WantController(SearchService,UserService) {
         var want = this;
         want.isMy = isMy;
+        want.send = send;
+
 
         init();
-
 
         //////////////
 
@@ -29,8 +30,13 @@
 
             return user.id_user == user_card.id_user;
 
+        }
 
-
+        function send(item){
+            UserService.sendWant(item.id_want)
+                .then(function(response){
+                    console.log(response);
+                })
         }
 
     }

@@ -10,18 +10,24 @@
         this.user = {};
         this.checkLogin = checkLogin;
         this.addCard = addCard;
+        this.removeCard = removeCard;
+        this.addWant = addWant;
+        this.profile = profile
         this.login = login;
         this.register = register;
         this.getMyCards = getMyCards;
         this.getLastMessages = getLastMessages;
+        this.sendWant = sendWant;
+        this.getTrades = getTrades;
 
         //////////////////
 
         function checkLogin() {
+            this.user = {};
             var user = $window.localStorage.getItem('user');
             if(typeof user !== 'undefined' && user !== 'undefined') {
-                UserService.user = JSON.parse(user);
-                return UserService.user;
+                this.user = JSON.parse(user);
+                return this.user;
             }
             return false;
         }
@@ -30,6 +36,27 @@
             return $http.post('/api/user/add-card',card)
                 .then(function(response){
                     return response.data;
+                })
+        }
+
+        function removeCard(id){
+            return $http.get('/api/user/'+id+'/remove-card')
+                .then(function(response){
+                    return response.data;
+                })
+        }
+
+        function addWant(card){
+            return $http.post('/api/user/add-want',card)
+                .then(function(response){
+                    return response.data;
+                })
+        }
+
+        function profile(id_user){
+            return $http.get('/api/user/'+id_user+'/profile')
+                .then(function(response){
+                    return response.data
                 })
         }
 
@@ -63,6 +90,17 @@
                 .then(function (response) {
                     return response.data
                 })
+        }
+
+        function sendWant(id_want){
+            return $http.get("/api/user/"+id_want+"/send-want")
+                .then(function(response){
+                    return response.data;
+                })
+        }
+
+        function getTrades(){
+            return $http.get("/api/")   
         }
 
     }

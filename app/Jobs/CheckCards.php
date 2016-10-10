@@ -47,7 +47,7 @@ class CheckCards extends Job implements ShouldQueue
 	 */
 	public function handle()
 	{
-		$page = 1;
+		$page = 50;
 		$stop = false;
 		while ($stop == false) {
 			echo "Page " . $page . "\r\n";
@@ -87,7 +87,7 @@ class CheckCards extends Job implements ShouldQueue
 					'national_pokedex_number' => (isset($card_item->nationalPokedexNumber))?$card_item->nationalPokedexNumber:null,
 					'image_url' => $card_item->imageUrl,
 					'subtype' => $card_item->subtype,
-					'supertype' => $card_item->supertype,
+					'supertype' => (isset($card_item->supertype))?$card_item->supertype:'',
 					'hp' => (isset($card_item->hp))?$card_item->hp:'',
 					'number' => $card_item->number,
 					'artist' => $card_item->artist,

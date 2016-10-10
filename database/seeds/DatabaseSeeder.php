@@ -11,9 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(UserDefault::class);
-         $this->call(StatusMessage::class);
-    }
+       $this->call(UserDefault::class);
+       $this->call(StatusMessage::class);
+   }
 }
 
 class UserDefault extends Seeder{
@@ -25,7 +25,29 @@ class UserDefault extends Seeder{
             'password' => \Illuminate\Support\Facades\Hash::make(env('SENHA_ADMIN')),
             'tutorial' => true,
             'id_group_user' => 1
-        ]);
+            ]);
+    }
+}
+class StatusWant extends Seeder{
+    public function run()
+    {
+
+
+        \App\Models\StatusWant::firstOrCreate([
+            'status' => 'wanting'
+            ]);
+        \App\Models\StatusWant::firstOrCreate([
+            'status' => 'sending'
+            ]);
+        \App\Models\StatusWant::firstOrCreate([
+            'status' => 'complete'
+            ]);
+        \App\Models\StatusWant::firstOrCreate([
+            'status' => 'cancel'
+            ]);
+        \App\Models\StatusWant::firstOrCreate([
+            'status' => 'reject'
+            ]);
     }
 }
 class StatusMessage extends Seeder
@@ -39,25 +61,21 @@ class StatusMessage extends Seeder
     {
         \App\Models\StatusMessage::firstOrCreate([
             'status' => 'Undefined'
-        ]);
+            ]);
         \App\Models\StatusMessage::firstOrCreate([
             'status' => 'Message'
-        ]);
+            ]);
         \App\Models\StatusMessage::firstOrCreate([
             'status' => 'System'
-        ]);
+            ]);
         \App\Models\StatusMessage::firstOrCreate([
             'status' => 'Trade'
-        ]);
+            ]);
         \App\Models\StatusMessage::firstOrCreate([
             'status' => 'Log'
-        ]);
+            ]);
         \App\Models\StatusMessage::firstOrCreate([
             'status' => 'Card'
-        ]);
-
-        \App\Models\StatusWant::firstOrCreate([
-            'status' => 'wanting'
-        ]);
+            ]);
     }
 }

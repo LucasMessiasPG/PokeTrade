@@ -1,15 +1,16 @@
-<div class="container margin-top">
+    <div class="container margin-top">
     <div class="col s12 m2 center-align">
         <img class="user-img" src="/img/user-default.png" alt="default img">
     </div>
     <div class="col s8">
-        <h4>Login: <strong>Messias</strong></h4>
-        <p>Name: <strong>Lucas Messias</strong></p>
-        <p>PokePoint: <strong>120</strong></p>
+        <h4>Login: <strong>{{ user.profile.login }}</strong></h4>
+        <p>Email: <strong>{{ user.profile.email }}</strong></p>
+        <p>Name: <strong>{{ user.profile.name }}</strong></p>
+        <p>PokePoint: <strong>{{ user.profile.pp }}</strong></p>
     </div>
-    <div class="col s4 m2">
-        <button class="btn btn-small">Edit</button>
-        <button class="btn btn-small">Send Menssage</button>
+    <div class="col s4 m2 text-rigth" ng-show="(user.profile && user.user)">
+        <button ng-show="user.user.id_user == user.profile.id_user" class="btn btn-small">Edit</button>
+        <button ng-show="user.user.id_user != user.profile.id_user" class="btn btn-small">Send Menssage</button>
     </div>
     <div class="col s12">
         <ul class="tabs">
@@ -22,43 +23,43 @@
         <div class="col s12 m8">
             <div class="col s8 m4">
                 <label>Name</label>
-                <p>Lucas Messias</p>
+                <p>{{ user.profile.name }}</p>
             </div>
             <div class="col s4 m3">
                 <label>Login</label>
-                <p>Messias</p>
+                <p>{{ user.profile.login }}</p>
             </div>
             <div class="col s6 m3">
                 <label>Create At</label>
-                <p>20/01/2016</p>
+                <p>{{ user.profile.created_at }}</p>
             </div>
             <div class="col s6 m2">
                 <label>Total Trades</label>
-                <p>20</p>
+                <p>{{ user.profile.total_trade }}</p>
             </div>
             <div class="col s8 m4">
                 <label>Andress</label>
-                <p>Rua do centro</p>
+                <p>{{ user.profile.andress }}</p>
             </div>
             <div class="col s4 m2">
                 <label>Number</label>
-                <p>123</p>
+                <p>{{ user.profile.number }}</p>
             </div>
             <div class="col s4 m3">
                 <label>District</label>
-                <p>Centro</p>
+                <p>{{ user.profile.district }}</p>
             </div>
             <div class="col s4 m3">
                 <label>City</label>
-                <p>Ponta Grossa</p>
+                <p>{{ user.profile.city }}</p>
             </div>
             <div class="col s4 m2">
                 <label>State</label>
-                <p>Paraná</p>
+                <p>{{ user.profile.state }}</p>
             </div>
             <div class="col s4 m2">
                 <label>Country</label>
-                <p>Brasil</p>
+                <p>{{ user.profile.country }}</p>
             </div>
         </div>
         <div class="col s12 m4 center-align">
@@ -94,9 +95,9 @@
             <div class="col offset-s2 s8">
                 <ul class="collection with-header">
                     <li class="collection-header center-align">Resume</li>
-                    <li class="collection-item center-align">Total Cards: 50</li>
-                    <li class="collection-item center-align">Total Trades: 10</li>
-                    <li class="collection-item center-align">Total Wants: 25</li>
+                    <li class="collection-item center-align">Total Cards: {{ user.profile.cards.length }}</li>
+                    <li class="collection-item center-align">Total Trades: {{ user.profile.trades.length }} ({{ user.profile.pp_trades }} pp)</li>
+                    <li class="collection-item center-align">Total Wants: {{ user.profile.wants.length }} ({{ user.profile.pp_wants }} pp)</li>
                 </ul>
             </div>
         </div>
