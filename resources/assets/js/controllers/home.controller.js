@@ -17,7 +17,7 @@
         function init(){
             SearchService.lastTrades()
                 .then(function(response){
-                    home.trades = response;
+                    home.trades = response.data;
                 });
         }
 

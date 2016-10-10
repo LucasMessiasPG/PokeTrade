@@ -357,9 +357,11 @@ class UserController extends Controller
             $user->save();
 
 
-            $msg = 'Seending ' . $want->card->name_card +' from ' . $want->user_from->login . ' to ' . $want->user->login;
-            $this->dispatch(new AddMesssage(User::find($want->user_from->id_user)->get(), $msg, 4));
-            $this->dispatch(new AddMesssage(User::find($want->user->id_user)->get(), $msg, 4));
+            $msg = 'Seending ' . $want->card->name . '(#' . $want->card->number . '/' . $want->card->set->total_cards . ') from ' . $want->user_from->login . ' to ' . $want->user->login;
+            $from = User::find($want->id_user_from);
+            $to = User::find($want->id_user);
+            $this->dispatch(new AddMesssage($from, $msg, 4));
+            $this->dispatch(new AddMesssage($to, $msg, 4));
 
             \DB::commit();
             return $this->_return("Send want success");

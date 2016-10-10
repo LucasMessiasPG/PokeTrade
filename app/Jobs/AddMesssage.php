@@ -60,7 +60,7 @@ class AddMesssage extends Job implements ShouldQueue
 			LogSistema::create([
 				'descricao' => 'Erro ao enviar msg',
 				'error' => 'status selecionado undifined',
-				'line' => '45',
+				'line' => '59',
 				'file' => '/App/Jobs/AddMesssage'
 			]);
 			$this->status = 1;

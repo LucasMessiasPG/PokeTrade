@@ -2,13 +2,15 @@
     <h3>My Active Trades</h3>
 </div>
 <div class="panel row">
-    <h4>This list includes you are receiving from others</h4>
-
-    <div class="input-field col s12 m4 offset-m8">
-        <input id="last_name" type="text" class="validate">
-        <label for="last_name">Search:</label>
+    <div class="col s12">
+        <h4 class="margin-top">This list includes you are receiving from others</h4>
     </div>
-    <table>
+
+    <!--<div class="input-field col s12 m4 offset-m8">-->
+        <!--<input id="last_name" type="text" class="validate">-->
+        <!--<label for="last_name">Search:</label>-->
+    <!--</div>-->
+    <table class="col s12 margin-top">
         <thead>
             <tr>
                 <th>#Trade</th>
@@ -26,7 +28,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="item in trade.list">
-                <td>#{{ item.id_want }}</td>
+                <td class="center-align">#{{ item.id_want }}</td>
                 <td>{{ item.card.code_set }}</td>
                 <td class="valign-wrapper">
                         <span>

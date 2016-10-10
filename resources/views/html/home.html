@@ -16,15 +16,15 @@
                 <td class="valign-wrapper">
                     <span>
                         <img class="materialboxed"
-                             src="{{ trade.cards.image_url }}"
-                             alt="{{ trade.cards.name }}">
+                             src="{{ trade.card.image_url }}"
+                             alt="{{ trade.card.name }}">
                     </span>
-                    <a class="valign" href="">{{ trade.cards.name_card }}</a></td>
+                    <a class="valign" ng-href="/details/{{ trade.card.id_card }}">{{ trade.card.name }}</a></td>
                 </td>
-                <td><a href="">{{ trade.user.name }}</a></td>
-                <td><a href="">{{ trade.form_user.name }}</a></td>
+                <td><a ng-href="/user/{{ trade.user.id_user }}">{{ trade.user.login }}</a></td>
+                <td><a ng-href="/user/{{ trade.user_from.id_user }}">{{ trade.user_from.login }}</a></td>
                 <td>{{ trade.pp }}</td>
-                <td>{{ trade.last_date }}</td>
+                <td>{{ trade.updated_at }}</td>
             </tr>
             </tbody>
         </table>
