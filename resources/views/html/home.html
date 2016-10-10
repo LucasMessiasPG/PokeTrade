@@ -12,7 +12,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="trade in home.trades">
+            <tr ng-repeat="trade in home.trades | orderBy:'-updated_at'">
                 <td class="valign-wrapper">
                     <span>
                         <img class="materialboxed"

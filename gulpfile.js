@@ -17,6 +17,7 @@ elixir(function (mix) {
     mix.sass('app.scss')
         .copy('node_modules/angular', 'public/vendor')
         .copy('node_modules/angular-route', 'public/vendor')
+        .copy('node_modules/angular-sanitize', 'public/vendor')
         .copy('node_modules/materialize-css/dist', 'public/vendor/materialize')
         .copy('node_modules/jquery/dist/jquery.js', 'public/vendor')
         .copy('resources/views/html', 'public/html')

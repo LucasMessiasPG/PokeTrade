@@ -6,7 +6,7 @@ angular.module('pokecard',[
     'pokecard.controller'
 ]);
 
-angular.module('pokecard.controller',[]);
+angular.module('pokecard.controller',['ngSanitize']);
 angular.module('pokecard.service',[]);
 angular.module('pokecard.directive',[]);
 angular.module('pokecard.filter',[]);

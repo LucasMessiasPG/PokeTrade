@@ -8,7 +8,8 @@
         <div class="card blue-grey darken-1 my-card">
             <span class="card-title"><strong>Last Trade</strong></span>
             <p ng-show="!myCards.lastTrade">Noting to Showing</p>
-            <p ng-show="myCards.lastTrade" ng-bind-html-unsafe="myCards.lastTrade.text"></p>
+            <p ng-show="myCards.lastTrade" ng-bind-html="myCards.lastTrade.text"></p>
+            <p ng-bind-html-unsafe="myCards.lastTrade.text"></p>
         </div>
     </div>
     <div class="col s6 m4">
@@ -42,7 +43,7 @@
                 <td class="valign-wrapper"><span><img class="materialboxed"
                                                       ng-src="{{ list.card.image_url }}"
                                                       alt="{{ list.card.name }}"> </span>
-                    <a class="valign" href="/user/{{ list.card.id }}">{{ list.card.name_card }}</a></td>
+                    <a class="valign" ng-href="/details/{{ list.card.id_card }}">{{ list.card.name_card }}</a></td>
                 <td>{{ list.card.code_set }}</td>
                 <td class="center">
                     <input name="1" disabled type="checkbox" ng-model="list.foil" class="form-control" id="foil"/>

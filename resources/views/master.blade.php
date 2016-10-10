@@ -23,7 +23,8 @@
         <div class="menu">
             <div class="nav-wrapper">
 
-                <a href="/home" class="brand-logo">Logo</a>
+                <a href="/home" class="brand-logo">PokeCard</a>
+                <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/home">Home</a></li>
                     <li><a href="/search">Search</a></li>
@@ -33,8 +34,18 @@
                 </ul>
             </div>
         </div>
+
     </nav>
+
 </header>
+
+<ul class="side-nav" id="mobile">
+    <li><a href="/home">Home</a></li>
+    <li><a href="/search">Search</a></li>
+    <li><a href="/trade">Trades</a></li>
+    <li><a href="/want">My Wants</a></li>
+    <li><a href="/my-cards">My Cards</a></li>
+</ul>
 <main>
     <div class="container body">
         <div class="row" ng-view></div>

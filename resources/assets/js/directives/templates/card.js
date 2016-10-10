@@ -30,13 +30,16 @@
             "<div class='col s12'>" +
             "<span ng-if='card.texts'><texts data='card.texts'></texts></span>" +
             "</div>" +
-            "<div class='col s6'>" +
+            "<div class='col s4'>" +
             "<span ng-if='card.retreat && card.retreat.length > 0'>Retreat: <types data='card.retreat'></types></span>" +
             "</div>" +
-            "<div class='col s6'>" +
+            "<div class='col s4'>" +
             "<span ng-if='card.weakness'>Weakness: <types data='card.weakness'></types></span>" +
             "</div>" +
-            "<div class='col m6 s6'>" +
+            "<div class='col s4'>" +
+            "<span ng-if='card.resistances'>Resistance: <types data='card.resistances'></types></span>" +
+            "</div>" +
+            "<div class='col s12'>" +
             "<span ng-if='card.artist'>Artist: <strong>{{card.artist}}</strong></span>" +
             "</div>" +
             "</div>"

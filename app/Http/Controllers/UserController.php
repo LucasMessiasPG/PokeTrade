@@ -357,7 +357,7 @@ class UserController extends Controller
             $user->save();
 
 
-            $msg = 'Seending ' . $want->card->name . '(#' . $want->card->number . '/' . $want->card->set->total_cards . ') from ' . $want->user_from->login . ' to ' . $want->user->login;
+            $msg = 'Seending <a href="/details/'.$want->card->id_card.'">' . $want->card->name . '(#' . $want->card->number . '/' . $want->card->set->total_cards . ')</a> from <a href="/user/'.$want->user_from->id_user.'">' . $want->user_from->login . '</a> to <a href"/user/'.$want->user->id_user.'">' . $want->user->login . '</a>';
             $from = User::find($want->id_user_from);
             $to = User::find($want->id_user);
             $this->dispatch(new AddMesssage($from, $msg, 4));
