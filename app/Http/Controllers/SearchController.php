@@ -191,19 +191,22 @@ class SearchController extends Controller
                 }
 
                 if ($check) {
-                    $result[] = (object)[
-                        'have' => (UserCards::where('id_card', '=', $want->id_card)->where('id_user', '=', (Auth::check()) ? Auth::user()->id_user : '1')->get()->count() > 0) ? true : false,
-                        'id_want' => $want->id_want,
-                        'created_at' => $want->created_at->toDateTimeString(),
-                        'pp' => $want->pp,
-                        'foil' => $want->foil,
-                        'reverse_foil' => $want->reverse_foil,
-                        'card' => $want->card->fullSet(),
-                        'user' => (object)[
-                            'login' => $want->user->login,
-                            'id_user' => $want->id_user
-                        ]
-                    ];
+                    if($want->user->pp >= $want->pp || $want->user->id_user == $want->id_user) {
+                        $result[] = (object)[
+                            'have' => (UserCards::where('id_card', '=', $want->id_card)->where('id_user', '=', (Auth::check()) ? Auth::user()->id_user : '1')->get()->count() > 0) ? true : false,
+                            'id_want' => $want->id_want,
+                            'created_at' => $want->created_at->toDateTimeString(),
+                            'pp' => $want->pp,
+                            'foil' => $want->foil,
+                            'reverse_foil' => $want->reverse_foil,
+                            'card' => $want->card->fullSet(),
+                            'user' => (object)[
+                                'login' => $want->user->login,
+                                'id_user' => $want->id_user
+                            ],
+                            'warning'=> $want->user->pp < $want->pp
+                        ];
+                    }
                 }
             }
 

@@ -197,3 +197,7 @@ input:not([type]).valid + label:after, input:not([type]):focus.valid + label:aft
     background-position-y: 67px;
   }
 }
+
+.margin-lateral {
+  margin: 0 10px;
+}

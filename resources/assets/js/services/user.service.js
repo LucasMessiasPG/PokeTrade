@@ -22,10 +22,13 @@
 
         //////////////////
 
-        function checkLogin() {
+        function checkLogin(force) {
             this.user = {};
             var user = $window.localStorage.getItem('user');
             if(typeof user !== 'undefined' && user !== 'undefined') {
+                // if(force) {
+                //
+                // }
                 this.user = JSON.parse(user);
                 return this.user;
             }

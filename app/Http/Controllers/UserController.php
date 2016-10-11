@@ -13,7 +13,6 @@ use App\Models\Message;
 use App\Models\User;
 use App\Models\UserCards;
 use App\Models\Want;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -27,14 +26,14 @@ class UserController extends Controller
 
         if (Auth::check()) {
             $resoponse = [
-            'status' => 'success',
-            'user' => [
-            'id_user' => Auth::user()->id_user,
-            'login' => Auth::user()->login,
-            'pp' => Auth::user()->pp,
-            'email' => Auth::user()->email,
-            ],
-            'cache' => true
+                'status' => 'success',
+                'user' => [
+                    'id_user' => Auth::user()->id_user,
+                    'login' => Auth::user()->login,
+                    'pp' => Auth::user()->pp,
+                    'email' => Auth::user()->email,
+                ],
+                'cache' => true
             ];
             if (Auth::user()->tutorial == false)
                 $resoponse['tutorial'] = true;
@@ -52,14 +51,14 @@ class UserController extends Controller
                 $this->dispatch(new AddMesssage(Auth::user(), $msg, 5));
 
                 $resoponse = [
-                'status' => 'success',
-                'cache' => true,
-                'user' => [
-                'id_user' => Auth::user()->id_user,
-                'login' => Auth::user()->login,
-                'pp' => Auth::user()->pp,
-                'email' => Auth::user()->email,
-                ]
+                    'status' => 'success',
+                    'cache' => true,
+                    'user' => [
+                        'id_user' => Auth::user()->id_user,
+                        'login' => Auth::user()->login,
+                        'pp' => Auth::user()->pp,
+                        'email' => Auth::user()->email,
+                    ]
                 ];
 
                 if (Auth::user()->tutorial == false)
@@ -71,7 +70,7 @@ class UserController extends Controller
             return response()->json([
                 'status' => 'warning',
                 'warning' => 'Login or Password Invalid'
-                ]);
+            ]);
 
 
         } catch (\Exception $e) {
@@ -117,12 +116,13 @@ class UserController extends Controller
             return response()->json([
                 'status' => 'success',
                 'user' => [
-                'id_user' => $user->id_user,
-                'login' => $user->login,
-                'email' => $user->email
+                    'id_user' => $user->id_user,
+                    'login' => $user->login,
+                    'email' => $user->email,
+                    'pp' => $user->pp
                 ],
                 'tutorial' => true
-                ]);
+            ]);
 
         } catch (\Exception $e) {
             DB::rollback();
@@ -166,8 +166,8 @@ class UserController extends Controller
 
             $field = ['text', 'created_at', 'id_status_message', 'id_user_from'];
             $query = Message::select($field)
-            ->where('id_user', '=', Auth::user()->id_user)
-            ->orderBy('created_at', 'desc');
+                ->where('id_user', '=', Auth::user()->id_user)
+                ->orderBy('created_at', 'desc');
 
             $query->take($limit);
 
@@ -338,9 +338,6 @@ class UserController extends Controller
             if ($user->id_user == $want->id_user)
                 throw new Exception("User send self card");
 
-            if ($user->pp < $want->pp)
-                return $this->_returnError("User don't have pp for send want", new Exception("User don't have pp for send want"));
-
             $want->id_user_from = \Auth::user()->id_user;
             $want->id_status_want = 2;
             $want->save();
@@ -348,16 +345,20 @@ class UserController extends Controller
             $cards_user = $user->cards();
 
             foreach ($cards_user as $key => $value) {
-                if($value['card']['id_card'] == $want->id_card){
+                if ($value['card']['id_card'] == $want->id_card) {
                     $this->remove($value['id_user_card']);
                     break;
                 }
-            }            
-            $user->pp -= $want->pp;
-            $user->save();
+            }
 
+            if ($want->pp > $want->user->pp)
+                throw new Exception('User don\'t have pp for this trade');
 
-            $msg = 'Seending <a href="/details/'.$want->card->id_card.'">' . $want->card->name . '(#' . $want->card->number . '/' . $want->card->set->total_cards . ')</a> from <a href="/user/'.$want->user_from->id_user.'">' . $want->user_from->login . '</a> to <a href"/user/'.$want->user->id_user.'">' . $want->user->login . '</a>';
+            $want->user->pp_reserve = ($want->user->pp_reserve) ? $want->user->pp_reserve : 0 + $want->pp;
+            $want->user->pp -= $want->pp;
+            $want->user->save();
+
+            $msg = 'Seending <a href="/details/' . $want->card->id_card . '">' . $want->card->name . '(#' . $want->card->number . '/' . $want->card->set->total_cards . ')</a> from <a href="/user/' . $want->user_from->id_user . '">' . $want->user_from->login . '</a> to <a href"/user/' . $want->user->id_user . '">' . $want->user->login . '</a>';
             $from = User::find($want->id_user_from);
             $to = User::find($want->id_user);
             $this->dispatch(new AddMesssage($from, $msg, 4));
@@ -374,7 +375,7 @@ class UserController extends Controller
     public function remove($id_user_card)
     {
         try {
-            
+
             UserCards::find($id_user_card)->delete();
 
             return $this->_return('Remove card', 'success');

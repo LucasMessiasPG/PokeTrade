@@ -14,7 +14,7 @@
         if(UserService.checkLogin()){
             init();
         }else{
-            $location.path('/home');
+            $location.path('/login');
         }
 
         /////////////

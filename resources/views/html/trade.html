@@ -44,9 +44,9 @@
                 <td><a ng-href="/user/{{ item.user_from.id_user }}">{{ item.user_from.login }}</a></td>
                 <td>{{ item.created_at }}</td>
                 <td>{{ item.updated_at }}</td>
-                <td class="center" style="padding: 2px 0"><a ng-href="trade/{{ item.id_want }}" class="btn waves-light waves-effect btn-small light-blue btn-block">Shipped card</button></td>
+                <td class="center" style="padding: 2px 0"><a ng-href="trade/{{ item.id_want }}" class="btn waves-light waves-effect btn-small light-blue btn-block">Shipped card</a></td>
                 <td class="center" style="padding: 2px 0">
-                    <button ng-disabled="( item.user.id_user != user.id_user && list.user_from.id_user != user.id_user )" class="btn waves-light waves-effect btn-small red">Report Problem</button>
+                    <button ng-if="trade.user" ng-disabled="(item.user.id_user != trade.user.id_user && list.user_from.id_user != trade.user.id_user )" class="btn waves-light waves-effect btn-small red">Report Problem</button>
                 </td>
             </tr>
         </tbody>

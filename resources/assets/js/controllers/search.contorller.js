@@ -3,10 +3,10 @@
 
     angular
         .module('pokecard.controller')
-        .controller('SearchController', SearchController)
+        .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['SearchService'];
-    function SearchController(SearchService) {
+    SearchController.$inject = ['SearchService','UserService'];
+    function SearchController(SearchService,UserService) {
         var ctrl = this;
         ctrl.search = search;
         ctrl.nextPage = nextPage;
@@ -18,6 +18,7 @@
         ///////////
 
         function init() {
+            ctrl.user = UserService.checkLogin();
             ctrl.filter = {};
             ctrl.table = null;
         }

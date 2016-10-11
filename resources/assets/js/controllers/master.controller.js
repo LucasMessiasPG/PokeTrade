@@ -15,7 +15,9 @@
         ////////////////
 
         function init() {
+
             master.user = UserService.checkLogin();
+            console.log(master.user);
         }
 
     }

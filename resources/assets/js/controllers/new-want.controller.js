@@ -14,8 +14,10 @@
         ctrl.backPage = backPage;
         ctrl.setPage = setPage;
         ctrl.save = save;
-
-        init();
+        if(ctrl.user = UserService.checkLogin())
+            init();
+        else
+            $location.path('/login');
 
         /////////////////////
 

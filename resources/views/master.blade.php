@@ -13,7 +13,7 @@
     <nav>
         <div class="container user">
             <div class="right" ng-show="master.user">
-                <a href="/user" ng-bind="master.user.login"></a>
+                <a href="/user" ng-bind="master.user.login+' ('+master.user.pp+')'"></a>
                 <a href="/logout">Logout</a>
             </div>
             <div class="right" ng-show="!master.user">
