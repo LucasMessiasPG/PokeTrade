@@ -18,5 +18,6 @@
         PokeProvider.route('/search','SearchController','search');
         PokeProvider.route('/new-card','NewCardController','newCard');
         PokeProvider.route('/details/:id_card','DetailsController','details','details');
+        PokeProvider.route('/trade/:id_history','TradeDetailsController','tradeDetails','trade-details');
     }
 })();

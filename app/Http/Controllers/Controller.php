@@ -22,19 +22,25 @@ class Controller extends BaseController
 
         return response()->json($response);
     }
-    public function _returnError($message,\Exception $e)
+    public function _returnError($message,\Exception $e = null)
     {
-        LogSistema::create([
-            'descricao' => 'Erro: '.$message,
-            'error' => $e->getMessage(),
-            'line' => $e->getLine(),
-            'file' => $e->getFile()
-        ]);
+        if($e) {
+            LogSistema::create([
+                'descricao' => 'Erro: ' . $message,
+                'error' => $e->getMessage(),
+                'line' => $e->getLine(),
+                'file' => $e->getFile()
+            ]);
+        }
 
         return response()->json([
             'statsu' => 'error',
             'msg' => $message,
         ],500);
+    }
+
+    public function _link($display,$link){
+        return '<a href="'.$link.'">'.$display.'</a>';
     }
 
 }

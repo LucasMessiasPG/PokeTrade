@@ -59,27 +59,6 @@
         </div>
     </div>
 </footer>
-{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>--}}
-{{--<script>--}}
-{{--var socket = io('https://future.pucatrade.com:443');--}}
-
-{{--socket.on("list.want.update", function (message) {--}}
-{{--console.log(1, message);--}}
-{{--});--}}
-{{--socket.on("user.points.change", function (message) {--}}
-{{--console.log(2, message);--}}
-{{--});--}}
-{{--socket.on("user.unlocked", function (message) {--}}
-{{--console.log(3, message);--}}
-{{--});--}}
-{{--socket.on("list.want.delete", function (message) {--}}
-{{--console.log(4, message);--}}
-{{--});--}}
-{{--socket.on("user.locked", function (message) {--}}
-{{--console.log(5, message);--}}
-{{--});--}}
-{{--</script>--}}
-
 @include('scripts')
 </body>
 </html>

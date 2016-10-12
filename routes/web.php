@@ -23,6 +23,7 @@ Route::group(['prefix'=>'api'],function(){
     Route::get('sets','SearchController@set');
     Route::get('cards','SearchController@card');
     Route::get('card/{id_card}/details','SearchController@detail');
+    Route::get('history/{id_history}','SearchController@history');
 
     Route::get('card/wants','SearchController@allWant');
     Route::get('card/trades','SearchController@allTrade');

@@ -11,6 +11,7 @@
         this.lastTrades = lastTrades;
         this.wants = wants;
         this.trades = trades;
+        this.history = history;
 
         ///////////
 
@@ -28,8 +29,8 @@
                 })
         }
 
-        function wants(){
-            return $http.get('api/card/wants')
+        function wants(filter){
+            return $http.get('api/card/wants',{params:filter})
                 .then(function(response){
                     return response.data;
                 })
@@ -39,6 +40,13 @@
             return $http.get('api/card/trades')
                 .then(function(response){
                     return response.data;
+                })
+        }
+
+        function history(id_history) {
+            return $http.get('api/history/'+id_history)
+                .then(function (response) {
+                    return response.data
                 })
         }
     }

@@ -10,6 +10,7 @@
         var want = this;
         want.isMy = isMy;
         want.send = send;
+        want.have = have;
 
 
         init();
@@ -35,8 +36,25 @@
         function send(item){
             UserService.sendWant(item.id_want)
                 .then(function(response){
+                    if(response.status == 'success')
+                        want.list.splice(want.list.indexOf(item),1);
                     console.log(response);
                 })
+        }
+
+        function have(status) {
+            var filter;
+            if(status) {
+                filter = {
+                    have: '1'
+                };
+            }else{
+                filter = {}
+            }
+            SearchService.wants(filter)
+                .then(function(response){
+                    want.list = response.data;
+                });
         }
 
     }

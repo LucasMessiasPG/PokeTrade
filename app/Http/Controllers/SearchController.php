@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cards;
+use App\Models\History;
 use App\Models\Sets;
 use App\Models\UserCards;
 use App\Models\Want;
@@ -321,6 +322,18 @@ class SearchController extends Controller
             return $this->_return('Get home data', 'success', isset($result) ? $result : []);
         } catch (\Exception $e) {
             return $this->_returnError('Home data Fail', $e);
+        }
+    }
+
+    public function history($id_history)
+    {
+        try {
+
+            $result = History::where('id_want','=',$id_history)->get();
+
+            return $this->_return('Get history', 'success', isset($result) ? $result : []);
+        } catch (\Exception $e) {
+            return $this->_returnError('History Fail', $e);
         }
     }
 

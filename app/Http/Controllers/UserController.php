@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Exceptions\CustomExecption;
 use App\Http\Requests\AddCard;
 use App\Http\Requests\EditWant;
 use App\Http\Requests\Login;
 use App\Http\Requests\Register;
 use App\Jobs\AddMesssage;
 use App\Models\Cards;
+use App\Models\History;
 use App\Models\Message;
 use App\Models\User;
 use App\Models\UserCards;
@@ -336,7 +338,14 @@ class UserController extends Controller
 
 
             if ($user->id_user == $want->id_user)
-                throw new Exception("User send self card");
+                throw new CustomExecption("User send self card");
+
+
+            History::create([
+                'id_user' => $want->user->id_user,
+                'id_want' => $want->id_want,
+                'text' => 'Card added at '.$want->created_at->toDateTimeString().' by '.$this->_link($want->user->login,'/user/'.$want->user->id_user)
+            ]);
 
             $want->id_user_from = \Auth::user()->id_user;
             $want->id_status_want = 2;
@@ -344,19 +353,31 @@ class UserController extends Controller
 
             $cards_user = $user->cards();
 
+            $have = false;
             foreach ($cards_user as $key => $value) {
                 if ($value['card']['id_card'] == $want->id_card) {
                     $this->remove($value['id_user_card']);
+                    $have = true;
                     break;
                 }
             }
 
+            if ($have == false)
+                throw new CustomExecption('User don\'t have this card');
+
             if ($want->pp > $want->user->pp)
-                throw new Exception('User don\'t have pp for this trade');
+                throw new CustomExecption('User don\'t have pp for this trade');
 
             $want->user->pp_reserve = ($want->user->pp_reserve) ? $want->user->pp_reserve : 0 + $want->pp;
             $want->user->pp -= $want->pp;
             $want->user->save();
+
+
+            History::create([
+                'id_user' => $want->user->id_user,
+                'id_want' => $want->id_want,
+                'text' => 'User '.$this->_link(Auth::user()->login,'/user/'.Auth::user()->id_user).' send to '.$this->_link($want->user->login,'/user/'.$want->user->id_user)
+            ]);
 
             $msg = 'Seending <a href="/details/' . $want->card->id_card . '">' . $want->card->name . '(#' . $want->card->number . '/' . $want->card->set->total_cards . ')</a> from <a href="/user/' . $want->user_from->id_user . '">' . $want->user_from->login . '</a> to <a href"/user/' . $want->user->id_user . '">' . $want->user->login . '</a>';
             $from = User::find($want->id_user_from);
@@ -366,6 +387,10 @@ class UserController extends Controller
 
             \DB::commit();
             return $this->_return("Send want success");
+        } catch (CustomExecption $e){
+            \DB::rollback();
+            return $this->_returnError($e->getMessage(), $e);
+
         } catch (Exception $e) {
             \DB::rollback();
             return $this->_returnError("Send want fail", $e);
