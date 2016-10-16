@@ -13,7 +13,9 @@
             <input name="number" id="number" class="form-control" type="text" ng-model="newWant.filter.number">
             <label for="number">Card Number</label>
         </div>
-        <button type="submit" class="btn right">Search</button>
+        <div class="input-field col s3">
+            <button type="submit" class="btn btn-small waves-light waves-effect right">Search</button>
+        </div>
     </form>
 
     <div ng-show="!newWant.add">
@@ -35,6 +37,9 @@
                 </td>
                 <td>{{ card.rarity }}</td>
                 <td><button ng-click="newWant.addCard(card)" class="btn waves-light waves-effect btn-small btn-block">Add</button></td>
+            </tr>
+            <tr ng-hide="newWant.table">
+                <td colspan="6" class="text-center">Noting to show here</td>
             </tr>
             </tbody>
             <tfoot ng-show="newWant.table" >

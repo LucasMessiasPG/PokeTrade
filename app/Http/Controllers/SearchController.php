@@ -231,6 +231,14 @@ class SearchController extends Controller
                 ->limit(30)
                 ->skip($request->offset);
 
+            if($request->have) {
+                if(\Auth::check())
+                    $query->where(function($q){
+                        $q->where('wants.id_user', '=',\Auth::user()->id_user);
+                        $q->orWhere('wants.id_user_from', '=',\Auth::user()->id_user);
+                    });
+            }
+
             foreach ($request->all() as $field => $value) {
                 switch ($field) {
                     case 'id_set':

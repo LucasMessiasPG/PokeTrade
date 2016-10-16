@@ -19,7 +19,7 @@
             <button type="submit" class="btn right btn-small waves-effect waves-light margin-top">Search</button>
         </div>
     </form>
-    <table class="bordered highlight">
+    <table>
         <thead>
         <tr>
             <th class="col-sm-1">Set</th>
@@ -42,17 +42,21 @@
             <td><button ng-disabled="!search.user" class="btn waves-light waves-effect btn-small light-blue btn-block">Have</button></td>
             <td><button ng-disabled="!search.user" class="btn waves-light waves-effect btn-small red btn-block">Watch</button></td>
         </tr>
+        <tr ng-hide="search.table">
+            <td colspan="6" class="text-center">Noting to show here</td>
+        </tr>
         </tbody>
         <tfoot ng-show="search.table" >
         <tr>
             <td colspan="6">
                 <div class="right" ng-show="search.table_total_pagination > 1">
-                    <button ng-disabled="(1 == search.filter.page)" ng-click="search.backPage()" class="btn">-</button>
-                    <button ng-disabled="(page == search.filter.page)" ng-click="search.setPage(page)" class="btn" ng-repeat="page in search.table_pagination" ng-bind="page"></button>
-                    <button ng-disabled="(search.table_total_pagination == search.filter.page)" ng-click="search.nextPage()" class="btn">+</button>
+                    <button ng-disabled="(1 == search.filter.page)" ng-click="search.backPage()" class="btn btn-small"><</button>
+                    <button ng-disabled="(page == search.filter.page)" ng-click="search.setPage(page)" class="btn btn-small" ng-repeat="page in search.table_pagination" ng-bind="page"></button>
+                    <button ng-disabled="(search.table_total_pagination == search.filter.page)" ng-click="search.nextPage()" class="btn btn-small">></button>
                 </div>
             </td>
         </tr>
+
         </tfoot>
     </table>
 </div>

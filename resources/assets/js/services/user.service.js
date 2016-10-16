@@ -5,34 +5,54 @@
         .module('pokecard.service')
         .service('UserService',UserService);
 
-    UserService.$inject = ['$http','$window'];
-    function UserService($http,$window) {
-        this.user = {};
-        this.checkLogin = checkLogin;
-        this.addCard = addCard;
-        this.removeCard = removeCard;
-        this.addWant = addWant;
-        this.profile = profile
-        this.login = login;
-        this.register = register;
-        this.getMyCards = getMyCards;
-        this.getLastMessages = getLastMessages;
-        this.sendWant = sendWant;
-        this.getTrades = getTrades;
+    UserService.$inject = ['$http','$window','$q'];
+    function UserService($http,$window,$q) {
+        var UserService = this;
+        UserService.user = {};
+        UserService.checkLogin = checkLogin;
+        UserService.getUser = getUser;
+        UserService.addCard = addCard;
+        UserService.removeCard = removeCard;
+        UserService.addWant = addWant;
+        UserService.profile = profile
+        UserService.login = login;
+        UserService.register = register;
+        UserService.getMyCards = getMyCards;
+        UserService.getLastMessages = getLastMessages;
+        UserService.sendWant = sendWant;
+        UserService.getTrades = getTrades;
 
         //////////////////
 
         function checkLogin(force) {
-            this.user = {};
-            var user = $window.localStorage.getItem('user');
-            if(typeof user !== 'undefined' && user !== 'undefined') {
-                // if(force) {
-                //
-                // }
-                this.user = JSON.parse(user);
-                return this.user;
+            UserService.user = {};
+                var user = $window.localStorage.getItem('user');
+                if (typeof user !== 'undefined' && user !== 'undefined') {
+                    UserService.user = JSON.parse(user);
+                    return UserService.user;
+                }
+                return false;
+
+        }
+
+        function getUser(force){
+            var deferred = $q.defer();
+            if(!force){
+                var user = $window.localStorage.getItem('user');
+                if (typeof user !== 'undefined' && user !== 'undefined') {
+                    UserService.user = JSON.parse(user);
+                    deferred.resolve(UserService.user);
+                }
+            }else{
+                UserService.login({login:'refresh',password:'refresh'})
+                    .then(function(response){
+                        UserService.user = response.user;
+                        $window.localStorage.setItem('user',JSON.stringify(UserService.user));
+                        deferred.resolve(UserService.user);
+                    })
             }
-            return false;
+
+            return deferred.promise;
         }
 
         function addCard(card){

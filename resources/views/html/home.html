@@ -24,7 +24,7 @@
                 <td><a ng-href="/user/{{ trade.user.id_user }}">{{ trade.user.login }}</a></td>
                 <td><a ng-href="/user/{{ trade.user_from.id_user }}">{{ trade.user_from.login }}</a></td>
                 <td>{{ trade.pp }}</td>
-                <td>{{ trade.updated_at }}</td>
+                <td>{{ trade.updated_at | custom_date }}</td>
             </tr>
             </tbody>
         </table>
@@ -33,31 +33,24 @@
         <div class="slider">
             <ul class="slides">
                 <li>
+                    <img src="http://lorempixel.com/400/400/nature/3"> <!-- random image -->
+                    <div class="caption right-align">
+                        <h3>Sum & Moon</h3>
+                        <a href="#" class="light grey-text text-lighten-3">Whats the new ?</a>
+                    </div>
+                </li>
+                <li>
                     <img src="http://lorempixel.com/400/400/nature/1"> <!-- random image -->
                     <div class="caption center-align">
-                        <h3>This is our big Tagline!</h3>
-                        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                        <h3>Steam Siege</h3>
+                        <a href="#" class="light grey-text text-lighten-3">Click here and see all card Steam Siege</a>
                     </div>
                 </li>
                 <li>
                     <img src="http://lorempixel.com/400/400/nature/2"> <!-- random image -->
                     <div class="caption left-align">
-                        <h3>Left Aligned Caption</h3>
-                        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-                    </div>
-                </li>
-                <li>
-                    <img src="http://lorempixel.com/400/400/nature/3"> <!-- random image -->
-                    <div class="caption right-align">
-                        <h3>Right Aligned Caption</h3>
-                        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-                    </div>
-                </li>
-                <li>
-                    <img src="http://lorempixel.com/400/400/nature/4"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h3>This is our big Tagline!</h3>
-                        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                        <h3>Fate Colide</h3>
+                        <a href="#" class="light grey-text text-lighten-3">Lest go build deck with this new collection</a>
                     </div>
                 </li>
             </ul>

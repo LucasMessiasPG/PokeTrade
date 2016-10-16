@@ -5,8 +5,8 @@
         .module('pokecard.controller')
         .controller('WantController', WantController);
 
-    WantController.$inject = ['SearchService','UserService'];
-    function WantController(SearchService,UserService) {
+    WantController.$inject = ['SearchService','UserService','$scope'];
+    function WantController(SearchService,UserService,$scope) {
         var want = this;
         want.isMy = isMy;
         want.send = send;
@@ -25,7 +25,7 @@
         }
 
         function isMy(user_card){
-            var user = UserService.checkLogin();
+            var user = UserService.user;
             if(!user)
                 return false;
 
@@ -36,9 +36,9 @@
         function send(item){
             UserService.sendWant(item.id_want)
                 .then(function(response){
-                    if(response.status == 'success')
-                        want.list.splice(want.list.indexOf(item),1);
-                    console.log(response);
+                    if(response.status == 'success') {
+                        want.list.splice(want.list.indexOf(item), 1);
+                    }
                 })
         }
 

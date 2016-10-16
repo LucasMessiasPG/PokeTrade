@@ -36,8 +36,8 @@
                 })
         }
 
-        function trades(){
-            return $http.get('api/card/trades')
+        function trades(filter){
+            return $http.get('api/card/trades',{params:filter})
                 .then(function(response){
                     return response.data;
                 })

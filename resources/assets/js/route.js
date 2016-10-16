@@ -14,6 +14,7 @@
         PokeProvider.route('/new-want','NewWantController','newWant');
         PokeProvider.route('/want','WantController','want');
         PokeProvider.route('/trade','TradeController','trade');
+        PokeProvider.route('/buy','BuyController','buy');
         PokeProvider.route('/my-cards','MyCardsController','myCards');
         PokeProvider.route('/search','SearchController','search');
         PokeProvider.route('/new-card','NewCardController','newCard');

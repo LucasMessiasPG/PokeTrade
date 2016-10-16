@@ -376,7 +376,7 @@ class UserController extends Controller
             History::create([
                 'id_user' => $want->user->id_user,
                 'id_want' => $want->id_want,
-                'text' => 'User '.$this->_link(Auth::user()->login,'/user/'.Auth::user()->id_user).' send to '.$this->_link($want->user->login,'/user/'.$want->user->id_user)
+                'text' => 'User '.$this->_link(Auth::user()->login,'/user/'.Auth::user()->id_user).' send to '.$this->_link($want->user->login,'/user/'.$want->user->id_user).' card <a href="/details/' . $want->card->id_card . '">' . $want->card->name . '(#' . $want->card->number . '/' . $want->card->set->total_cards . ')</a>'
             ]);
 
             $msg = 'Seending <a href="/details/' . $want->card->id_card . '">' . $want->card->name . '(#' . $want->card->number . '/' . $want->card->set->total_cards . ')</a> from <a href="/user/' . $want->user_from->id_user . '">' . $want->user_from->login . '</a> to <a href"/user/' . $want->user->id_user . '">' . $want->user->login . '</a>';

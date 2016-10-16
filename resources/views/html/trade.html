@@ -6,10 +6,15 @@
         <h4 class="margin-top">This list includes you are receiving from others</h4>
     </div>
 
-    <!--<div class="input-field col s12 m4 offset-m8">-->
-        <!--<input id="last_name" type="text" class="validate">-->
-        <!--<label for="last_name">Search:</label>-->
-    <!--</div>-->
+    <div class="input-field col s12">
+        <div class="switch">
+            <label>
+                <input type="checkbox" ng-model="trade.match" ng-change="trade.have(trade.match)">
+                <span class="lever"></span>
+                My Only
+            </label>
+        </div>
+    </div>
     <table class="col s12 margin-top">
         <thead>
             <tr>
@@ -23,7 +28,6 @@
                 <th>Updated</th>
                 <th>Initiated</th>
                 <th width="120"></th>
-                <th width="150"></th>
             </tr>
         </thead>
         <tbody>
@@ -42,11 +46,18 @@
                 <td>{{ item.status }}</td>
                 <td><a ng-href="/user/{{ item.user.id_user }}">{{ item.user.login }}</a></td>
                 <td><a ng-href="/user/{{ item.user_from.id_user }}">{{ item.user_from.login }}</a></td>
-                <td>{{ item.created_at }}</td>
-                <td>{{ item.updated_at }}</td>
-                <td class="center" style="padding: 2px 0"><a ng-href="trade/{{ item.id_want }}" class="btn waves-light waves-effect btn-small light-blue btn-block">Shipped card</a></td>
+                <td>{{ item.created_at | custom_date }}</td>
+                <td>{{ item.updated_at | custom_date }}</td>
                 <td class="center" style="padding: 2px 0">
-                    <button ng-if="trade.user" ng-disabled="(item.user.id_user != trade.user.id_user && list.user_from.id_user != trade.user.id_user )" class="btn waves-light waves-effect btn-small red">Report Problem</button>
+                    <div class="col s12" ng-if="trade.showButton('Complete',item)" ng-class="trade.classButton(item)">
+                        <button class="btn waves-light waves-effect btn-small light-green " title="Complete Trade"><i class="material-icons">thumb_up</i></button>
+                    </div>
+                    <div class="col s12" ng-class="trade.classButton(item)">
+                        <a ng-href="trade/{{ item.id_want }}" class="btn waves-light waves-effect btn-small light-blue" title="Shipped card"><i class="material-icons">hourglass_empty</i></a>
+                    </div>
+                        <div class="col s12" ng-if="trade.showButton('Problem',item)" ng-class="trade.classButton(item)">
+                        <button class="btn waves-light waves-effect btn-small red" title="Report Problem"><i class="material-icons">warning</i></button>
+                    </div>
                 </td>
             </tr>
         </tbody>

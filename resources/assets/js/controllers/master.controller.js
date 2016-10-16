@@ -6,8 +6,8 @@
         .controller('MasterController', MasterController);
 
 
-    MasterController.$inject = ['UserService'];
-    function MasterController(UserService) {
+    MasterController.$inject = ['UserService','$scope'];
+    function MasterController(UserService,$scope) {
         var master = this;
 
         init();
@@ -16,8 +16,10 @@
 
         function init() {
 
-            master.user = UserService.checkLogin();
-            console.log(master.user);
+            UserService.getUser(true)
+                .then(function(user){
+                    master.user = user;
+                });
         }
 
     }
