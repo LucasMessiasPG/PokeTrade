@@ -40,9 +40,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="list in myCards.cards">
-                <td class="valign-wrapper"><span><img class="materialboxed"
-                                                      ng-src="{{ list.card.image_url }}"
-                                                      alt="{{ list.card.name }}"> </span>
+                <td class="valign-wrapper"><img-load poke-src="list.card.image_url"></img-load>
                     <a class="valign" ng-href="/details/{{ list.card.id_card }}">{{ list.card.name_card }}</a></td>
                 <td>{{ list.card.code_set }}</td>
                 <td class="center">

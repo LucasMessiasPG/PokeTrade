@@ -35,11 +35,7 @@
                 <td class="center-align">#{{ item.id_want }}</td>
                 <td>{{ item.card.code_set }}</td>
                 <td class="valign-wrapper">
-                        <span>
-                            <img class="materialboxed"
-                                 src="{{ item.card.image_url }}"
-                                 alt="{{ item.card.name }}">
-                        </span>
+                    <img-load poke-src="item.card.image_url"></img-load>
                     <a class="valign" ng-href="/details/{{ item.card.id_card }}">{{ item.card.name_card }}</a></td>
                 </td>
                 <td>{{ item.pp }}</td>

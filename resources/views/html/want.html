@@ -35,11 +35,7 @@
             <td>{{ list.pp }}</td>
             <td>{{ list.card.code_set }}</td>
             <td class="valign-wrapper">
-                    <span>
-                        <img class="materialboxed"
-                             src="{{ list.card.image_url }}"
-                             alt="{{ list.card.name }}">
-                    </span>
+                <img-load poke-src="list.card.image_url"></img-load>
                 <span ng-if="list.warning" class="red-text small margin-lateral"> PP FAIL </span>
                 <a class="valign" ng-href="/details/{{ list.card.id_card }}">{{ list.card.name_card }}</a>
             </td>

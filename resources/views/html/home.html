@@ -14,11 +14,7 @@
             <tbody>
             <tr ng-repeat="trade in home.trades | orderBy:'-updated_at'">
                 <td class="valign-wrapper">
-                    <span>
-                        <img class="materialboxed"
-                             src="{{ trade.card.image_url }}"
-                             alt="{{ trade.card.name }}">
-                    </span>
+                    <img-load poke-src="trade.card.image_url"></img-load>
                     <a class="valign" ng-href="/details/{{ trade.card.id_card }}">{{ trade.card.name }}</a></td>
                 </td>
                 <td><a ng-href="/user/{{ trade.user.id_user }}">{{ trade.user.login }}</a></td>

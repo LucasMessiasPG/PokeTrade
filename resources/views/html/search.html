@@ -34,7 +34,7 @@
         <tr ng-repeat="card in search.table" class="hoverable">
             <td>{{ card.code_set }}</td>
             <td>
-                <span><img class="materialboxed" src="{{ card.image_url }}" alt="{{ card.name_card }}"></span>
+                <img-load poke-src="card.image_url"></img-load>
                 {{ card.name_card }}
             </td>
             <td>{{ card.rarity }}</td>
