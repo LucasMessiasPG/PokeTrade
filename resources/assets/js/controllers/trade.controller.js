@@ -28,7 +28,7 @@
 
             switch (button){
                 case 'Complete':
-                    return item.user.id_user == trade.user.id_user;
+                    return item.user_from.id_user == trade.user.id_user;
                     break;
                 case 'Problem':
                     return (item.user.id_user == trade.user.id_user || item.user_from.id_user == trade.user.id_user);
@@ -41,7 +41,7 @@
             if(trade.user) {
                 if (item.user.id_user == trade.user.id_user || item.user_from.id_user == trade.user.id_user)
                     count++;
-                if (item.user.id_user == trade.user.id_user)
+                if (item.user_from.id_user == trade.user.id_user)
                     count++;
             }
 
