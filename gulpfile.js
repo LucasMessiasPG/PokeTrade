@@ -25,4 +25,5 @@ elixir(function (mix) {
         .copy('resources/assets/**/*.png','public')
         .copy('resources/assets/fonts/*.*','public/fonts')
         .webpack(['resources/assets/js/**/*.js','!resources/assets/js/**/*.spec.js']);
+
 });
