@@ -21,9 +21,9 @@
         <thead>
         <tr>
             <th class="col-sm-1 text-center">#Want</th>
-            <th class="col-sm-1">PP</th>
             <th class="col-sm-1">Set</th>
             <th class="col-sm-3">Card</th>
+            <th class="col-sm-1">PP</th>
             <th class="col-sm-3">User</th>
             <th class="col-sm-2">Rarity</th>
             <th class="col-sm-1"></th>
@@ -32,13 +32,13 @@
         <tbody>
         <tr ng-repeat="list in want.list" class="hoverable">
             <td class="text-center">#{{ list.id_want }}</td>
-            <td>{{ list.pp }}</td>
             <td>{{ list.card.code_set }}</td>
             <td class="valign-wrapper">
                 <img-load poke-src="list.card.image_url"></img-load>
                 <span ng-if="list.warning" class="red-text small margin-lateral"> PP FAIL </span>
                 <a class="valign" ng-href="/details/{{ list.card.id_card }}">{{ list.card.name_card }}</a>
             </td>
+            <td>{{ list.pp }}</td>
             <td><a ng-href="/user/{{ list.user.id_user }}">{{ list.user.login }}</a></td>
             <td>{{ list.card.rarity }}</td>
             <td>
