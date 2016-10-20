@@ -2,10 +2,9 @@
 <html lang="en" ng-app="pokecard">
 <head>
     <base href="/">
+    <meta name="viewport" content="initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>PokeCard</title>
-    <link rel="stylesheet" href="vendor/materialize/css/materialize.css">
-    {{--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">--}}
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body ng-controller="MasterController as master" ng-cloak>

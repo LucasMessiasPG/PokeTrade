@@ -1,12 +1,12 @@
 <div class="margin-top">
-    <div class="col-sm-7">
+    <div class="col s12 l7">
         <h2>Last Trades</h2>
         <table>
             <thead>
             <tr>
                 <th>Card</th>
-                <th>To</th>
-                <th>From</th>
+                <th class="hide-on-med-and-down">To</th>
+                <th class="hide-on-med-and-down">From</th>
                 <th>PokePoint</th>
                 <th>At</th>
             </tr>
@@ -17,15 +17,15 @@
                     <img-load poke-src="trade.card.image_url"></img-load>
                     <a class="valign" ng-href="/details/{{ trade.card.id_card }}">{{ trade.card.name }}</a></td>
                 </td>
-                <td><a ng-href="/user/{{ trade.user.id_user }}">{{ trade.user.login }}</a></td>
-                <td><a ng-href="/user/{{ trade.user_from.id_user }}">{{ trade.user_from.login }}</a></td>
+                <td class="hide-on-med-and-down"><a ng-href="/user/{{ trade.user.id_user }}">{{ trade.user.login }}</a></td>
+                <td class="hide-on-med-and-down"><a ng-href="/user/{{ trade.user_from.id_user }}">{{ trade.user_from.login }}</a></td>
                 <td>{{ trade.pp }}</td>
                 <td>{{ trade.updated_at | custom_date }}</td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div class="col-sm-5">
+    <div class="col l5 hide-on-med-and-down">
         <div class="slider">
             <ul class="slides">
                 <li>

@@ -9,11 +9,13 @@
 	function Confirmation($compile){
 
 		var modal = '<div id="confirmation-{{ id }}" class="modal">'+
-    				'<div class="modal-content">'+
+    				'<div class="modal-content" >'+
          			'<h4>Confirmation</h4>'+
          			'<span>{{ msg }}</span>'+
-         			'<span><button ng-click="close()" class="btn btn-small waves-light waves-effect">Nao</button></span>'+
-         			'<span><button ng-click="ok()" class="btn btn-small waves-light waves-effect">Sim</button></span>'+
+    				'</div>'+
+         			'<div class="modal-footer">'+
+         			'<button ng-click="close()" class=" modal-action modal-close waves-effect waves-green btn-flat red white-text">Nao</button>'+
+         			'<button ng-click="ok()" class=" modal-action modal-close waves-effect waves-green btn-flat blue white-text">Sim</button>'+
     				'</div>'+
 					'</div>'
 
