@@ -30,7 +30,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="list in want.list" class="hoverable">
+        <tr ng-repeat="list in want.list" class="hoverable" ng-show="(!list.warning || list.warning && want.user && list.user.id_user == want.user.id_user)">
             <td class="text-center">#{{ list.id_want }}</td>
             <td>{{ list.card.code_set }}</td>
             <td class="valign-wrapper">

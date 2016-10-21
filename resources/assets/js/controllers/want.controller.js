@@ -22,14 +22,14 @@
                 .then(function(response){
                     want.list = response.data;
                 });
+            want.user = UserService.user;
         }
 
         function isMy(user_card){
-            var user = UserService.user;
-            if(!user)
+            if(!want.user)
                 return false;
 
-            return user.id_user == user_card.id_user;
+            return want.user.id_user == user_card.id_user;
 
         }
 
