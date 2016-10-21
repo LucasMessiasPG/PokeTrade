@@ -22,7 +22,7 @@
         <div class="menu">
             <div class="nav-wrapper">
 
-                <a href="/home" class="brand-logo">Logo</a>
+                <a href="/home" class="brand-logo">PokeCard</a>
                 <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/home">Home</a></li>
