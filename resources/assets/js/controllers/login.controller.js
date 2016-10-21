@@ -16,9 +16,16 @@
         function auth(user) {
             UserService.login(user)
                 .then(function(response){
-                    UserService.user = response.user;
-                    $window.localStorage.setItem('user',JSON.stringify(response.user));
-                    $window.location.href = '/home'
+                    if(response.status == 'success') {
+                        if(login.message)
+                            login.message = false;
+
+                        UserService.user = response.user;
+                        $window.localStorage.setItem('user', JSON.stringify(response.user));
+                        $window.location.href = '/home'
+                    }else {
+                        login.message = 'Dados Inválidos'
+                    }
                 })
         }
 
