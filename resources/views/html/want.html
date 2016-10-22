@@ -41,7 +41,7 @@
             <td>{{ list.pp }}</td>
             <td><a ng-href="/user/{{ list.user.id_user }}">{{ list.user.login }}</a></td>
             <td>{{ list.card.rarity }}</td>
-            <td class="center   ">
+            <td class="center">
                 <button ng-hide="(want.isMy(list.user) || want.isMy(list.user) == false && list.have == false)" ng-disabled="(want.isMy(list.user) || want.isMy(list.user) == false && list.have == false)" ng-click="want.send(list)" class="btn waves-light waves-effect btn-small btn-block">Send</button>
                 <button ng-show="want.isMy(list.user)" ng-click="want.send(list)" class="btn waves-light waves-effect btn-small btn-block red">Remove</button>
                 <span ng-show="(!list.have && !want.isMy(list.user))" class="red-text">Don't have</span>
