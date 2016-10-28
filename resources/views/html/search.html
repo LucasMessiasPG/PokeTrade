@@ -24,7 +24,7 @@
             <button type="submit" class="btn right btn-small waves-effect waves-light margin-top">Search</button>
         </div>
     </form>
-    <table>
+    <!--<table>
         <thead>
         <tr>
             <th class="col-sm-1">Set</th>
@@ -63,7 +63,29 @@
         </tr>
 
         </tfoot>
-    </table>
+    </table>-->
+    <!--{{search.table}}-->
+    <div class="col s12">
+        <poke-list per-page="5" url="/api/search" hover="true">
+            <list-header>
+                <div class="col s12 m3">Set</div>
+                <div class="col s12 m7">Card</div>
+                <div class="col s12 m2">Rarity</div>
+            </list-header>
+            <item>
+                <div class="col s12 m3">
+                    <span title="{{ item.set }}">{{ item.code_set }}</span>
+                </div>
+                <div class="col s12 m7">
+                    <img-load poke-src="item.image_url" class="small-img"></img-load>
+                    <a ng-href="/details/{{ item.id_card }}">{{ item.name_card }}</a>
+                </div>
+                <div class="col s12 m2">
+                    {{ item.rarity }}
+                </div>
+            </item>
+        </poke-list>
+    </div>
 </div>
 
 

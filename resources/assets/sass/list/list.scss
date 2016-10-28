@@ -1,0 +1,36 @@
+$tag: "poke-list";
+
+#{$tag} #header{
+	border-top: 1px solid #8f8f8f;
+    border-bottom: 1px solid #8f8f8f;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: #ccc;
+    height: 38px;
+    margin-bottom: 3px;
+	div{
+		padding: 5px 15px;
+	}
+}
+
+#{$tag} #items{ 
+	margin: 2px 0px;
+	height: 50px;
+	div:not(#materialbox-overlay){
+		padding: 2px 0px;
+		.small-img, img{
+  			display: inline-block;
+			width: 30px;
+
+		}
+		.small-img{
+			margin-right: 5px;
+		}
+		line-height: 38px;
+		white-space: nowrap;
+	}
+}
+
+#{$tag} #items.hovered:hover{
+	background-color: #ececec;
+}

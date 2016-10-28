@@ -51,22 +51,7 @@
             SearchService.search(filter)
                 .then(function (response) {
                     ctrl.table = response.data.result;
-                    if(is_new) {
-                        ctrl.table_total = response.data.total;
-                        var pagination = Math.round(response.data.total/filter.limit);
-                        ctrl.table_total_pagination = pagination;
-                        ctrl.table_pagination = [];
-                        for(var i = 0; i<pagination; i++) {
-                            ctrl.table_pagination.push(i + 1);
-                        }
-                    }
-                    if(ctrl.filter.page < 1)
-                        ctrl.filter.page = 1;
-
-                    if(ctrl.filter.page > pagination)
-                        ctrl.filter.page = pagination;
-
-                    ctrl.current_page = ctrl.filter.page;
+                    ctrl.table_total = response.data.total;
                 })
         }
 

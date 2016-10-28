@@ -47,85 +47,99 @@ class CheckCards extends Job implements ShouldQueue
 	 */
 	public function handle()
 	{
-		$page = 50;
+		$page = 0;
 		$stop = false;
-		while ($stop == false) {
-			echo "Page " . $page . "\r\n";
-			LogSistema::create([
-				'descricao' => 'Checando page: ' . $page
-			]);
-//        $ch = curl_init("http://api.pokemontcg.io/v1/cards?name=bellossom&setCode=xy7");
-			$ch = curl_init("https://api.pokemontcg.io/v1/cards?page=" . $page);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			$result = curl_exec($ch);
-			curl_close($ch);
-			$api = json_decode($result);
-			
-			if (count($api->cards) == 0) {
-				$stop = true;
-				return true;
-			}
 
-//        if (count($api->cards) == $this->set->cards->count()) {
-//            LogSistema::create([
-//                'descricao' => 'set: ' . $this->set->name.' id_set: '.$this->set->id_set.' sem alteracao'
-//            ]);
-//            return true;
-//        }
-			
-			foreach ($api->cards as $card_item) {
-				
-				$rarity = Raritys::firstOrCreate(['value' => $card_item->rarity]);
-				if ($rarity->exists == false)
-					$rarity->save();
-				
-				$sets = Sets::where('code', '=', $card_item->setCode)->first();
-
-				$new_card = Cards::firstOrCreate([
-					'id' => $card_item->id,
-					'name' => $card_item->name,
-					'national_pokedex_number' => (isset($card_item->nationalPokedexNumber))?$card_item->nationalPokedexNumber:null,
-					'image_url' => $card_item->imageUrl,
-					'subtype' => $card_item->subtype,
-					'supertype' => (isset($card_item->supertype))?$card_item->supertype:'',
-					'hp' => (isset($card_item->hp))?$card_item->hp:'',
-					'number' => $card_item->number,
-					'artist' => $card_item->artist,
-					'id_set' => $sets->id_set,
-					'id_rarity' => $rarity->id_rarity,
-				]);
-				
-				
-				if (isset($card_item->ability) && count($card_item->ability) > 0)
-					dispatch(new Ability($new_card, $card_item->ability));
-				
-				if (isset($card_item->attacks) && count($card_item->attacks) > 0)
-					dispatch(new Attack($new_card, $card_item->attacks));
-				
-				if (isset($card_item->types) && count($card_item->types) > 0)
-					dispatch(new Type($new_card, $card_item->types));
-				
-				if (isset($card_item->retreatCost) && count($card_item->retreatCost) > 0)
-					dispatch(new RetreatCost($new_card, $card_item->retreatCost));
-				
-				if (isset($card_item->weaknesses) && count($card_item->weaknesses) > 0)
-					dispatch(new Weaknesses($new_card, $card_item->weaknesses));
-				
-				if (isset($card_item->resistances) && count($card_item->resistances) > 0)
-					dispatch(new Resistances($new_card, $card_item->resistances));
-
-				if (isset($card_item->text) && count($card_item->text) > 0)
-					dispatch(new Text($new_card, $card_item->text));
+        try{
 
 
-				
-			}
-		
-			LogSistema::create([
-				'descricao' => 'Finalizado page : ' . $page
-			]);
-			$page++;
-		}
+
+            while ($stop == false) {
+                echo "Page " . $page . "\r\n";
+                LogSistema::create([
+                    'descricao' => 'Checando page: ' . $page
+                ]);
+    //        $ch = curl_init("http://api.pokemontcg.io/v1/cards?name=bellossom&setCode=xy7");
+                $ch = curl_init("https://api.pokemontcg.io/v1/cards?page=" . $page);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                $result = curl_exec($ch);
+                curl_close($ch);
+                $api = json_decode($result);
+
+                if (count($api->cards) == 0) {
+                    $stop = true;
+                    return true;
+                }
+
+    //        if (count($api->cards) == $this->set->cards->count()) {
+    //            LogSistema::create([
+    //                'descricao' => 'set: ' . $this->set->name.' id_set: '.$this->set->id_set.' sem alteracao'
+    //            ]);
+    //            return true;
+    //        }
+
+                foreach ($api->cards as $card_item) {
+
+                    $rarity = Raritys::firstOrCreate(['value' => $card_item->rarity]);
+                    if ($rarity->exists == false)
+                        $rarity->save();
+
+                    $sets = Sets::where('code', '=', $card_item->setCode)->first();
+
+                    $new_card = Cards::firstOrCreate([
+                        'id' => $card_item->id,
+                        'name' => $card_item->name,
+                        'national_pokedex_number' => (isset($card_item->nationalPokedexNumber))?$card_item->nationalPokedexNumber:null,
+                        'image_url' => $card_item->imageUrl,
+                        'subtype' => $card_item->subtype,
+                        'supertype' => (isset($card_item->supertype))?$card_item->supertype:'',
+                        'hp' => (isset($card_item->hp))?$card_item->hp:'',
+                        'number' => $card_item->number,
+                        'artist' => $card_item->artist,
+                        'id_set' => $sets->id_set,
+                        'id_rarity' => $rarity->id_rarity,
+                    ]);
+
+
+                    if (isset($card_item->ability) && count($card_item->ability) > 0)
+                        dispatch(new Ability($new_card, $card_item->ability));
+
+                    if (isset($card_item->attacks) && count($card_item->attacks) > 0)
+                        dispatch(new Attack($new_card, $card_item->attacks));
+
+                    if (isset($card_item->types) && count($card_item->types) > 0)
+                        dispatch(new Type($new_card, $card_item->types));
+
+                    if (isset($card_item->retreatCost) && count($card_item->retreatCost) > 0)
+                        dispatch(new RetreatCost($new_card, $card_item->retreatCost));
+
+                    if (isset($card_item->weaknesses) && count($card_item->weaknesses) > 0)
+                        dispatch(new Weaknesses($new_card, $card_item->weaknesses));
+
+                    if (isset($card_item->resistances) && count($card_item->resistances) > 0)
+                        dispatch(new Resistances($new_card, $card_item->resistances));
+
+                    if (isset($card_item->text) && count($card_item->text) > 0)
+                        dispatch(new Text($new_card, $card_item->text));
+
+
+
+                }
+
+                LogSistema::create([
+                    'descricao' => 'Finalizado page : ' . $page
+                ]);
+                $page++;
+            }
+
+        }catch (\Exception $e){
+            LogSistema::create([
+                'message' => 'Erro ao pegar cartas',
+                'error' => $e->getMessage(),
+                'line' => $e->getLine(),
+                'file' => $e->getFile()
+            ]);
+        }
 	}
 }
 
