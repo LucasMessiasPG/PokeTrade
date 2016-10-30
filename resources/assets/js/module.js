@@ -3,7 +3,8 @@ angular.module('pokecard',[
     'pokecard.service',
     'pokecard.directive',
     'pokecard.filter',
-    'pokecard.controller'
+    'pokecard.controller',
+    require('./components/search/search.component').name
 ]);
 
 // angular.module('paginator',[]);

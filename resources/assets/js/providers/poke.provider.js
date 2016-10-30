@@ -12,12 +12,19 @@
             redirectTo: '/home'
         });
         this.route = function(path,controller,controllerAs,html){
-            $routeProvider
-                .when(path,{
-                    templateUrl:'html/'+((html)?html:path)+'.html',
-                    controller:controller,
-                    controllerAs: controllerAs
-                })
+            if(!controllerAs && !html){
+                $routeProvider
+                    .when(path,{
+                        template: controller
+                    })
+            }else{
+                $routeProvider
+                    .when(path,{
+                        templateUrl:'html/'+((html)?html:path)+'.html',
+                        controller:controller,
+                        controllerAs: controllerAs
+                    })
+            }
         };
 
         this.$get = function() {

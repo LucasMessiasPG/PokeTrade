@@ -2,7 +2,7 @@
     'use strict';
 
     var template = [
-        '<div class="paginator" ng-show="paginator.total">',
+        '<div class="paginator" ng-hide="paginator.hide">',
         '   <button class="btn btn-small" ng-disabled="paginator.first == paginator.page" ng-click="paginator.setPage(paginator.first)">{{ paginator.first }}</button>',
         '   <span ng-show="(paginator.pages[0] >= 3)">...</span>',
         '   <button class="btn btn-small" ng-repeat="page in paginator.pages" ng-disabled="page == paginator.page" ng-click="paginator.setPage(page)">{{ page }}</button>',
@@ -52,9 +52,12 @@
         function populate(){
             
             var end = Math.round((paginator.total / paginator.perPage));
+
             if(end == 0){
                 paginator.hide = true;
                 return false;
+            }else{
+                paginator.hide = false;
             }
 
             paginator.pages = [];

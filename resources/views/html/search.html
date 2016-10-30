@@ -66,7 +66,7 @@
     </table>-->
     <!--{{search.table}}-->
     <div class="col s12">
-        <poke-list per-page="5" url="/api/search" hover="true">
+        <poke-list per-page="10" url="{{ search.url }}" hover="true" filter="search._filter">
             <list-header>
                 <div class="col s12 m3">Set</div>
                 <div class="col s12 m7">Card</div>

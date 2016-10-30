@@ -1,11 +1,13 @@
 (function () {
     'use strict';
 
+    // var angular = require('angular');
+
     var template = [
         '<div class="row">',
         '   <div id="header">',
         '   </div>',
-        '   <div ng-repeat="item in list._items" ng-show="(list._items.length == list.perPage || list.end)">',
+        '   <div ng-repeat="item in list._items" >',
         '       <div id="items" ng-class="{\'hovered\':list.hover}" class="col s12">',
         '       </div>',
         '   </div>',
@@ -30,14 +32,17 @@
                 perPage: "<",
                 header: "<",
                 total: "<",
-                hover: "<"
+                hover: "<",
+                filter: "<"
             }
         });
 
+    /*@ngInject*/
     function ListController($transclude, $element, $scope, $compile, $http) {
         var list = this;  
         list.newPage = newPage;
         list.populate = populate;
+        list.startHttp = startHttp;
 
         list.$onInit = function(){
 
@@ -64,8 +69,6 @@
                         throw new Error("tag /'item/' missing or have invalid tag in list.component ");
                 }
                 
-
-
                 $element.append($compile($template)($scope));
             });
 
@@ -79,18 +82,13 @@
 
 
             }else{
-                $scope.$watch(function(){
-                    return list.page;
-                },function(){
-                    $http.get(list.url+"?page="+list.page+"&limit="+list.perPage)
-                        .then(function(response){
-                            if( response.data.data.result.length < list.perPage)
-                                list.end = true;
-                            list.items = response.data.data.result;
-                            list.total = response.data.data.total;
-                            list.populate();
-                        });
+
+                $scope.$watchCollection(function(){
+                    return list.filter;
+                },function(value){
+                    list.startHttp(true);
                 });
+
             }
 
         };
@@ -100,6 +98,7 @@
 
         function newPage(number){
             list.page = number;
+            list.startHttp();
         }
 
         function populate(){
@@ -131,9 +130,33 @@
 
                 }
             }
-
+            
             if(!$scope.$$phase)
-                $scope.$apply;
+                $scope.$digest;
+        }
+
+        function startHttp(_new){
+
+            if(_new)
+                list._filter = angular.copy(list.filter);
+
+            if(!list._filter){
+                list._filter = {};
+            }
+
+            if(!list._filter.limit)
+                list._filter.limit = list.perPage;
+
+            list._filter.page = (_new)?1:list.page;
+
+            $http.get(list.url,{params:list._filter})
+                .then(function(response){
+                    if( response.data.data.result.length < list.perPage)
+                        list.end = true;
+                    list.items = response.data.data.result;
+                    list.total = response.data.data.total;
+                    list.populate();
+                });
         }
 
     }

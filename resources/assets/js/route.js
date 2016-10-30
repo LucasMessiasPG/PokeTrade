@@ -5,8 +5,8 @@
         .module('pokecard')
         .config(RouterConfig);
 
-    RouterConfig.$inject = ['PokeProvider'];
-    function RouterConfig(PokeProvider) {
+    RouterConfig.$inject = ['PokeProvider','$routeProvider'];
+    function RouterConfig(PokeProvider,$routeProvider) {
         PokeProvider.route('/home','HomeController','home');
         PokeProvider.route('/user/:id_user?','UserController','user','user');
         PokeProvider.route('/login','LoginController','login');
@@ -16,7 +16,7 @@
         PokeProvider.route('/trade','TradeController','trade');
         PokeProvider.route('/buy','BuyController','buy');
         PokeProvider.route('/my-cards','MyCardsController','myCards');
-        PokeProvider.route('/search','SearchController','search');
+        PokeProvider.route('/search','<poke-search></poke-search>');
         PokeProvider.route('/new-card','NewCardController','newCard');
         PokeProvider.route('/details/:id_card','DetailsController','details','details');
         PokeProvider.route('/trade/:id_history','TradeDetailsController','tradeDetails','trade-details');

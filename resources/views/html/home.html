@@ -1,9 +1,30 @@
 <div class="margin-top">
     <div class="col s12 l7">
-        <div class="center">
+        <div class="center hide-on-med-and-down">
             <h2>Last Trades</h2>
         </div>
-        <table>
+        <poke-list items="home.trades" per-page="10" hover="true" class="hide-on-med-and-down">
+            <list-header>
+                <div class="col s4">Card</div>
+                <div class="col s4">To</div>
+                <div class="col s2">From</div>
+                <div class="col s1">PP</div>
+                <div class="col s3">At</div>
+            </list-header>
+            <item>
+                <div class="col s4 small-img">
+                    <img-load poke-src="item.card.image_url" class="small-img"></img-load>
+                    <a  ng-href="/details/{{ item.card.id_card }}">{{ item.card.name }}</a>
+                </div>
+                <div class="col s2"><a ng-href="/user/{{ item.user.id_user }}">{{ item.user.login }}</a></div>
+                <div class="col s2"><a ng-href="/user/{{ item.user_from.id_user }}">{{ item.user_from.login }}</a></div>
+                <div class="col s1">{{ item.pp }}</div>
+                <div class="col s3">
+                    {{ item.updated_at | custom_date }}
+                </div>
+            </item>
+        </poke-list>
+        <!-- <table>
             <thead>
             <tr>
                 <th>Card</th>
@@ -25,9 +46,9 @@
                 <td>{{ trade.updated_at | custom_date }}</td>
             </tr>
             </tbody>
-        </table>
+        </table> -->
     </div>
-    <div class="col l5 hide-on-med-and-down">
+    <div class="col l5 s12">
         <div class="center">
             <h2>Whats news ?</h2>
         </div>

@@ -31,10 +31,14 @@ class SearchController extends Controller
             if ($request->limit)
                 $limit = $request->limit;
 
-            $card = Cards::select('cards.*', 'sets.name as setName')->orderBy('cards.number_int')->orderBy('cards.name');
+            $card = Cards::select('cards.*', 'sets.name as setName');
             $card->join('sets', 'sets.id_set', '=', 'cards.id_set');
 
-            
+
+            if ($request->random)
+                $card->inRandomOrder();
+            else
+                $card->orderBy('cards.number_int')->orderBy('cards.name');
 
             foreach ($request->only($campos) as $field => $value) {
                 if ($value) {
@@ -59,6 +63,7 @@ class SearchController extends Controller
             }
 
             $total = $card->get()->count();
+
 
             if ($request->page)
                 $card->skip(($limit * ($request->page - 1)));
