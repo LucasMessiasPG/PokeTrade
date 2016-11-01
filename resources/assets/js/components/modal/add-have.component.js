@@ -1,7 +1,7 @@
 (function(){
 	"use strict";
 
-	var tempalte = [
+	var template = [
 	'<div id="have" class="modal">',
     '	<form ng-submit="search.have(search.card_modal)">',
     '   	<div class="modal-content">',
@@ -37,7 +37,7 @@
 		.component("pokeAddHave",{
 			template: template,
 			controller: controller,
-			controllerAs; "modal",
+			controllerAs: "modal",
 			bindings: {
 
 			}

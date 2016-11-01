@@ -29,7 +29,6 @@ class EmailController{
     {
         $this->status = 'pendeing';
         if(is_array($to)){
-            foreach ($to as $email) {
                 if(!$this->to)
                     $this->to = $email;
                 else

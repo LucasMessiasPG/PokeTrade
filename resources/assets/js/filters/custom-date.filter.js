@@ -8,7 +8,8 @@
     CustomDate.$inject = ['$filter'];
     function CustomDate($filter) {
         return function(item){
-            return $filter('date')(new Date(item),'dd/MM/yyyy - HH:mm');
+            var filter = $filter('date')(item,'dd/MM/yyyy - HH:mm');
+            return filter;
         }
     }
 
