@@ -1,0 +1,29 @@
+<div id="have" class="modal">
+	<form ng-submit="search.have(search.card_modal)">
+   	<div class="modal-content">
+       	<div class="col s12">
+           	<h3>Add <strong> {{ search.card_modal.name_card }}</strong></h3>
+       		<div class="input-field col s12 m6">
+           		<input name="amount" id="amount" class="form-control" type="text" ng-model="search.card_modal.amount">
+        		</div>
+            	<label for="amount">Amount</label>
+			</div>
+       	<div class="input-field col s2">
+       		<input name="foil" id="foil" class="form-control" type="checkbox" ng-model="search.card_modal.foil">
+           	<label for="foil">Foil</label>
+       	</div>
+       	<div class="input-field col s2">
+       		<label for="reverse_foil">Reverse Foil</label>
+           	<input name="reverse_foil" id="reverse_foil" class="form-control" type="checkbox" ng-model="search.card_modal.reverse_foil">
+        	</div>
+        	<div class="input-field col s2">
+        		<input name="full_art" id="full_art" class="form-control" type="checkbox" ng-model="search.card_modal.full_art">
+           	<label for="full_art">Full Art</label>
+       	</div>
+		</div>
+    	<div class="modal-footer btn-group">
+       	<button type="button" class="btn red white-text modal-close">Cancelar</button>
+       	<button type="submit" class="btn blue white-text">Adicionar</button>
+    	</div>
+	</form>
+</div>

@@ -53,8 +53,13 @@
             
             var end = Math.round((paginator.total / paginator.perPage));
 
-            if(end == 0){
+            if(end == 0 || end == 1 && paginator.total < paginator.perPage){
                 paginator.hide = true;
+                return false;
+            }else if(end == 1){
+                paginator.first = 1;
+                paginator.last = 2;
+                paginator.hide = false;
                 return false;
             }else{
                 paginator.hide = false;

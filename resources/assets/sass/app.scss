@@ -312,8 +312,19 @@ ul.right.hide-on-med-and-down {
   will-change: bottom, opacity;
 }
 
-
-
 .btn.btn-small:disable{
   color:red;
+}
+
+.btn-group{
+  .col{
+    padding: 5px 5px !important;
+  }
+}
+
+.icon-alert{
+  cursor: pointer;
+  font-size: 16px;
+  position: relative;
+  top: 2px;
 }

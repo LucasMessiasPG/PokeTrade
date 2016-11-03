@@ -43,7 +43,9 @@
                 {{ card.name_card }}
             </td>
             <td>{{ card.rarity }}</td>
-            <td ng-if="search.user"><button ng-disabled="!search.user" ng-click="search.opemHave(card,'want')" class="btn waves-light waves-effect btn-small light-green btn-block">Want</button></td>
+            <td ng-if="search.user">
+                <button ng-disabled="!search.user" ng-click="search.opemHave(card,'want')" class="btn waves-light waves-effect btn-small light-green btn-block">Want</button>
+            </td>
             <td ng-if="search.user"><button ng-disabled="!search.user" ng-click="search.opemHave(card,'have')" class="btn waves-light waves-effect btn-small light-blue btn-block">Have</button></td>
             <td ng-if="search.user"><button ng-disabled="!search.user" class="btn waves-light waves-effect btn-small red btn-block">Watch</button></td>
         </tr>

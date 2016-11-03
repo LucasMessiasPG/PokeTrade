@@ -1,13 +1,14 @@
 (function(){
-    'use strict';
+    "use strict";
 
-    angular
-        .module('pokecard.service')
-        .service('SearchService',SearchService);
+    module.exports = angular.module("pokecard.searchService.module",[
+    ])
+        .service("SearchService",SearchService)
+        .name;
 
-    SearchService.$inject = ['$http'];
-    function SearchService($http) {
-        this.search = search;
+    /*@ngInject*/
+    function SearchService($http){
+         this.search = search;
         this.lastTrades = lastTrades;
         this.wants = wants;
         this.trades = trades;

@@ -157,12 +157,22 @@ class SearchController extends Controller
             $query = Want::select(['wants.*', 'cards.name', 'cards.id_set'])
                 ->join('cards', 'cards.id_card', '=', 'wants.id_card')
                 ->leftJoin('user_cards', 'user_cards.id_card', '=', 'wants.id_card')
+                ->leftJoin('users','users.id_user','=','wants.id_user')
                 ->where('id_status_want', '=', 1)
-                ->orderBy('wants.created_at', 'dec')
-                ->limit(30)
-                ->skip($request->offset);
+                ->where(function($q){
+                    if(Auth::check()){
+                        $q->where('wants.pp','<=',\DB::raw('users.pp'));
+                        $q->orWhere('wants.id_user','=',Auth::user()->id_user);
+                    }else{
+                        $q->where('wants.pp','<=',\DB::raw('users.pp'));
+                    }
+                })
+                ->orderBy('wants.created_at', 'dec');
 
             foreach ($request->all() as $field => $value) {
+                if($value == null || $value == "")
+                    continue;
+                
                 switch ($field) {
                     case 'id_set':
                         $query->where('cards.id_set', '=', $value);
@@ -178,12 +188,23 @@ class SearchController extends Controller
                             if (Auth::check() == false)
                                 break;
                             $id_user = Auth::user()->id_user;
-                            $query->where('user_cards.id_user', '=', $id_user);
+                            $query->where('users.id_user', '=', $id_user);
                         }
                         break;
                 }
 
             }
+
+            $total = $query->get()->count();
+
+            $limit = 100;
+            if($request->limit)
+                $limit = $request->limit;
+
+            if ($request->page)
+                $query->skip(($limit * ($request->page - 1)));
+
+
             $wants = $query->get();
 
             $result = [];
@@ -201,27 +222,26 @@ class SearchController extends Controller
                 }
 
                 if ($check) {
-                    if($want->user->pp >= $want->pp || $want->user->id_user == $want->id_user) {
-                        $result[] = (object)[
-                            'have' => (UserCards::where('id_card', '=', $want->id_card)->where('id_user', '=', (Auth::check()) ? Auth::user()->id_user : '1')->get()->count() > 0) ? true : false,
-                            'id_want' => $want->id_want,
-                            'created_at' => $want->created_at->toDateTimeString(),
-                            'pp' => $want->pp,
-                            'foil' => $want->foil,
-                            'reverse_foil' => $want->reverse_foil,
-                            'card' => $want->card->fullSet(),
-                            'user' => (object)[
-                                'login' => $want->user->login,
-                                'id_user' => $want->id_user
-                            ],
-                            'warning'=> $want->user->pp < $want->pp
-                        ];
-                    }
+                    $result[] = (object)[
+                        'have' => (UserCards::where('id_card', '=', $want->id_card)->where('id_user', '=', (Auth::check()) ? Auth::user()->id_user : '1')->get()->count() > 0) ? true : false,
+                        'id_want' => $want->id_want,
+                        'created_at' => $want->created_at->toDateTimeString(),
+                        'pp' => $want->pp,
+                        'foil' => $want->foil,
+                        'reverse_foil' => $want->reverse_foil,
+                        'card' => $want->card->fullSet(),
+                        'user' => (object)[
+                            'login' => $want->user->login,
+                            'id_user' => $want->id_user
+                        ],
+                        'warning'=> $want->user->pp < $want->pp,
+                        'my' => (Auth::check())? Auth::user()->id_user == $want->user->id_user : false
+                    ];
+
                 }
             }
 
-
-            return $this->_return('Get wants', 'success', isset($result) ? $result : []);
+            return $this->_return('Get wants', 'success', ["result"=>$result,"total"=>$total]);
         } catch (\Exception $e) {
             return $this->_returnError('Wants Fail', $e);
         }

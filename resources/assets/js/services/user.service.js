@@ -1,11 +1,11 @@
 (function(){
-    'use strict';
+    "use strict";
 
-    angular
-        .module('pokecard.service')
-        .service('UserService',UserService);
+    module.exports = angular.module("poekcar.userservice.module",[])
+        .service("UserService",UserService)
+        .name;
 
-    UserService.$inject = ['$http','$window','$q'];
+    /*@ngInject*/
     function UserService($http,$window,$q) {
         var UserService = this;
         UserService.user = {};

@@ -2,59 +2,19 @@
 	"use strict";
 	// var angular = require('angular');
 
-	var template = [
-	'<div class="margin-top">',
-    '	<h2>Search</h2>',
-    '	<p>Seache all cards pokemon!</p>',
-    '	<form ng-submit="search.search(search.filter)">',
-    '   	<input type="hidden" ng-model="search.filter.limit">',
-    '    	<div class="input-field col s6 m3">',
-    '       	<input name="set" id="set" class="form-control" type="text" ng-model="search.filter.set">',
-    '       	<label for="set">Set</label>',
-    '    	</div>',
-    '    	<div class="input-field col s6 m4">',
-    '       	<input name="name" id="name" class="form-control" type="text" ng-model="search.filter.name">',
-    '       	<label for="name">Card Name</label>',
-    '    	</div>',
-    '		<div class="input-field col s6 m3">',
-    '       	<input name="number" id="number" class="form-control" type="text" ng-model="search.filter.number">',
-    '       	<label for="number">Card Number</label>',
-    '    	</div>',
-    '    	<div class="col s6 m2">',
-    '       	<button type="submit" class="btn right btn-small waves-effect waves-light margin-top">Search</button>',
-    '    	</div>',
-    '	</form>',
-	'   <div class="col s12">',
-    '   	<poke-list per-page="10" url="{{ search.url }}" hover="true" filter="search._filter">',
-    '   		<list-header>',
-    '       		<div class="col s12 m3">Set</div>',
-    '				<div class="col s12 m7">Card</div>',
-    '   	        <div class="col s12 m2">Rarity</div>',
-    '      		</list-header>',
-    '       	<item>',
-    '       		<div class="col s12 m3">',
-    '           		<span title="{{ item.set }}">{{ item.code_set }}</span>',
-    '           	</div>',
-    '           	<div class="col s12 m7">',
-    '               	<img-load poke-src="item.image_url" class="small-img"></img-load>',
-    '               	<a ng-href="/details/{{ item.id_card }}">{{ item.name_card }}</a>',
-    '           	</div>',
-    '           	<div class="col s12 m2">',
-    '           	</div>',
-    '               {{ item.rarity }}',
-    '   		</item>',
-    '		</poke-list>',
-    '	</div>',
-	'</div>'	
-	].join(" ");
-
 	module.exports = angular.module("pokecard.search.module",[
+        require('../../common/modal/add-have.component').name,
+        require('../../directives/materialize'),
+        require('../../common/list/list.component'),
 	])
 		.component("pokeSearch",{
-			template: template,
+			template: /*@ngInject*/ function($templateCache){
+                return $templateCache.get('search/search.html');
+            },
 			controller: controller,
 			controllerAs: "search",
-		});
+		})
+        ;
 
 
 	/*@ngInject*/

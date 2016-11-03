@@ -1,0 +1,116 @@
+<div>
+    <h3>Wants</h3>
+</div>
+<div class="panel row">
+    <div class="col s10">
+        <h4 class="margin-top">Add want card and see all wants</h4>
+    </div>
+    <div class="col s2">
+        <a href="/new-want" class="btn waves-light waves-effect btn-small btn-block margin-top">Add Want</a>
+    </div>
+    <div class="input-field col s3">
+        <div class="switch">
+            <label>
+                <input type="checkbox" ng-model="want.match" ng-change="want.have(want.match)">
+                <span class="lever"></span>
+                My Only
+            </label>
+        </div>
+    </div>
+    <div class="input-field col s4">
+        <input name="name" id="name" class="form-control" type="text" ng-model="want.filter.name" ng-model-options="{ debounce: 500 }" />
+        <label for="name">Card Name</label>
+    </div>
+
+    <div class="input-field col s4">
+        <input name="number" id="number" class="form-control" type="text" ng-model="want.filter.number" ng-model-options="{ debounce: 500 }" />
+        <label for="number">Card Number</label>
+    </div>
+    
+    <poke-list url="{{ want.url }}" filter="want.filter" per-page="10" class="col s12" hover="true">
+        <list-header>
+            <div class="col s1">
+                <span>#Want</span>
+            </div>
+            <div class="col s1">
+                <span>Set</span>
+            </div>
+            <div class="col s3">
+                <span>Card</span>
+            </div>
+            <div class="col s1">
+                <span>PP</span>
+            </div>
+            <div class="col s3">
+                <span>User</span>
+            </div>
+            <div class="col s2">
+                <span>Rarity</span>
+            </div>
+            <div class="col s1">
+                <span></span>
+            </div>
+        </list-header>
+        <item>
+            <div class="col s1">
+                <span>#{{ item.id_want }}</span>
+            </div>
+            <div class="col s1">
+                <span>#{{ item.card.code_set }}</span>
+            </div>
+            <div class="col s3">
+                <img-load poke-src="item.card.image_url" class="small-img"></img-load>
+                <span ng-show="(item.warning && item.my)" class="red-text"><i tooltip="This card not show for other player because you don`t have PokePoints" class="material-icons tooltipped icon-alert">warning</i></span>
+                <a ng-href="/details/{{ item.card.id_card }}">{{ item.card.name_card }}</a>
+            </div>
+            <div class="col s1">
+                <span>{{ item.pp }}</span>
+            </div>
+            <div class="col s3">
+                <a ng-href="/user/{{ item.user.id_user }}">{{ item.user.login }}</a>
+            </div>
+            <div class="col s2">
+                <span>{{ item.card.rarity }}</span>
+            </div>
+            <div class="col s1">
+                <button ng-show="(!item.my && item.have)" ng-click="want.send(item)" class="btn waves-light waves-effect btn-small btn-block">Send</button>
+                <button ng-show="item.my" ng-click="want.send(item)" class="btn waves-light waves-effect btn-small btn-block red">Remove</button>
+                <span ng-show="(!item.my && !item.have)" class="red-text">Don't have</span>
+            </div>
+        </item>
+    </poke-list>
+    <!-- <table class="col s12 margin-top">
+        <thead>
+        <tr>
+            <th class="col-sm-1 text-center">#Want</th>
+            <th class="col-sm-1">Set</th>
+            <th class="col-sm-3">Card</th>
+            <th class="col-sm-1">PP</th>
+            <th class="col-sm-3">User</th>
+            <th class="col-sm-2">Rarity</th>
+            <th class="col-sm-1"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="list in want.list" class="hoverable" ng-show="(!list.warning || list.warning && want.user && list.user.id_user == want.user.id_user)">
+            <td class="text-center">
+                <span>#{{ list.id_want }}</span>
+            </td>
+            <td>{{ list.card.code_set }}</td>
+            <td class="valign-wrapper">
+                <img-load poke-src="list.card.image_url"></img-load>
+                <span ng-if="list.warning" class="red-text"><i tooltip="This card not show for other player because you don`t have PokePoints" class="material-icons tooltipped" style="cursor: pointer; font-size: 15px">warning</i></span>
+                <a class="valign" ng-href="/details/{{ list.card.id_card }}">{{ list.card.name_card }}</a>
+            </td>
+            <td>{{ list.pp }}</td>
+            <td><a ng-href="/user/{{ list.user.id_user }}">{{ list.user.login }}</a></td>
+            <td>{{ list.card.rarity }}</td>
+            <td class="center">
+                <button ng-hide="(want.isMy(list.user) || want.isMy(list.user) == false && list.have == false)" ng-disabled="(want.isMy(list.user) || want.isMy(list.user) == false && list.have == false)" ng-click="want.send(list)" class="btn waves-light waves-effect btn-small btn-block">Send</button>
+                <button ng-show="want.isMy(list.user)" ng-click="want.send(list)" class="btn waves-light waves-effect btn-small btn-block red">Remove</button>
+                <span ng-show="(!list.have && !want.isMy(list.user))" class="red-text">Don't have</span>
+            </td>
+        </tr>
+        </tbody>
+    </table> -->
+</div>

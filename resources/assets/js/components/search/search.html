@@ -1,0 +1,119 @@
+<div class="margin-top">
+    <h2>Search</h2>
+    <p>Seache all cards pokemon!</p>
+    <form ng-submit="search.search(search.filter)">
+        <input type="hidden" ng-model="search.filter.limit">
+        <div class="input-field col s6 m3">
+            <input name="set" id="set" class="form-control" type="text" ng-model="search.filter.set">
+            <label for="set">Set</label>
+        </div>
+        <div class="input-field col s6 m4">
+            <input name="name" id="name" class="form-control" type="text" ng-model="search.filter.name">
+            <label for="name">Card Name</label>
+        </div>
+        <div class="input-field col s6 m3">
+            <input name="number" id="number" class="form-control" type="text" ng-model="search.filter.number">
+            <label for="number">Card Number</label>
+        </div>
+        <div class="col s6 m2">
+            <button type="submit" class="btn right btn-small waves-effect waves-light margin-top">Search</button>
+        </div>
+    </form>
+    <div class="col s12">
+        <poke-list per-page="10" url="{{ search.url }}" hover="true" filter="search._filter">
+              <list-header>
+                 <div class="col s12" ng-class="{'m3':!search.user, 'm2': search.user }">Set</div>
+                 <div class="col s12" ng-class="{'m7':!search.user, 'm5': search.user }">Card</div>
+                 <div class="col s12 m2">Rarity</div>
+                 <div ng-show="search.user" class="col s12 m3"></div>
+             </list-header>
+             <item>
+                <div class="col s12 valign" ng-class="{'m3':!search.user, 'm2': search.user }">
+                  <span title="{{ item.set }}">{{ item.code_set }}</span>
+                </div>
+                <div class="col s12" ng-class="{'m7':!search.user, 'm5': search.user }">
+                    <img-load poke-src="item.image_url" class="small-img"></img-load>
+                    <a ng-href="/details/{{ item.id_card }}">{{ item.name_card }}</a>
+                </div>
+                <div class="col s12 m2 valign">
+                    <span>{{ item.rarity }}</span>
+                </div>
+                <div class="col s12 m3 btn-group valign" ng-show="search.user">
+                    <div class="col s6">
+                        <button class="btn btn-small waves-effect waves-light blue btn-block modal-content" ng-click="search.opemHave(item,'want')">Want</button>
+                    </div>
+                    <div class="col s6">
+                        <button class="btn btn-small waves-effect waves-light red btn-block modal-content" ng-click="search.opemHave(item,'have')">Have</button>
+                    </div>
+                    <div class="col s4" ng-if="false">
+                        <button class="btn btn-small waves-effect waves-light orange btn-block modal-content" ng-click="search.opemHave(item,'watch')">Watch</button>
+                    </div>
+                </div>
+            </item>
+        </poke-list>
+    </div>
+</div>  
+
+<div id="have" class="modal">
+    <form ng-submit="search.have(search.card_modal)">
+        <div class="modal-content">
+            <div class="col s12">
+                <h3>Add <strong> {{ search.card_modal.name_card }}</strong></h3>
+            </div>
+            <div class="input-field col s12 m6">
+                <input name="amount" id="amount" class="form-control" type="text" ng-model="search.card_modal.amount" />
+                <label for="amount">Amount</label>
+            </div>
+            <div class="input-field col s2">
+                <input name="foil" id="foil" class="form-control" type="checkbox" ng-model="search.card_modal.foil" />
+                <label for="foil">Foil</label>
+            </div>
+            <div class="input-field col s2">
+                <input name="reverse_foil" id="reverse_foil" class="form-control" type="checkbox" ng-model="search.card_modal.reverse_foil" />
+                <label for="reverse_foil">Reverse Foil</label>
+            </div>
+            <div class="input-field col s2">
+                <input name="full_art" id="full_art" class="form-control" type="checkbox" ng-model="search.card_modal.full_art" />
+                <label for="full_art">Full Art</label>
+            </div>
+        </div>
+        <div class="modal-footer btn-group">
+            <button type="button" class="btn red white-text modal-close">Cancelar</button>
+            <button type="submit" class="btn blue white-text">Adicionar</button>
+        </div>
+    </form>
+</div>
+
+<div id="want" class="modal">
+    <form ng-submit="search.want(search.card_modal)">
+        <div class="modal-content">
+            <div class="col s12">
+                <h3>Add Want <strong> {{ search.card_modal.name_card }}</strong></h3>
+            </div>
+            <div class="input-field col s12 m2">
+                <input name="amount_want" id="amount_want" class="form-control" type="text" ng-model="search.card_modal.amount" />
+                <label for="amount_want">Amount</label>
+            </div>
+            <div class="input-field col s12 m4">
+                <input name="pp_want" id="pp_want" class="form-control" type="text" ng-model="search.card_modal.pp" />
+                <label for="pp_want">PokePoint</label>
+            </div>
+            <div class="input-field col s2">
+                <input name="foil_want" id="foil_want" class="form-control" type="checkbox" ng-model="search.card_modal.foil">
+                <label for="foil_want">Foil</label>
+            </div>
+            <div class="input-field col s2">
+                <input name="reverse_foil_want" id="reverse_foil_want" class="form-control" type="checkbox" ng-model="search.card_modal.reverse_foil" />
+                <label for="reverse_foil_want">Reverse Foil</label>
+            </div>
+            <div class="input-field col s2">
+                <input name="full_art_want" id="full_art_want" class="form-control" type="checkbox" ng-model="search.card_modal.full_art" />
+                <label for="full_art_want">Full Art</label>
+            </div>
+        </div>
+        <div class="modal-footer btn-group">
+            <button type="button" class="btn red white-text modal-close">Cancelar</button>
+            <button type="submit" class="btn blue white-text">Adicionar</button>
+        </div>
+    </form>
+</div>

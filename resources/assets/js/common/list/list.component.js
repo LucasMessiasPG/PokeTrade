@@ -7,8 +7,8 @@
         '<div class="row">',
         '   <div id="header">',
         '   </div>',
-        '   <div ng-repeat="item in list._items" >',
-        '       <div id="items" ng-class="{\'hovered\':list.hover}" class="col s12">',
+        '   <div ng-repeat="item in list._items">',
+        '       <div id="items" ng-class="{\'hovered\':list.hover}" class="col s12 valign-wrapper">',
         '       </div>',
         '   </div>',
         '   <div class="col s12 center">',
@@ -33,9 +33,11 @@
                 header: "<",
                 total: "<",
                 hover: "<",
-                filter: "<"
+                filter: "<",
+                user: "<"
             }
-        });
+        })
+        .name;
 
     /*@ngInject*/
     function ListController($transclude, $element, $scope, $compile, $http) {
@@ -50,7 +52,10 @@
             list._items = [];
             list.total = 0;
 
-            $transclude(function (clone) {
+            $transclude(function (clone,scope) {
+                scope.$parent.list = $scope.list;
+                list.parent = scope.$parent;
+
                 $element.empty();
                 var $template = angular.element(template);
 
@@ -69,7 +74,7 @@
                         throw new Error("tag /'item/' missing or have invalid tag in list.component ");
                 }
                 
-                $element.append($compile($template)($scope));
+                $element.append($compile($template)(list.parent));
             });
 
             if(!list.url){
@@ -86,6 +91,7 @@
                 $scope.$watchCollection(function(){
                     return list.filter;
                 },function(value){
+                    list.page = 1;
                     list.startHttp(true);
                 });
 
@@ -98,7 +104,11 @@
 
         function newPage(number){
             list.page = number;
-            list.startHttp();
+            if(!list.url){
+                list.populate();
+            }else{
+                list.startHttp();
+            }
         }
 
         function populate(){
@@ -131,6 +141,9 @@
                 }
             }
             
+            if(!list.parent.$$phase)
+                list.parent.$digest;
+            
             if(!$scope.$$phase)
                 $scope.$digest;
         }
@@ -149,6 +162,7 @@
 
             list._filter.page = (_new)?1:list.page;
 
+            console.log("list.url",list.url);
             $http.get(list.url,{params:list._filter})
                 .then(function(response){
                     if( response.data.data.result.length < list.perPage)
