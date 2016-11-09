@@ -14,7 +14,7 @@
 			controller: controller,
 			controllerAs: "search",
 		})
-        ;
+        .name;
 
 
 	/*@ngInject*/

@@ -13,7 +13,7 @@ class AlterUser extends Migration
     public function up()
     {
         Schema::table('users',function(Blueprint $table){
-            $table->string('name',200)->default(' ');
+            $table->string('name',200)->nullable();
             $table->string('image_url',200)->nullable();
         });
     }

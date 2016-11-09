@@ -252,12 +252,16 @@ class SearchController extends Controller
 
         try {
 
+            $limit = 30;
+            if($request->limit)
+                $limit = $request->limit;
+
             $query = Want::select(['wants.*', 'cards.name', 'cards.id_set'])
                 ->join('cards', 'cards.id_card', '=', 'wants.id_card')
                 ->leftJoin('user_cards', 'user_cards.id_card', '=', 'wants.id_card')
                 ->where('id_status_want', '!=', 1)
                 ->orderBy('wants.created_at', 'dec')
-                ->limit(30)
+                ->limit($limit)
                 ->skip($request->offset);
 
             if($request->have) {
@@ -316,7 +320,7 @@ class SearchController extends Controller
             }
 
 
-            return $this->_return('Get wants', 'success', isset($result) ? $result : []);
+            return $this->_return('Get wants', 'success', ["result"=>$result,"total"=>count($result)]);
         } catch (\Exception $e) {
             return $this->_returnError('Wants Fail', $e);
         }

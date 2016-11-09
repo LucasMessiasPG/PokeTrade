@@ -71,26 +71,35 @@ class User extends Authenticatable
         $result = [];
         foreach ($want as $key => $user_want) {
             $result[$key] = $user_want->toArray();
-            $result[$key]['card'] = (array)$user_want   ->card->fullset();
+            $result[$key]['card'] = (array)$user_want->card->fullset();
         }
         return ($result)?$result:[];
     }
     
-    public function fullSet()
+    public function fullSet($options = null)
     {
     	$user = new \stdClass();
 	    $user->id_user = $this->id_user;
 	    $user->login = $this->login;
+	    $user->name = $this->name;
+	    $user->address = $this->address;
+	    $user->number = $this->number;
+	    $user->city = $this->city;
+	    $user->state = $this->state;
+	    $user->destrict = $this->destrict;
+	    $user->country = $this->country;
 	    $user->email = $this->email;
 	    $user->pp = $this->pp;
-	    $user->name = $this->name;
+	    $user->created_at = $this->created_at->toDateTimeString();
 	    $user->image_url = $this->image_url;
 	    $wants = $this->wants();
 	    $pp_wants = 0;
 	    foreach ($wants as $want) {
 		    $pp_wants += $want['pp'];
 	    }
-	    $user->wants = $wants;
+	    if(!isset($options["wants"]) || isset($options["wants"]) && $options["wants"] === true)
+	    	$user->wants = $wants;
+	    
 	    $user->pp_wants = $pp_wants;
 	    
 	    $trades = $this->trades();
@@ -101,7 +110,8 @@ class User extends Authenticatable
 	    $user->trades = $trades;
 	    $user->pp_trades = $pp_trade;
 	    
-	    $user->cards = $this->cards();
+	    if(!isset($options["cards"]) || isset($options["cards"]) && $options["cards"] === true)
+	    	$user->cards = $this->cards();
 	    
 	    return $user;
     }

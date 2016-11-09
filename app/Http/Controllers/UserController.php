@@ -165,6 +165,8 @@ class UserController extends Controller
         try {
 
             $limit = 100;
+            if($request->limit)
+                $limit = $request->limit;
 
             $field = ['text', 'created_at', 'id_status_message', 'id_user_from'];
             $query = Message::select($field)
@@ -178,7 +180,8 @@ class UserController extends Controller
             }
 
 
-            if ($request->last != null) {
+            if ($request->last) {
+                dd('erro');
                 $messages = [];
                 $temp_message = $query->get();
                 if ($request->id_status_message)
@@ -211,7 +214,7 @@ class UserController extends Controller
     {
         try {
 
-            if ($user = User::findOrFail($id_user)->fullSet()) {
+            if ($user = User::findOrFail($id_user)->fullSet(["wants"=>false,"cards"=>false])) {
                 return ['status' => 'success', 'user' => $user];
             }
             return ['status' => 'warning', 'warning' => 'User not found'];

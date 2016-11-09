@@ -36,6 +36,13 @@ a{
 a:hover{
   text-decoration: none;
 }
+
+@media only screen and (max-width: 500px) {
+  nav .menu {
+    padding: 10px !important;
+  }
+}
+
 nav{
   height: 120px;
   background-color: $bg;
@@ -213,7 +220,7 @@ input:not([type]).valid + label:after, input:not([type]):focus.valid + label:aft
 }
 
 .margin-lateral {
-  margin: 0 10px;
+  margin: 0 10px !important;
 }
 
 .switch{
@@ -327,4 +334,10 @@ ul.right.hide-on-med-and-down {
   font-size: 16px;
   position: relative;
   top: 2px;
+}
+.no-margin-bottom{
+  margin-bottom: 0px;
+}
+.panel{
+  margin-top: 10px;
 }

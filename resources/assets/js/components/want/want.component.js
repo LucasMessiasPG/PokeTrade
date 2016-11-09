@@ -9,12 +9,13 @@
 
 	])
 		.component("pokeWant",{
-		template: /*@ngInject*/ function($templateCache){
-			return $templateCache.get("want/want.html");
-		},
-		controller: controller,
-		controllerAs: "want"
-	});
+		  template: /*@ngInject*/ function($templateCache){
+		      return $templateCache.get("want/want.html");
+		  },
+		  controller: controller,
+		  controllerAs: "want"
+	   })
+        .name;
 
 	/*@ngInject*/
 	function controller(SearchService,UserService,$scope){

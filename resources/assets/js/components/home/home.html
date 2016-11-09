@@ -1,4 +1,4 @@
-<div class="margin-top">
+<div class="row panel no-margin-bottom">
     <div class="col s12 l7">
         <div class="center hide-on-med-and-down">
             <h2>Last Trades</h2>
@@ -20,7 +20,7 @@
                 <div class="col s2"><a ng-href="/user/{{ item.user_from.id_user }}">{{ item.user_from.login }}</a></div>
                 <div class="col s1">{{ item.pp }}</div>
                 <div class="col s3">
-                    {{ item.updated_at | custom_date }}
+                    {{ item.updated_at }}
                 </div>
             </item>
         </poke-list>

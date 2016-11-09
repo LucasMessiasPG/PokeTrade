@@ -1,0 +1,196 @@
+<div class="panel row no-margin-bottom">
+    <div class="col s12 m2 center-align">
+        <img class="user-img" src="/img/user-default.png" alt="default img">
+    </div>
+    <div class="col s8">
+        <h4>Login: <strong>{{ user.profile.login }}</strong></h4>
+        <p>Email: <strong>{{ user.profile.email }}</strong></p>
+        <p>Name: <strong>{{ user.profile.name }}</strong></p>
+        <p>PokePoint: <strong>{{ user.profile.pp }}</strong></p>
+    </div>
+    <div class="col s4 m2" ng-show="(user.profile && user.user)">
+        <button ng-if="user.user.id_user == user.profile.id_user" ng-click="user.show('edit')" class="btn btn-small btn-block">Edit User</button>
+        <button ng-if="user.user.id_user == user.profile.id_user" ng-click="user.show('password')" class="btn btn-small btn-block">Edit Password</button>
+        <button ng-if="user.user.id_user != user.profile.id_user" class="btn btn-small btn-block">Send Menssage</button>
+    </div>
+
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s4"><a class="active" href="#tab1">Profile</a></li>
+            <!--<li class="tab col s4"><a href="#tab2">Cards</a></li>-->
+            <li class="tab col s4"><a href="#tab3">Trades</a></li>
+        </ul>
+    </div>
+
+    <div id="tab1" class="col s12 margin-top">
+        <div class="col s12 m8">
+            <div class="col s8 m4">
+                <label>Name</label>
+                <p>{{ user.profile.name }}</p>
+            </div>
+            <div class="col s4 m3">
+                <label>Login</label>
+                <p>{{ user.profile.login }}</p>
+            </div>
+            <div class="col s6 m3">
+                <label>Create At</label>
+                <p>{{ user.profile.created_at | custon_date }}</p>
+            </div>
+            <div class="col s6 m2">
+                <label>Total Trades</label>
+                <p>{{ user.profile.total_trade }}</p>
+            </div>
+            <div class="col s8 m4">
+                <label>Andress</label>
+                <p>{{ user.profile.andress }}</p>
+            </div>
+            <div class="col s4 m2">
+                <label>Number</label>
+                <p>{{ user.profile.number }}</p>
+            </div>
+            <div class="col s4 m3">
+                <label>District</label>
+                <p>{{ user.profile.district }}</p>
+            </div>
+            <div class="col s4 m3">
+                <label>City</label>
+                <p>{{ user.profile.city }}</p>
+            </div>
+            <div class="col s4 m2">
+                <label>State</label>
+                <p>{{ user.profile.state }}</p>
+            </div>
+            <div class="col s4 m2">
+                <label>Country</label>
+                <p>{{ user.profile.country }}</p>
+            </div>
+        </div>
+        <div class="col s12 m4 center-align">
+            <button class="btn btn-small">Envelop model</button>
+        </div>
+    </div>
+     <div id="tab3" class="col s12 margin-top">
+
+        <div class="col s12 m8">
+            <div ng-repeat="trade in user.trades">
+                <div class="col s10 m11">
+                    <p ng-bind-html="trade.text"></p>
+                </div>
+                <div class="col s2 m1">
+                    <a ng-href="trade/{{ item.id_want }}" class="btn btn-block waves-light waves-effect btn-small light-blue" title="Shipped card"><i class="material-icons">hourglass_empty</i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m4">
+            <div class="col offset-s2 s8">
+                <ul class="collection with-header">
+                    <li class="collection-header center-align">Resume</li>
+                    <li class="collection-item center-align">Total Cards: {{ user.profile.cards.length }}</li>
+                    <li class="collection-item center-align">Total Trades: {{ user.profile.trades.length }} ({{ user.profile.pp_trades }} pp)</li>
+                    <li class="collection-item center-align">Total Wants: {{ user.profile.wants.length }} ({{ user.profile.pp_wants }} pp)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div id="edit" class="modal">
+    <div class="modal-content">
+        <div class="input-field col s12">
+            <h3>Edit: <strong>{{ user.edit.login }}</strong></h3>
+        </div>
+        <form class="col s12">
+            <div class="input-field col s6 m4">
+                <input name="login" id="login" ng-model="user.edit.login" disabled="disabled">
+                <label for="login" ng-class="{'active': user.edit.login}">Login</label>
+            </div>
+            <div class="input-field col s6 m4">
+                <input name="name" id="name" class="form-control" type="text" ng-model="user.edit.name">
+                <label for="name">Name</label>
+            </div>
+            <div class="input-field col s6 m4">
+                <input name="country" id="country" class="form-control" type="text" ng-model="user.edit.country">
+                <label for="country">Country</label>
+            </div>
+            <div class="input-field col s6 m4">
+                <input name="address" id="address" class="form-control" type="text" ng-model="user.edit.address">
+                <label for="address">Address</label>
+            </div>
+            <div class="input-field col s6 m4">
+                <input name="district" id="district" class="form-control" type="text" ng-model="user.edit.district">
+                <label for="district">District</label>
+            </div>
+            <div class="input-field col s6 m4">
+                <input name="city" id="city" class="form-control" type="text" ng-model="user.edit.city">
+                <label for="city">City</label>
+            </div>
+            <div class="input-field col s6 m4">
+                <input name=state" id="state" class="form-control" type="text" ng-model="user.edit.state">
+                <label for="state">State</label>
+            </div>
+
+            <div class="modal-footer btn-group">
+                <button type="button" class="btn red white-text modal-close">Cancelar</button>
+                <button type="submit" class="btn blue white-text">Adicionar</button>
+            </div>
+        </form>
+    </div>
+</div>
+ -->
+<div id="edit" class="modal">
+    <form ng-submit="search.have(search.card_modal)" class="row">
+        <div class="modal-content">
+            <div class="col s12">
+                <h3>Edit: <strong>{{ user.edit.login }}</strong></h3>
+            </div>
+            <div class="col s12">
+                <div class="input-field col s6 m4">
+                    <input name="login" id="login" disabled="disabled" placeholder="login" type="text" ng-model="user.edit.login" />
+                    <label for="login" ng-class="{'active':!!user.edit.login}">Login</label>
+                </div>
+                <div class="input-field col s6 m4">
+                    <input name="name" id="name" type="text" ng-model="user.edit.name" />
+                    <label for="name" ng-class="{'active':!!user.edit.login}">Name</label>
+                </div>
+                <div class="input-field col s6 m4">
+                    <input name="coutry" id="coutry" type="text" ng-model="user.edit.coutry" />
+                    <label for="coutry" ng-class="{'active':!!user.edit.country}">Country</label>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="input-field col s6 m6">
+                    <input name="name" id="name" type="text" ng-model="user.edit.name" />
+                    <label for="name" ng-class="{'active':!!user.edit.address}">Address</label>
+                </div>
+                <div class="input-field col s6 m3">
+                    <input name="number" id="number" type="text" ng-model="user.edit.number" />
+                    <label for="number" ng-class="{'active':!!user.edit.number}">Number</label>
+                </div>
+                <div class="input-field col s6 m3">
+                    <input name="complement" id="complement" type="text" ng-model="user.edit.complement" />
+                    <label for="complement" ng-class="{'active':!!user.edit.component}">Complement</label>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="input-field col s6 m4">
+                    <input name="district" id="district" type="text" ng-model="user.edit.district" />
+                    <label for="district" ng-class="{'active':!!user.edit.district}">District</label>
+                </div>
+                <div class="input-field col s6 m4">
+                    <input name="city" id="city" type="text" ng-model="user.edit.city" />
+                    <label for="city" ng-class="{'active':!!user.edit.city}">City</label>
+                </div>
+                <div class="input-field col s6 m4">
+                    <input name="state" id="state" type="text" ng-model="user.edit.state" />
+                    <label for="state" ng-class="{'active':!!user.edit.state}">State</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer btn-group col s12">
+            <div class="col s10 offset-s1 margin-top">
+                <button type="button" class="btn btn-small red white-text modal-close margin-lateral">Cancelar</button>
+                <button type="submit" class="btn btn-small blue white-text margin-lateral">Adicionar</button>
+            </div>
+        </div>
+    </form>
+</div>

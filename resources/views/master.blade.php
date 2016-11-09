@@ -49,7 +49,7 @@
 </ul>
 <main>
     <div class="container body">
-        <div class="row" ng-view></div>
+        <div style="margin: 0 -10px" ng-view></div>
     </div>
 </main>
 <footer>

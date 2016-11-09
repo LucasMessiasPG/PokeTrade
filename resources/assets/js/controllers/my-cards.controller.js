@@ -29,15 +29,15 @@
                     myCards.total = response.data.total_cards;
             });
             UserService.getLastMessages()
-            .then(function (response) {
-                for(var i in response.data){
-                    var data = response.data[i];
-                    if(data.id_status_message == 2)
-                        myCards.lastMessage = data;
-                    if(data.id_status_message == 4)
-                        myCards.lastTrade = data;
-                }
-            });
+                .then(function (response) {
+                    for(var i in response.data){
+                        var data = response.data[i];
+                        if(data.id_status_message == 2)
+                            myCards.lastMessage = data;
+                        if(data.id_status_message == 4)
+                            myCards.lastTrade = data;
+                    }
+                });
         }
 
         function remover(item){

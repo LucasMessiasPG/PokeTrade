@@ -55,7 +55,7 @@
                     <input name="3" disabled type="checkbox" ng-model="list.full_art" class="form-control" id="full_art"/>
                     <label for="full_art"></label>
                 </td>
-                <td>{{ list.created_at | custom_date }}</td>
+                <td>{{ list.created_at }}</td>
                 <td class="center">
                     <button ng-disabled="true" class="btn btn-small">Edit</button>
                     <button class="btn red btn-small" modal-id="{{ list.id_user_card }}" callback="myCards.remover(list)" confirmation="Você deseja remover {{ list.card.name_card }} ?">Remove</button>

@@ -2,7 +2,8 @@
 	"use strict";
 
 	module.exports = angular.module("pokecard.home.module",[
-		require('../../common/list/list.component')
+		require('../../common/list/list.component'),
+		require('../../filters/custom-date.filter')
 	])
 		.component("pokeHome",{
 			template: /*@ngInject*/ function($templateCache){
@@ -10,7 +11,8 @@
 			},
 			controller: controller,
 			controllerAs: "home"
-		});
+		})
+		.name;
 
 	/*@ngInject*/
 	function controller(SearchService){

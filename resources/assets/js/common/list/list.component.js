@@ -81,8 +81,9 @@
                 $scope.$watch(function(){
                     return list.items;
                 },function(items){
-                    if(items)
+                    if(items){
                         list.populate();
+                    }
                 });
 
 
@@ -96,6 +97,7 @@
                 });
 
             }
+
 
         };
 
@@ -162,7 +164,6 @@
 
             list._filter.page = (_new)?1:list.page;
 
-            console.log("list.url",list.url);
             $http.get(list.url,{params:list._filter})
                 .then(function(response){
                     if( response.data.data.result.length < list.perPage)

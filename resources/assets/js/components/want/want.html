@@ -1,14 +1,16 @@
-<div>
-    <h3>Wants</h3>
-</div>
-<div class="panel row">
+<div class="panel row no-margin-bottom">
+    <div class="col s12">
+        <h3>Wants</h3>
+    </div>
     <div class="col s10">
         <h4 class="margin-top">Add want card and see all wants</h4>
     </div>
-    <div class="col s2">
-        <a href="/new-want" class="btn waves-light waves-effect btn-small btn-block margin-top">Add Want</a>
+
+    <div class="input-field col s12 m2 valign-wrapper">
+        <a href="/new-want" class="btn waves-light waves-effect btn-small btn-block valign">Add Want</a>
     </div>
-    <div class="input-field col s3">
+
+    <div class="input-field col s12 m3">
         <div class="switch">
             <label>
                 <input type="checkbox" ng-model="want.match" ng-change="want.have(want.match)">
@@ -17,62 +19,62 @@
             </label>
         </div>
     </div>
-    <div class="input-field col s4">
+    <div class="input-field col s12 m6">
         <input name="name" id="name" class="form-control" type="text" ng-model="want.filter.name" ng-model-options="{ debounce: 500 }" />
         <label for="name">Card Name</label>
     </div>
 
-    <div class="input-field col s4">
+    <div class="input-field col s12 m3">
         <input name="number" id="number" class="form-control" type="text" ng-model="want.filter.number" ng-model-options="{ debounce: 500 }" />
         <label for="number">Card Number</label>
     </div>
-    
+
     <poke-list url="{{ want.url }}" filter="want.filter" per-page="10" class="col s12" hover="true">
         <list-header>
-            <div class="col s1">
+            <div class="col s3 m1">
                 <span>#Want</span>
             </div>
-            <div class="col s1">
+            <div class="col s1 hide-on-med-and-down">
                 <span>Set</span>
             </div>
-            <div class="col s3">
+            <div class="col s3 m3">
                 <span>Card</span>
             </div>
-            <div class="col s1">
+            <div class="col s3 m1">
                 <span>PP</span>
             </div>
-            <div class="col s3">
+            <div class="col s3 hide-on-med-and-down">
                 <span>User</span>
             </div>
-            <div class="col s2">
+            <div class="col s2 hide-on-med-and-down">
                 <span>Rarity</span>
             </div>
-            <div class="col s1">
+            <div class="col s3 m1">
                 <span></span>
             </div>
         </list-header>
         <item>
-            <div class="col s1">
+            <div class="col s3 m1">
                 <span>#{{ item.id_want }}</span>
             </div>
-            <div class="col s1">
+            <div class="col s1 hide-on-med-and-down">
                 <span>#{{ item.card.code_set }}</span>
             </div>
-            <div class="col s3">
+            <div class="col s3 m3">
                 <img-load poke-src="item.card.image_url" class="small-img"></img-load>
                 <span ng-show="(item.warning && item.my)" class="red-text"><i tooltip="This card not show for other player because you don`t have PokePoints" class="material-icons tooltipped icon-alert">warning</i></span>
-                <a ng-href="/details/{{ item.card.id_card }}">{{ item.card.name_card }}</a>
+                <a ng-href="/details/{{ item.card.id_card }}" class="hide-on-med-and-down">{{ item.card.name_card }}</a>
             </div>
-            <div class="col s1">
+            <div class="col s3 m1">
                 <span>{{ item.pp }}</span>
             </div>
-            <div class="col s3">
+            <div class="col s3 hide-on-med-and-down">
                 <a ng-href="/user/{{ item.user.id_user }}">{{ item.user.login }}</a>
             </div>
-            <div class="col s2">
+            <div class="col s2 hide-on-med-and-down">
                 <span>{{ item.card.rarity }}</span>
             </div>
-            <div class="col s1">
+            <div class="col s3 m1">
                 <button ng-show="(!item.my && item.have)" ng-click="want.send(item)" class="btn waves-light waves-effect btn-small btn-block">Send</button>
                 <button ng-show="item.my" ng-click="want.send(item)" class="btn waves-light waves-effect btn-small btn-block red">Remove</button>
                 <span ng-show="(!item.my && !item.have)" class="red-text">Don't have</span>
