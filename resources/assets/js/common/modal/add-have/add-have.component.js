@@ -2,7 +2,7 @@
 	"use strict";
 
 	module.exports = angular.module("modal.addHave.module",[
-        require('../../services/user.service'),
+        require('../../../services/user.service'),
     ])
 		.component("pokeAddHave",{
 			template: /*@ngInject*/ function($templateCache){

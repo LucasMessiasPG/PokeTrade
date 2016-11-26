@@ -14,8 +14,10 @@ angular.module('pokecard',[
     require('./components/search/search.component'),
     require('./components/home/home.component'),
     require('./components/trade/trade.component'),
+    require('./components/login/login.component'),
     require('./directives/materialize'),
-    require('./components/want/want.component')
+    require('./components/my-cards/my-cards.component'),
+    require('./components/want/want.component'),
 ]);
 
 // angular.module('paginator',[]);

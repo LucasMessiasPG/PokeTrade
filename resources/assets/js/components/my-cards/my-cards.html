@@ -1,0 +1,70 @@
+<div class="row panel no-margin-bottom">
+    <div class="col s12 m8">
+        <div class="card blue-grey darken-1 my-card">
+            <span class="card-title"><strong>Last Message</strong></span>
+            <p ng-if="!myCards.lastMessage">Noting to Showing</p>
+            <p ng-if="myCards.lastMessage">{{ myCards.lastMessage.text }} - <a ng-href="/user/{{myCards.lastMessage.from.id_user}}">{{ myCards.lastMessage.from.login }}</a></p>
+        </div>
+        <div class="card blue-grey darken-1 my-card">
+            <span class="card-title"><strong>Last Trade</strong></span>
+            <p ng-show="!myCards.lastTrade">Noting to Showing</p>
+            <p ng-show="myCards.lastTrade" ng-bind-html="myCards.lastTrade.text"></p>
+            <p ng-bind-html-unsafe="myCards.lastTrade.text"></p>
+        </div>
+    </div>
+    <div class="col s6 m4">
+        <div class="center-align">
+            <a href="/new-card" class="waves-effect waves-light btn btn-small">Add Card
+            </a>
+        </div>
+    </div>
+    <div class="col s6 m4">
+        <ul class="collection with-header">
+            <li class="collection-header center-align">My Cards Resume</li>
+            <li class="collection-item">Total Cards <span data-badge-caption="cards"
+                                                          class="badge">{{ (myCards.total?myCards.total:0) }}</span></li>
+        </ul>
+    </div>
+    <div class="col s12">
+        <table>
+            <thead>
+            <tr>
+                <th>Card</th>
+                <th>Set</th>
+                <th class="center-align">Foil</th>
+                <th class="center-align">Reverse Foil</th>
+                <th class="center-align">Full Art</th>
+                <th class="center-align">Added At</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="list in myCards.cards">
+                <td class="valign-wrapper"><img-load poke-src="list.card.image_url"></img-load>
+                    <a class="valign" ng-href="/details/{{ list.card.id_card }}">{{ list.card.name_card }}</a></td>
+                <td>{{ list.card.code_set }}</td>
+                <td class="center">
+                    <input name="1" disabled type="checkbox" ng-model="list.foil" class="form-control" id="foil"/>
+                    <label for="foil"></label>
+                </td>
+                <td class="center">
+                    <input name="2" disabled type="checkbox" ng-model="list.reverse_foil" class="form-control" id="reverse_foil"/>
+                    <label for="reverse_foil"></label>
+                </td>
+                <td class="center">
+                    <input name="3" disabled type="checkbox" ng-model="list.full_art" class="form-control" id="full_art"/>
+                    <label for="full_art"></label>
+                </td>
+                <td>{{ list.created_at }}</td>
+                <td class="center">
+                    <button ng-disabled="true" class="btn btn-small">Edit</button>
+                    <button class="btn red btn-small" modal-id="{{ list.id_user_card }}" callback="myCards.remover(list)" confirmation="Você deseja remover {{ list.card.name_card }} ?">Remove</button>
+                </td>
+            </tr>
+            <tr ng-hide="myCards.cards.length">
+                <td colspan="7" class="text-center">Noting to show here</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

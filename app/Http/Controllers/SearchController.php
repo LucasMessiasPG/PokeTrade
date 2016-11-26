@@ -331,7 +331,7 @@ class SearchController extends Controller
     {
         try {
 
-            $result = Want::where('id_status_want', '=', 2)->take(10)->get();
+            $result = Want::whereIn('id_status_want',[2,3])->take(10)->get();
 
             foreach ($result as $item) {
                 $item->user;

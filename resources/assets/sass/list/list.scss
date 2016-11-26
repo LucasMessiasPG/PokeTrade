@@ -34,3 +34,8 @@ $tag: "poke-list";
 #{$tag} #items.hovered:hover{
 	background-color: #ececec;
 }
+.wrap{
+  overflow: hidden;
+  margin-right: 17px;
+  word-wrap: break-word;
+}

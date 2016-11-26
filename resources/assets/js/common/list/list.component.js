@@ -142,7 +142,7 @@
 
                 }
             }
-            
+
             if(!list.parent.$$phase)
                 list.parent.$digest;
             

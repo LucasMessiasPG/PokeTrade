@@ -34,6 +34,7 @@ Route::group(['prefix'=>'api'],function(){
 
     Route::group(['middleware'=>['check']],function(){
 
+        Route::post('card/trade/{id_want}','UserController@completeTrade');
         Route::get('/user/{id_user}/profile','UserController@profile');
         Route::post('/user/add-card','UserController@addCard');
         Route::post('/user/add-want','UserController@addWant');

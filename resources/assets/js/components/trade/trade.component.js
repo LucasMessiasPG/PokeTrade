@@ -5,6 +5,7 @@
 		require('../../common/list/list.component'),
 		require('../../services/user.service'),
 		require('../../services/search.service'),
+        require('../../common/modal/ratings/ratings')
 	])
 		.component("pokeTrade",{
 			template: /*@ngInject*/ function($templateCache){
@@ -16,36 +17,41 @@
 		.name;
 
 	/*@ngInject*/
-	function controller(UserService,SearchService){
+	function controller(UserService, SearchService, ratingsService){
 		 var trade = this;
         trade.user = UserService.user;
         trade.showButton = showButton;
         trade.classButton = classButton;
         trade.have = have;
+        trade.complete = complete;
         trade.searchTrades = searchTrades;
+        trade.selectRateing = selectRateing;
+        trade.finishRating = finishRating;
 
         trade.$onInit = function(){
             UserService.getUser()
                 .then(function(user){
                     trade.user = user;
                 });
+
+            trade.ratings = require('./ratings-data.js');
         };
 
         ////////////
 
         function showButton(button,item) {
             if(!item)
-                return;
+                return false;
 
             if(!trade.user)
                 return false;
 
             switch (button){
                 case 'Complete':
-                    return item.user_from.id_user == trade.user.id_user;
+                    return (item.user.id_user == trade.user.id_user && item.status == "sending");
                     break;
                 case 'Problem':
-                    return (item.user.id_user == trade.user.id_user || item.user_from.id_user == trade.user.id_user);
+                    return (item.user.id_user == trade.user.id_user || item.user_from.id_user == trade.user.id_user && item.status == "sending");
                     break;
             }
         }
@@ -63,13 +69,13 @@
             }
 
             var classe = {};
-            if(count == 2)
+            if(count === 2){
                 classe.m4 = true;
-            else if(count == 1)
+            }else if(count === 1)
                 classe.m6 = true;
-            else if(count == 0)
+            else if(count === 0)
                 classe.m12 = true;
-            console.log("classe",classe,item,trade.user);
+            console.log("classe",count);
             return classe;
         }
 
@@ -82,6 +88,46 @@
 
         function searchTrades(filter){
             trade._filter = filter;
+        }
+
+        function complete(item){
+            trade.item_rating = item;
+            $("#ratings").modal("open")
+        }
+
+        function selectRateing(ratings,rating){
+            for(var i in ratings){
+                if(ratings[i].value <= rating.value){
+                    ratings[i].check = true;
+                }else{
+                    ratings[i].check = false;
+                }
+            }
+
+            ratings[6] = {
+                description: rating.description,
+                _value: rating.value,
+            }
+        }
+
+        function finishRating(ratings){
+            var check  = [];
+            for(var i in ratings){
+                check.push({
+                    description: ratings[i].description,
+                    rating: ratings[i].ratings[6]._value
+                })
+            }
+            UserService.completeTrade(trade.item_rating,check)
+                .then(function(response){
+                    if(response.status == "success"){
+                        $("#ratings").modal("close")
+                        trade._filter = {
+                            refresh: true
+                        };
+                    }
+                });
+            
         }
 	}
 

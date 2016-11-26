@@ -21,6 +21,7 @@
         UserService.getLastMessages = getLastMessages;
         UserService.sendWant = sendWant;
         UserService.getTrades = getTrades;
+        UserService.completeTrade = completeTrade;
 
         //////////////////
 
@@ -144,6 +145,13 @@
                 .then(function(response){
                     return response.data;
                 });
+        }
+
+        function completeTrade(card,rating){
+            return $http.post("/api/card/trade/"+card.id_want,rating)
+                .then(function(response){
+                    return response.data;
+                })   
         }
 
     }

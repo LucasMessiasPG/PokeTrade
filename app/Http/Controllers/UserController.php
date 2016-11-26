@@ -411,4 +411,13 @@ class UserController extends Controller
             return $this->_returnError('Remove card fail', $e);
         }
     }
+
+    public function completeTrade($id_want, Request $request){
+        try {
+            Want::find($id_want)->update(["id_status_want" => 3]);
+            return $this->_return('Complete success', 'success');
+        } catch (Exception $e) {
+            return $this->_returnError('Complete fail', $e);
+        }
+    }
 }

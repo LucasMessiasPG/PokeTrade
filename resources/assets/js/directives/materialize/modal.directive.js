@@ -6,12 +6,13 @@
         .directive("modalContent",modalContent)
         .name;
 
+    /*@ngInject*/
     function modalContent() {
         return {
             restrict:'C',
             link:function(scope,el,attr){
                 setTimeout(function(){
-                    $('.modal-trigger').leanModal();
+                    $('.modal').modal();
                 },1);
             }
         }

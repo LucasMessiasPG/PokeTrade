@@ -3,7 +3,7 @@
 	// var angular = require('angular');
 
 	module.exports = angular.module("pokecard.search.module",[
-        require('../../common/modal/add-have.component').name,
+        require('../../common/modal/add-have/add-have.component').name,
         require('../../directives/materialize'),
         require('../../common/list/list.component'),
 	])
@@ -52,7 +52,7 @@
 
         function opemHave(card,type) {
             ctrl.card_modal = card;
-            $('#'+type).openModal();
+            $('#'+type).modal("open");
         }
 
         function have(card){

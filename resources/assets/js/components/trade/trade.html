@@ -61,7 +61,12 @@
                 </div>
                 <div class="col s8 valign-wrapper">
                     <img-load poke-src="item.card.image_url"></img-load>
-                    <a class="valign" ng-href="/details/{{ item.card.id_card }}">{{ item.card.name_card }}</a>
+
+                    <span ng-show="item.status == 'sending'" class="margin-lateral">
+                        <button class="btn waves-light waves-effect btn-small red" title="Report Problem"><i class="material-icons">warning</i></button>
+                    </span>
+
+                    <a class="valign wrap" ng-href="/details/{{ item.card.id_card }}" title="{{ item.card.name_card }}"> {{ item.card.name_card }}</a>
                 </div>
             </div>
             <div class="col s4">
@@ -71,11 +76,11 @@
                 <div class="col s2">
                     {{ item.status }}
                 </div>
-                <div class="col s4" ng-if="item.user">
-                    <a ng-href="/user/{{ item.user.id_user }}">{{ item.user }}</a>
-                </div>
-                <div class="col s4" ng-if="item.user">
+                <div class="col s4" ng-show="item.user">
                     <a ng-href="/user/{{ item.user_from.id_user }}">{{ item.user_from.login }}</a>
+                </div>
+                <div class="col s4" ng-show="item.user">
+                    <a ng-href="/user/{{ item.user.id_user }}">{{ item.user.login }}</a>
                 </div>
             </div>
             <div class="col s4">
@@ -86,17 +91,46 @@
                     {{ item.updated_at  }}
                 </div>
                 <div class="col s2">
-                    <div class="col s12" ng-if="trade.showButton('Complete',item)" ng-class="trade.classButton(item)">
-                        <button class="btn waves-light waves-effect btn-small light-green " title="Complete Trade"><i class="material-icons">thumb_up</i></button>
+                    <div class="col s12" ng-show="trade.showButton('Complete',item)" ng-class="trade.classButton(item)">
+                        <button ng-click="trade.complete(item)" class="btn waves-light waves-effect btn-small light-green " title="Complete Trade"><i class="material-icons">thumb_up</i></button>
                     </div>
                     <div class="col s12" ng-class="trade.classButton(item)">
                         <a ng-href="trade/{{ item.id_want }}" class="btn waves-light waves-effect btn-small light-blue" title="Shipped card"><i class="material-icons">hourglass_empty</i></a>
-                    </div>
-                        <div class="col s12" ng-if="trade.showButton('Problem',item)" ng-class="trade.classButton(item)">
-                        <button class="btn waves-light waves-effect btn-small red" title="Report Problem"><i class="material-icons">warning</i></button>
                     </div>
                 </div>
             </div>
         </item>
     </poke-list>
+</div>
+
+
+<div id="ratings" class="modal">
+    <form ng-submit="trade.finishRating(trade.ratings)">
+        <div class="modal-content">
+            <div>
+                <h3>Rating this trade</h3>
+            </div>
+            <div ng-repeat="ratings in trade.ratings">
+                <div>
+                    <h4>{{ ratings.description }}</h4>
+                </div>
+                <ul class="list-inline">
+                    <li ng-repeat="rating in ratings.ratings" style="cursor: pointer;" ng-click="trade.selectRateing(ratings.ratings,rating)">
+                        <div ng-if="rating.value">
+                            <span>
+                                <i class="material-icons">{{ rating.check?"star":"star_border" }}</i>
+                            </span>
+                        </div>
+                        <div ng-if="!rating.value">
+                            {{ rating.description }}
+                        </div>
+                    </li>
+                </ul>  
+            </div>
+        </div>
+        <div class="modal-footer btn-group">
+            <button type="button" class="btn red white-text modal-close">Cancelar</button>
+            <button type="submit" class="btn blue white-text">Adicionar</button>
+        </div>
+    </form>
 </div>
