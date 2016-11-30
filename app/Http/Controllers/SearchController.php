@@ -241,7 +241,7 @@ class SearchController extends Controller
                 }
             }
 
-            return $this->_return('Get wants', 'success', ["result"=>$result,"total"=>$total]);
+            return $this->_return('Get wants', 'success', ["result"=>$result,"total"=>$$total]);
         } catch (\Exception $e) {
             return $this->_returnError('Wants Fail', $e);
         }
@@ -260,9 +260,7 @@ class SearchController extends Controller
                 ->join('cards', 'cards.id_card', '=', 'wants.id_card')
                 ->leftJoin('user_cards', 'user_cards.id_card', '=', 'wants.id_card')
                 ->where('id_status_want', '!=', 1)
-                ->orderBy('wants.created_at', 'dec')
-                ->limit($limit)
-                ->skip($request->offset);
+                ->orderBy('wants.created_at', 'dec');
 
             if($request->have) {
                 if(\Auth::check())
@@ -294,6 +292,16 @@ class SearchController extends Controller
                 }
 
             }
+
+            $total = $query->get()->count();
+
+            $limit = 100;
+            if($request->limit)
+                $limit = $request->limit;
+
+            if ($request->page)
+                $query->skip(($limit * ($request->page - 1)));
+
             $wants = $query->get();
 
             $result = [];
@@ -320,7 +328,7 @@ class SearchController extends Controller
             }
 
 
-            return $this->_return('Get wants', 'success', ["result"=>$result,"total"=>count($result)]);
+            return $this->_return('Get wants', 'success', ["result"=>$result,"total"=> $total]);
         } catch (\Exception $e) {
             return $this->_returnError('Wants Fail', $e);
         }

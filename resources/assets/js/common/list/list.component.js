@@ -7,7 +7,7 @@
         '<div class="row">',
         '   <div id="header">',
         '   </div>',
-        '   <div ng-repeat="item in list._items">',
+        '   <div ng-repeat="item in list._items | orderBy: list.order">',
         '       <div id="items" ng-class="{\'hovered\':list.hover}" class="col s12 valign-wrapper">',
         '       </div>',
         '   </div>',
@@ -34,7 +34,8 @@
                 total: "<",
                 hover: "<",
                 filter: "<",
-                user: "<"
+                user: "<",
+                order: "@"
             }
         })
         .name;
@@ -51,6 +52,7 @@
             list.page = 1;
             list._items = [];
             list.total = 0;
+
 
             $transclude(function (clone,scope) {
                 scope.$parent.list = $scope.list;
@@ -122,6 +124,9 @@
                 list.total = (list.items)?list.items.length:0;
 
             list._items = [];
+
+            if(!list.order)
+                list.order = {};
 
             if(list.url){
                 var start = 0;

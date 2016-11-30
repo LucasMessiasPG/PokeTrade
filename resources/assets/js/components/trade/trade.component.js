@@ -75,7 +75,7 @@
                 classe.m6 = true;
             else if(count === 0)
                 classe.m12 = true;
-            console.log("classe",count);
+            
             return classe;
         }
 

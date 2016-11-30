@@ -403,7 +403,6 @@ class UserController extends Controller
     public function remove($id_user_card)
     {
         try {
-
             UserCards::find($id_user_card)->delete();
 
             return $this->_return('Remove card', 'success');
@@ -414,9 +413,18 @@ class UserController extends Controller
 
     public function completeTrade($id_want, Request $request){
         try {
-            Want::find($id_want)->update(["id_status_want" => 3]);
+            \DB::beginTransaction();
+
+            $want = Want::find($id_want);
+            $want->update(["id_status_want" => 3]);
+            $valeu_pp = $want->pp;
+            $want->user_from->increment("pp",$valeu_pp);
+            $want->user->decrement("pp_reserve",$valeu_pp);
+            
+            \DB::commit();
             return $this->_return('Complete success', 'success');
         } catch (Exception $e) {
+            \DB::rollback();
             return $this->_returnError('Complete fail', $e);
         }
     }

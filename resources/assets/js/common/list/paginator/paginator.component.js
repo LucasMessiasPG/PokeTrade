@@ -50,7 +50,8 @@
         ////////////////
 
         function populate(){
-            
+            console.log("paginator.total",paginator.total);
+            console.log("paginator.perPage",paginator.perPage);
             var end = Math.round((paginator.total / paginator.perPage));
 
             if(end == 0 || end == 1 && paginator.total < paginator.perPage){

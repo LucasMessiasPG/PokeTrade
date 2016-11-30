@@ -29,18 +29,18 @@
 			link:function(scope, el, attr, ctrl){
 				scope.ok = function(){
 					scope.callback();
-					$('#confirmation-'+scope.id).closeModal();
+					$('#confirmation-'+scope.id).modal("close");
 				}
 
 				scope.close = function(){
-					$('#confirmation-'+scope.id).closeModal();
+					$('#confirmation-'+scope.id).modal("close");
 				}
 				var html = $compile(modal)(scope);
 				el.bind("click",function(){
 					angular.element('body').append(html);
 					scope.$apply();
-					$('.modal-trigger').leanModal();
-					$('#confirmation-'+scope.id).openModal();
+					$('.modal').modal();
+					$('#confirmation-'+scope.id).modal("open");
 				})
 			}
 		}

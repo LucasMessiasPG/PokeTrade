@@ -65,7 +65,7 @@
 
         function show(modal){
         	user.edit = angular.copy(user.profile);
-        	$("#"+modal).openModal();
+        	$("#"+modal).modal("open");
         }
 
 	}

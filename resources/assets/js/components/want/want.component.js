@@ -41,7 +41,9 @@
             UserService.sendWant(item.id_want)
                 .then(function(response){
                     if(response.status == 'success') {
-                        want.list.splice(want.list.indexOf(item), 1);
+                        if(!want.filter)
+                            want.filter = {};
+                        want.filter.refresh = true;
                     }
                 });
         }

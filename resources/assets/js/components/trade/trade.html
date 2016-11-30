@@ -15,7 +15,7 @@
             </label>
         </div>
     </div>
-    <poke-list url="api/card/trades" filter="trade._filter" per-page="10" class="col s12">
+    <poke-list url="api/card/trades" order="-updated_at" filter="trade._filter" per-page="10" class="col s12">
         <list-header>
             <div class="col s4">
                 <div class="col s2">
@@ -85,10 +85,10 @@
             </div>
             <div class="col s4">
                 <div class="col s5">
-                    {{ item.created_at  }}
+                    {{ item.updated_at  }}
                 </div>
                 <div class="col s5">
-                    {{ item.updated_at  }}
+                    {{ item.created_at  }}
                 </div>
                 <div class="col s2">
                     <div class="col s12" ng-show="trade.showButton('Complete',item)" ng-class="trade.classButton(item)">
