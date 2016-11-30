@@ -17,15 +17,21 @@ class User extends Authenticatable
         'email',
         'password',
         'pp',
-        'id_contry',
+        'country',
         'address',
         'number',
         'district',
         'state',
+        'city',
         'tel',
         'tutorial',
+        'complements',
         'name',
-        'image_url'
+        'image_url',
+        'complet',
+        'complet_phone',
+        'complet_friends_email',
+        'complet_friend'
 	];
 	
 	/**
@@ -86,7 +92,7 @@ class User extends Authenticatable
 	    $user->number = $this->number;
 	    $user->city = $this->city;
 	    $user->state = $this->state;
-	    $user->destrict = $this->destrict;
+	    $user->district = $this->district;
 	    $user->country = $this->country;
 	    $user->email = $this->email;
 	    $user->pp = $this->pp;

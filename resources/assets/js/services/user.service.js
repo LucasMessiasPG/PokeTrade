@@ -22,6 +22,7 @@
         UserService.sendWant = sendWant;
         UserService.getTrades = getTrades;
         UserService.completeTrade = completeTrade;
+        UserService.updateProfile = updateProfile;
 
         //////////////////
 
@@ -87,6 +88,13 @@
                 .then(function(response){
                     return response.data;
                 });
+        }
+
+        function updateProfile(user){
+            return $http.post('/api/user/'+user.id_user,user)
+                .then((response) => {
+                    return response.data;
+                })
         }
 
         function login(user) {

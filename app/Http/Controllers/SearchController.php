@@ -241,7 +241,7 @@ class SearchController extends Controller
                 }
             }
 
-            return $this->_return('Get wants', 'success', ["result"=>$result,"total"=>$$total]);
+            return $this->_return('Get wants', 'success', ["result"=>$result,"total"=>$total]);
         } catch (\Exception $e) {
             return $this->_returnError('Wants Fail', $e);
         }

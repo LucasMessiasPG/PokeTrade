@@ -428,4 +428,20 @@ class UserController extends Controller
             return $this->_returnError('Complete fail', $e);
         }
     }
+
+    function update($id_user, Request $request){
+        try {
+            \DB::beginTransaction();
+
+            User::find($id_user)->update($request->all());
+
+            
+            \DB::commit();
+            return $this->_return('Update profile success','success');
+        } catch (Exception $e) {
+            \DB::rollback();
+            return $this->_returnError('Update profile fail',$e);
+            
+        }
+    }
 }

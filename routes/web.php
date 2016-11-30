@@ -42,6 +42,7 @@ Route::group(['prefix'=>'api'],function(){
         Route::get('/user/{id_want}/remove-want','UserController@removeWant');
         Route::get('/user/{id_user_card}/remove-card','UserController@remove');
         Route::post('/user/{id_want}/edit-want','UserController@editWant');
+        Route::post('/user/{id_user}','UserController@update');
         Route::get('want-list','UserController@myWantList');
         Route::get('my-cards','UserController@myCards');
         Route::get('my-messages','UserController@myMessages');

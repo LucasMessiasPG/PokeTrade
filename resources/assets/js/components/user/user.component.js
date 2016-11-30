@@ -21,6 +21,7 @@
 		var user = this;
 		user.getProfile = getProfile;
 		user.show = show;
+		user.editProfile = editProfile;
 
 		user.$onInit = function(){
 			UserService.getUser()
@@ -66,6 +67,17 @@
         function show(modal){
         	user.edit = angular.copy(user.profile);
         	$("#"+modal).modal("open");
+        }
+
+        function editProfile(user){
+        	if(user.login)
+        		delete user.login;
+
+        	UserService.updateProfile(user)
+        		.then((response) => {
+        			console.log("response",response);
+        		})
+
         }
 
 	}
