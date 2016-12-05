@@ -23,7 +23,7 @@
         want.send = send;
         want.have = have;
         want.opemHave = opemHave;
-        want.have = have;
+        want.addHave = addHave;
 
 
         init();
@@ -65,7 +65,7 @@
             $('#have').modal("open");
         }
 
-        function have(card){
+        function addHave(card){
             var new_card = {
                 id_card:card.card.id_card,
                 amount:(card.amount)?card.amount:1,

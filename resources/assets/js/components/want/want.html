@@ -78,14 +78,14 @@
                 <button ng-show="(!item.my && item.have)" ng-click="want.send(item)" class="btn waves-light waves-effect btn-small btn-block">Send</button>
                 <button ng-show="item.my" ng-click="want.send(item)" class="btn waves-light waves-effect btn-small btn-block red">Remove</button>
                 <!-- <span ng-show="(!item.my && !item.have)" class="red-text">Don't have</span> -->
-                <button ng-show="(!item.my && !item.have)" title="add card" ng-click="want.opemHave(item)" class="btn waves-light waves-effect btn-small btn-block">ADD</button>
+                <button ng-show="(!item.my && !item.have)" title="add card" ng-click="want.opemHave(item)" class="btn waves-light waves-effect btn-small btn-block light-green">ADD</button>
             </div>
         </item>
     </poke-list>
 </div>
 
 <div id="have" class="modal">
-    <form ng-submit="want.have(want.card_modal)">
+    <form ng-submit="want.addHave(want.card_modal)">
         <div class="modal-content">
             <div class="col s12">
                 <h3>Add <strong> {{ want.card_modal.name_card }}</strong></h3>

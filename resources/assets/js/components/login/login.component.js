@@ -14,10 +14,11 @@
         .name;
 
 	/*@ngInject*/
-    function controller(UserService,$window){
+    function controller(UserService, $window){
     	var login = this;
         login.auth = auth;
         login.register = register;
+        $('#register').modal();
 
         /////////////////
 

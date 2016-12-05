@@ -77,7 +77,7 @@
             UserService.addCard(new_card)
                 .then(function(response){
                     if(response.status == 'success')
-                        $('#have').closeModal();
+                        $('#have').modal("close");
                 });
         }
 
@@ -103,7 +103,7 @@
             UserService.addWant(new_card)
                 .then(function(response){
                     if(response.status == 'success')
-                        $('#want').closeModal();
+                        $('#want').modal("close");
                 });
         }
 	}
