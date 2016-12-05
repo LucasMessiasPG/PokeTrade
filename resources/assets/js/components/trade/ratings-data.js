@@ -6,23 +6,23 @@
 			"description": "Card",
 			"ratings": [
 				{
-	                    "description": "Péssimo",
+	                    "description": "Very Bad",
 	                    "value": 1
 	                },
 	                {
-	                    "description": "Ruim",
+	                    "description": "Bad",
 	                    "value": 2
 	                },
 	                {
-	                    "description": "Razoável",
+	                    "description": "=/",
 	                    "value": 3
 	                },
 	                {
-	                    "description": "Bom",
+	                    "description": "Good",
 	                    "value": 4
 	                },
 	                {
-	                    "description": "Ótiomo",
+	                    "description": "Very Good",
 	                    "value": 5
 	                }
 			]
@@ -31,23 +31,23 @@
 			"description": "Shipping",
 			"ratings": [
 				{
-	                    "description": "Péssimo",
+	                    "description": "Very Bad",
 	                    "value": 1
 	                },
 	                {
-	                    "description": "Ruim",
+	                    "description": "Bad",
 	                    "value": 2
 	                },
 	                {
-	                    "description": "Razoável",
+	                    "description": "=/",
 	                    "value": 3
 	                },
 	                {
-	                    "description": "Bom",
+	                    "description": "Good",
 	                    "value": 4
 	                },
 	                {
-	                    "description": "Ótiomo",
+	                    "description": "Very Good",
 	                    "value": 5
 	                }
 			]
@@ -56,23 +56,23 @@
 			"description": "Price Card",
 			"ratings": [
 				{
-	                    "description": "Péssimo",
+	                    "description": "Very Bad",
 	                    "value": 1
 	                },
 	                {
-	                    "description": "Ruim",
+	                    "description": "Bad",
 	                    "value": 2
 	                },
 	                {
-	                    "description": "Razoável",
+	                    "description": "=/",
 	                    "value": 3
 	                },
 	                {
-	                    "description": "Bom",
+	                    "description": "Good",
 	                    "value": 4
 	                },
 	                {
-	                    "description": "Ótiomo",
+	                    "description": "Very Good",
 	                    "value": 5
 	                }
 			]

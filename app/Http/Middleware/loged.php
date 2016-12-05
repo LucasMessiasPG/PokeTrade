@@ -20,6 +20,7 @@ class loged
     	if(Auth::check())
 	        return $next($request);
 	    
-	    throw new Exception('Login Fail');
+        return response('Login Fail',403);
+	    throw new Exception();
     }
 }

@@ -18,9 +18,11 @@
         .name;
 
 	/*@ngInject*/
-	function controller(SearchService,UserService,$scope){
+	function controller(SearchService,UserService,$scope, $location, $route){
 		var want = this;
         want.send = send;
+        want.have = have;
+        want.opemHave = opemHave;
         want.have = have;
 
 
@@ -55,6 +57,47 @@
                 };
             else
                 want.filter = {};
+        }
+
+
+        function opemHave(card) {
+            want.card_modal = card;
+            $('#have').modal("open");
+        }
+
+        function have(card){
+            var new_card = {
+                id_card:card.card.id_card,
+                amount:(card.amount)?card.amount:1,
+                foil:(card.foil)?card.foil:false,
+                reverse_foil:(card.reverse_foil)?card.reverse_foil:false,
+                full_art:(card.full_art)?card.full_art:false
+            };
+
+            if(card.full_art) {
+                new_card.foil = true;
+                new_card.reverse_foil = true;
+            }
+
+            if(card.reverse_foil){
+                new_card.foil = true;
+            }
+
+            UserService.addCard(new_card)
+                .then(function(response){
+                    if(response.status == 'success'){
+                        $('#have').modal("close");
+                        $route.reload();
+                    }
+                })
+                .catch(function(response){
+                    $('#have').modal("close");
+                    if(response.status == 403){
+                        $location.path("/login");
+                    }else{
+                        alert("ops !!!");
+                    }
+                });
         }
 
 	}

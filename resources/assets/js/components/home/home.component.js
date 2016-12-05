@@ -15,13 +15,13 @@
 		.name;
 
 	/*@ngInject*/
-	function controller(SearchService){
+	function controller(SearchService, $filter){
 		var home = this;
 
         home.$onInit = function(){
             SearchService.lastTrades()
                 .then(function(response){
-                    home.trades = response.data;
+                    home.trades = $filter("orderBy")(response.data,"-updated_at");
                 });
         };
 

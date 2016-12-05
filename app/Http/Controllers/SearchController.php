@@ -306,6 +306,9 @@ class SearchController extends Controller
 
             $result = [];
             foreach ($wants as $want) {
+                if(!$want->user_from)
+                    continue;
+
                 $result[] = (object)[
                     'have' => (UserCards::where('id_card', '=', $want->id_card)->where('id_user', '=', (Auth::check()) ? Auth::user()->id_user : '1')->get()->count() > 0) ? true : false,
                     'id_want' => $want->id_want,
@@ -339,7 +342,7 @@ class SearchController extends Controller
     {
         try {
 
-            $result = Want::whereIn('id_status_want',[2,3])->take(10)->get();
+            $result = Want::whereIn('id_status_want',[2,3])->orderBy("updated_at","desc")->take(10)->get();
 
             foreach ($result as $item) {
                 $item->user;

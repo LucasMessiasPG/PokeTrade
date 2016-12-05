@@ -77,42 +77,39 @@
             <div class="col s3 m1">
                 <button ng-show="(!item.my && item.have)" ng-click="want.send(item)" class="btn waves-light waves-effect btn-small btn-block">Send</button>
                 <button ng-show="item.my" ng-click="want.send(item)" class="btn waves-light waves-effect btn-small btn-block red">Remove</button>
-                <span ng-show="(!item.my && !item.have)" class="red-text">Don't have</span>
+                <!-- <span ng-show="(!item.my && !item.have)" class="red-text">Don't have</span> -->
+                <button ng-show="(!item.my && !item.have)" title="add card" ng-click="want.opemHave(item)" class="btn waves-light waves-effect btn-small btn-block">ADD</button>
             </div>
         </item>
     </poke-list>
-    <!-- <table class="col s12 margin-top">
-        <thead>
-        <tr>
-            <th class="col-sm-1 text-center">#Want</th>
-            <th class="col-sm-1">Set</th>
-            <th class="col-sm-3">Card</th>
-            <th class="col-sm-1">PP</th>
-            <th class="col-sm-3">User</th>
-            <th class="col-sm-2">Rarity</th>
-            <th class="col-sm-1"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="list in want.list" class="hoverable" ng-show="(!list.warning || list.warning && want.user && list.user.id_user == want.user.id_user)">
-            <td class="text-center">
-                <span>#{{ list.id_want }}</span>
-            </td>
-            <td>{{ list.card.code_set }}</td>
-            <td class="valign-wrapper">
-                <img-load poke-src="list.card.image_url"></img-load>
-                <span ng-if="list.warning" class="red-text"><i tooltip="This card not show for other player because you don`t have PokePoints" class="material-icons tooltipped" style="cursor: pointer; font-size: 15px">warning</i></span>
-                <a class="valign" ng-href="/details/{{ list.card.id_card }}">{{ list.card.name_card }}</a>
-            </td>
-            <td>{{ list.pp }}</td>
-            <td><a ng-href="/user/{{ list.user.id_user }}">{{ list.user.login }}</a></td>
-            <td>{{ list.card.rarity }}</td>
-            <td class="center">
-                <button ng-hide="(want.isMy(list.user) || want.isMy(list.user) == false && list.have == false)" ng-disabled="(want.isMy(list.user) || want.isMy(list.user) == false && list.have == false)" ng-click="want.send(list)" class="btn waves-light waves-effect btn-small btn-block">Send</button>
-                <button ng-show="want.isMy(list.user)" ng-click="want.send(list)" class="btn waves-light waves-effect btn-small btn-block red">Remove</button>
-                <span ng-show="(!list.have && !want.isMy(list.user))" class="red-text">Don't have</span>
-            </td>
-        </tr>
-        </tbody>
-    </table> -->
+</div>
+
+<div id="have" class="modal">
+    <form ng-submit="want.have(want.card_modal)">
+        <div class="modal-content">
+            <div class="col s12">
+                <h3>Add <strong> {{ want.card_modal.name_card }}</strong></h3>
+            </div>
+            <div class="input-field col s12 m6">
+                <input name="amount" id="amount" class="form-control" type="text" ng-model="want.card_modal.amount" />
+                <label for="amount">Amount</label>
+            </div>
+            <div class="input-field col s2">
+                <input name="foil" id="foil" disabled="disabled" class="form-control" type="checkbox" ng-model="want.card_modal.foil" />
+                <label for="foil">Foil</label>
+            </div>
+            <div class="input-field col s2">
+                <input name="reverse_foil" id="reverse_foil" disabled="disabled" class="form-control" type="checkbox" ng-model="want.card_modal.reverse_foil" />
+                <label for="reverse_foil">Reverse Foil</label>
+            </div>
+            <div class="input-field col s2">
+                <input name="full_art" id="full_art" disabled="disabled" class="form-control" type="checkbox" ng-model="want.card_modal.full_art" />
+                <label for="full_art">Full Art</label>
+            </div>
+        </div>
+        <div class="modal-footer btn-group">
+            <button type="button" class="btn red white-text modal-close">Cancelar</button>
+            <button type="submit" class="btn blue white-text">Adicionar</button>
+        </div>
+    </form>
 </div>
