@@ -260,6 +260,7 @@ class SearchController extends Controller
                 ->join('cards', 'cards.id_card', '=', 'wants.id_card')
                 ->leftJoin('user_cards', 'user_cards.id_card', '=', 'wants.id_card')
                 ->where('id_status_want', '!=', 1)
+                ->distinct()
                 ->orderBy('wants.created_at', 'dec');
 
             if($request->have) {

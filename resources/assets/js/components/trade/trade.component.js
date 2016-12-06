@@ -27,6 +27,8 @@
         trade.searchTrades = searchTrades;
         trade.selectRateing = selectRateing;
         trade.finishRating = finishRating;
+        trade.showReport = showReport;
+        trade.report = report;
 
         trade.$onInit = function(){
             UserService.getUser()
@@ -34,7 +36,8 @@
                     trade.user = user;
                 });
 
-            trade.ratings = require('./ratings-data.js');
+            if(!trade.ratings)
+                trade.ratings = require('./ratings-data.js');
         };
 
         ////////////
@@ -128,6 +131,28 @@
                     }
                 });
             
+        }
+
+        function showReport(card){
+            if(!trade.reportCard)
+                trade.reportCard = {};
+
+            trade.reportCard.card = card;
+            $("#report").modal("open");
+        }
+
+        function report(report){
+            UserService.report(report)
+                .then(function(response){
+                    console.log("response",response);
+                    $("#report").modal("close");
+                    trade._filter = {refresh:true};
+                })
+                .carch(function(){
+                    $("#report").modal("close");
+                    alert("ops !!!");
+                })
+
         }
 	}
 

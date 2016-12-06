@@ -17,6 +17,7 @@
         UserService.profile = profile
         UserService.login = login;
         UserService.register = register;
+        UserService.report = report;
         UserService.getMyCards = getMyCards;
         UserService.getLastMessages = getLastMessages;
         UserService.sendWant = sendWant;
@@ -160,6 +161,13 @@
                 .then(function(response){
                     return response.data;
                 })   
+        }
+
+        function report(report){
+            return $http.post("/api/user/card/report/"+ report.card.id_want,{reason:report.reason})
+                .then(function(response){
+                    return response.data;
+                })
         }
 
     }

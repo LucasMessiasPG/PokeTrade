@@ -63,10 +63,10 @@
                     <img-load poke-src="item.card.image_url"></img-load>
 
                     <span ng-show="item.status == 'sending'" class="margin-lateral">
-                        <button class="btn waves-light waves-effect btn-small red" title="Report Problem"><i class="material-icons">warning</i></button>
+                        <button ng-click="trade.showReport(item)" class="btn waves-light waves-effect btn-small red" title="Report Problem"><i class="material-icons">warning</i></button>
                     </span>
 
-                    <a class="valign wrap" ng-href="/details/{{ item.card.id_card }}" title="{{ item.card.name_card }}"> {{ item.card.name_card }}</a>
+                    <a class="valign wrap" ng-href="/details/{{ item.card.id_card }}" title="{{ item.card.name_card }}" ng-class="{'red-text': item.id_status_want == 4}"> {{ item.card.name_card }}</a>
                 </div>
             </div>
             <div class="col s4">
@@ -129,8 +129,23 @@
             </div>
         </div>
         <div class="modal-footer btn-group">
-            <button type="button" class="btn red white-text modal-close">Cancelar</button>
-            <button type="submit" class="btn blue white-text">Adicionar</button>
+            <button type="button" class="btn red white-text modal-close">Cancel</button>
+            <button type="submit" class="btn blue white-text">Add</button>
+        </div>
+    </form>
+</div>
+
+<div id="report" class="modal">
+    <form ng-submit="trade.report(trade.reportCard)">
+        <div class="modal-content row">
+            <h4 class="col s12"> Reason </h4>
+            <label class="col s12">
+                <textarea style="resize: none" class="form-control" ng-model="trade.reportCard.reason"></textarea>
+            </label>
+        </div>
+        <div class="modal-footer btn-group">
+            <button type="button" class="btn red white-text modal-close">Cancel</button>
+            <button type="submit" class="btn blue white-text">Report</button>
         </div>
     </form>
 </div>

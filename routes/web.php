@@ -39,6 +39,7 @@ Route::group(['prefix'=>'api'],function(){
         Route::post('/user/add-card','UserController@addCard');
         Route::post('/user/add-want','UserController@addWant');
         Route::get('/user/{id_want}/send-want','UserController@sendWant');
+        Route::post('/user/card/report/{id_want}','UserController@reported');
         Route::get('/user/{id_want}/remove-want','UserController@removeWant');
         Route::get('/user/{id_user_card}/remove-card','UserController@remove');
         Route::post('/user/{id_want}/edit-want','UserController@editWant');

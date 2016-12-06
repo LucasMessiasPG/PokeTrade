@@ -165,14 +165,13 @@ class UserController extends Controller
         try {
 
             $limit = 100;
-            if($request->limit)
+            if($request->limit && $request->limit != "false")
                 $limit = $request->limit;
 
             $field = ['text', 'created_at', 'id_status_message', 'id_user_from'];
             $query = Message::select($field)
                 ->where('id_user', '=', Auth::user()->id_user)
                 ->orderBy('created_at', 'desc');
-
             $query->take($limit);
 
             if ($request->id_status_message != null) {
@@ -181,7 +180,6 @@ class UserController extends Controller
 
 
             if ($request->last) {
-                dd('erro');
                 $messages = [];
                 $temp_message = $query->get();
                 if ($request->id_status_message)
@@ -200,7 +198,6 @@ class UserController extends Controller
             } else {
                 $messages = $query->get();
             }
-
             foreach ($messages as $message) {
                 $message->from;
             }
@@ -420,6 +417,16 @@ class UserController extends Controller
             $valeu_pp = $want->pp;
             $want->user_from->increment("pp",$valeu_pp);
             $want->user->decrement("pp_reserve",$valeu_pp);
+
+
+            $msg = 'Trade complete <a href="/details/' . $want->card->id_card . '">' . $want->card->name . '(#' . $want->card->number . '/' . $want->card->set->total_cards . ')</a> from <a href="/user/' . $want->user_from->id_user . '">' . $want->user_from->login . '</a> to <a href"/user/' . $want->user->id_user . '">' . $want->user->login . '</a>';;
+            $this->dispatch(new AddMesssage(Auth::user(), $msg, 4));
+
+            History::create([
+                'id_user' => $want->user->id_user,
+                'id_want' => $want->id_want,
+                'text' => $msg
+            ]);
             
             \DB::commit();
             return $this->_return('Complete success', 'success');
@@ -434,6 +441,38 @@ class UserController extends Controller
             \DB::beginTransaction();
 
             User::find($id_user)->update($request->all());
+
+            
+            \DB::commit();
+            return $this->_return('Update profile success','success');
+        } catch (Exception $e) {
+            \DB::rollback();
+            return $this->_returnError('Update profile fail',$e);
+            
+        }
+    }
+
+    function reported($id_want, Request $request){
+        try {
+            \DB::beginTransaction();
+
+            $update = [
+                "id_status_want" => 4,
+                "reason" => $request->reason
+            ];
+
+            $msg = "This card in alert: reason \"".$request->reason."\"";
+            $this->dispatch(new AddMesssage(Auth::user(), $msg, 4));
+
+            $want = Want::find($id_want);
+
+            History::create([
+                'id_user' => $want->user->id_user,
+                'id_want' => $want->id_want,
+                'text' => $msg
+            ]);
+
+            $want->update($update);
 
             
             \DB::commit();

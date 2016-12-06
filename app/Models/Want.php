@@ -17,7 +17,8 @@ class Want extends Model
         'pp',
         'id_status_want',
         'foil',
-        'reverse_foil'
+        'reverse_foil',
+        'reason'
     ];
 
     public function status()
