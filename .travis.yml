@@ -19,5 +19,3 @@ deploy:
       application: PokeCard
       deployment_group: testing
       region: us-east-1
-before_deploy:
-    - rvm 1.9.3 do gem install mime-types -v 2.6.2
