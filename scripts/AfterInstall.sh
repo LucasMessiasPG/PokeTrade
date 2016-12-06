@@ -4,5 +4,5 @@ npm i
 npm rebuild node-sass
 gulp
 sudo chmod 777 -R *
-php artisan migrate
+php artisan migrate --force
 sudo cp /var/www/.env /var/www/html/PokeTrade/.env
