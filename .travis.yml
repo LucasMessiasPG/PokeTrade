@@ -6,9 +6,8 @@ notifications:
   slack:
     rooms:
         - miautalk:w2HyJB2b17GEkvQcbf7X2tAD#travis
-        - miautalk:w2HyJB2b17GEkvQcbf7X2tAD#general
     template:
-        - "%{result} - %{repository_name} on branch %{branch} commit by %{author} with message %{commit_message} for more details %{build_url}"
+        - "%{result} - %{repository_name} on branch '%{branch}' commit by '%{author}' with message '%{commit_message}' for more details - %{build_url}"
 script: node_modules/karma/bin/karma start my.conf.js --single-run --browsers PhantomJS
 sudo: false
 cache:
