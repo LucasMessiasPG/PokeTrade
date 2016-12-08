@@ -1,10 +1,14 @@
 language: node_js
-notifications:
-  slack: miautalk:w2HyJB2b17GEkvQcbf7X2tAD
-  template:
-      - "TESTE"
 node_js:
     - "0.10"
+notifications:
+  email: false
+  slack: miautalk:w2HyJB2b17GEkvQcbf7X2tAD
+    rooms:
+        - miautalk:w2HyJB2b17GEkvQcbf7X2tAD#travis
+        - miautalk:w2HyJB2b17GEkvQcbf7X2tAD#general
+    template:
+        - "TESTE"
 script: node_modules/karma/bin/karma start my.conf.js --single-run --browsers PhantomJS
 sudo: false
 cache:
