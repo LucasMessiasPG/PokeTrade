@@ -20,3 +20,5 @@ deploy:
       region: us-east-1
 before_deploy:
     - rvm 1.9.3 do gem install aws-sdk -v 2.1.36
+notifications:
+  slack: 'lucasmessias:xoxp-77738887366-91293021926-114965139526-5c86d5d49f8149772eedc560cdb6043f#general'
