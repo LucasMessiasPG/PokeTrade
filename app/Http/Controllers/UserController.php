@@ -483,4 +483,13 @@ class UserController extends Controller
             
         }
     }
+
+    // function removeWant($id_want){
+    //     try {
+    //         Want::find($id_want)->delete();
+    //         return $this->_return('Update profile success','success');
+    //     } catch (Exception $e) {
+    //         return $this->_returnError('Update profile fail',$e);
+    //     }
+    // }
 }
