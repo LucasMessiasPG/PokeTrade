@@ -24,3 +24,4 @@ hooks:
     - location: scripts/ApplicationStart.sh
       timeout: 10
       runas: ubuntu
+
