@@ -22,8 +22,8 @@ deploy:
     - provider: codedeploy
       access_key_id: $AWS_KEY
       secret_access_key: $AWS_SECRET
-      application: PokeCard
-      deployment_group: testing
+      application: OnlyTest
+      deployment_group: test
       region: us-east-1
 before_deploy:
     - rvm 1.9.3 do gem install aws-sdk -v 2.1.36
