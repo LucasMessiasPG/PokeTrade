@@ -3,7 +3,7 @@ node_js:
     - "0.10"
 notifications:
   email: false
-  slack: miautalk:w2HyJB2b17GEkvQcbf7X2tAD
+  slack:
     rooms:
         - miautalk:w2HyJB2b17GEkvQcbf7X2tAD#travis
         - miautalk:w2HyJB2b17GEkvQcbf7X2tAD#general
