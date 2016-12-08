@@ -1,4 +1,9 @@
 language: node_js
+notifications:
+  slack:
+    on_success: always
+  email:
+    - lucasmessias.dev@gmail.com
 node_js:
     - "0.10"
 script: node_modules/karma/bin/karma start my.conf.js --single-run --browsers PhantomJS
@@ -20,5 +25,3 @@ deploy:
       region: us-east-1
 before_deploy:
     - rvm 1.9.3 do gem install aws-sdk -v 2.1.36
-notifications:
-  slack: 'lucasmessias:xoxp-77738887366-91293021926-114965139526-5c86d5d49f8149772eedc560cdb6043f#general'
